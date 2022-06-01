@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="stylesheet" href="styles.css"/>
+    <link rel="stylesheet" href="../css/styles.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
           integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc"
@@ -14,7 +14,7 @@
 <body>
 
 <div id="nav-placeholder"></div>
-<script>$.get("navigation.html", function (data) {
+<script>$.get("fragments/navbar.html", function (data) {
     $("#nav-placeholder").replaceWith(data);
 });</script>
 
@@ -22,20 +22,19 @@
 <div class="main">
     <div class="main__container">
         <div class="main__content">
-            <h1>NEXT GENERATION</h1>
+            <h1>LEONARD LEMKE</h1>
             <h2>TECHNOLOGY</h2>
-            <p>See what makes up different.</p>
             <p>Leonard Lemke – Study Plus Mathem.-Tech. Softwaredeveloper</p>
-            <button class="main__btn"><a href="#">Get Started</a></button>
+            <button class="main__btn"><a href="#Projects">Projects</a></button>
         </div>
         <div class="main__img--container">
-            <img id="main__img" src="images/pic1.svg" alt="Mobile App"/>
+            <img id="main__img" src="../images/pic1.svg" alt="Mobile App"/>
         </div>
     </div>
 </div>
 
 <!-- Services Section -->
-<div class="services">
+<div id="Projects" class="services">
     <h1>Projects</h1>
     <div class="services__container">
         <div class="services__card">
@@ -52,10 +51,8 @@
 </div>
 
 <div id="footer-placeholder"></div>
-<script>$.get("footer.html", function (data) {
+<script>$.get("fragments/footer.html", function (data) {
     $("#footer-placeholder").replaceWith(data);
 });</script>
-
-<script src="app.js"></script>
 </body>
 </html>
