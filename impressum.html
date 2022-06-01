@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="stylesheet" href="../css/styles.css"/>
+    <link rel="stylesheet" href="css/styles.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
           integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc"
@@ -14,7 +14,7 @@
 <body>
 
 <div id="nav-placeholder"></div>
-<script>$.get("fragments/navbar.html", function (data) {
+<script>$.get("static/fragments/navbar.html", function (data) {
     $("#nav-placeholder").replaceWith(data);
 });</script>
 
@@ -125,7 +125,7 @@
 </div>
 
 <div id="footer-placeholder"></div>
-<script>$.get("fragments/footer.html", function (data) {
+<script>$.get("static/fragments/footer.html", function (data) {
     $("#footer-placeholder").replaceWith(data);
 });</script>
 </body>
