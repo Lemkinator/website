@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="styles.css"/>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
+        integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc"
+        crossorigin="anonymous"/>
+  <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap" rel="stylesheet"/>
+  <title>Lemkinator</title>
+</head>
+<body>
+
+<div id="nav-placeholder"></div>
+<script>$.get("navigation.html", function (data) {
+  $("#nav-placeholder").replaceWith(data);
+});</script>
+
+<!-- Hero Section -->
+<div class="main">
+  <div class="main__container">
+    <div class="main__content">
+      <h1>NEXT GENERATION</h1>
+      <h2>TECHNOLOGY</h2>
+      <p>The new non-official hymn and choir book app for the New Apostolic Church.</p>
+      <button class="main__btn"><a href="#">Get Started</a></button>
+    </div>
+    <!-- Google Play -->
+    <div class="main__img--container">
+      <img id="main__img" src="images/pic1.svg" alt="Mobile App"/>
+    </div>
+  </div>
+</div>
+
+<!-- Services Section -->
+<div class="services">
+  <h1>Features</h1>
+  <ul>
+    <li>Free</li>
+    <li>Dark Mode (automatically adapts to the system settings)</li>
+    <li>Quick setting for mute/do not disturb mode.</li>
+    <li>Pleasant text view</li>
+    <li>Favourites</li>
+    <li>Notes</li>
+    <li>Date function (sung on...)</li>
+    <li>Integrated image gallery for sheet music (The app does not contain sheet music for copyright reasons and
+      also does not have access to the camera. However, the app can open a pre-installed camera app and
+      display the taken photo in the integrated picture gallery).</li>
+    <li>History</li>
+    <li>(Easter Eggs - Can you manage to become "Master of Easter Eggs"? 😂)</li>
+  </ul>
+
+  <h1>Wear OS support</h1>
+  <p>Forgotten your smartphone? No problem, the text contents of the app can be displayed
+    on the smartwatch without any problems (in a pleasant design).</p>
+  <h1>Disclaimer</h1>
+  <p>This app has no connection to the NAC or the Friedrich Bischoff publishing house and only contains
+    the copyright-free texts from the NAC hymnal and choir book.
+    For 118 (out of 438) hymnal songs and 256 (out of 462) choirbook songs,
+    the rights are still held by the authors, which is why they cannot be displayed.
+    The information on the copyright of the individual songs has been checked with great care.
+    If I have unwittingly made mistakes, please let me know, and I will follow up immediately.
+    The administration of the rights is the responsibility of the Friedrich Bischoff Verlag,
+    which itself has published a (paid) hymnal app and a (paid) choir book app.</p>
+
+  <a href="nakbuch-privacy-policy.html">Privacy policy</a>
+</div>
+
+<div id="footer-placeholder"></div>
+<script>$.get("footer.html", function (data) {
+  $("#footer-placeholder").replaceWith(data);
+});</script>
+
+<script src="app.js"></script>
+</body>
+</html>

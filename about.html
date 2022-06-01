@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="styles.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
+          integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc"
+          crossorigin="anonymous"/>
+    <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap" rel="stylesheet"/>
+    <title>Lemkinator</title>
+</head>
+<body>
+
+<div id="nav-placeholder"></div>
+<script>$.get("navigation.html", function (data) {
+    $("#nav-placeholder").replaceWith(data);
+});</script>
+
+<div class="main">
+    <div class="main__container">
+        <div class="main__content">
+            <h1>Leonard Lemke – Study Plus Mathem.-Tech. Softwaredeveloper</h1>
+            <p>"Those looking for quick success should not program, but chop wood."</p>
+
+            <h1>Training</h1>
+            <p>September 2019 - July 2021</p>
+            <p>Mathem. tech. Softwaredeveloper </p>
+            <p>Kaufmännischen und Hauswirtschaftlichen Schulen Donaueschingen / Continental AG</p>
+
+            <h1>Study: Bachelor of Science</h1>
+            <p>September 2019 - February 2024</p>
+            <p>Study Plus Mathem. tech. Softwaredeveloper</p>
+            <p>General Computer Science (Specialization Software Engineering)</p>
+            <p>Furtwangen University (HFU) / Continental AG</p>
+
+            <h1>Next?</h1>
+            <p>February 2024 - ?</p>
+            <p>Contact me: leo@lemkinator.com</p>
+        </div>
+    </div>
+</div>
+
+<div id="footer-placeholder"></div>
+<script>$.get("footer.html", function (data) {
+    $("#footer-placeholder").replaceWith(data);
+});</script>
+
+<script src="app.js"></script>
+</body>
+</html>
