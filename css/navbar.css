@@ -3,7 +3,6 @@
 ********************************************************/
 
 .navbar {
-  background: #131313;
   height: 80px;
   display: flex;
   justify-content: center;
@@ -27,18 +26,18 @@
   padding-left: 50px;
 }
 
-#navbar__logo {
+.navbar__name {
   background-color: #ff8177;
-  background-image: linear-gradient(to top, #ff0844 0%, #ffb199 100%);
+  background-image: linear-gradient(to top, #ff0844 0%, #ffb199 100%), image("../images/logo/Icon_transparent.png");
   background-size: 100%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   display: flex;
   align-items: center;
-  font-size: 1.5rem;
+  font-size: 1.8rem;
 }
 
-.fa-gem {
+.navbar__logo {
   margin-right: 0.5rem;
 }
 

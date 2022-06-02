@@ -1,76 +1,191 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <link rel="stylesheet" href="css/styles.css"/>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
-        integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc"
-        crossorigin="anonymous"/>
-  <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap" rel="stylesheet"/>
-  <title>Lemkinator</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="css/styles.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
+          integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc"
+          crossorigin="anonymous"/>
+    <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap" rel="stylesheet"/>
+    <title>Lemkinator</title>
 </head>
 <body>
 
 <div id="nav-placeholder"></div>
 <script>$.get("static/fragments/navbar.html", function (data) {
-  $("#nav-placeholder").replaceWith(data);
+    $("#nav-placeholder").replaceWith(data);
 });</script>
 
 <!-- Hero Section -->
 <div class="main">
-  <div class="main__container">
-    <div class="main__content">
-      <h1>NEXT GENERATION</h1>
-      <h2>TECHNOLOGY</h2>
-      <p>The new non-official hymn and choir book app for the New Apostolic Church.</p>
-      <button class="main__btn"><a href="#">Get Started</a></button>
+    <div class="content__container">
+        <div class="content">
+            <h1>NAK Buch</h1>
+            <p>The new non-official hymn and choir book app for the New Apostolic Church.</p>
+            <a href='https://play.google.com/store/apps/details?id=de.lemke.nakbuch&gl=DE&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'>
+                <img class="playstore_button" alt='Get it on Google Play'
+                     src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png'/>
+            </a>
+
+        </div>
+        <!-- Google Play -->
+
+        <div class="content">
+
+            <!-- Slideshow container -->
+            <div class="slideshow-container">
+                <!-- Full-width images with number and caption text -->
+                <div class="mySlides fade">
+                    <div class="numbertext">1 / 4</div>
+                    <img src="images/apps/nakbuch/mobile1.png" style="width:100%">
+                    <div class="text">Caption Text</div>
+                </div>
+                <div class="mySlides fade">
+                    <div class="numbertext">2 / 4</div>
+                    <img src="images/apps/nakbuch/mobile2.png" style="width:100%">
+                    <div class="text">Caption Two</div>
+                </div>
+                <div class="mySlides fade">
+                    <div class="numbertext">3 / 4</div>
+                    <img src="images/apps/nakbuch/mobile3.png" style="width:100%">
+                    <div class="text">Caption Three</div>
+                </div>
+                <div class="mySlides fade">
+                    <div class="numbertext">4 / 4</div>
+                    <img src="images/apps/nakbuch/mobile4.png" style="width:100%">
+                    <div class="text">Caption Four</div>
+                </div>
+
+                <!-- Next and previous buttons -->
+                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                <a class="next" onclick="plusSlides(1)">&#10095;</a>
+            </div>
+            <br>
+
+            <!-- The dots/circles -->
+            <div style="text-align:center">
+                <span class="dot" onclick="currentSlide(1)"></span>
+                <span class="dot" onclick="currentSlide(2)"></span>
+                <span class="dot" onclick="currentSlide(3)"></span>
+                <span class="dot" onclick="currentSlide(4)"></span>
+            </div>
+
+            <h2>Features</h2>
+            <ul>
+                <li>Free</li>
+                <li>Dark Mode (automatically adapts to the system settings)</li>
+                <li>Quick setting for mute/do not disturb mode.</li>
+                <li>Pleasant text view</li>
+                <li>Favourites</li>
+                <li>Notes</li>
+                <li>Date function (sung on...)</li>
+                <li>Integrated image gallery for sheet music (The app does not contain sheet music for copyright reasons
+                    and
+                    also does not have access to the camera. However, the app can open a pre-installed camera app and
+                    display the taken photo in the integrated picture gallery).
+                </li>
+                <li>History</li>
+                <li>(Easter Eggs - Can you manage to become "Master of Easter Eggs"? 😂)</li>
+            </ul>
+        </div>
+
+        <div class="content">
+            <h2>Wear OS support</h2>
+            <p>Forgotten your smartphone? No problem, the text contents of the app can be displayed
+                on the smartwatch without any problems (in a pleasant design).</p>
+        </div>
+        <div class="content">
+            <h2>Disclaimer</h2>
+            <p>This app has no connection to the NAC or the Friedrich Bischoff publishing house and only contains
+                the copyright-free texts from the NAC hymnal and choir book. <br><br>
+                For 118 (out of 438) hymnal songs and 256 (out of 462) choirbook songs,
+                the rights are still held by the authors, which is why they cannot be displayed. <br><br>
+                The information on the copyright of the individual songs has been checked with great care.
+                If I have unwittingly made mistakes, please let me know, and I will follow up immediately.
+                The administration of the rights is the responsibility of the Friedrich Bischoff Verlag,
+                which itself has published a (paid) hymnal app and a (paid) choir book app.
+            </p>
+            <button><a href="nakbuch-privacy-policy.html">Privacy policy</a></button>
+        </div>
     </div>
-    <!-- Google Play -->
-    <div class="main__img--container">
-      <img id="main__img" src="images/pic1.svg" alt="Mobile App"/>
-    </div>
-  </div>
-</div>
-
-<!-- Services Section -->
-<div class="services">
-  <h1>Features</h1>
-  <ul>
-    <li>Free</li>
-    <li>Dark Mode (automatically adapts to the system settings)</li>
-    <li>Quick setting for mute/do not disturb mode.</li>
-    <li>Pleasant text view</li>
-    <li>Favourites</li>
-    <li>Notes</li>
-    <li>Date function (sung on...)</li>
-    <li>Integrated image gallery for sheet music (The app does not contain sheet music for copyright reasons and
-      also does not have access to the camera. However, the app can open a pre-installed camera app and
-      display the taken photo in the integrated picture gallery).</li>
-    <li>History</li>
-    <li>(Easter Eggs - Can you manage to become "Master of Easter Eggs"? 😂)</li>
-  </ul>
-
-  <h1>Wear OS support</h1>
-  <p>Forgotten your smartphone? No problem, the text contents of the app can be displayed
-    on the smartwatch without any problems (in a pleasant design).</p>
-  <h1>Disclaimer</h1>
-  <p>This app has no connection to the NAC or the Friedrich Bischoff publishing house and only contains
-    the copyright-free texts from the NAC hymnal and choir book.
-    For 118 (out of 438) hymnal songs and 256 (out of 462) choirbook songs,
-    the rights are still held by the authors, which is why they cannot be displayed.
-    The information on the copyright of the individual songs has been checked with great care.
-    If I have unwittingly made mistakes, please let me know, and I will follow up immediately.
-    The administration of the rights is the responsibility of the Friedrich Bischoff Verlag,
-    which itself has published a (paid) hymnal app and a (paid) choir book app.</p>
-
-  <a href="nakbuch-privacy-policy.html">Privacy policy</a>
 </div>
 
 <div id="footer-placeholder"></div>
-<script>$.get("static/fragments/footer.html", function (data) {
-  $("#footer-placeholder").replaceWith(data);
-});</script>
+<script>
+    $.get("static/fragments/footer.html", function (data) {
+        $("#footer-placeholder").replaceWith(data);
+    });
+
+    let slideIndex = 1;
+    showDivs(slideIndex);
+
+    function plusDivs(n) {
+        showDivs(slideIndex += n);
+    }
+
+    function showDivs(n) {
+        let i;
+        let x = document.getElementsByClassName("mySlides");
+        if (n > x.length) {slideIndex = 1}
+        if (n < 1) {slideIndex = x.length}
+        for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";
+        }
+        x[slideIndex-1].style.display = "block";
+    }
+
+    /*let slideIndex = 1;
+    showSlides(slideIndex);
+
+    // Next/previous controls
+    function plusSlides(n) {
+        showSlides(slideIndex += n);
+    }
+
+    // Thumbnail image controls
+    function currentSlide(n) {
+        showSlides(slideIndex = n);
+    }
+
+    function showSlides(n) {
+        let i;
+        let slides = document.getElementsByClassName("mySlides");
+        let dots = document.getElementsByClassName("dot");
+        if (n > slides.length) {slideIndex = 1}
+        if (n < 1) {slideIndex = slides.length}
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+        }
+        slides[slideIndex-1].style.display = "block";
+        dots[slideIndex-1].className += " active";
+    }*/
+
+    //let slideIndex = [1,1];
+    /* Class the members of each slideshow group with different CSS classes */
+    /*let slideId = ["mySlides1", "mySlides2"]
+    showSlides(1, 0);
+    showSlides(1, 1);
+
+    function plusSlides(n, no) {
+        showSlides(slideIndex[no] += n, no);
+    }
+
+    function showSlides(n, no) {
+        let i;
+        let x = document.getElementsByClassName(slideId[no]);
+        if (n > x.length) {slideIndex[no] = 1}
+        if (n < 1) {slideIndex[no] = x.length}
+        for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";
+        }
+        x[slideIndex[no]-1].style.display = "block";
+    }*/
+
+</script>
 </body>
 </html>
