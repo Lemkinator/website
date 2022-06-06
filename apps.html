@@ -4,7 +4,11 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="stylesheet" href="css/styles.css"/>
+    <script src="lib/splide-4.0.6/dist/js/splide.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet"
+          href="lib/splide-4.0.6/dist/css/themes/splide-sea-green.min.css"
+    />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
           integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc"
           crossorigin="anonymous"/>
@@ -23,7 +27,7 @@
     <div class="content__container">
         <div class="content">
             <h1>NAK Buch</h1>
-            <p>The new non-official hymn and choir book app for the New Apostolic Church.</p>
+            <p>The new non-official songbook app of the New Apostolic Church.</p>
             <a href='https://play.google.com/store/apps/details?id=de.lemke.nakbuch&gl=DE&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'>
                 <img class="playstore_button" alt='Get it on Google Play'
                      src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png'/>
@@ -33,45 +37,28 @@
         <!-- Google Play -->
 
         <div class="content">
-
-            <!-- Slideshow container -->
-            <div class="slideshow-container">
-                <!-- Full-width images with number and caption text -->
-                <div class="mySlides fade">
-                    <div class="numbertext">1 / 4</div>
-                    <img src="images/apps/nakbuch/mobile1.png" style="width:100%">
-                    <div class="text">Caption Text</div>
+            <section id="main-slider" class="splide" aria-label="My Awesome Gallery">
+                <div class="splide__track">
+                    <ul class="splide__list">
+                        <li class="splide__slide"><img src="images/apps/nakbuch/mobile1.png" alt=""/></li>
+                        <li class="splide__slide"><img src="images/apps/nakbuch/mobile2.png" alt=""/></li>
+                        <li class="splide__slide"><img src="images/apps/nakbuch/mobile3.png" alt=""/></li>
+                        <li class="splide__slide"><img src="images/apps/nakbuch/mobile4.png" alt=""/></li>
+                    </ul>
                 </div>
-                <div class="mySlides fade">
-                    <div class="numbertext">2 / 4</div>
-                    <img src="images/apps/nakbuch/mobile2.png" style="width:100%">
-                    <div class="text">Caption Two</div>
-                </div>
-                <div class="mySlides fade">
-                    <div class="numbertext">3 / 4</div>
-                    <img src="images/apps/nakbuch/mobile3.png" style="width:100%">
-                    <div class="text">Caption Three</div>
-                </div>
-                <div class="mySlides fade">
-                    <div class="numbertext">4 / 4</div>
-                    <img src="images/apps/nakbuch/mobile4.png" style="width:100%">
-                    <div class="text">Caption Four</div>
-                </div>
+            </section>
 
-                <!-- Next and previous buttons -->
-                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-                <a class="next" onclick="plusSlides(1)">&#10095;</a>
-            </div>
-            <br>
+            <ul id="thumbnails" class="thumbnails">
+                <li class="thumbnail"><img src="images/apps/nakbuch/mobile1.png" alt=""/></li>
+                <li class="thumbnail"><img src="images/apps/nakbuch/mobile2.png" alt=""/></li>
+                <li class="thumbnail"><img src="images/apps/nakbuch/mobile3.png" alt=""/></li>
+                <li class="thumbnail"><img src="images/apps/nakbuch/mobile4.png" alt=""/></li>
+            </ul>
 
-            <!-- The dots/circles -->
-            <div style="text-align:center">
-                <span class="dot" onclick="currentSlide(1)"></span>
-                <span class="dot" onclick="currentSlide(2)"></span>
-                <span class="dot" onclick="currentSlide(3)"></span>
-                <span class="dot" onclick="currentSlide(4)"></span>
-            </div>
+        </div>
 
+
+        <div class="content">
             <h2>Features</h2>
             <ul>
                 <li>Free</li>
@@ -98,15 +85,24 @@
         </div>
         <div class="content">
             <h2>Disclaimer</h2>
-            <p>This app has no connection to the NAC or the Friedrich Bischoff publishing house and only contains
-                the copyright-free texts from the NAC hymnal and choir book. <br><br>
-                For 118 (out of 438) hymnal songs and 256 (out of 462) choirbook songs,
-                the rights are still held by the authors, which is why they cannot be displayed. <br><br>
-                The information on the copyright of the individual songs has been checked with great care.
-                If I have unwittingly made mistakes, please let me know, and I will follow up immediately.
-                The administration of the rights is the responsibility of the Friedrich Bischoff Verlag,
-                which itself has published a (paid) hymnal app and a (paid) choir book app.
-            </p>
+            <p>This app is in no way affiliated with the New Apostolic Church or Friedrich Bischoff Publishing House and
+                contains only the copyright-free texts from the following books:</p>
+            <ul>
+                <li>Gesangbuch (320 of 438 songs)</li>
+                <li>Chorbuch (206 of 462 songs)</li>
+                <li>Jugendliederbuch (41 of 102 songs)</li>
+                <li>Ergänzungsheft zum Jugendliederbuch (3 of 20 songs)</li>
+            </ul>
+            <br><br>
+            <p>For the remaining songs, the rights are still held by the authors, which is why they cannot be
+                displayed or can only be displayed in part.
+                The information on copyright has been checked with great care. If I have unwittingly made mistakes,
+                please let me know and I will follow up immediately.
+                <br><br>
+                The administration of the rights is, among others, the responsibility of the Friedrich Bischoff Verlag,
+                which itself has published an app (for a fee) for the Gesangbuch and an app (for a fee) for the
+                Chorbuch.
+            </>
             <button><a href="nakbuch-privacy-policy.html">Privacy policy</a></button>
         </div>
     </div>
@@ -118,74 +114,40 @@
         $("#footer-placeholder").replaceWith(data);
     });
 
-    let slideIndex = 1;
-    showDivs(slideIndex);
+    var splide = new Splide("#main-slider", {
+        width: 1440,
+        height: 3088,
+        pagination: false,
+        cover: true
+    });
 
-    function plusDivs(n) {
-        showDivs(slideIndex += n);
+    var thumbnails = document.getElementsByClassName("thumbnail");
+    var current;
+
+    for (var i = 0; i < thumbnails.length; i++) {
+        initThumbnail(thumbnails[i], i);
     }
 
-    function showDivs(n) {
-        let i;
-        let x = document.getElementsByClassName("mySlides");
-        if (n > x.length) {slideIndex = 1}
-        if (n < 1) {slideIndex = x.length}
-        for (i = 0; i < x.length; i++) {
-            x[i].style.display = "none";
+    function initThumbnail(thumbnail, index) {
+        thumbnail.addEventListener("click", function () {
+            splide.go(index);
+        });
+    }
+
+    splide.on("mounted move", function () {
+        var thumbnail = thumbnails[splide.index];
+
+        if (thumbnail) {
+            if (current) {
+                current.classList.remove("is-active");
+            }
+
+            thumbnail.classList.add("is-active");
+            current = thumbnail;
         }
-        x[slideIndex-1].style.display = "block";
-    }
+    });
 
-    /*let slideIndex = 1;
-    showSlides(slideIndex);
-
-    // Next/previous controls
-    function plusSlides(n) {
-        showSlides(slideIndex += n);
-    }
-
-    // Thumbnail image controls
-    function currentSlide(n) {
-        showSlides(slideIndex = n);
-    }
-
-    function showSlides(n) {
-        let i;
-        let slides = document.getElementsByClassName("mySlides");
-        let dots = document.getElementsByClassName("dot");
-        if (n > slides.length) {slideIndex = 1}
-        if (n < 1) {slideIndex = slides.length}
-        for (i = 0; i < slides.length; i++) {
-            slides[i].style.display = "none";
-        }
-        for (i = 0; i < dots.length; i++) {
-            dots[i].className = dots[i].className.replace(" active", "");
-        }
-        slides[slideIndex-1].style.display = "block";
-        dots[slideIndex-1].className += " active";
-    }*/
-
-    //let slideIndex = [1,1];
-    /* Class the members of each slideshow group with different CSS classes */
-    /*let slideId = ["mySlides1", "mySlides2"]
-    showSlides(1, 0);
-    showSlides(1, 1);
-
-    function plusSlides(n, no) {
-        showSlides(slideIndex[no] += n, no);
-    }
-
-    function showSlides(n, no) {
-        let i;
-        let x = document.getElementsByClassName(slideId[no]);
-        if (n > x.length) {slideIndex[no] = 1}
-        if (n < 1) {slideIndex[no] = x.length}
-        for (i = 0; i < x.length; i++) {
-            x[i].style.display = "none";
-        }
-        x[slideIndex[no]-1].style.display = "block";
-    }*/
-
+    splide.mount();
 </script>
 </body>
 </html>
