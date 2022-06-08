@@ -200,7 +200,7 @@ img.playstore_button {
 
 .media-swiper .swiper-slide {
     margin-top: 20px;
-    padding: 0 45px 110px;
+    padding: 0 45px 120px;
 }
 
 .impressions-swiper .swiper-slide {
@@ -217,7 +217,7 @@ img.playstore_button {
 .swiper-slide .description {
     margin: 5px 0 0;
     max-width: 80vw;
-    font-size: 1rem;
+    font-size: 0.9rem;
 }
 
 .swiper-button-next,
@@ -309,7 +309,7 @@ img.playstore_button {
     }
 
     .home__content h2 {
-        font-size: 3rem;
+        font-size: 2.3rem;
     }
 
     .home__content p {
