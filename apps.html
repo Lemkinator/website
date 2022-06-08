@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="stylesheet" href="css/styles.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css"/>
+    <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
           integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc"
           crossorigin="anonymous"/>
@@ -20,37 +22,32 @@
 
 <!-- Hero Section -->
 <div class="main">
-    <div class="content__container">
+    <div class="grid__container">
         <div class="content">
             <h1>NAK Buch</h1>
             <p>The new non-official songbook app of the New Apostolic Church.</p>
+        </div>
+        <div class="content">
             <a href='https://play.google.com/store/apps/details?id=de.lemke.nakbuch&gl=DE&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'>
                 <img class="playstore_button" alt='Get it on Google Play'
                      src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png'/>
             </a>
-
         </div>
         <!-- Google Play -->
-
+    </div>
+    <div class="grid__container">
         <div class="content">
-            <section id="main-slider" class="splide" aria-label="My Awesome Gallery">
-                <div class="splide__track">
-                    <ul class="splide__list">
-                        <li class="splide__slide"><img src="images/apps/nakbuch/mobile1.png" alt=""/></li>
-                        <li class="splide__slide"><img src="images/apps/nakbuch/mobile2.png" alt=""/></li>
-                        <li class="splide__slide"><img src="images/apps/nakbuch/mobile3.png" alt=""/></li>
-                        <li class="splide__slide"><img src="images/apps/nakbuch/mobile4.png" alt=""/></li>
-                    </ul>
+            <div class="swiper mobile-swiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide"><img src="images/apps/nakbuch/mobile1.png" alt=""/></div>
+                    <div class="swiper-slide"><img src="images/apps/nakbuch/mobile2.png" alt=""/></div>
+                    <div class="swiper-slide"><img src="images/apps/nakbuch/mobile3.png" alt=""/></div>
+                    <div class="swiper-slide"><img src="images/apps/nakbuch/mobile4.png" alt=""/></div>
                 </div>
-            </section>
-
-            <ul id="thumbnails" class="thumbnails">
-                <li class="thumbnail"><img src="images/apps/nakbuch/mobile1.png" alt=""/></li>
-                <li class="thumbnail"><img src="images/apps/nakbuch/mobile2.png" alt=""/></li>
-                <li class="thumbnail"><img src="images/apps/nakbuch/mobile3.png" alt=""/></li>
-                <li class="thumbnail"><img src="images/apps/nakbuch/mobile4.png" alt=""/></li>
-            </ul>
-
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-pagination"></div>
+            </div>
         </div>
 
 
@@ -73,11 +70,24 @@
                 <li>(Easter Eggs - Can you manage to become "Master of Easter Eggs"? 😂)</li>
             </ul>
         </div>
-
+    </div>
+    <div class="content__container">
         <div class="content">
             <h2>Wear OS support</h2>
             <p>Forgotten your smartphone? No problem, the text contents of the app can be displayed
                 on the smartwatch without any problems (in a pleasant design).</p>
+            <br><br>
+            <div class="swiper wear-swiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide"><img src="images/apps/nakbuch/wear1.png" alt=""/></div>
+                    <div class="swiper-slide"><img src="images/apps/nakbuch/wear2.png" alt=""/></div>
+                    <div class="swiper-slide"><img src="images/apps/nakbuch/wear3.png" alt=""/></div>
+                    <div class="swiper-slide"><img src="images/apps/nakbuch/wear4.png" alt=""/></div>
+                </div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-pagination"></div>
+            </div>
         </div>
         <div class="content">
             <h2>Disclaimer</h2>
@@ -110,40 +120,40 @@
         $("#footer-placeholder").replaceWith(data);
     });
 
-    const splide = new Splide("#main-slider", {
-        width: 350,//1440
-        height: 550,//3088
-        pagination: false,
-        cover: true
+    const swiper = new Swiper(".mobile-swiper", {
+        mousewheel: true,
+        grabCursor: true,
+        loop: true,
+        autoplay: {
+            delay: 10000,
+            disableOnInteraction: true,
+        },
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+        pagination: {
+            el: ".swiper-pagination",
+        },
     });
 
-    const thumbnails = document.getElementsByClassName("thumbnail");
-    let current;
-
-    for (let i = 0; i < thumbnails.length; i++) {
-        initThumbnail(thumbnails[i], i);
-    }
-
-    function initThumbnail(thumbnail, index) {
-        thumbnail.addEventListener("click", function () {
-            splide.go(index);
-        });
-    }
-
-    splide.on("mounted move", function () {
-        const thumbnail = thumbnails[splide.index];
-
-        if (thumbnail) {
-            if (current) {
-                current.classList.remove("is-active");
-            }
-
-            thumbnail.classList.add("is-active");
-            current = thumbnail;
-        }
+    const swiper2 = new Swiper(".wear-swiper", {
+        mousewheel: true,
+        grabCursor: true,
+        loop: true,
+        autoplay: {
+            delay: 10000,
+            disableOnInteraction: true,
+        },
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+        pagination: {
+            el: ".swiper-pagination",
+        },
     });
 
-    splide.mount();
 </script>
 </body>
 </html>

@@ -164,11 +164,32 @@ img.playstore_button {
     }
 }
 
-.swiper {
+.media-swiper {
     width: 80vw;
     height: 65vw;
     max-width: 800px;
     max-height: 650px;
+}
+
+.impessions-swiper {
+    width: 80vw;
+    height: 65vw;
+    max-width: 800px;
+    max-height: 650px;
+}
+
+.mobile-swiper {
+    width: 47vh;
+    height: 80vh;
+    max-width: 400px;
+    max-height: 700px;
+}
+
+.wear-swiper {
+    width: 80vh;
+    height: 70vh;
+    max-width: 400px;
+    max-height: 350px;
 }
 
 .swiper-slide img {
@@ -181,9 +202,16 @@ img.playstore_button {
     margin-top: 20px;
     padding: 0 45px 110px;
 }
+
 .impressions-swiper .swiper-slide {
     margin-top: 20px;
     padding-bottom: 40px;
+}
+
+.mobile-swiper .swiper-slide,
+.wear-swiper .swiper-slide {
+    margin-top: 20px;
+    padding: 0 50px 50px;
 }
 
 .swiper-slide .description {
@@ -203,7 +231,7 @@ img.playstore_button {
 ******************************************************************
 *******************************************************************/
 
-.home__container {
+.grid__container {
     display: grid;
     grid-template-columns: 1fr 1fr;
     align-items: center;
@@ -260,14 +288,14 @@ img.playstore_button {
 
 /* Mobile */
 @media screen and (max-width: 768px) {
-    .home__container {
+    .grid__container {
         display: grid;
         grid-template-columns: auto;
         align-items: center;
         justify-self: center;
         width: 100%;
         margin: 0 auto;
-        height: 90vh;
+        height: 160vh;
     }
 
     .home__content {
