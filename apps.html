@@ -4,11 +4,7 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="stylesheet" href="css/styles.css"/>
-    <script src="lib/splide-4.0.6/dist/js/splide.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <link rel="stylesheet"
-          href="lib/splide-4.0.6/dist/css/themes/splide-sea-green.min.css"
-    />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
           integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc"
           crossorigin="anonymous"/>
@@ -103,7 +99,7 @@
                 which itself has published an app (for a fee) for the Gesangbuch and an app (for a fee) for the
                 Chorbuch.
             </p>
-            <button><a href="nakbuch-privacy-policy.html">Privacy policy</a></button>
+            <button class="lButton"><a href="nakbuch-privacy-policy.html">Privacy policy</a></button>
         </div>
     </div>
 </div>
@@ -114,17 +110,17 @@
         $("#footer-placeholder").replaceWith(data);
     });
 
-    var splide = new Splide("#main-slider", {
+    const splide = new Splide("#main-slider", {
         width: 350,//1440
         height: 550,//3088
         pagination: false,
         cover: true
     });
 
-    var thumbnails = document.getElementsByClassName("thumbnail");
-    var current;
+    const thumbnails = document.getElementsByClassName("thumbnail");
+    let current;
 
-    for (var i = 0; i < thumbnails.length; i++) {
+    for (let i = 0; i < thumbnails.length; i++) {
         initThumbnail(thumbnails[i], i);
     }
 
@@ -135,7 +131,7 @@
     }
 
     splide.on("mounted move", function () {
-        var thumbnail = thumbnails[splide.index];
+        const thumbnail = thumbnails[splide.index];
 
         if (thumbnail) {
             if (current) {

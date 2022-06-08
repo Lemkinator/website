@@ -8,5 +8,6 @@
     <orderEntry type="library" name="jquery-1.10.2" level="application" />
     <orderEntry type="library" name="jquery" level="application" />
     <orderEntry type="library" name="all" level="application" />
+    <orderEntry type="library" name="swiper" level="application" />
   </component>
 </module>

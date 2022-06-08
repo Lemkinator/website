@@ -1,90 +1,172 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <link rel="stylesheet" href="css/styles.css"/>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
-        integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc"
-        crossorigin="anonymous"/>
-  <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap" rel="stylesheet"/>
-  <title>Lemkinator</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="css/styles.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css"/>
+    <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
+          integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc"
+          crossorigin="anonymous"/>
+    <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap" rel="stylesheet"/>
+    <title>Lemkinator</title>
 </head>
 <body>
 
 <div id="nav-placeholder"></div>
 <script>$.get("static/fragments/navbar.html", function (data) {
-  $("#nav-placeholder").replaceWith(data);
+    $("#nav-placeholder").replaceWith(data);
 });</script>
 
 <!-- Hero Section -->
 <div class="main">
-  <div class="content__container">
-    <div class="content">
-      <h1>Accellerate - feat. Audi RS3 - Cinematic/Freestyle FPV</h1>
-      <p>A media project started for fun...</p>
-      <br>
-    </div>
-    <div class="content">
-      <h1>Trailer</h1>
+    <div class="content__container">
+        <div class="content">
+            <h1>Accellerate - feat. Audi RS3 - Cinematic/Freestyle FPV</h1>
+            <p>A media project started for fun...</p>
+            <br>
+        </div>
+        <div class="content">
+            <h1>Trailer</h1>
+            <iframe class="trailer"
+                    src="https://www.youtube.com/embed/pf5zeYbQ8c8" allowfullscreen>
+            </iframe>
+        </div>
+        <div class="content">
+            <h1>Video</h1>
+            <iframe class="video"
+                    src="https://www.youtube.com/embed/h-fGDLRG0-0" allowfullscreen>
+            </iframe>
+        </div>
+        <div class="content">
+            <h2>What is Cinematic/Freestyle FPV?</h2>
+            <ul>
+                <li><b>First-person view (FPV)</b> is a method where a radio-controlled aircraft (drone) is piloted
+                    remotely from a first-person perspective via an onboard camera, fed wirelessly to video FPV goggles.
+                </li>
+                <li><b>Freestyle FPV</b> is all about flying skills and doing nice tricks or movements.</li>
+                <li><b>Cinematic FPV</b> content tends to be slower and smoother than Freestyle FPV.
+                    The settings are chosen more for their visual attraction than for the technical flying skills they
+                    demand.
+                </li>
+            </ul>
+        </div>
+        <div class="content">
+            <h1> Accelerate - Impressions</h1>
+            <div class="swiper impressions-swiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide"><img src="images/media/accellerate/accelerate1.gif" alt=""/></div>
+                    <div class="swiper-slide"><img src="images/media/accellerate/accelerate2.gif" alt=""/></div>
+                    <div class="swiper-slide"><img src="images/media/accellerate/accelerate3.gif" alt=""/></div>
+                    <div class="swiper-slide"><img src="images/media/accellerate/accelerate4.gif" alt=""/></div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+        <div class="content">
+            <h2>What is special about FPV?</h2>
+            <p>The difference to normal drone pilots is that FPV pilots mostly build their drone themselves.</p>
+            <h3>This includes:</h3>
+            <ul>
+                <li> Search and buy parts</li>
+                <li>Assembling the drone</li>
+                <li>Setting up the drone (Software)</li>
+            </ul>
+            <br>
+            <p>Furthermore, it requires much more practice, since FPV drones are usually flown in
+                acro mode (acrobatic mode: e.g. when releasing the control sticks, the drone does not
+                automatically level itself or if you move the sticks forward, the drone will pitch forward continuously
+                instead of accelerating forward...).</p>
+            <p>But the practice is worth it, because flying FPV is incredibly fun!</p>
 
-      <h1>Video</h1>
-    </div>
-    <div class="content">
-      <h2>What is Cinematic/Freestyle FPV?</h2>
-      <ul>
-        <li><b>First-person view (FPV)</b> is a method where a radio-controlled aircraft (drone) is piloted
-          remotely from a first-person perspective via an onboard camera, fed wirelessly to video FPV goggles.</li>
-        <li><b>Freestyle FPV</b> is all about flying skills and doing nice tricks or movements.</li>
-        <li><b>Cinematic FPV</b> content tends to be slower and smoother than Freestyle FPV.
-          The settings are chosen more for their visual attraction than for the technical flying skills they demand.</li>
-      </ul>
-    </div>
-    <div class="content">
-      <h1> Accelerate - Impressions</h1>
+            <h2>What got me into FPV?</h2>
 
+            <!-- Swiper -->
+            <div class="swiper media-swiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <img src="images/media/accellerate/drone1.jpg" alt=""/>
+                        <p class="description">The journey began with a normal consumer drone...</p>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="images/media/accellerate/drone2.jpg" alt=""/>
+                        <p class="description">... but ended very early with a broken drone and the fact, that its
+                            nearly impossible to repair those drones by your own.</p>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="images/media/accellerate/drone3.jpg" alt=""/>
+                        <p class="description"> Since the repair at the manufacturer is quite expensive, i decided to
+                            build a drone myself... Which turned out not to be cheaper... &#128514;</p>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="images/media/accellerate/drone4.jpg" alt=""/>
+                        <p class="description">After researching for the needed parts, the assembly began.</p>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="images/media/accellerate/drone5.jpg" alt=""/>
+                        <p class="description">Assembling and wiring...</p>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="images/media/accellerate/drone6.jpg" alt=""/>
+                        <p class="description">Getting the Hardware ready...</p>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="images/media/accellerate/drone7.jpg" alt=""/>
+                        <p class="description">Setup and configuration of the software...</p>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="images/media/accellerate/drone8.jpg" alt=""/>
+                        <p class="description">Done!</p>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="images/media/accellerate/drone9.jpg" alt=""/>
+                        <p class="description">Well... seems a lot more durable than the drone before...</p>
+                    </div>
+                </div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+            </div>
+        </div>
+        <div class="content">
+            <h2>Credits</h2>
+            <p>Driver | <a href="https://www.instagram.com/herrschermuffin/">Henrik Lemke</a></p>
+            <p>Directed by <a href="https://noahmlin.com/">Noah Mlinaric</a></p>
+            <br><br>
+        </div>
     </div>
-    <div class="content">
-      <h2>What is special about FPV?</h2>
-      <p>The difference to normal drone pilots is that FPV pilots mostly build their drone themselves.</p>
-      <p>This includes:</p>
-      <ul>
-        <li> Search and buy parts</li>
-        <li>Assembling the drone</li>
-        <li>Setting up the drone (Software)</li>
-      </ul>
-      <p>Furthermore, it requires much more practice, since FPV drones are usually flown in
-        acro mode (acrobatic mode: e.g. when releasing the control sticks, the drone does not
-        automatically level itself or if you move the sticks forward, the drone will pitch forward continuously
-        instead of accelerating forward...).</p>
-      <p>But the practice is worth it, because flying FPV is incredibly fun!</p>
-
-      <h2>What got me into FPV?</h2>
-      <p>The journey began with a normal consumer drone...</p>
-      <p>... but ended very early with a broken drone and the fact, that its nearly impossible
-        to repair those drones by your own.</p>
-      <p>Since the repair at the manufacturer is quite expensive, i decided to build a drone myself...
-        Which turned out not to be cheaper... :D</p>
-      <p>After researching for the needed parts, the assembly began.</p>
-      <p>Assembling and wiring...</p>
-      <p>Getting the Hardware ready...</p>
-      <p>Setup and configuration of the software...</p>
-      <p>Done!</p>
-      <p>Well... seems a lot more durable than the drone before...</p>
-      <p></p>
-    </div>
-    <div class="content">
-      <h2>Credits</h2>
-      <p>Driver | <a href="https://www.instagram.com/herrschermuffin/">Henrik Lemke</a></p>
-      <p>Directed by <a href="https://noahmlin.com/">Noah Mlinaric</a></p>
-    </div>
-  </div>
 </div>
 
 <div id="footer-placeholder"></div>
-<script>$.get("static/fragments/footer.html", function (data) {
-  $("#footer-placeholder").replaceWith(data);
-});</script>
+<script>
+
+    $.get("static/fragments/footer.html", function (data) {
+        $("#footer-placeholder").replaceWith(data);
+    });
+
+    const swiper = new Swiper(".media-swiper", {
+        mousewheel: true,
+        grabCursor: true,
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+
+    });
+    const swiper2 = new Swiper(".impressions-swiper", {
+        mousewheel: true,
+        grabCursor: true,
+        loop: true,
+        autoplay: {
+            delay: 12000,
+            disableOnInteraction: false,
+        },
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+        },
+    });
+</script>
 </body>
 </html>

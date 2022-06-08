@@ -65,7 +65,6 @@
 }
 
 .content__container {
-    align-items: center;
     margin: 0 auto;
     z-index: 1;
     width: 100%;
@@ -75,12 +74,10 @@
 }
 
 .content {
-    align-items: center;
-    text-align: center;
+    margin-bottom: 50px;
 }
 
 .content h1 {
-    text-align: center;
     font-size: 2.5rem;
     background-color: #ff8177;
     background-image: linear-gradient(to top, #ff0844 0%, #ffb199 100%);
@@ -91,7 +88,6 @@
 }
 
 .content h2 {
-    text-align: center;
     font-size: 1.8rem;
     margin-top: 30px;
     background-color: #ff8177;
@@ -103,7 +99,6 @@
 }
 
 .content h3 {
-    text-align: center;
     font-size: 1.5rem;
     margin-top: 30px;
     background-color: #ff8177;
@@ -115,14 +110,12 @@
 }
 
 .content p {
-    text-align: center;
     margin-top: 1rem;
     font-size: 1.3rem;
 }
 
 .content li {
     margin-top: 0.5rem;
-    text-align: left;
 }
 
 p.date{
@@ -135,11 +128,10 @@ p.location {
 }
 
 p.quote {
-    text-align: center;
     margin-bottom: 30px;
 }
 
-img {
+.lImg {
     margin: 20px;
     width: 80%;
     max-width: 400px;
@@ -149,6 +141,22 @@ img.playstore_button {
     width: 200px;
 }
 
+.trailer{
+    width: 80vw;
+    height: 100vw;
+    max-width: 400px;
+    max-height: 500px;
+    border: none;
+}
+
+.video {
+    width: 80vw;
+    height: 45vw;
+    max-width: 1000px;
+    max-height: 562px;
+    border: none;
+}
+
 /* Mobile */
 @media screen and (max-width: 768px) {
     .content h1 {
@@ -156,35 +164,37 @@ img.playstore_button {
     }
 }
 
-/* Img Slider*/
-.splide {
-    margin: 0 auto;
+.swiper {
+    width: 80vw;
+    height: 65vw;
+    max-width: 800px;
+    max-height: 650px;
 }
 
-.thumbnails {
-    display: flex;
-    margin: 1rem auto 0;
-    padding: 0;
-    justify-content: center;
-}
-
-.thumbnail {
-    width: 70px;
-    height: 70px;
-    overflow: hidden;
-    list-style: none;
-    margin: 0 0.2rem;
-    cursor: pointer;
-    opacity: 0.3;
-}
-
-.thumbnail.is-active {
-    opacity: 1;
-}
-
-.thumbnail img {
+.swiper-slide img {
     width: 100%;
-    height: auto;
+    height: 100%;
+    object-fit: cover;
+}
+
+.media-swiper .swiper-slide {
+    margin-top: 20px;
+    padding: 0 45px 110px;
+}
+.impressions-swiper .swiper-slide {
+    margin-top: 20px;
+    padding-bottom: 40px;
+}
+
+.swiper-slide .description {
+    margin: 5px 0 0;
+    max-width: 80vw;
+    font-size: 1rem;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+    background: transparent;
 }
 
 /******************************************************************
