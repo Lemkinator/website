@@ -179,15 +179,15 @@ img.playstore_button {
 }
 
 .mobile-swiper {
-    width: 47vh;
-    height: 80vh;
+    width: 40vh;
+    height: 70vh;
     max-width: 400px;
     max-height: 700px;
 }
 
 .wear-swiper {
-    width: 80vh;
-    height: 70vh;
+    width: 70vh;
+    height: 60vh;
     max-width: 400px;
     max-height: 350px;
 }
