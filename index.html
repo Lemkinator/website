@@ -21,14 +21,14 @@
 <!-- home Section -->
 <div class="home">
     <div class="grid__container">
-        <div class="home__content">
+        <div class="grid__content">
             <h1>LEONARD LEMKE</h1>
             <h2>TECHNOLOGY</h2>
             <p>Leonard Lemke – Study Plus Mathem.-Tech. Softwaredeveloper</p>
             <button class="lButton"><a href="#Projects">Projects</a></button>
         </div>
-        <div class="home__img--container">
-            <img id="home__img" src="images/pic1.svg" alt="Mobile App"/>
+        <div class="grid__img--container">
+            <img id="grid__img" src="images/about/me5.jpg" alt="picture of me"/>
         </div>
     </div>
 </div>
@@ -42,15 +42,17 @@
             <p>The new non-official song and choir book app of the New Apostolic Church</p>
         </a>
         <a href="media" class="services__card">
-            <h2>Media: Accellerate -FPV</h2>
+            <h2>Media: Accelerate</h2>
             <p>Cinematic / Freestyle FPV</p>
         </a>
     </div>
 </div>
 
 <div id="footer-placeholder"></div>
-<script>$.get("static/fragments/footer.html", function (data) {
-    $("#footer-placeholder").replaceWith(data);
-});</script>
+<script>
+    $.get("static/fragments/footer.html", function (data) {
+        $("#footer-placeholder").replaceWith(data);
+    });
+</script>
 </body>
 </html>

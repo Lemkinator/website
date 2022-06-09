@@ -74,7 +74,7 @@
 }
 
 .content {
-    margin-bottom: 50px;
+    margin-bottom: 80px;
 }
 
 .content h1 {
@@ -155,6 +155,13 @@ p.quote {
 
 img.playstore_button {
     width: 200px;
+    margin-top: 15px;
+}
+
+#app-icon {
+    width: 70%;
+    height: 70%;
+    border-radius: 80px;
 }
 
 .trailer{
@@ -171,6 +178,16 @@ img.playstore_button {
     max-width: 900px;
     max-height: 505px;
     border: none;
+}
+
+.me-swiper {
+    width: 80%;
+    max-width: 400px;
+    display: inline-flex;
+}
+.me-swiper .swiper-slide {
+    margin-top: 40px;
+    padding-bottom: 27px;
 }
 
 .media-swiper {
@@ -192,6 +209,7 @@ img.playstore_button {
     height: 140vw;
     max-width: 400px;
     max-height: 700px;
+    display: inline-flex;
 }
 
 .wear-swiper {
@@ -199,12 +217,14 @@ img.playstore_button {
     height: 70vw;
     max-width: 400px;
     max-height: 350px;
+    display: inline-flex;
 }
 
 .swiper-slide img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    border-radius: 15px;
 }
 
 .media-swiper .swiper-slide {
@@ -255,20 +275,21 @@ img.playstore_button {
     padding-left: 50px;
 }
 
-.home__content {
+.grid__content {
     width: 100%;
 }
 
-.home__img--container {
+.grid__img--container {
     text-align: center;
 }
 
-#home__img {
+#grid__img {
     height: 80%;
     width: 80%;
+    border-radius: 20px;
 }
 
-.home__content h1 {
+.grid__content h1 {
     font-size: 4rem;
     background-color: #ff8177;
     background-image: linear-gradient(to top, #ff0844 0%, #ffb199 100%);
@@ -278,7 +299,7 @@ img.playstore_button {
     -moz-text-fill-color: transparent;
 }
 
-.home__content h2 {
+.grid__content h2 {
     font-size: 4rem;
     margin-top: 10px;
     background-color: #ff8177;
@@ -289,7 +310,7 @@ img.playstore_button {
     -moz-text-fill-color: transparent;
 }
 
-.home__content p {
+.grid__content p {
     margin-top: 1rem;
     font-size: 2rem;
     font-weight: 700;
@@ -304,45 +325,45 @@ img.playstore_button {
         justify-self: center;
         width: 100%;
         margin: 0 auto;
-        height: 160vh;
+        height: 140vh;
     }
 
-    .home__content {
+    .grid__content {
         text-align: center;
         margin-bottom: 4rem;
     }
 
-    .home__content h1 {
+    .grid__content h1 {
         font-size: 2.5rem;
         margin-top: 2rem;
     }
 
-    .home__content h2 {
+    .grid__content h2 {
         font-size: 2.3rem;
     }
 
-    .home__content p {
+    .grid__content p {
         margin-top: 1rem;
         font-size: 1.5rem;
     }
 }
 
 @media screen and (max-width: 480px) {
-    .home__content h1 {
+    .grid__content h1 {
         font-size: 2rem;
         margin-top: 3rem;
     }
 
-    .home__content h2 {
+    .grid__content h2 {
         font-size: 2rem;
     }
 
-    .home__content p {
+    .grid__content p {
         margin-top: 2rem;
         font-size: 1.5rem;
     }
 
-    .home__content button {
+    .grid__content button {
         margin: 1.5rem 0;
     }
 }
@@ -388,7 +409,7 @@ img.playstore_button {
     margin: 1rem;
     height: 525px;
     width: 400px;
-    border-radius: 4px;
+    border-radius: 15px;
     background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(17, 17, 17, 0.6) 100%);
     background-size: cover;
     background-position: center;
@@ -407,7 +428,7 @@ img.playstore_button {
 
 .services__card:nth-child(2) {
     background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(17, 17, 17, 0.9) 100%),
-    url('/images/media/accellerate/accellerate1.jpg');
+    url('/images/media/accelerate/accelerate1.jpg');
 }
 
 .services__card h2 {

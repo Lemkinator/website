@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="stylesheet" href="css/styles.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css"/>
+    <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
           integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc"
           crossorigin="anonymous"/>
@@ -21,9 +23,19 @@
 <div class="main">
     <div class="content__container">
         <div class="content">
-            <h1>Leonard Lemke – Study Plus Mathem.-Tech. Softwaredeveloper</h1>
-            <img class="lImg" src="images/about/me.jpg" alt="picture of me">
+            <h1>Leonard Lemke</h1>
+            <h2>Study Plus Mathem.-Tech. Softwaredeveloper</h2>
+            <div class="swiper me-swiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide"><img src="images/about/me.jpg" alt=""/></div>
+                    <div class="swiper-slide"><img src="images/about/me6.jpg" alt=""/></div>
+                    <div class="swiper-slide"><img src="images/about/me7.jpg" alt=""/></div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
             <p class="quote">"Those looking for quick success should not program, but chop wood."</p>
+        </div>
+        <div class="content">
             <br>
             <h2>Apprenticeship</h2>
             <p class="small">September 2019 - July 2021</p>
@@ -36,14 +48,31 @@
             <p class="location">Furtwangen University (HFU) / Continental AG</p>
             <h2>Next?</h2>
             <p class="small">February 2024 - ?</p>
-            <p class="location">Contact me: <a target="_blank" href="mailto:leo@lemkinator.com">leo@lemkinator.com</a></p>
+            <p class="location">Contact me: <a target="_blank" href="mailto:leo@lemkinator.com">leo@lemkinator.com</a>
+            </p>
         </div>
     </div>
 </div>
 
 <div id="footer-placeholder"></div>
-<script>$.get("static/fragments/footer.html", function (data) {
-    $("#footer-placeholder").replaceWith(data);
-});</script>
+<script>
+    $.get("static/fragments/footer.html", function (data) {
+        $("#footer-placeholder").replaceWith(data);
+    });
+
+    const swiper = new Swiper(".me-swiper", {
+        mousewheel: true,
+        grabCursor: true,
+        loop: true,
+        autoplay: {
+            delay: 4000,
+            disableOnInteraction: false,
+        },
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+        },
+    });
+</script>
 </body>
 </html>
