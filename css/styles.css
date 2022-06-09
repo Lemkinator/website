@@ -170,6 +170,7 @@ img.playstore_button {
     max-width: 400px;
     max-height: 500px;
     border: none;
+    border-radius: 15px;
 }
 
 .video {
@@ -178,6 +179,7 @@ img.playstore_button {
     max-width: 900px;
     max-height: 505px;
     border: none;
+    border-radius: 15px;
 }
 
 .me-swiper {
