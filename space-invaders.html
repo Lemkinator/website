@@ -19,17 +19,19 @@
 });</script>
 
 <div class="main">
-  <section class="error">
-    <p>Space Invadors destroyed this page! Take revenge on them!
-      Use <span class="label label-danger">Space</span> to shoot and
-      <span class="label label-danger">←</span>&#160;
-      <span class="label label-danger">→</span>
-      to move!&#160;&#160;&#160;
-      <button class="main__btn" id="restart"><a>Restart</a></button>
-    </p>
-    <br>
-    <canvas id="space-invaders"></canvas>
-  </section>
+  <div class="content__container">
+    <div class="content lError">
+      <br>
+      <canvas id="space-invaders"></canvas>
+      <p class="location">Space Invaders destroyed this page! Take revenge on them!
+        &#160;&#160;Use <span class="label label-danger">Space</span> to shoot and
+        <span class="label label-danger">←</span>&#160;
+        <span class="label label-danger">→</span>
+        to move!&#160;&#160;&#160;
+      </p>
+      <button class="lButton" id="restart"><a>Restart</a></button>
+    </div>
+  </div>
 </div>
 
 <div id="footer-placeholder"></div>

@@ -78,7 +78,7 @@
 }
 
 .content h1 {
-    font-size: 2.5rem;
+    font-size: 3rem;
     background-color: #ff8177;
     background-image: linear-gradient(to top, #ff0844 0%, #ffb199 100%);
     background-size: 100%;
@@ -88,7 +88,7 @@
 }
 
 .content h2 {
-    font-size: 1.8rem;
+    font-size: 2rem;
     margin-top: 30px;
     background-color: #ff8177;
     background-image: linear-gradient(-20deg, #8d34e0 0%, #61c4ff 100%);
@@ -114,11 +114,27 @@
     font-size: 1.3rem;
 }
 
+/* Mobile */
+@media screen and (max-width: 768px) {
+    .content h1 {
+        font-size: 2rem;
+    }
+    .content h2 {
+        font-size: 1.5rem;
+    }
+    .content h3 {
+        font-size: 1.3rem;
+    }
+    .content p {
+        font-size: 1rem;
+    }
+}
+
 .content li {
     margin-top: 0.5rem;
 }
 
-p.date{
+p.small{
     font-size: 0.8rem;
 }
 
@@ -155,13 +171,6 @@ img.playstore_button {
     max-width: 900px;
     max-height: 505px;
     border: none;
-}
-
-/* Mobile */
-@media screen and (max-width: 768px) {
-    .content h1 {
-        font-size: 1.8rem;
-    }
 }
 
 .media-swiper {
