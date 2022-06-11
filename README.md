@@ -1,4 +1,4 @@
 ## Personal Website
 
-www.lemkinator.com
+www.leonard-lemke.com
 
