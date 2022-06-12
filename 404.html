@@ -14,7 +14,7 @@
 <body>
 
 <div id="nav-placeholder"></div>
-<script>$.get("static/fragments/navbar.html", function (data) {
+<script>$.get("/navbar.html", function (data) {
     $("#nav-placeholder").replaceWith(data);
 });</script>
 
@@ -28,15 +28,15 @@
             <p>Look like you're lost,</p>
             <p>the page you are looking for not avaible!</p>
             <br>
-            <button class="lButton" id="button-space-invaders"><a href="space-invaders">Fight for this page</a></button>
-            <button class="lButton" id="button-out-run"><a href="out-run">Take a car and search for this page</a></button>
-            <button class="lButton"><a href="./">Go to Home</a></button>
+            <button class="lButton" id="button-space-invaders"><a href="/space-invaders">Fight for this page</a></button>
+            <button class="lButton" id="button-out-run"><a href="/out-run">Take a car and search for this page</a></button>
+            <button class="lButton"><a href="/">Go to Home</a></button>
         </div>
     </div>
 </div>
 
 <div id="footer-placeholder"></div>
-<script>$.get("static/fragments/footer.html", function (data) {
+<script>$.get("/footer.html", function (data) {
     $("#footer-placeholder").replaceWith(data);
 });</script>
 </body>

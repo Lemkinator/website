@@ -23,7 +23,7 @@
 <body>
 
 <div id="nav-placeholder"></div>
-<script>$.get("static/fragments/navbar.html", function (data) {
+<script>$.get("/navbar.html", function (data) {
     $("#nav-placeholder").replaceWith(data);
 });</script>
 
@@ -37,7 +37,7 @@
             <button class="lButton"><a href="#Projects">Projects</a></button>
         </div>
         <div class="grid__img--container">
-            <img id="grid__img" src="images/about/me5.jpg" alt="picture of me"/>
+            <img id="grid__img" src="/images/about/me5.jpg" alt="picture of me"/>
         </div>
     </div>
 </div>
@@ -46,11 +46,11 @@
 <div id="Projects" class="services">
     <h1>Projects</h1>
     <div class="services__container">
-        <a href="apps" class="services__card">
+        <a href="/apps" class="services__card">
             <h2>Apps: NAK Buch</h2>
             <p>The new non-official song and choir book app of the New Apostolic Church</p>
         </a>
-        <a href="media" class="services__card">
+        <a href="/media" class="services__card">
             <h2>Media: Accelerate</h2>
             <p>Cinematic / Freestyle FPV</p>
         </a>
@@ -59,7 +59,7 @@
 
 <div id="footer-placeholder"></div>
 <script>
-    $.get("static/fragments/footer.html", function (data) {
+    $.get("/footer.html", function (data) {
         $("#footer-placeholder").replaceWith(data);
     });
 </script>
