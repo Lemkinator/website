@@ -75,6 +75,7 @@
 
 .content {
     margin-bottom: 80px;
+    overflow-wrap: break-word;
 }
 
 .content h1 {
@@ -197,6 +198,7 @@ img.playstore_button {
     height: 65vw;
     max-width: 800px;
     max-height: 650px;
+    display: inline-flex;
 }
 
 .impessions-swiper {
@@ -231,7 +233,7 @@ img.playstore_button {
 
 .media-swiper .swiper-slide {
     margin-top: 20px;
-    padding: 0 45px 120px;
+    padding: 0 45px 145px;
 }
 
 .impressions-swiper .swiper-slide {
@@ -248,7 +250,7 @@ img.playstore_button {
 .swiper-slide .description {
     margin: 5px 0 0;
     max-width: 80vw;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
 }
 
 .swiper-button-next,
