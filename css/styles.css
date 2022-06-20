@@ -108,7 +108,7 @@ h1, h2, h3, p, a {
      */
 }
 
-.banner h1, h2, p {
+.banner h1, .banner h2, .banner h3, .banner p {
     margin: 10px;
 }
 
@@ -139,7 +139,7 @@ h1, h2, h3, p, a {
     -moz-text-fill-color: transparent;
 }
 
-.content h3 {
+.content h3, .banner h3 {
     font-size: 1.5rem;
     margin-top: 30px;
     background-color: #ff8177;
