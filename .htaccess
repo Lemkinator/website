@@ -1,22 +1,16 @@
 Options +FollowSymLinks
-RewriteEngine On
 
-# Deny access to .htaccess
-<Files .htaccess>
-Order allow,deny
-Deny from all
-</Files>
+#remove html file extension-e.g. https://example.com/file.html will become https://example.com/file
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.html -f
+RewriteRule ^(.*)$ $1.html [NC,L]
 
-# Hide files of type  from listing
-IndexIgnore *.md
+# Return 404 if user requests file extension
+RewriteCond %{THE_REQUEST} "^[^ ]* .*?\.html[? ].*$"
+RewriteRule .* - [L,R=404]
 
-# Deny access to filenames
-<FilesMatch "(LICENSE|footer|navbar.html)">
-Order allow,deny
-Deny from all
-</FilesMatch>
+RedirectMatch 404 /\..*$
 
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^([^.]+)$ $1.html [NC,L]
-
-ErrorDocument 404 /404.html
+ErrorDocument 404 /404
+ErrorDocument 404
