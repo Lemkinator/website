@@ -11,7 +11,7 @@ Deny from all
 IndexIgnore *.md
 
 # Deny access to filenames starting with dot(.)
-<FilesMatch "(CNAME|LICENSE)">
+<FilesMatch "(LICENSE|footer|navbar.html)">
 Order Allow,Deny
 Deny from all
 </FilesMatch>
@@ -19,11 +19,6 @@ Deny from all
 RewriteRule images/.* - [R=404,L]
 RewriteRule css/.* - [R=404,L]
 RewriteRule js/.* - [R=404,L]
-RewriteRule LICENSE - [R=404,L]
-RewriteRule README.md - [R=404,L]
-RewriteRule navbar.html - [R=404,L]
-RewriteRule footer.html - [R=404,L]
-RewriteRule favicon.ico - [R=404,L]
 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^([^.]+)$ $1.html [NC,L]
