@@ -3,25 +3,20 @@ RewriteEngine On
 
 # Deny access to .htaccess
 <Files .htaccess>
-Order Allow,Deny
+Order allow,deny
 Deny from all
 </Files>
 
-# Hide files of type .png, .zip, .jpg, .gif and .doc from listing
+# Hide files of type  from listing
 IndexIgnore *.md
 
-# Deny access to filenames starting with dot(.)
+# Deny access to filenames
 <FilesMatch "(LICENSE|footer|navbar.html)">
-Order Allow,Deny
+Order allow,deny
 Deny from all
 </FilesMatch>
 
-RewriteRule images/.* - [R=404,L]
-RewriteRule css/.* - [R=404,L]
-RewriteRule js/.* - [R=404,L]
-
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^([^.]+)$ $1.html [NC,L]
-
 
 ErrorDocument 404 /404.html
