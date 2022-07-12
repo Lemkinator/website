@@ -1,6 +1,21 @@
 Options +FollowSymLinks
 RewriteEngine On
-RewriteRule .htaccess - [R=404,L]
+
+# Deny access to .htaccess
+<Files .htaccess>
+Order Allow,Deny
+Deny from all
+</Files>
+
+# Hide files of type .png, .zip, .jpg, .gif and .doc from listing
+IndexIgnore *.md
+
+# Deny access to filenames starting with dot(.)
+<FilesMatch "(CNAME|LICENSE)">
+Order Allow,Deny
+Deny from all
+</FilesMatch>
+
 RewriteRule images/.* - [R=404,L]
 RewriteRule css/.* - [R=404,L]
 RewriteRule js/.* - [R=404,L]
