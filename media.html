@@ -166,8 +166,7 @@
     $.get("/footer.html", function (data) {
         $("#footer-placeholder").replaceWith(data);
     });
-
-    const swiper = new Swiper(".media-swiper", {
+    new Swiper(".media-swiper", {
         grabCursor: true,
         navigation: {
             nextEl: ".swiper-button-next",
@@ -175,7 +174,7 @@
         },
 
     });
-    const swiper2 = new Swiper(".impressions-swiper", {
+    new Swiper(".impressions-swiper", {
         grabCursor: true,
         loop: true,
         spaceBetween: 10,

@@ -78,8 +78,7 @@
     $.get("/footer.html", function (data) {
         $("#footer-placeholder").replaceWith(data);
     });
-
-    const swiper = new Swiper(".me-swiper", {
+    new Swiper(".me-swiper", {
         grabCursor: true,
         loop: true,
         autoplay: {

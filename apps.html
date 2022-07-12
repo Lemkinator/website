@@ -120,7 +120,7 @@
         <div class="content">
             <h2>Privacy policy</h2>
             <p>More Information:</p>
-            <button class="lButton"><a href="nakbuch-privacy-policy.html">Privacy policy</a></button>
+            <button class="lButton"><a href="/nakbuch-privacy-policy">Privacy policy</a></button>
         </div>
     </div>
 </div>
@@ -130,8 +130,7 @@
     $.get("/footer.html", function (data) {
         $("#footer-placeholder").replaceWith(data);
     });
-
-    const swiper = new Swiper(".mobile-swiper", {
+    new Swiper(".mobile-swiper", {
         grabCursor: true,
         loop: true,
         autoplay: {
@@ -146,8 +145,7 @@
             el: ".swiper-pagination",
         },
     });
-
-    const swiper2 = new Swiper(".wear-swiper", {
+    new Swiper(".wear-swiper", {
         grabCursor: true,
         loop: true,
         autoplay: {
@@ -162,7 +160,6 @@
             el: ".swiper-pagination",
         },
     });
-
 </script>
 </body>
 </html>

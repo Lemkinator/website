@@ -4,5 +4,16 @@ RewriteRule ^\.htaccess$ - [F]
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}.html -f
 RewriteRule ^(.+?)/?$ $1.html [L]
+RewriteRule .htaccess - [R=404,L]
+RewriteRule images/* - [R=404,L]
+RewriteRule css/* - [R=404,L]
+RewriteRule js/* - [R=404,L]
+RewriteRule LICENSE - [R=404,L]
+RewriteRule README.md - [R=404,L]
+RewriteRule navbar.html - [R=404,L]
+RewriteRule footer.html - [R=404,L]
+RewriteRule favicon.ico - [R=404,L]
+
+
 
 ErrorDocument 404 /404.html
