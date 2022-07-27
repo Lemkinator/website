@@ -1,5 +1,5 @@
 const userLang = navigator.language || navigator.userLanguage;
-if (userLang === "de") {
+if (userLang === "de" || userLang === "de-DE" || userLang === "de-CH" || userLang === "de-AT" || userLang === "de-LI") {
     $('[lang="en"]').hide();
 } else {
     $('[lang="de"]').hide();

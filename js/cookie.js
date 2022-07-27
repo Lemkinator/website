@@ -53,7 +53,7 @@ function eraseCookie(name) {
 function cookieConsent() {
     if (!getCookie('cookieDismiss')) {
         const userLang = navigator.language || navigator.userLanguage;
-        if (userLang === "de") {
+        if (userLang === "de" || userLang === "de-DE" || userLang === "de-CH" || userLang === "de-AT" || userLang === "de-LI") {
             document.body.innerHTML +=
                 '<div class="cookieConsentContainer" id="cookieConsentContainer">' +
                 '<div class="cookieTitle"><a> Cookies </a></div>' +
