@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -19,6 +19,8 @@
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="en_GB" />
     <meta property="og:locale:alternate" content="de_DE" />
+    <link rel="stylesheet" href="css/cookie.css"/>
+    <script src="js/cookie.js"></script>
 </head>
 <body>
 
@@ -34,12 +36,20 @@
             <br>
             <img src="/images/error.gif" alt="">
             <br>
-            <p>Look like you're lost,</p>
-            <p>the page you are looking for not avaible!</p>
+            <p lang="en">Look like you're lost,</p>
+            <p lang="de">Völlig verloren,</p>
+            <p lang="en">the page you are looking for not avaible!</p>
+            <p lang="de">die Seite die du suchst, ist nicht verfügbar!</p>
             <br>
-            <button class="lButton" id="button-space-invaders"><a href="/space-invaders">Fight for this page</a></button>
-            <button class="lButton" id="button-out-run"><a href="/out-run">Take a car and search for this page</a></button>
-            <button class="lButton"><a href="/">Go to Home</a></button>
+            <button class="lButton" id="button-space-invaders">
+                <a lang="en" href="/space-invaders">Fight for this page</a>
+                <a lang="de" href="/space-invaders">Kämpf um diese Seite</a>
+            </button>
+            <button class="lButton" id="button-out-run">
+                <a lang="en" href="/out-run">Take a car and search for this page</a>
+                <a lang="de" href="/out-run">Nimm ein Auto und such diese Seite</a>
+            </button>
+            <button class="lButton"><a href="/">Home</a></button>
         </div>
     </div>
 </div>

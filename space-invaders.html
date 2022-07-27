@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -18,6 +18,8 @@
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="en_GB" />
   <meta property="og:locale:alternate" content="de_DE" />
+  <link rel="stylesheet" href="css/cookie.css"/>
+  <script src="js/cookie.js"></script>
 </head>
 <body>
 
@@ -31,11 +33,17 @@
     <div class="content lError">
       <br>
       <canvas id="space-invaders"></canvas>
-      <p class="location">Space Invaders destroyed this page! Take revenge on them!
+      <p lang="en" class="location">Space Invaders destroyed this page! Take revenge on them!
         &#160;&#160;Use <span class="label label-danger">Space</span> to shoot and
         <span class="label label-danger">←</span>&#160;
         <span class="label label-danger">→</span>
         to move!&#160;&#160;&#160;
+      </p>
+      <p lang="de" class="location">Space Invaders haben diese Seite zerstört! Räche dich an ihnen!
+        &#160;&#160;Drücke <span class="label label-danger">Leertaste</span>um zu schießen und
+        <span class="label label-danger">←</span>&#160;
+        <span class="label label-danger">→</span>
+        um dich zu bewegen!&#160;&#160;&#160;
       </p>
       <button class="lButton" id="restart"><a>Restart</a></button>
     </div>
