@@ -61,7 +61,7 @@ function cookieConsent() {
                 'dass wir Cookies verwenden. ' +
                 '<a href="https://www.leonard-lemke.com/impressum" target="_blank">Mehr Informationen</a>' +
                 '</p></div>' +
-                '<div class="lButton"><a onClick="cookieDismiss();"> OK </a></div>' +
+                '<button class="lButton"><a onClick="cookieDismiss();"> OK </a></button>' +
                 '</div>';
         } else {
             document.body.innerHTML +=
@@ -70,7 +70,7 @@ function cookieConsent() {
                 '<div class="cookieDesc"><p> By using this website, you automatically accept that we use cookies. ' +
                 '<a href="https://www.leonard-lemke.com/impressum" target="_blank">More Information</a>' +
                 '</p></div>' +
-                '<div class="lButton"><a onClick="cookieDismiss();"> OK </a></div>' +
+                '<button class="lButton"><a onClick="cookieDismiss();"> OK </a></button>' +
                 '</div>';
             fadeIn("cookieConsentContainer");
         }
