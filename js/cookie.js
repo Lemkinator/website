@@ -1,12 +1,3 @@
-// --- Config --- //
-const cookieTitle = "Cookies"; // Title
-const cookieDesc = "By using this website, you automatically accept that we use cookies.";
-const cookieLink = '<a href="https://www.leonard-lemke.com/impressum" target="_blank">More Information</a>';
-const cookieButton = "OK";
-
-// ---        --- //
-
-
 function fadeIn(elem, display) {
     const el = document.getElementById(elem);
     el.style.opacity = 0;
@@ -61,13 +52,28 @@ function eraseCookie(name) {
 
 function cookieConsent() {
     if (!getCookie('cookieDismiss')) {
-        document.body.innerHTML +=
-            '<div class="cookieConsentContainer" id="cookieConsentContainer">' +
-                '<div class="cookieTitle"><a>' + cookieTitle + '</a></div>' +
-                '<div class="cookieDesc"><p>' + cookieDesc + ' ' + cookieLink + '</p></div>' +
-                '<div class="lButton"><a onClick="cookieDismiss();">' + cookieButton + '</a></div>' +
-            '</div>';
-        fadeIn("cookieConsentContainer");
+        const userLang = navigator.language || navigator.userLanguage;
+        if (userLang === "de") {
+            document.body.innerHTML +=
+                '<div class="cookieConsentContainer" id="cookieConsentContainer">' +
+                '<div class="cookieTitle"><a> Cookies </a></div>' +
+                '<div class="cookieDesc"><p> Durch die Nutzung dieser Website akzeptieren Sie automatisch, ' +
+                'dass wir Cookies verwenden. ' +
+                '<a href="https://www.leonard-lemke.com/impressum" target="_blank">Mehr Informationen</a>' +
+                '</p></div>' +
+                '<div class="lButton"><a onClick="cookieDismiss();"> OK </a></div>' +
+                '</div>';
+        } else {
+            document.body.innerHTML +=
+                '<div class="cookieConsentContainer" id="cookieConsentContainer">' +
+                '<div class="cookieTitle"><a> Cookies </a></div>' +
+                '<div class="cookieDesc"><p> By using this website, you automatically accept that we use cookies. ' +
+                '<a href="https://www.leonard-lemke.com/impressum" target="_blank">More Information</a>' +
+                '</p></div>' +
+                '<div class="lButton"><a onClick="cookieDismiss();"> OK </a></div>' +
+                '</div>';
+            fadeIn("cookieConsentContainer");
+        }
     }
 }
 
