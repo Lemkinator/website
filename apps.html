@@ -119,6 +119,47 @@
             </div>
         </div>
         <div class="content">
+            <h2>Android Material Design</h2>
+            <p>NAK Buch supports the new Material Design from Android 12: Uniform, cross-app theme color,
+                which is automatically generated from the wallpaper.
+                (Can be customized on Samsung devices in settings under "Wallpaper and style -> Color palette").</p>
+            <p>Your Smartphone.</p>
+            <p>Your Color.</p>
+            <p>NAK Buch.</p>
+            <br><br>
+            <div class="swiper material-swiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide"><img src="/images/apps/nakbuch/material_home_red.png" alt=""/></div>
+                    <div class="swiper-slide"><img src="/images/apps/nakbuch/material_nakbuch_red.png" alt=""/></div>
+                    <div class="swiper-slide"><img src="/images/apps/nakbuch/material_home_blue.png" alt=""/></div>
+                    <div class="swiper-slide"><img src="/images/apps/nakbuch/material_nakbuch_blue.png" alt=""/></div>
+                </div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+        <div class="content">
+            <h2>Other Features</h2>
+            <h3>Swipe Songs</h3>
+            <p>Swipe to go to the next/previous song. Just like a real book.</p>
+            <img class="mobile-image" src="/images/apps/nakbuch/swipe_gesture.gif" alt=""/>
+            <br>
+            <h3>Data Tab</h3>
+            <p>Your personal data at a glance.</p>
+            <img class="mobile-image" src="/images/apps/nakbuch/data_tab.gif" alt=""/>
+            <br>
+            <h3>Shortcuts</h3>
+            <p>Don't like all books in one app? With NAK Buch you can create a shortcut for each book. </p>
+            <img class="mobile-image" src="/images/apps/nakbuch/shortcut.png" alt=""/>
+            <br>
+            <h3>Quick Actions</h3>
+            <p>To quickly mute your smartphone, activate Do Not Disturb mode or
+                open the official app if the full lyrics cannot displayed.</p>
+            <img class="mobile-image" src="/images/apps/nakbuch/quick_actions.png" alt=""/>
+            <br>
+        </div>
+        <div class="content">
             <h2>Privacy policy</h2>
             <p>More Information:</p>
             <button class="lButton"><a href="/nakbuch-privacy-policy">Privacy policy</a></button>
@@ -147,6 +188,21 @@
         },
     });
     new Swiper(".wear-swiper", {
+        grabCursor: true,
+        loop: true,
+        autoplay: {
+            delay: 10000,
+            disableOnInteraction: true,
+        },
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+        pagination: {
+            el: ".swiper-pagination",
+        },
+    });
+    new Swiper(".material-swiper", {
         grabCursor: true,
         loop: true,
         autoplay: {
