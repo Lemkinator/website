@@ -165,7 +165,7 @@ class Car {
         this.type = type
         this.lane = lane
 
-        const element = document.createElement('div');
+        var element = document.createElement('div')
         road.appendChild(element)
         this.element = element
 
@@ -290,7 +290,7 @@ function genMap() {
 
     let map = []
 
-    for(let i = 0; i < mapLength; i += getRand(0, 50)) {
+    for(var i = 0; i < mapLength; i += getRand(0, 50)) {
 
         let section = {
             from: i,
@@ -383,7 +383,7 @@ function update(step) {
     while (pos >= N * segL) pos -= N * segL
     while (pos < 0) pos += N * segL
 
-    const startPos = (pos / segL) | 0;
+    var startPos = (pos / segL)  | 0
     let endPos = (startPos + N - 1) % N
 
     scoreVal += speed*step
@@ -604,11 +604,11 @@ function init() {
     cars.push(new Car(70, ASSETS.IMAGE.CAR, LANE.A))
 
     for (let i = 0; i < N; i++) {
-        const line = new Line;
+        var line = new Line
         line.z = i * segL + 270
 
         for (let j = 0; j < 6 + 2; j++) {
-            const element = document.createElement('div')
+            var element = document.createElement('div')
             road.appendChild(element)
             line.elements.push(element)
         }
@@ -618,7 +618,7 @@ function init() {
     }
 
     for(let i = 0; i < 12; i++) {
-        const element = document.createElement('p')
+        var element = document.createElement('p')
         highscore.appendChild(element)
     }
     updateHighscore()

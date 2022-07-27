@@ -2,29 +2,29 @@
     "use strict";
 
     // General
-    let canvas,
+    var canvas,
         screen,
         gameSize,
         game;
 
     // Assets
-    let invaderCanvas,
-        invaderMultiplier;
-    const invaderSize = 20;
-    let initialOffsetInvader,
+    var invaderCanvas,
+        invaderMultiplier,
+        invaderSize = 20,
+        initialOffsetInvader,
         invaderAttackRate,
-        invaderSpeed;
-    const invaderSpawnDelay = 250;
+        invaderSpeed,
+        invaderSpawnDelay = 250;
 
     // Counter
-    let i = 0,
+    var i = 0,
         kills = 0,
         spawnDelayCounter = invaderSpawnDelay;
 
-    let invaderDownTimer;
+    var invaderDownTimer;
 
     // Text
-    const blocks = [
+    var blocks = [
         [3, 4, 8, 9, 10, 15, 16],
         [2, 4, 7, 11, 14, 16],
         [1, 4, 7, 11, 13, 16],
@@ -35,7 +35,7 @@
 
     // Game Controller
     // ---------------
-    const Game = function () {
+    var Game = function () {
 
         this.level = -1;
         this.lost = false;
@@ -50,7 +50,7 @@
             }, 1000 - (this.level * 1.8));
 
         }
-    };
+    }
 
     Game.prototype = {
         update: function () {
@@ -126,7 +126,7 @@
 
             screen.beginPath();
 
-            let i;
+            var i;
             this.player.draw();
             if (!this.lost)
                 for (i = 0; i < this.invaders.length; i++) this.invaders[i].draw();
@@ -147,7 +147,7 @@
 
     // Invaders
     // --------
-    const Invader = function (coordinates) {
+    var Invader = function (coordinates) {
         this.active = true;
         this.coordinates = coordinates;
         this.size = {
@@ -164,7 +164,7 @@
         update: function () {
 
             if (Math.random() > invaderAttackRate && !game.invadersBelow(this)) {
-                const projectile = new Projectile({
+                var projectile = new Projectile({
                     x: this.coordinates.x + this.size.width / 2,
                     y: this.coordinates.y + this.size.height - 5
                 }, {
@@ -203,7 +203,7 @@
 
     // Player
     // ------
-    const Player = function () {
+    var Player = function () {
         this.active = true;
         this.size = {
             width: 16,
@@ -222,7 +222,7 @@
     Player.prototype = {
         update: function () {
 
-            for (let i = 0; i < this.projectile.length; i++) this.projectile[i].update();
+            for (var i = 0; i < this.projectile.length; i++) this.projectile[i].update();
 
             this.projectile = this.projectile.filter(function (projectile) {
                 return projectile.active;
@@ -236,7 +236,7 @@
             if (this.keyboarder.isDown(this.keyboarder.KEYS.Space)) {
                 this.shooterHeat += 1;
                 if (this.shooterHeat < 0) {
-                    const projectile = new Projectile({
+                    var projectile = new Projectile({
                         x: this.coordinates.x + this.size.width / 2 - 1,
                         y: this.coordinates.y - 1
                     }, {
@@ -257,7 +257,7 @@
                 screen.rect(this.coordinates.x + 6, this.coordinates.y - 4, 4, 4);
             }
 
-            for (let i = 0; i < this.projectile.length; i++) this.projectile[i].draw();
+            for (var i = 0; i < this.projectile.length; i++) this.projectile[i].draw();
 
         },
         destroy: function () {
@@ -268,7 +268,7 @@
 
     // Projectile
     // ------
-    const Projectile = function (coordinates, velocity) {
+    var Projectile = function (coordinates, velocity) {
         this.active = true;
         this.coordinates = coordinates;
         this.size = {
@@ -294,16 +294,16 @@
 
     // Keyboard input tracking
     // -----------------------
-    const KeyController = function () {
+    var KeyController = function () {
         this.KEYS = {
             LEFT: 37,
             RIGHT: 39,
             Space: 32
         };
-        const keyCode = [37, 39, 32];
-        const keyState = {};
+        var keyCode = [37, 39, 32];
+        var keyState = {};
 
-        let counter;
+        var counter;
         window.addEventListener('keydown', function (e) {
             for (counter = 0; counter < keyCode.length; counter++)
                 if (keyCode[counter] === e.keyCode) {
@@ -337,13 +337,13 @@
     }
 
     function getPixelRow(rowRaw) {
-        const textRow = [];
-        let placer = 0;
-        const row = Math.floor(rowRaw / invaderMultiplier);
+        var textRow = [],
+            placer = 0,
+            row = Math.floor(rowRaw / invaderMultiplier);
         if (row >= blocks.length) return [];
-        for (let i = 0; i < blocks[row].length; i++) {
-            const tmpContent = blocks[row][i] * invaderMultiplier;
-            for (let j = 0; j < invaderMultiplier; j++) textRow[placer + j] = tmpContent + j;
+        for (var i = 0; i < blocks[row].length; i++) {
+            var tmpContent = blocks[row][i] * invaderMultiplier;
+            for (var j = 0; j < invaderMultiplier; j++) textRow[placer + j] = tmpContent + j;
             placer += invaderMultiplier;
         }
         return textRow;
@@ -352,12 +352,12 @@
     // Write Text
     // -----------
     function createInvaders() {
-        const invaders = [];
+        var invaders = [];
 
-        let i = blocks.length * invaderMultiplier;
+        var i = blocks.length * invaderMultiplier;
         while (i--) {
-            const j = getPixelRow(i);
-            for (let k = 0; k < j.length; k++) {
+            var j = getPixelRow(i);
+            for (var k = 0; k < j.length; k++) {
                 invaders.push(new Invader({
                     x: j[k] * invaderSize,
                     y: i * invaderSize
@@ -371,7 +371,7 @@
     // ----------
     window.addEventListener('load', function () {
 
-        const invaderAsset = new Image;
+        var invaderAsset = new Image;
         invaderAsset.onload = function () {
 
             invaderCanvas = document.createElement('canvas');
