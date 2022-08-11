@@ -102,10 +102,18 @@ h1, h2, h3, p, a {
 .media-banner {
     background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(17, 17, 17, 0.9) 100%),
     linear-gradient(to top, rgba(0, 0, 0, 0) 0%, rgba(17, 17, 17, 0.9) 100%),
+    url('/images/media/drone8.jpg');
+}
+.accelerate-banner {
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(17, 17, 17, 0.9) 100%),
+    linear-gradient(to top, rgba(0, 0, 0, 0) 0%, rgba(17, 17, 17, 0.9) 100%),
     url('/images/media/accelerate/accelerate1.jpg');
-    /*
-    url('https://th.bing.com/th/id/OIP.at7uy3Skf2CZEg3HjgTQ4wHaCk?pid=ImgDet&rs=1');
-     */
+}
+.light-utopia-banner {
+    text-align: center;
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(17, 17, 17, 0.9) 100%),
+    linear-gradient(to top, rgba(0, 0, 0, 0) 0%, rgba(17, 17, 17, 0.9) 100%),
+    url('/images/media/accelerate/accelerate1.jpg');
 }
 
 .banner h1, .banner h2, .banner h3, .banner p {
@@ -229,11 +237,20 @@ img.playstore_button {
     border-radius: 15px;
 }
 
-.video {
+.accelerate-video {
     width: 80vw;
     height: 45vw;
     max-width: 900px;
     max-height: 505px;
+    border: none;
+    border-radius: 15px;
+}
+
+.light-utopia-video {
+    width: 80vw;
+    height: 40vw;
+    max-width: 900px;
+    max-height: 450px;
     border: none;
     border-radius: 15px;
 }
