@@ -199,6 +199,7 @@ p.quote {
     margin: 20px;
     width: 80%;
     max-width: 400px;
+    border-radius: 15px;
 }
 
 img.playstore_button {
