@@ -527,16 +527,6 @@ img.playstore_button {
     url('/images/media/drone8.jpg');
 }
 
-.services__card:nth-child(3) {
-    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(17, 17, 17, 0.6) 100%),
-    url('/images/media/accelerate/accelerate1.jpg');
-}
-
-.services__card:nth-child(4) {
-    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(17, 17, 17, 0.9) 100%),
-    url('/images/media/light-utopia/light-utopia.jpg');
-}
-
 .services__card-media:nth-child(1) {
     background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(17, 17, 17, 0.6) 100%),
     url('/images/media/accelerate/accelerate1.jpg');
