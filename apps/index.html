@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="/css/styles.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css"/>
+    <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
+          integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc"
+          crossorigin="anonymous"/>
+    <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap" rel="stylesheet"/>
+    <title>Apps</title>
+    <meta name="description" content="Leonard Lemke"/>
+    <meta property="og:title" content="Apps"/>
+    <meta property="og:description" content="Leonard Lemke"/>
+    <meta property="og:url" content="https://www.leonard-lemke.com/apps/"/>
+    <meta property="og:image" itemprop="image"
+          content="https://www.leonard-lemke.com/images/apps/oneUI/OneUIBanner.jpg"/>
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="de_DE" />
+    <meta property="og:locale:alternate" content="de_DE" />
+</head>
+<body>
+
+<div id="nav-placeholder"></div>
+<script>$.get("/navbar.html", function (data) {
+    $("#nav-placeholder").replaceWith(data);
+});</script>
+
+
+<div class="banner apps-banner">
+    <h1>Apps </h1>
+    <h2>Modern Apps in Samsungs OneUI-Style</h2>
+</div>
+
+<!-- Services Section -->
+<div id="Projects" class="services">
+    <h1 lang="en">Projects</h1>
+    <h1 lang="de">Projekte</h1>
+    <div class="services__container">
+        <a href="/apps/nakbuch" class="services__card-apps">
+            <h2>NAK Buch</h2>
+            <p lang="en">The new non-official songbook app of the New Apostolic Church.</p>
+            <p lang="de">Die neue nicht-offizielle Liederbuch-App der Neuapostolischen Kirche.</p>
+        </a>
+    </div>
+</div>
+
+<div class="main">
+    <div class="content__container">
+        <div class="content">
+            <br><br><br><br>
+            <h1>OneUI</h1>
+            <p>OneUI is ...</p>
+        </div>
+    </div>
+</div>
+
+<div id="footer-placeholder"></div>
+<script>
+
+    $.get("/footer.html", function (data) {
+        $("#footer-placeholder").replaceWith(data);
+    });
+</script>
+</body>
+</html>

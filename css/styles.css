@@ -90,7 +90,8 @@ h1, h2, h3, p, a {
     background-size: cover;
 }
 
-.apps-banner {
+.apps-banner,
+.nakbuch-banner {
     background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(17, 17, 17, 0.9) 100%),
     linear-gradient(to top, rgba(0, 0, 0, 0) 0%, rgba(17, 17, 17, 0.9) 100%),
     url('/images/apps/oneUI/OneUIBanner.jpg');
@@ -500,7 +501,8 @@ img.playstore_button {
 }
 
 .services__card,
-.services__card-media {
+.services__card-media,
+.services__card-apps {
     margin: 1rem;
     height: 525px;
     width: 400px;
@@ -513,7 +515,8 @@ img.playstore_button {
 }
 
 .services__card:before,
-.services__card-media:before {
+.services__card-media:before,
+.services__card-apps:before {
     opacity: 0.2;
 }
 
@@ -527,6 +530,11 @@ img.playstore_button {
     url('/images/media/drone8.jpg');
 }
 
+.services__card-apps:nth-child(1) {
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(17, 17, 17, 0.6) 100%),
+    url('/images/apps/nakbuch/nakbuch_icon.jpg');
+}
+
 .services__card-media:nth-child(1) {
     background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(17, 17, 17, 0.6) 100%),
     url('/images/media/accelerate/accelerate1.jpg');
@@ -538,6 +546,7 @@ img.playstore_button {
 }
 
 .services__card h2,
+.services__card-apps h2,
 .services__card-media h2 {
     position: absolute;
     top: 350px;
@@ -546,6 +555,7 @@ img.playstore_button {
 }
 
 .services__card p,
+.services__card-apps p,
 .services__card-media p {
     position: absolute;
     top: 410px;
@@ -554,6 +564,7 @@ img.playstore_button {
 }
 
 .services__card:hover,
+.services__card-apps:hover,
 .services__card-media:hover {
     transform: scale(1.075);
     transition: 0.2s ease-in;
@@ -581,6 +592,7 @@ img.playstore_button {
     }
 
     .services__card,
+    .services__card-apps,
     .services__card-media {
         width: 300px;
     }
