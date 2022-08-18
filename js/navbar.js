@@ -7,13 +7,15 @@ menu.addEventListener('click', function() {
   menuLinks.classList.toggle('active');
 });
 
+$(document).ready(function() {
+  /*  Language  */
+  if (isGerman()) {
+    $('[lang="en"]').hide();
+  } else {
+    $('[lang="de"]').hide();
+  }
+});
 
-/*  Language  */
-if (isGerman()) {
-  $('[lang="en"]').hide();
-} else {
-  $('[lang="de"]').hide();
-}
 
 function isGerman() {
   let userLang = navigator.language || navigator.userLanguage;
