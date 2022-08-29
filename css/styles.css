@@ -90,11 +90,15 @@ h1, h2, h3, p, a {
     background-size: cover;
 }
 
-.apps-banner,
-.nakbuch-banner {
+.apps-banner {
     background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(17, 17, 17, 0.9) 100%),
     linear-gradient(to top, rgba(0, 0, 0, 0) 0%, rgba(17, 17, 17, 0.9) 100%),
     url('/images/apps/oneUI/OneUIBanner.jpg');
+}
+.nakbuch-banner {
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(17, 17, 17, 0.9) 100%),
+    linear-gradient(to top, rgba(0, 0, 0, 0) 0%, rgba(17, 17, 17, 0.9) 100%),
+    url('/images/apps/nakbuch/Vorstellungsgrafik.png');
 }
 
 .media-banner {
