@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="/css/styles.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css"/>
+    <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
+          integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc"
+          crossorigin="anonymous"/>
+    <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap" rel="stylesheet"/>
+
+    <!-- HTML Meta Tags -->
+    <title>Sudoku</title>
+    <meta name="description" content="Apps">
+
+    <!-- Facebook Meta Tags -->
+    <meta property="og:url" content="https://leonard-lemke.com/apps/sudoku">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Sudoku">
+    <meta property="og:description" content="Apps">
+    <meta property="og:image" content="https://www.leonard-lemke.com/images/apps/sudoku/sudoku_icon.jpg">
+
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="twitter:domain" content="leonard-lemke.com">
+    <meta property="twitter:url" content="https://leonard-lemke.com/apps/sudoku">
+    <meta name="twitter:title" content="Sudoku">
+    <meta name="twitter:description" content="Apps">
+    <meta name="twitter:image" content="https://www.leonard-lemke.com/images/apps/sudoku/sudoku_icon.jpg">
+
+</head>
+<body>
+
+<div id="nav-placeholder"></div>
+<script>$.get("/navbar.html", function (data) {
+    $("#nav-placeholder").replaceWith(data);
+});</script>
+
+<div class="banner sudoku-banner">
+    <h1>Sudoku</h1>
+    <p lang="en">A Sudoku app with OneUI-Design.</p>
+    <p lang="de">Eine Sudoku App im schönen OneUI-Design.</p>
+    <a target="_blank"
+       href='TODO'>
+        <img class="playstore_button" alt='Get it on Google Play'
+             src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png'/>
+    </a>
+</div>
+
+<div class="main">
+    <div class="content__container">
+        <div class="content">
+            <br><br>
+            <img id="app-icon" src="/images/apps/sudoku/sudoku_icon.jpg" alt=""/>
+            <h2>Sudoku</h2>
+
+        </div>
+        <div class="content">
+            <h2>Features</h2>
+            <ul lang="en">
+                <li>Free</li>
+                <li>Dark Mode (automatically adapts to the system settings)</li>
+                <li>History</li>
+            </ul>
+            <ul lang="de">
+                <li>Kostenlos</li>
+                <li>Dark Mode (passt sich automatisch den Systemeinstellungen an)</li>
+                <li>Verlauf</li>
+            </ul>
+        </div>
+        <div class="content">
+            <h2>Screenshots</h2>
+            <div class="swiper mobile-swiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide"><img src="/images/apps/sudoku/mobile1.png" alt=""/></div>
+                    <div class="swiper-slide"><img src="/images/apps/sudoku/mobile2.png" alt=""/></div>
+                    <div class="swiper-slide"><img src="/images/apps/sudoku/mobile3.png" alt=""/></div>
+                    <div class="swiper-slide"><img src="/images/apps/sudoku/mobile4.png" alt=""/></div>
+                    <div class="swiper-slide"><img src="/images/apps/sudoku/mobile5.png" alt=""/></div>
+                    <div class="swiper-slide"><img src="/images/apps/sudoku/mobile6.png" alt=""/></div>
+                </div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+        <div class="content">
+            <h2>One UI</h2>
+            <p lang="en"> Sudoku was developed according to Samsung's One UI guidelines. For example,
+                the title bar can be "dragged down" on large devices on any screen
+                to ensure comfortable (one-handed) operation of the top buttons.</p>
+            <p lang="de">Die App wurde nach Samsungs OneUI-Richtlinien entwickelt. Zum Beispiel kann die Titelleiste
+                bei großen Geräten auf jedem Bildschirm "nach unten gezogen werden", um eine angenehme (einhändige)
+                Bedienung der oberen Knöpfe zu gewährleisten.</p>
+            <img class="mobile-image" src="/images/apps/sudoku/expanding_app_bar.gif" alt=""/>
+        </div>
+        <div class="content">
+            <h2>Android Material Design</h2>
+            <p lang="en">Sudoku supports the new Material Design from Android 12: Uniform, cross-app theme color,
+                which is automatically generated from the wallpaper.
+                (Can be customized on Samsung devices in settings under "Wallpaper and style -> Color palette").</p>
+            <p lang="de">Sudoku unterstützt das neue Material Design von Android 12: Einheitliche, app-übergreifende
+                Themenfarbe, die automatisch aus dem Hintergrundbild generiert wird. (Kann auf Samsung-Geräten
+                in den Einstellungen unter "Hintergrundbild und Stil -> Farbpalette" angepasst werden).</p>
+            <p lang="en">Your Smartphone.</p>
+            <p lang="de">Dein Smartphone.</p>
+            <p lang="en">Your Color.</p>
+            <p lang="de">Deine Farbe.</p>
+            <p>Sudoku.</p>
+            <br>
+            <div class="swiper material-swiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide"><img src="/images/apps/sudoku/material_home_red.png" alt=""/></div>
+                    <div class="swiper-slide"><img src="/images/apps/sudoku/material_sudoku_red.png" alt=""/></div>
+                    <div class="swiper-slide"><img src="/images/apps/sudoku/material_home_blue.png" alt=""/></div>
+                    <div class="swiper-slide"><img src="/images/apps/sudoku/material_sudoku_blue.png" alt=""/></div>
+                </div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+        <div class="content">
+            <h2 lang="en">Other Features</h2>
+            <h2 lang="de">Sonstige Features</h2>
+            <h3 lang="en">Swipe Songs</h3>
+            <h3 lang="de">Blätter-Funktion</h3>
+            <p lang="en">Swipe to go to the next/previous song. Just like a real book.</p>
+            <p lang="de">Wisch-Geste, um zum nächsten/vorherigen Lied zu gelangen. Wie bei einem richtigen Buch.</p>
+            <img class="mobile-image" src="/images/apps/sudoku/swipe_gesture.gif" alt=""/>
+            <br><br>
+        </div>
+        <div class="content">
+            <h2 lang="en">Privacy policy</h2>
+            <h2 lang="de">Datenschutzerklärung</h2>
+            <p lang="en">More Information:</p>
+            <p lang="de">Mehr Informationen:</p>
+            <button lang="en" class="lButton"><a href="../sudoku-privacy-policy.html">Privacy policy</a></button>
+            <button lang="de" class="lButton"><a href="../sudoku-privacy-policy.html">Datenschutzerklärung</a></button>
+        </div>
+    </div>
+</div>
+
+<div id="footer-placeholder"></div>
+<script>
+    $.get("/footer.html", function (data) {
+        $("#footer-placeholder").replaceWith(data);
+    });
+    new Swiper(".mobile-swiper", {
+        grabCursor: true,
+        loop: true,
+        autoplay: {
+            delay: 10000,
+            disableOnInteraction: true,
+        },
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+        pagination: {
+            el: ".swiper-pagination",
+        },
+    });
+    new Swiper(".wear-swiper", {
+        grabCursor: true,
+        loop: true,
+        autoplay: {
+            delay: 10000,
+            disableOnInteraction: true,
+        },
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+        pagination: {
+            el: ".swiper-pagination",
+        },
+    });
+    new Swiper(".material-swiper", {
+        grabCursor: true,
+        loop: true,
+        autoplay: {
+            delay: 10000,
+            disableOnInteraction: true,
+        },
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+        pagination: {
+            el: ".swiper-pagination",
+        },
+    });
+</script>
+</body>
+</html>
