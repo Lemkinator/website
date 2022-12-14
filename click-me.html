@@ -65,7 +65,7 @@
         });
 
     ["mouseover", "click"].forEach(function (el) {
-        button.addEventListener(el, function (event) {
+        button.addEventListener(el, function () {
             const top = getRandomNumber(window.innerHeight - this.offsetHeight);
             const left = getRandomNumber(window.innerWidth - this.offsetWidth);
 
