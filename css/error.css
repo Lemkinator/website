@@ -214,7 +214,7 @@ body {
 =======================*/
 /* Mobile */
 @media screen and (max-width: 768px) {
-    #button-out-run, #button-space-invaders, #button-update-windows {
+    #button-out-run, #button-space-invaders, #button-update-windows, #button-click-me {
         display: none;
     }
 }

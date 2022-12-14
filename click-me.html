@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="/css/styles.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.0/anime.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
+          integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc"
+          crossorigin="anonymous"/>
+    <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap" rel="stylesheet"/>
+
+    <!-- HTML Meta Tags -->
+    <title>Leonard Lemke</title>
+    <meta name="description" content="Click Me">
+
+    <!-- Facebook Meta Tags -->
+    <meta property="og:url" content="https://leonard-lemke.com/click-me">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Leonard Lemke">
+    <meta property="og:description" content="Click Me">
+    <meta property="og:image" content="https://www.leonard-lemke.com/images/logo/icon.png">
+
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="twitter:domain" content="leonard-lemke.com">
+    <meta property="twitter:url" content="https://leonard-lemke.com/click-me">
+    <meta name="twitter:title" content="Leonard Lemke">
+    <meta name="twitter:description" content="Click Me">
+    <meta name="twitter:image" content="https://www.leonard-lemke.com/images/logo/icon.png">
+
+</head>
+<body>
+
+<div id="nav-placeholder"></div>
+<script>$.get("/navbar.html", function (data) {
+    $("#nav-placeholder").replaceWith(data);
+});</script>
+
+<div class="main">
+    <div class="content__container">
+        <div class="content lError">
+            <button class="lButton" id="runaway-btn"
+                    style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);"><a>Click Me</a>
+            </button>
+        </div>
+    </div>
+</div>
+
+<div id="footer-placeholder"></div>
+<script>
+    $.get("/footer.html", function (data) {
+        $("#footer-placeholder").replaceWith(data);
+    });
+
+
+    const button = document.getElementById("runaway-btn");
+
+    const animateMove = (element, prop, pixels) =>
+        anime({
+            targets: element,
+            [prop]: `${pixels}px`,
+            easing: "easeOutCirc"
+        });
+
+    ["mouseover", "click"].forEach(function (el) {
+        button.addEventListener(el, function (event) {
+            const top = getRandomNumber(window.innerHeight - this.offsetHeight);
+            const left = getRandomNumber(window.innerWidth - this.offsetWidth);
+
+            animateMove(this, "left", left).play();
+            animateMove(this, "top", top).play();
+        });
+    });
+
+    const getRandomNumber = (num) => {
+        return Math.floor(Math.random() * (num + 1));
+    };
+</script>
+<script src="js/404_space_invaders.js"></script>
+</body>
+</html>
