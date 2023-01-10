@@ -15,8 +15,18 @@
     color: white;
 }
 
-*, html {
-    scroll-behavior: smooth !important;
+@keyframes smoothscroll1 {
+    from, to {scroll-behavior: smooth;}
+}
+@keyframes smoothscroll2 {
+    from, to {scroll-behavior: smooth;}
+}
+html {
+    animation: smoothscroll1 1s;
+}
+html:focus-within {
+    animation-name: smoothscroll2;
+    scroll-behavior: smooth;
 }
 
 h1, h2, h3, p, a {
