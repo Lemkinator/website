@@ -13,11 +13,9 @@
     font-family: 'Kumbh Sans', sans-serif;
     background-color: #131313;
     color: white;
+    scroll-behavior: smooth !important;
 }
 
-html {
-    scroll-behavior: smooth;
-}
 
 h1, h2, h3, p, a {
     background-color: transparent;
