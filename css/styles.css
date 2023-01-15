@@ -649,12 +649,12 @@ img.playstore_button {
     .services__card h2,
     .services__card-apps h2,
     .services__card-media h2 {
-        top: 280px;
+        top: 260px;
     }
 
     .services__card p,
     .services__card-apps p,
     .services__card-media p {
-        top: 330px;
+        top: 300px;
     }
 }
