@@ -642,6 +642,7 @@ img.playstore_button {
     .services__card,
     .services__card-apps,
     .services__card-media {
+        height: 400px;
         width: 300px;
     }
 }
