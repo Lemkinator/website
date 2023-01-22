@@ -43,8 +43,8 @@ h1, h2, h3, p, a {
     padding: 14px 32px;
     border: none;
     border-radius: 5px;
-    margin-top: 2rem;
-    margin-left: 1rem;
+    margin-top: 1rem;
+    margin-right: 1rem;
     cursor: pointer;
     position: relative;
     transition: all 0.35s;
