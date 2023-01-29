@@ -4,7 +4,7 @@
 
 @font-face {
     font-family: 'samsungsans';
-    src: url('/font/SourceSansPro-Regular.ttf');
+    src: url('/font/SourceSansPro-Regular.ttf') format('truetype');
 }
 
 * {
