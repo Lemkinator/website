@@ -17,11 +17,11 @@
 }
 
 @media screen and (max-width: 768px) {
-    #button-out-run, #button-space-invaders, #button-click-me {
+    #button-out-run, #button-click-me {
         display: none;
     }
     .services {
-        height: 2000px;
+        height: 2200px;
     }
 }
 
