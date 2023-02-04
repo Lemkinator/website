@@ -7,6 +7,8 @@
         gameSize,
         game;
 
+    screen.fillStyle = "white"
+
     // Assets
     var invaderCanvas,
         invaderMultiplier,
@@ -108,7 +110,6 @@
             if (this.lost) {
                 screen.fillStyle = "white";
                 screen.fillRect(0, 0, gameSize.width, gameSize.height);
-
                 screen.font = "55px Lucida Console";
                 screen.textAlign = "center";
                 screen.fillStyle = "rgba(0, 0, 0, 0.03)";
@@ -118,7 +119,7 @@
 
             } else {
                 screen.clearRect(0, 0, gameSize.width, gameSize.height);
-
+                screen.fillStyle = "white";
                 screen.font = "10px Lucida Console";
                 screen.textAlign = "right";
                 screen.fillText("Points: " + kills, gameSize.width, gameSize.height - 12);
@@ -131,8 +132,7 @@
             if (!this.lost)
                 for (i = 0; i < this.invaders.length; i++) this.invaders[i].draw();
             for (i = 0; i < this.invaderShots.length; i++) this.invaderShots[i].draw();
-
-            screen.fill();
+            //screen.fill();
 
         },
 
