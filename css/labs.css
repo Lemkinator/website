@@ -20,24 +20,27 @@
     #button-out-run, #button-space-invaders, #button-click-me {
         display: none;
     }
+    .services {
+        height: 1800px;
+    }
 }
 
 .services__card-labs:nth-child(1) {
     background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(17, 17, 17, 0.9) 100%),
-    url('https://www.leonard-lemke.com/images/labs/click-me.png');
+    url('/images/labs/click-me.png');
 }
 
 .services__card-labs:nth-child(2) {
     background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(17, 17, 17, 0.9) 100%),
-    url('https://www.leonard-lemke.com/images/labs/windows-update.png');
+    url('/images/labs/windows-update.png');
 }
 
 .services__card-labs:nth-child(3) {
     background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(17, 17, 17, 0.9) 100%),
-    url('https://www.leonard-lemke.com/images/labs/out-run.png');
+    url('/images/labs/out-run.png');
 }
 
 .services__card-labs:nth-child(4) {
     background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(17, 17, 17, 0.9) 100%),
-    url('https://www.leonard-lemke.com/images/labs/space-invaders.png');
+    url('/images/labs/space-invaders.png');
 }
