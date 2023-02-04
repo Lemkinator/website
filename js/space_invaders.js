@@ -7,8 +7,6 @@
         gameSize,
         game;
 
-    screen.fillStyle = "white"
-
     // Assets
     var invaderCanvas,
         invaderMultiplier,
@@ -108,11 +106,11 @@
         draw: function () {
 
             if (this.lost) {
-                screen.fillStyle = "white";
+                screen.fillStyle = "rgba(46, 46, 46, 0.03)";
                 screen.fillRect(0, 0, gameSize.width, gameSize.height);
                 screen.font = "55px Lucida Console";
                 screen.textAlign = "center";
-                screen.fillStyle = "rgba(0, 0, 0, 0.03)";
+                screen.fillStyle = "white";
                 screen.fillText("You lost", gameSize.width / 2, gameSize.height / 2);
                 screen.font = "20px Lucida Console";
                 screen.fillText("Points: " + kills, gameSize.width / 2, gameSize.height / 2 + 30);
@@ -132,8 +130,7 @@
             if (!this.lost)
                 for (i = 0; i < this.invaders.length; i++) this.invaders[i].draw();
             for (i = 0; i < this.invaderShots.length; i++) this.invaderShots[i].draw();
-            //screen.fill();
-
+            screen.fill();
         },
 
         invadersBelow: function (invader) {
