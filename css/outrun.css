@@ -135,3 +135,46 @@
     color: #9e95a8;
     margin: 0 0 6px 27px;
 }
+
+#text {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.2em;
+    color: #d9bbf3;
+    text-shadow: 0 0 black, 0 2px black, 2px 0 black, 0 0 black;
+}
+
+.blink {
+    animation: blinker 2s steps(4, end) infinite;
+}
+
+@keyframes blinker {
+    50% { opacity: 0; }
+}
+
+/* Guide */
+#controls {
+    color: #868686;
+    font-size: 13px;
+    line-height: 13px;
+    margin: 10px;
+    text-align: center;
+}
+
+#controls > span {
+    margin-left: 20px;
+}
+
+#controls > span > span {
+    border: 2px solid #868686;
+    border-radius: 5px;
+    padding: 7px;
+    margin-right: 10px;
+    display: inline-block;
+}
+
+#controls > span:last-child > span {
+    transform: rotate(90deg);
+}

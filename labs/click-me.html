@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <!-- Google won't index this page or follow links on this page -->
     <meta name="robots" content="noindex, nofollow">
+    <link rel="canonical" href="https://www.leonard-lemke.com/labs/click-me"/>
     <link rel="stylesheet" href="/css/styles.css"/>
-    <link rel="stylesheet" href="/css/error.css"/>
+    <link rel="stylesheet" href="/css/labs.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.0/anime.min.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
@@ -19,18 +20,18 @@
     <meta name="description" content="Click Me">
 
     <!-- Facebook Meta Tags -->
-    <meta property="og:url" content="https://leonard-lemke.com/click-me">
+    <meta property="og:url" content="https://leonard-lemke.com/labs/click-me">
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Leonard Lemke">
-    <meta property="og:description" content="Click Me">
+    <meta property="og:title" content="Click Me">
+    <meta property="og:description" content="Leonard Lemke">
     <meta property="og:image" content="https://www.leonard-lemke.com/images/logo/icon.png">
 
     <!-- Twitter Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
     <meta property="twitter:domain" content="leonard-lemke.com">
-    <meta property="twitter:url" content="https://leonard-lemke.com/click-me">
-    <meta name="twitter:title" content="Leonard Lemke">
-    <meta name="twitter:description" content="Click Me">
+    <meta property="twitter:url" content="https://leonard-lemke.com/labs/click-me">
+    <meta name="twitter:title" content="Click Me">
+    <meta name="twitter:description" content="Leonard Lemke">
     <meta name="twitter:image" content="https://www.leonard-lemke.com/images/logo/icon.png">
 
 </head>
@@ -43,9 +44,11 @@
 
 <div class="main">
     <div class="content__container">
-        <div class="content lError">
+        <div class="content labs">
             <button class="lButton" id="runaway-btn"
-                    style="position: absolute; top: 50%; left: 50%; transition: none; transform: translate(-50%, -50%); z-index: 1000"><a>Click Me</a>
+                    style="position: absolute; top: 50%; left: 50%; transition: none; transform: translate(-50%, -50%); z-index: 1000">
+                <a lang="en">Click me</a>
+                <a lang="de">Klick mich</a>
             </button>
         </div>
     </div>
@@ -81,6 +84,6 @@
         return Math.floor(Math.random() * (num + 1));
     };
 </script>
-<script src="js/404_space_invaders.js"></script>
+<script src="../js/space_invaders.js"></script>
 </body>
 </html>

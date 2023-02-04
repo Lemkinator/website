@@ -63,7 +63,7 @@
 
                 this.level += 1;
 
-                invaderAttackRate -= 0.002;
+                invaderAttackRate -= 0.0004;
                 invaderSpeed += 10;
 
                 game.invaders = createInvaders();
@@ -169,7 +169,7 @@
                     y: this.coordinates.y + this.size.height - 5
                 }, {
                     x: 0,
-                    y: 2
+                    y: 1
                 });
                 game.invaderShots.push(projectile);
             }
@@ -241,7 +241,7 @@
                         y: this.coordinates.y - 1
                     }, {
                         x: 0,
-                        y: -7
+                        y: -3
                     });
                     this.projectile.push(projectile);
                 } else if (this.shooterHeat > 12) this.shooterHeat = -3;
@@ -429,7 +429,7 @@
         }
 
         kills = 0;
-        invaderAttackRate = 0.999;
+        invaderAttackRate = 1;
         invaderSpeed = 20;
         spawnDelayCounter = invaderSpawnDelay;
 

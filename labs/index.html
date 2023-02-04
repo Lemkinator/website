@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="canonical" href="https://www.leonard-lemke.com/labs" />
+    <link rel="stylesheet" href="/css/styles.css"/>
+    <link rel="stylesheet" href="/css/labs.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
+          integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc"
+          crossorigin="anonymous"/>
+    <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap" rel="stylesheet"/>
+
+    <!-- HTML Meta Tags -->
+    <title>Labs</title>
+    <meta name="description" content="Leonard Lemke">
+
+    <!-- Facebook Meta Tags -->
+    <meta property="og:url" content="https://leonard-lemke.com/labs">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Labs">
+    <meta property="og:description" content="Leonard Lemke">
+    <meta property="og:image" content="https://www.leonard-lemke.com/images/logo/icon.png">
+
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="twitter:domain" content="leonard-lemke.com">
+    <meta property="twitter:url" content="https://leonard-lemke.com/labs">
+    <meta name="twitter:title" content="Labs">
+    <meta name="twitter:description" content="Leonard Lemke">
+    <meta name="twitter:image" content="https://www.leonard-lemke.com/images/logo/icon.png">
+
+</head>
+<body>
+
+<div id="nav-placeholder"></div>
+<script>$.get("/navbar.html", function (data) {
+    $("#nav-placeholder").replaceWith(data);
+});</script>
+
+
+<!-- Services Section -->
+<div id="projects" class="services">
+    <h1>Leonard Lemke Labs</h1>
+    <div class="services__container">
+        <a href="/labs/windows-update" class="services__card-labs">
+            <h2>Windows Update</h2>
+            <p lang="en">Simulate Windows Update</p>
+            <p lang="de">Simuliere ein Windows Update</p>
+        </a>
+        <a href="/labs/click-me" class="services__card-labs">
+            <h2 lang="en">Click me</h2>
+            <h2 lang="de">Klick mich</h2>
+            <p lang="en">Click the Button!</p>
+            <p lang="de">Klicke den Knopf!</p>
+        </a>
+        <a href="/labs/out-run" class="services__card-labs">
+            <h2>Out-Run</h2>
+            <p lang="en">Test your driving skills</p>
+            <p lang="de">Teste deine Fahrkünste</p>
+        </a>
+        <a href="/labs/space-invaders" class="services__card-labs">
+            <h2>Space Invaders</h2>
+            <p lang="en">Fight against Space Invaders</p>
+            <p lang="de">Kämpfe gegen Space Invaders</p>
+        </a>
+    </div>
+</div>
+
+<div id="footer-placeholder"></div>
+<script>
+    $.get("/footer.html", function (data) {
+        $("#footer-placeholder").replaceWith(data);
+    });
+</script>
+</body>
+</html>

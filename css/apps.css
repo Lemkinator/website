@@ -1,0 +1,105 @@
+.apps-banner {
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(17, 17, 17, 0.9) 100%),
+    linear-gradient(to top, rgba(0, 0, 0, 0) 0%, rgba(17, 17, 17, 0.9) 100%),
+    url('/images/apps/oneUI/OneUIBanner.jpg');
+}
+
+.nakbuch-banner {
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(17, 17, 17, 0.9) 100%),
+    linear-gradient(to top, rgba(0, 0, 0, 0) 0%, rgba(17, 17, 17, 0.9) 100%),
+    url('/images/apps/nakbuch/Vorstellungsgrafik.png');
+}
+
+.sudoku-banner {
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(17, 17, 17, 0.9) 100%),
+    linear-gradient(to top, rgba(0, 0, 0, 0) 0%, rgba(17, 17, 17, 0.9) 100%),
+    url('/images/apps/sudoku/Vorstellungsgrafik.png');
+}
+
+.studiportal-banner {
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(17, 17, 17, 0.9) 100%),
+    linear-gradient(to top, rgba(0, 0, 0, 0) 0%, rgba(17, 17, 17, 0.9) 100%),
+    url('/images/apps/studiportal/Vorstellungsgrafik.png');
+}
+
+.app-trailer {
+    width: 80vw;
+    height: 45vw;
+    max-width: 900px;
+    max-height: 505px;
+    border: none;
+    border-radius: 15px;
+}
+
+img.playstore_button {
+    width: 200px;
+    margin-top: 15px;
+    background-color: transparent;
+}
+
+#app-icon {
+    width: 40%;
+    height: 40%;
+    max-width: 100px;
+    max-height: 100px;
+    float: right;
+    margin: 15px;
+
+}
+
+.mobile-image {
+    width: 56vw;
+    height: 120vw;
+    max-width: 280px;
+    max-height: 600px;
+    border-radius: 15px;
+    margin-top: 8px;
+}
+
+.mobile-swiper {
+    width: 72vw;
+    height: 120vw;
+    max-width: 360px;
+    max-height: 600px;
+    display: inline-flex;
+}
+
+.wear-swiper {
+    width: 80vw;
+    height: 70vw;
+    max-width: 400px;
+    max-height: 350px;
+    display: inline-flex;
+}
+
+.material-swiper {
+    width: 72vw;
+    height: 120vw;
+    max-width: 360px;
+    max-height: 600px;
+    display: inline-flex;
+}
+
+.material-swiper .swiper-slide,
+.mobile-swiper .swiper-slide,
+.wear-swiper .swiper-slide {
+    margin-top: 20px;
+    padding: 0 50px 50px;
+}
+
+.services__card-apps:nth-child(1) {
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(17, 17, 17, 0.9) 100%),
+    url('/images/apps/sudoku/app_icon.png');
+}
+
+.services__card-apps:nth-child(2) {
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(17, 17, 17, 0.9) 100%),
+    url('/images/apps/nakbuch/app_icon.jpg');
+}
+
+.services__card-apps:nth-child(3) {
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(17, 17, 17, 0.9) 100%),
+    url('/images/apps/studiportal/app_icon.png');
+}
+
+
