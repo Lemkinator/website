@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <!-- Google won't index this page or follow links on this page -->
     <meta name="robots" content="noindex, nofollow">
-    <link rel="canonical" href="https://www.leonard-lemke.com/labs/out-run"/>
+    <link rel="canonical" href="https://www.leonard-lemke.com/labs/snake"/>
     <link rel="stylesheet" href="/css/styles.css"/>
     <link rel="stylesheet" href="/css/labs.css"/>
-    <link rel="stylesheet" href="/css/outrun.css"/>
+    <link rel="stylesheet" href="/css/snake.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
           integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc"
@@ -17,20 +17,20 @@
 
     <!-- HTML Meta Tags -->
     <title>Leonard Lemke</title>
-    <meta name="description" content="Out-Run">
+    <meta name="description" content="Snake">
 
     <!-- Facebook Meta Tags -->
-    <meta property="og:url" content="https://leonard-lemke.com/labs/out-run">
+    <meta property="og:url" content="https://leonard-lemke.com/labs/snake">
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Out-Run">
+    <meta property="og:title" content="Snake">
     <meta property="og:description" content="Leonard Lemke">
     <meta property="og:image" content="https://www.leonard-lemke.com/images/logo/icon.png">
 
     <!-- Twitter Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
     <meta property="twitter:domain" content="leonard-lemke.com">
-    <meta property="twitter:url" content="https://leonard-lemke.com/labs/out-run">
-    <meta name="twitter:title" content="Out-Run">
+    <meta property="twitter:url" content="https://leonard-lemke.com/labs/snake">
+    <meta name="twitter:title" content="Snake">
     <meta name="twitter:description" content="Leonard Lemke">
     <meta name="twitter:image" content="https://www.leonard-lemke.com/images/logo/icon.png">
 
@@ -45,30 +45,11 @@
 <div class="main">
     <div class="content__container">
         <div class="content labs">
-            <div id="game">
-                <div id="road">
-                    <div id="cloud"></div>
-                    <div id="hero"></div>
-                </div>
-                <div id="hud">
-                    <span id="time" class="topUI">0</span>
-                    <span id="score" class="topUI">0</span>
-                    <span id="lap" class="topUI">0'00"000</span>
-                    <span id="tacho">0</span>
-                </div>
-                <div id="home">
-                    <h1>OutRun</h1>
-                    <p id="text"></p>
-                    <div id="highscore">
-                    </div>
-                </div>
-            </div>
+            <div id="game-board"></div>
             <div id="controls">
-                <span><span>C</span>insert coin</span>
-                <span><span>M</span>mute</span>
-                <span><span>&lt;</span><span>&gt;</span>move</span>
-                <span><span>&lt;</span><span>&gt;</span>accelerate</span>
+                <span><span>&lt;</span><span>&gt;</span></span><span><span>&lt;</span><span>&gt;</span>move</span>
             </div>
+            <button class="lButton" id="restart"><a>Restart</a></button>
         </div>
     </div>
 </div>
@@ -77,6 +58,6 @@
 <script>$.get("/footer.html", function (data) {
     $("#footer-placeholder").replaceWith(data);
 });</script>
-<script src="/js/out-run.js"></script>
+<script src="/js/snake.js"></script>
 </body>
 </html>

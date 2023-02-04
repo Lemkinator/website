@@ -11,23 +11,3 @@
 .invaders-message p {
     font-size: 0.9rem;
 }
-
-#controls {
-    color: #868686;
-    font-size: 13px;
-    line-height: 13px;
-    margin: 10px;
-    text-align: center;
-}
-
-#controls > span {
-    margin-left: 20px;
-}
-
-#controls > span > span {
-    border: 2px solid #868686;
-    border-radius: 5px;
-    padding: 7px;
-    margin-right: 10px;
-    display: inline-block;
-}
