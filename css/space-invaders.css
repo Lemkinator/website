@@ -11,3 +11,23 @@
 .invaders-message p {
     font-size: 0.9rem;
 }
+.gameButton {
+    font-size: 1rem;
+    background: linear-gradient(to top, #f77062 0%, #fe5196 100%);
+    padding: 14px 32px;
+    border: none;
+    border-radius: 5px;
+    margin-top: 1rem;
+    margin-right: 1rem;
+    cursor: pointer;
+    position: relative;
+    outline: none;
+}
+
+.gameButton a {
+    position: relative;
+    z-index: 2;
+    text-decoration: none;
+    background: transparent;
+    color: white;
+}
