@@ -317,6 +317,12 @@
                     e.preventDefault();
                 }
         });
+        document.getElementById('space').addEventListener('touchstart', function () {
+            keyState[32] = true;
+        });
+        document.getElementById('space').addEventListener('touchend', function () {
+            keyState[32] = false;
+        });
         document.getElementById('space').addEventListener('mousedown', function () {
             keyState[32] = true;
         });
@@ -326,6 +332,12 @@
         document.getElementById('space').addEventListener('mouseleave', function () {
             keyState[32] = false;
         });
+        document.getElementById('left').addEventListener('touchstart', function () {
+            keyState[37] = true;
+        });
+        document.getElementById('left').addEventListener('touchend', function () {
+            keyState[37] = false;
+        });
         document.getElementById('left').addEventListener('mousedown', function () {
             keyState[37] = true;
         });
@@ -334,6 +346,12 @@
         });
         document.getElementById('left').addEventListener('mouseleave', function () {
             keyState[37] = false;
+        });
+        document.getElementById('right').addEventListener('touchstart', function () {
+            keyState[39] = true;
+        });
+        document.getElementById('right').addEventListener('touchend', function () {
+            keyState[39] = false;
         });
         document.getElementById('right').addEventListener('mousedown', function () {
             keyState[39] = true;
