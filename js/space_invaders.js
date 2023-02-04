@@ -106,12 +106,12 @@
         draw: function () {
 
             if (this.lost) {
-                screen.fillStyle = "rgba(0, 0, 0, 0.03)";
+                screen.fillStyle = "white";
                 screen.fillRect(0, 0, gameSize.width, gameSize.height);
 
                 screen.font = "55px Lucida Console";
                 screen.textAlign = "center";
-                screen.fillStyle = "white";
+                screen.fillStyle = "rgba(0, 0, 0, 0.03)";
                 screen.fillText("You lost", gameSize.width / 2, gameSize.height / 2);
                 screen.font = "20px Lucida Console";
                 screen.fillText("Points: " + kills, gameSize.width / 2, gameSize.height / 2 + 30);
@@ -387,7 +387,7 @@
             loop();
 
         };
-        invaderAsset.src = "//stillh.art/project/spaceInvaders/invader.gif";
+        invaderAsset.src = "//leonard-lemke.com/images/labs/invader.png";
 
     });
 
