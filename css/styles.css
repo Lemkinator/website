@@ -149,7 +149,7 @@ h1, h2, h3, p, a {
     -moz-text-fill-color: transparent;
 }
 
-.content h3, .banner h3, .services h3, .grid__content h3 {
+.content h3, .banner h3{
     font-size: 1.5rem;
     margin-top: 30px;
     background-color: #ff8177;
@@ -266,6 +266,15 @@ p.quote {
     border-radius: 20px;
 }
 
+.grid__content h1 {
+    font-size: 4rem;
+}
+
+.grid__content h2 {
+    font-size: 3rem;
+    margin-top: 10px;
+}
+
 .grid__content p {
     margin-top: 1rem;
     font-size: 2rem;
@@ -336,6 +345,11 @@ p.quote {
     height: 100vh;
 }
 
+.services h1 {
+    margin-bottom: 5rem;
+    font-size: 2.5rem;
+}
+
 .services__container {
     display: flex;
     justify-content: center;
@@ -374,10 +388,11 @@ p.quote {
     url('/images/media/drone8.jpg');
 }
 
-.services__card h2,
-.services__card-labs h2,
-.services__card-apps h2,
-.services__card-media h2 {
+.services__card h3,
+.services__card-labs h3,
+.services__card-apps h3,
+.services__card-media h3 {
+    font-size: 2rem;
     position: absolute;
     top: 350px;
     left: 30px;
