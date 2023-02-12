@@ -150,7 +150,7 @@ h1, h2, h3, p, a {
     -moz-text-fill-color: transparent;
 }
 
-.content h3, .banner h3{
+.content h3, .banner h3 {
     font-size: 1.5rem;
     margin-top: 30px;
     background-color: #ff8177;
@@ -359,10 +359,7 @@ p.quote {
     flex-wrap: wrap;
 }
 
-.services__card,
-.services__card-labs,
-.services__card-media,
-.services__card-apps {
+.services__card {
     margin: 1rem;
     height: 525px;
     width: 400px;
@@ -374,27 +371,21 @@ p.quote {
     color: #fff;
 }
 
-.services__card:before,
-.services__card-labs:before,
-.services__card-media:before,
-.services__card-apps:before {
+.services__card:before {
     opacity: 0.2;
 }
 
-.services__card:nth-child(1) {
+.services__card-home:nth-child(1) {
     background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 100%),
     url('/images/apps/oneUI/OneUIBanner.jpg');
 }
 
-.services__card:nth-child(2) {
+.services__card-home:nth-child(2) {
     background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(17, 17, 17, 0.9) 100%),
     url('/images/media/drone8.jpg');
 }
 
-.services__card h3,
-.services__card-labs h3,
-.services__card-apps h3,
-.services__card-media h3 {
+.services__card h3 {
     font-size: 2rem;
     position: absolute;
     top: 350px;
@@ -402,20 +393,14 @@ p.quote {
     background: transparent;
 }
 
-.services__card p,
-.services__card-labs p,
-.services__card-apps p,
-.services__card-media p {
+.services__card p {
     position: absolute;
     top: 410px;
     left: 30px;
     background: transparent;
 }
 
-.services__card:hover,
-.services__card-labs:hover,
-.services__card-apps:hover,
-.services__card-media:hover {
+.services__card:hover {
     transform: scale(1.075);
     transition: 0.2s ease-in;
     cursor: pointer;
@@ -440,25 +425,16 @@ p.quote {
         font-size: 2rem;
     }
 
-    .services__card,
-    .services__card-labs,
-    .services__card-apps,
-    .services__card-media {
+    .services__card {
         height: 400px;
         width: 300px;
     }
 
-    .services__card h3,
-    .services__card-labs h3,
-    .services__card-apps h3,
-    .services__card-media h3 {
+    .services__card h3 {
         top: 260px;
     }
 
-    .services__card p,
-    .services__card-labs p,
-    .services__card-apps p,
-    .services__card-media p {
+    .services__card p {
         top: 310px;
     }
 }
