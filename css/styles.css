@@ -304,7 +304,11 @@ p.quote {
     }
 
     .grid__content h2 {
-        font-size: 2.3rem;
+        font-size: 2rem;
+    }
+
+    .grid__content h3 {
+        font-size: 1.5rem;
     }
 
     .grid__content p {
@@ -317,10 +321,6 @@ p.quote {
     .grid__content h1 {
         font-size: 2rem;
         margin-top: 3rem;
-    }
-
-    .grid__content h2 {
-        font-size: 2rem;
     }
 
     .grid__content p {
@@ -347,7 +347,7 @@ p.quote {
 
 .services h1 {
     margin-bottom: 5rem;
-    font-size: 2.5rem;
+    font-size: 3rem;
 }
 
 .services__container {
@@ -424,7 +424,7 @@ p.quote {
     }
 
     .services h1 {
-        font-size: 2rem;
+        font-size: 2.5rem;
         margin-top: 12rem;
     }
 }
@@ -435,7 +435,7 @@ p.quote {
     }
 
     .services h1 {
-        font-size: 1.2rem;
+        font-size: 2rem;
     }
 
     .services__card,
@@ -446,10 +446,10 @@ p.quote {
         width: 300px;
     }
 
-    .services__card h2,
-    .services__card-labs h2,
-    .services__card-apps h2,
-    .services__card-media h2 {
+    .services__card h3,
+    .services__card-labs h3,
+    .services__card-apps h3,
+    .services__card-media h3 {
         top: 260px;
     }
 
