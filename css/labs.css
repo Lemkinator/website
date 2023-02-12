@@ -20,9 +20,6 @@
     #button-out-run, #button-click-me {
         display: none;
     }
-    .services {
-        height: 2200px;
-    }
 }
 
 .services__card-labs:nth-child(1) {
