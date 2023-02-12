@@ -130,6 +130,7 @@ h1, h2, h3, p, a {
 
 .content h1, .banner h1, .services h1, .grid__content h1 {
     font-size: 3rem;
+    margin-top: 30px;
     background-color: #ff8177;
     background-image: linear-gradient(to top, #ff0844 0%, #ffb199 100%);
     background-size: 100%;
@@ -342,7 +343,7 @@ p.quote {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+
 }
 
 .services h1 {
@@ -351,6 +352,8 @@ p.quote {
 }
 
 .services__container {
+    height: 100vh;
+    min-height: 525px;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
@@ -419,19 +422,18 @@ p.quote {
 }
 
 @media screen and (max-width: 960px) {
-    .services {
-        height: 1800px;
+    .services__container {
+        height: 140vh;
     }
 
     .services h1 {
         font-size: 2.5rem;
-        margin-top: 12rem;
     }
 }
 
 @media screen and (max-width: 480px) {
-    .services {
-        height: 1600px;
+    .services__container {
+        height: 140vh;
     }
 
     .services h1 {
