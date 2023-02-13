@@ -7,8 +7,7 @@
     <link rel="stylesheet" href="/css/styles.css"/>
     <link rel="stylesheet" href="/css/apps.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-element-bundle.min.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
           integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc"
           crossorigin="anonymous"/>
@@ -120,37 +119,29 @@
     </ul>
     <br><br><br>
     <h2 id="screenshots">Screenshots</h2>
-    <div class="swiper mobile-swiper">
-        <div class="swiper-wrapper">
-            <div class="swiper-slide"><img src="/images/apps/nakbuch/mobile1.png" alt=""/></div>
-            <div class="swiper-slide"><img src="/images/apps/nakbuch/mobile2.png" alt=""/></div>
-            <div class="swiper-slide"><img src="/images/apps/nakbuch/mobile3.png" alt=""/></div>
-            <div class="swiper-slide"><img src="/images/apps/nakbuch/mobile4.png" alt=""/></div>
-            <div class="swiper-slide"><img src="/images/apps/nakbuch/mobile5.png" alt=""/></div>
-            <div class="swiper-slide"><img src="/images/apps/nakbuch/mobile6.png" alt=""/></div>
-        </div>
-        <div class="swiper-button-prev"></div>
-        <div class="swiper-button-next"></div>
-        <div class="swiper-pagination"></div>
-    </div>
+    <swiper-container class="mobile-swiper" pagination="true" pagination-clickable="true" space-between="5" loop="true"
+                      autoplay-delay="8000" autoplay-disable-on-interaction="false">
+        <swiper-slide><img src="/images/apps/nakbuch/mobile1.png" alt=""/></swiper-slide>
+        <swiper-slide><img src="/images/apps/nakbuch/mobile2.png" alt=""/></swiper-slide>
+        <swiper-slide><img src="/images/apps/nakbuch/mobile3.png" alt=""/></swiper-slide>
+        <swiper-slide><img src="/images/apps/nakbuch/mobile4.png" alt=""/></swiper-slide>
+        <swiper-slide><img src="/images/apps/nakbuch/mobile5.png" alt=""/></swiper-slide>
+        <swiper-slide><img src="/images/apps/nakbuch/mobile6.png" alt=""/></swiper-slide>
+    </swiper-container>
     <br><br><br>
     <h2 id="wearos">Wear OS support</h2>
     <p lang="en">Forgotten your smartphone? No problem, the text contents of the app can be displayed
         on the smartwatch without any problems (in a pleasant design).</p>
     <p lang="de">Smartphone vergessen? Kein Problem, die Textinhalte der App lassen sich
         Problemlos (in angenehmem Design) auf der Smartwatch anzeigen.</p>
-    <br><br>
-    <div class="swiper wear-swiper">
-        <div class="swiper-wrapper">
-            <div class="swiper-slide"><img src="/images/apps/nakbuch/wear1.png" alt=""/></div>
-            <div class="swiper-slide"><img src="/images/apps/nakbuch/wear2.png" alt=""/></div>
-            <div class="swiper-slide"><img src="/images/apps/nakbuch/wear3.png" alt=""/></div>
-            <div class="swiper-slide"><img src="/images/apps/nakbuch/wear4.png" alt=""/></div>
-        </div>
-        <div class="swiper-button-prev"></div>
-        <div class="swiper-button-next"></div>
-        <div class="swiper-pagination"></div>
-    </div>
+    <swiper-container class="wear-swiper" pagination="true" pagination-clickable="true" space-between="5" loop="true"
+                      autoplay-delay="8000" autoplay-disable-on-interaction="false">
+        <swiper-slide><img src="/images/apps/nakbuch/wear1.png" alt=""/></swiper-slide>
+        <swiper-slide><img src="/images/apps/nakbuch/wear2.png" alt=""/></swiper-slide>
+        <swiper-slide><img src="/images/apps/nakbuch/wear3.png" alt=""/></swiper-slide>
+        <swiper-slide><img src="/images/apps/nakbuch/wear4.png" alt=""/></swiper-slide>
+    </swiper-container>
+
     <br><br><br>
     <h2 id="oneui">One UI</h2>
     <p lang="en"> NAK Buch was developed according to Samsung's One UI guidelines. For example,
@@ -175,21 +166,16 @@
     <p lang="en">Your Color.</p>
     <p lang="de">Deine Farbe.</p>
     <p>NAK Buch.</p>
-    <br>
-    <div-- class="swiper material-swiper">
-        <div class="swiper-wrapper">
-            <div class="swiper-slide"><img src="/images/apps/nakbuch/material_home_red.png" alt=""/></div>
-            <div class="swiper-slide"><img src="/images/apps/nakbuch/material_nakbuch_red.png" alt=""/></div>
-            <div class="swiper-slide"><img src="/images/apps/nakbuch/material_home_blue.png" alt=""/></div>
-            <div class="swiper-slide"><img src="/images/apps/nakbuch/material_nakbuch_blue.png" alt=""/></div>
-            <div class="swiper-slide"><img src="/images/apps/nakbuch/material_home_green.png" alt=""/></div>
-            <div class="swiper-slide"><img src="/images/apps/nakbuch/material_nakbuch_green.png" alt=""/></div>
-        </div>
-        <div class="swiper-button-prev"></div>
-        <div class="swiper-button-next"></div>
-        <div class="swiper-pagination"></div>
-    </div>
-    <br><br><br-->
+    <swiper-container class="mobile-swiper" pagination="true" pagination-clickable="true" space-between="5" loop="true"
+                      autoplay-delay="8000" autoplay-disable-on-interaction="false">
+        <swiper-slide><img src="/images/apps/nakbuch/material_home_red.png" alt=""/></swiper-slide>
+        <swiper-slide><img src="/images/apps/nakbuch/material_nakbuch_red.png" alt=""/></swiper-slide>
+        <swiper-slide><img src="/images/apps/nakbuch/material_home_blue.png" alt=""/></swiper-slide>
+        <swiper-slide><img src="/images/apps/nakbuch/material_nakbuch_blue.png" alt=""/></swiper-slide>
+        <swiper-slide><img src="/images/apps/nakbuch/material_home_green.png" alt=""/></swiper-slide>
+        <swiper-slide><img src="/images/apps/nakbuch/material_nakbuch_green.png" alt=""/></swiper-slide>
+    </swiper-container-->
+    <br><br><br>
     <div id="otherfeatures">
         <h2 lang="en">Other Features</h2>
         <h2 lang="de">Sonstige Features</h2>
@@ -240,51 +226,6 @@
 <script>
     $.get("/footer.html", function (data) {
         $("#footer-placeholder").replaceWith(data);
-    });
-    new Swiper(".mobile-swiper", {
-        grabCursor: true,
-        loop: true,
-        autoplay: {
-            delay: 10000,
-            disableOnInteraction: true,
-        },
-        navigation: {
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev",
-        },
-        pagination: {
-            el: ".swiper-pagination",
-        },
-    });
-    new Swiper(".wear-swiper", {
-        grabCursor: true,
-        loop: true,
-        autoplay: {
-            delay: 10000,
-            disableOnInteraction: true,
-        },
-        navigation: {
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev",
-        },
-        pagination: {
-            el: ".swiper-pagination",
-        },
-    });
-    new Swiper(".material-swiper", {
-        grabCursor: true,
-        loop: true,
-        autoplay: {
-            delay: 10000,
-            disableOnInteraction: true,
-        },
-        navigation: {
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev",
-        },
-        pagination: {
-            el: ".swiper-pagination",
-        },
     });
 </script>
 </body>

@@ -9,8 +9,7 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="jquery" level="application" />
     <orderEntry type="library" name="all" level="application" />
+    <orderEntry type="library" name="animejs" level="application" />
     <orderEntry type="library" name="swiper" level="application" />
-    <orderEntry type="library" name="animejs" level="application" />
-    <orderEntry type="library" name="animejs" level="application" />
   </component>
 </module>

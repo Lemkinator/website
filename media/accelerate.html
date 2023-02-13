@@ -7,8 +7,7 @@
     <link rel="stylesheet" href="/css/styles.css"/>
     <link rel="stylesheet" href="/css/media.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-element-bundle.min.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
           integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc"
           crossorigin="anonymous"/>
@@ -57,25 +56,20 @@
 <div class="content">
     <h1 lang="en"> Accelerate - Impressions</h1>
     <h1 lang="de"> Accelerate - Impressionen</h1>
-    <div class="swiper accelerate-impessions-swiper">
-        <div class="swiper-wrapper">
-            <div class="swiper-slide"><img src="/images/media/accelerate/accelerate1.gif" alt=""/></div>
-            <div class="swiper-slide"><img src="/images/media/accelerate/accelerate2.gif" alt=""/></div>
-            <div class="swiper-slide"><img src="/images/media/accelerate/accelerate3.gif" alt=""/></div>
-            <div class="swiper-slide"><img src="/images/media/accelerate/accelerate4.gif" alt=""/></div>
-        </div>
-        <div class="swiper-pagination"></div>
-    </div>
+    <br>
+    <swiper-container pagination="true" pagination-clickable="true" space-between="5" loop="true"
+                      autoplay-delay="8000" autoplay-disable-on-interaction="false">
+        <swiper-slide><img src="/images/media/accelerate/accelerate1.gif" alt=""/></swiper-slide>
+        <swiper-slide><img src="/images/media/accelerate/accelerate2.gif" alt=""/></swiper-slide>
+        <swiper-slide><img src="/images/media/accelerate/accelerate3.gif" alt=""/></swiper-slide>
+        <swiper-slide><img src="/images/media/accelerate/accelerate4.gif" alt=""/></swiper-slide>
+    </swiper-container>
     <br><br>
     <h1 id="trailer">Trailer</h1>
-    <iframe class="media-trailer"
-            src="https://www.youtube.com/embed/pf5zeYbQ8c8" allowfullscreen>
-    </iframe>
+    <iframe class="media-trailer" src="https://www.youtube.com/embed/pf5zeYbQ8c8" allowfullscreen></iframe>
     <br><br>
     <h1 id="video">Video</h1>
-    <iframe class="accelerate-video"
-            src="https://www.youtube.com/embed/h-fGDLRG0-0" allowfullscreen>
-    </iframe>
+    <iframe class="accelerate-video" src="https://www.youtube.com/embed/h-fGDLRG0-0" allowfullscreen></iframe>
     <br><br>
     <h2 id="credits">Credits</h2>
     <p>Driver | <a target="_blank" href="https://www.instagram.com/herrschermuffin/">Henrik Lemke</a></p>
@@ -85,22 +79,8 @@
 
 <div id="footer-placeholder"></div>
 <script>
-
     $.get("/footer.html", function (data) {
         $("#footer-placeholder").replaceWith(data);
-    });
-    new Swiper(".accelerate-impessions-swiper", {
-        grabCursor: true,
-        loop: true,
-        spaceBetween: 10,
-        autoplay: {
-            delay: 12000,
-            disableOnInteraction: false,
-        },
-        pagination: {
-            el: ".swiper-pagination",
-            clickable: true,
-        },
     });
 </script>
 </body>

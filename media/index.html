@@ -8,8 +8,7 @@
     <link rel="stylesheet" href="/css/cards.css"/>
     <link rel="stylesheet" href="/css/media.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-element-bundle.min.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
           integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc"
           crossorigin="anonymous"/>
@@ -148,23 +147,26 @@
 
     <h2 lang="en">What got me into FPV?</h2>
     <h2 lang="de">Was hat mich zu FPV gebracht?</h2>
-
-    <!-- Swiper -->
-    <div class="swiper media-swiper">
-        <div class="swiper-wrapper">
-            <div class="swiper-slide">
+    <swiper-container pagination="true" pagination-clickable="true" space-between="5" loop="false" navigation="true"
+                      autoplay-delay="8000" autoplay-disable-on-interaction="false">
+        <swiper-slide>
+            <div>
                 <img src="/images/media/drone1.jpg" alt=""/>
                 <p lang="en" class="description">The journey began with a normal consumer drone...</p>
                 <p lang="de" class="description">Die Reise begann mit einer normalen Verbraucherdrohne...</p>
             </div>
-            <div class="swiper-slide">
+        </swiper-slide>
+        <swiper-slide>
+            <div>
                 <img src="/images/media/drone2.jpg" alt=""/>
                 <p lang="en" class="description">... but ended very early with a broken drone and the fact, that
                     its nearly impossible to repair those drones by your own.</p>
                 <p lang="de" class="description">... endete aber sehr früh mit einer kaputten Drohne und der
                     Tatsache, dass dass es fast unmöglich ist, diese Drohnen selbst zu reparieren.</p>
             </div>
-            <div class="swiper-slide">
+        </swiper-slide>
+        <swiper-slide>
+            <div>
                 <img src="/images/media/drone3.jpg" alt=""/>
                 <p lang="en" class="description"> Since the repair at the manufacturer is quite expensive, i
                     decided to build a drone myself... Which turned out not to be cheaper... &#128514;</p>
@@ -172,43 +174,53 @@
                     entschlossen, selbst eine Drohne zu bauen... Was sich als nicht billiger erwies...
                     &#128514;</p>
             </div>
-            <div class="swiper-slide">
+        </swiper-slide>
+        <swiper-slide>
+            <div>
                 <img src="/images/media/drone4.jpg" alt=""/>
                 <p lang="en" class="description">After researching for the needed parts, the assembly began.</p>
                 <p lang="de" class="description">Nach der Suche nach den benötigten Teilen begann der
                     Zusammenbau.</p>
             </div>
-            <div class="swiper-slide">
+        </swiper-slide>
+        <swiper-slide>
+            <div>
                 <img src="/images/media/drone5.jpg" alt=""/>
                 <p lang="en" class="description">Assembling and wiring...</p>
                 <p lang="de" class="description">Zusammenbau und Verkabelung...</p>
             </div>
-            <div class="swiper-slide">
+        </swiper-slide>
+        <swiper-slide>
+            <div>
                 <img src="/images/media/drone6.jpg" alt=""/>
                 <p lang="en" class="description">Getting the Hardware ready...</p>
                 <p lang="de" class="description">Vorbereitungen für die Hardware...</p>
             </div>
-            <div class="swiper-slide">
+        </swiper-slide>
+        <swiper-slide>
+            <div>
                 <img src="/images/media/drone7.jpg" alt=""/>
                 <p lang="en" class="description">Setup and configuration of the software...</p>
                 <p lang="de" class="description">Einrichtung und Konfiguration der Software...</p>
             </div>
-            <div class="swiper-slide">
+        </swiper-slide>
+        <swiper-slide>
+            <div>
                 <img src="/images/media/drone8.jpg" alt=""/>
                 <p lang="en" class="description">Done!</p>
                 <p lang="de" class="description">Fertig!</p>
             </div>
-            <div class="swiper-slide">
+        </swiper-slide>
+        <swiper-slide>
+            <div>
                 <img src="/images/media/drone9.jpg" alt=""/>
                 <p lang="en" class="description">Well (after a few encounters with the snowy ground)...
                     seems a lot more durable than the drone before...</p>
                 <p lang="de" class="description">Nun (nach ein paar Begegnungen mit dem schneebedeckten
                     Boden)... scheint robuster als die alte Drohne...</p>
             </div>
-        </div>
-        <div class="swiper-button-prev"></div>
-        <div class="swiper-button-next"></div>
-    </div>
+        </swiper-slide>
+    </swiper-container>
 </div>
 
 <div class="content">
@@ -245,17 +257,8 @@
 
 <div id="footer-placeholder"></div>
 <script>
-
     $.get("/footer.html", function (data) {
         $("#footer-placeholder").replaceWith(data);
-    });
-    new Swiper(".media-swiper", {
-        grabCursor: true,
-        navigation: {
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev",
-        },
-
     });
 </script>
 </body>

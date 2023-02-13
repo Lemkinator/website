@@ -16,7 +16,7 @@ a {
     grid-gap: 4rem;
     padding: 4rem;
     margin: 0 auto;
-    width: max-content;
+    max-width: 1000px;
 }
 
 .card-like {
@@ -48,7 +48,7 @@ a {
     text-decoration: none;
 }
 
-.card:hover, .card-like:hover, #home-img:hover {
+.card:hover, .card-like:hover {
     transform: scale(1.075);
     transition: 0.2s ease-in;
     color: var(--color);

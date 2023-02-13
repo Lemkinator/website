@@ -6,8 +6,7 @@
     <link rel="canonical" href="https://www.leonard-lemke.com/about"/>
     <link rel="stylesheet" href="/css/styles.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-element-bundle.min.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
           integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc"
           crossorigin="anonymous"/>
@@ -60,14 +59,13 @@
     <p lang="de" class="quote">Hallo, mein Name ist Leonard. Neben meiner Leidenschaft für Technik, Smartphones,
         Android und Computerspiele, programmiere ich gerne Apps für Android im OneUI-Stil oder
         bearbeite Videos, die ich mit meiner Racing-Drohne aufnehme.</p>
-    <div class="swiper me-swiper">
-        <div class="swiper-wrapper">
-            <div class="swiper-slide"><img src="/images/about/me.jpg" alt=""/></div>
-            <div class="swiper-slide"><img src="/images/about/me6.jpg" alt=""/></div>
-            <div class="swiper-slide"><img src="/images/about/me7.jpg" alt=""/></div>
-        </div>
-        <div class="swiper-pagination"></div>
-    </div>
+
+    <swiper-container class="me-swiper" pagination="true" pagination-clickable="true" space-between="5" loop="true"
+                      autoplay-delay="8000" autoplay-disable-on-interaction="false">
+        <swiper-slide><img src="/images/about/me.jpg" alt=""/></swiper-slide>
+        <swiper-slide><img src="/images/about/me6.jpg" alt=""/></swiper-slide>
+        <swiper-slide><img src="/images/about/me7.jpg" alt=""/></swiper-slide>
+    </swiper-container>
     <!--p lang="en" class="quote">"Those looking for quick success should not program, but chop wood."</p-->
     <!--p lang="de" class="quote">"Wer den schnellen Erfolg sucht, sollte nicht programmieren, sondern Holz hacken."</p-->
     <!--p class="quote">"A computer program does what you tell it to do, not what you want it to do."</p-->
@@ -113,18 +111,6 @@
 <script>
     $.get("/footer.html", function (data) {
         $("#footer-placeholder").replaceWith(data);
-    });
-    new Swiper(".me-swiper", {
-        grabCursor: true,
-        loop: true,
-        autoplay: {
-            delay: 4000,
-            disableOnInteraction: false,
-        },
-        pagination: {
-            el: ".swiper-pagination",
-            clickable: true,
-        },
     });
 </script>
 </body>
