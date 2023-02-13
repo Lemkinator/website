@@ -56,19 +56,16 @@ img.playstore_button {
     margin-top: 8px;
 }
 
-.mobile-swiper {
-    width: 56vw;
-    height: 120vw;
+.mobile-slide {
+    width: 80%;
+    height: 80%;
     max-width: 280px;
     max-height: 600px;
-    display: inline-flex;
 }
 
-.wear-swiper {
-    width: 65vw;
-    height: 65vw;
+.wear-slide {
+    width: 80%;
+    height: 80%;
     max-width: 300px;
     max-height: 300px;
-    margin-top: 20px;
-    display: inline-flex;
 }

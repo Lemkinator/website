@@ -104,13 +104,17 @@
     </ul>
     <br><br><br>
     <h2 id="screenshots">Screenshots</h2>
-    <swiper-container class="mobile-swiper" pagination="true" pagination-clickable="true" space-between="5" loop="true"
-                      autoplay-delay="8000" autoplay-disable-on-interaction="false">
-        <swiper-slide><img src="/images/apps/sudoku/mobile1.png" alt=""/></swiper-slide>
-        <swiper-slide><img src="/images/apps/sudoku/mobile2.png" alt=""/></swiper-slide>
-        <swiper-slide><img src="/images/apps/sudoku/mobile3.png" alt=""/></swiper-slide>
-        <swiper-slide><img src="/images/apps/sudoku/mobile4.png" alt=""/></swiper-slide>
-        <swiper-slide><img src="/images/apps/sudoku/mobile5.png" alt=""/></swiper-slide>
+    <swiper-container pagination="true" pagination-clickable="true"  keyboard="true"
+                      autoplay-delay="8000" autoplay-disable-on-interaction="false"
+                      effect="coverflow" centered-slides="true" slides-per-view="auto"
+                      coverflow-effect-rotate="50" coverflow-effect-stretch="0" coverflow-effect-depth="100"
+                      coverflow-effect-modifier="1" coverflow-effect-slide-shadows="true"
+                      grab-cursor="true">
+        <swiper-slide class="mobile-slide"><img src="/images/apps/sudoku/mobile1.png" alt=""/></swiper-slide>
+        <swiper-slide class="mobile-slide"><img src="/images/apps/sudoku/mobile2.png" alt=""/></swiper-slide>
+        <swiper-slide class="mobile-slide"><img src="/images/apps/sudoku/mobile3.png" alt=""/></swiper-slide>
+        <swiper-slide class="mobile-slide"><img src="/images/apps/sudoku/mobile4.png" alt=""/></swiper-slide>
+        <swiper-slide class="mobile-slide"><img src="/images/apps/sudoku/mobile5.png" alt=""/></swiper-slide>
     </swiper-container>
     <br><br><br>
     <h2 id="oneui">One UI</h2>
@@ -132,7 +136,7 @@
         Themenfarbe. (Kann auf Samsung-Geräten in den Einstellungen unter "Hintergrundbild und Stil ->
         Farbpalette" angepasst werden).</p>
     <swiper-container-- class="mobile-swiper" pagination="true" pagination-clickable="true" space-between="5" loop="true"
-                      autoplay-delay="8000" autoplay-disable-on-interaction="false">
+                      autoplay-delay="8000" autoplay-disable-on-interaction="false" grab-cursor="true">
         <swiper-slide><img src="/images/apps/sudoku/material_home_red.png" alt=""/></swiper-slide>
         <swiper-slide><img src="/images/apps/sudoku/material_sudoku_red.png" alt=""/></swiper-slide>
         <swiper-slide><img src="/images/apps/sudoku/material_home_blue.png" alt=""/></swiper-slide>

@@ -214,11 +214,11 @@ swiper-container {
     margin-right: auto;
     border-radius: 15px;
     margin-top: 10px;
+    padding-bottom: 30px;
 }
 
 swiper-slide {
     text-align: center;
-    font-size: 18px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -235,14 +235,10 @@ swiper-slide img {
 
 .me-swiper {
     width: 80%;
+    height: 80%;
     max-width: 400px;
+    max-height: 400px;
     display: inline-flex;
-}
-
-.swiper-slide .description {
-    margin: 5px 0 0;
-    max-width: 80vw;
-    font-size: 0.8rem;
 }
 
 /********************************************************
