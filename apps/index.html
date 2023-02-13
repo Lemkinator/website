@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="canonical" href="https://www.leonard-lemke.com/apps" />
+    <link rel="canonical" href="https://www.leonard-lemke.com/apps"/>
     <link rel="stylesheet" href="/css/styles.css"/>
+    <link rel="stylesheet" href="/css/cards.css"/>
     <link rel="stylesheet" href="/css/apps.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
@@ -51,37 +52,57 @@
     <p lang="de">Moderne Apps in Samsungs OneUI-Style.</p>
 </div>
 
-<!-- Services Section -->
-<div id="projects" class="services">
-    <h1 lang="en">Projects</h1>
-    <h1 lang="de">Projekte</h1>
-    <div class="services__container">
-        <a href="/apps/sudoku" class="services__card services__card-apps">
-            <h3>Sudoku</h3>
-            <p lang="en">A Sudoku app with OneUI-Design.</p>
-            <p lang="de">Eine Sudoku App im schönen OneUI-Design.</p>
-        </a>
-        <a href="/apps/nakbuch" class="services__card services__card-apps">
-            <h3>NAK Buch</h3>
-            <p lang="en">The new non-official songbook app of the New Apostolic Church.</p>
-            <p lang="de">Die neue nicht-offizielle Liederbuch-App der Neuapostolischen Kirche.</p>
-        </a>
-        <a href="/apps/studiportal" class="services__card services__card-apps">
-            <h3>Studiportal</h3>
-            <p lang="en">The new Studiportal app with OneUI-Design.</p>
-            <p lang="de">Die neue Studiportal-App mit OneUI-Design.</p>
+<section class="cards-wrapper">
+    <div class="card-grid-space">
+        <a class="card" href="/apps/sudoku"
+           style="--bg-img: url(https://www.leonard-lemke.com/images/apps/sudoku/app_icon.png)">
+            <div>
+                <h1>Sudoku</h1>
+                <p lang="en">A Sudoku app with OneUI-Design.</p>
+                <p lang="de">Eine Sudoku App im schönen OneUI-Design.</p>
+                <div class="date">Aug 2022</div>
+                <div class="tags">
+                    <div class="tag">OneUI</div>
+                    <div lang="en" class="tag">Game</div>
+                    <div lang="de" class="tag">Spiel</div>
+                </div>
+            </div>
         </a>
     </div>
-</div>
+    <div class="card-grid-space">
+        <a class="card" href="/apps/studiportal"
+           style="--bg-img: url(https://www.leonard-lemke.com/images/apps/studiportal/app_icon.png)">
+            <div>
+                <h1>Studiportal</h1>
+                <p lang="en">The new Studiportal app with OneUI-Design.</p>
+                <p lang="de">Die neue Studiportal-App mit OneUI-Design.</p>
+                <div class="date">Jul 2022</div>
+                <div class="tags">
+                    <div class="tag">OneUI</div>
+                </div>
+            </div>
+        </a>
+    </div>
+    <div class="card-grid-space">
+        <a class="card" href="/apps/nakbuch"
+           style="--bg-img: url(https://www.leonard-lemke.com/images/apps/nakbuch/app_icon.jpg)">
+            <div>
+                <h1>NAK Buch</h1>
+                <p lang="en">The new non-official songbook app of the New Apostolic Church.</p>
+                <p lang="de">Die neue nicht-offizielle Liederbuch-App der Neuapostolischen Kirche.</p>
+                <div class="date">Nov 2021</div>
+                <div class="tags">
+                    <div class="tag">OneUI</div>
+                </div>
+            </div>
+        </a>
+    </div>
+</section>
 
-<div class="main">
-    <div class="content__container">
-        <div class="content">
-            <br><br><br><br>
-            <!--h1>OneUI</--h1>
-            <p>OneUI is ...</p-->
-        </div>
-    </div>
+<div class="content">
+    <br><br><br><br>
+    <!--h1>OneUI</--h1>
+    <p>OneUI is ...</p-->
 </div>
 
 <div id="footer-placeholder"></div>

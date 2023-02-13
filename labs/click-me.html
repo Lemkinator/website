@@ -7,7 +7,6 @@
     <meta name="robots" content="noindex, nofollow">
     <link rel="canonical" href="https://www.leonard-lemke.com/labs/click-me"/>
     <link rel="stylesheet" href="/css/styles.css"/>
-    <link rel="stylesheet" href="/css/labs.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.0/anime.min.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
@@ -42,16 +41,12 @@
     $("#nav-placeholder").replaceWith(data);
 });</script>
 
-<div class="main">
-    <div class="content__container">
-        <div class="content labs">
-            <button class="lButton" id="runaway-btn"
-                    style="position: absolute; top: 50%; left: 50%; transition: none; transform: translate(-50%, -50%); z-index: 1000">
-                <a lang="en">Click me</a>
-                <a lang="de">Klick mich</a>
-            </button>
-        </div>
-    </div>
+<div class="content" style="height: 100vh">
+    <button class="lButton" id="runaway-btn"
+            style="position: absolute; top: 50%; left: 50%; transition: none; transform: translate(-50%, -50%); z-index: 1000">
+        <a lang="en">Click me</a>
+        <a lang="de">Klick mich</a>
+    </button>
 </div>
 
 <div id="footer-placeholder"></div>

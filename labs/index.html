@@ -6,7 +6,7 @@
     <meta name="robots" content="noindex, nofollow">
     <link rel="canonical" href="https://www.leonard-lemke.com/labs" />
     <link rel="stylesheet" href="/css/styles.css"/>
-    <link rel="stylesheet" href="/css/labs.css"/>
+    <link rel="stylesheet" href="/css/cards.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
           integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc"
@@ -40,40 +40,59 @@
     $("#nav-placeholder").replaceWith(data);
 });</script>
 
-
-<!-- Services Section -->
-<div class="services">
-    <h1>Leonard Lemke Labs</h1>
-    <h2>Games</h2>
-    <div class="services__container">
-        <a href="/labs/out-run" class="services__card services__card-labs-games">
-            <h3>Out-Run</h3>
-            <p lang="en">Test your driving skills</p>
-            <p lang="de">Teste deine Fahrkünste</p>
-        </a>
-        <a href="/labs/space-invaders" class="services__card services__card-labs-games">
-            <h3>Space Invaders</h3>
-            <p lang="en">Fight against Space Invaders</p>
-            <p lang="de">Kämpfe gegen Space Invaders</p>
+<section class="cards-wrapper">
+    <div class="card-grid-space">
+        <a class="card" href="/labs/out-run" style="--bg-img: url(https://www.leonard-lemke.com/images/labs/out-run.png)">
+            <div>
+                <h1>Out-Run</h1>
+                <p lang="en">Test your driving skills</p>
+                <p lang="de">Teste deine Fahrkünste</p>
+                <div class="tags">
+                    <div class="tag">Labs</div>
+                    <div class="tag">Games</div>
+                </div>
+            </div>
         </a>
     </div>
-</div>
-<div class="services">
-    <h2>Extras</h2>
-    <div class="services__container">
-        <a href="/labs/click-me" class="services__card services__card-labs-extras">
-            <h3 lang="en">Click me</h3>
-            <h3 lang="de">Klick mich</h3>
-            <p lang="en">Click the Button!</p>
-            <p lang="de">Klicke den Knopf!</p>
-        </a>
-        <a href="/labs/windows-update" class="services__card services__card-labs-extras">
-            <h3>Windows Update</h3>
-            <p lang="en">Simulate Windows Update</p>
-            <p lang="de">Simuliere ein Windows Update</p>
+    <div class="card-grid-space">
+        <a class="card" href="/labs/space-invaders" style="--bg-img: url(https://www.leonard-lemke.com/images/labs/space-invaders.png)">
+            <div>
+                <h1>Space Invaders</h1>
+                <p lang="en">Fight against Space Invaders</p>
+                <p lang="de">Kämpfe gegen Space Invaders</p>
+                <div class="tags">
+                    <div class="tag">Labs</div>
+                    <div class="tag">Games</div>
+                </div>
+            </div>
         </a>
     </div>
-</div>
+    <div class="card-grid-space">
+        <a class="card" href="/labs/click-me" style="--bg-img: url(https://www.leonard-lemke.com/images/labs/click-me.png)">
+            <div>
+                <h1 lang="en">Click me</h1>
+                <h1 lang="de">Klick mich</h1>
+                <p lang="en">Click the Button!</p>
+                <p lang="de">Klicke den Knopf!</p>
+                <div class="tags">
+                    <div class="tag">Labs</div>
+                </div>
+            </div>
+        </a>
+    </div>
+    <div class="card-grid-space">
+        <a class="card" href="/labs/windows-update" style="--bg-img: url(https://www.leonard-lemke.com/images/labs/windows-update.png)">
+            <div>
+                <h1>Windows Update</h1>
+                <p lang="en">Simulate Windows Update</p>
+                <p lang="de">Simuliere ein Windows Update</p>
+                <div class="tags">
+                    <div class="tag">Labs</div>
+                </div>
+            </div>
+        </a>
+    </div>
+</section>
 
 <div id="footer-placeholder"></div>
 <script>

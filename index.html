@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="canonical" href="https://www.leonard-lemke.com" />
+    <link rel="canonical" href="https://www.leonard-lemke.com"/>
     <link rel="stylesheet" href="/css/styles.css"/>
+    <link rel="stylesheet" href="/css/cards.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
           integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc"
@@ -43,40 +44,52 @@
     $("#nav-placeholder").replaceWith(data);
 });</script>
 
-<!-- home Section -->
-<div class="home">
-    <div class="grid__container">
-        <div class="grid__content">
-            <h1>LEONARD LEMKE</h1>
-            <h2>TECHNOLOGY</h2>
-            <p>Leonard Lemke – Study Plus Mathem.-Tech. Softwaredeveloper</p>
-            <button class="lButton">
+<section class="cards-wrapper">
+    <div class="card-grid-space">
+        <div class="card-like">
+            <h1 class="colored-h1">LEONARD LEMKE</h1>
+            <h2 class="colored-h2">TECHNOLOGY</h2>
+            <br>
+            <p class="custom-p">Leonard Lemke – Study Plus Mathem.-Tech. Softwaredeveloper</p>
+            <!--button class="lButton">
                 <a lang="en" href="#projects">Projects</a>
                 <a lang="de" href="#projects">Projekte</a>
-            </button>
-        </div>
-        <div class="grid__img--container">
-            <img id="grid__img" src="/images/about/me2.jpg" alt="picture of me"/>
+            </button-->
         </div>
     </div>
+    <div class="card-grid-space">
+        <img id="home-img" src="/images/about/me2.jpg" alt="picture of me"/>
+    </div>
+</section>
+<br>
+<br>
+<br>
+<div class="center" id="projects">
+    <h1 lang="en" class="content">Projects</h1>
+    <h1 lang="de" class="colored-h1">Projekte</h1>
 </div>
 
-<!-- Services Section -->
-<div id="projects" class="services">
-    <h1 lang="en">Projects</h1>
-    <h1 lang="de">Projekte</h1>
-    <div class="services__container">
-        <a href="/apps" class="services__card services__card-home">
-            <h3>Apps</h3>
-            <p lang="en">Modern Apps in Samsungs OneUI-Style.</p>
-            <p lang="de">Moderne Apps in Samsungs OneUI-Style.</p>
-        </a>
-        <a href="/media" class="services__card services__card-home">
-            <h3>Media</h3>
-            <p>Cinematic / Freestyle FPV</p>
+<section class="cards-wrapper">
+    <div class="card-grid-space">
+        <a class="card" href="/apps"
+           style="--bg-img: url(https://www.leonard-lemke.com/images/apps/oneUI/OneUIBanner.jpg)">
+            <div>
+                <h1>Apps</h1>
+                <p lang="en">Modern Apps in Samsungs OneUI-Style.</p>
+                <p lang="de">Moderne Apps in Samsungs OneUI-Style.</p>
+            </div>
         </a>
     </div>
-</div>
+    <div class="card-grid-space">
+        <a class="card" href="/media"
+           style="--bg-img: url(https://www.leonard-lemke.com/images/media/drone8.jpg)">
+            <div>
+                <h1>Media</h1>
+                <p>Cinematic / Freestyle FPV</p>
+            </div>
+        </a>
+    </div>
+</section>
 
 <div id="footer-placeholder"></div>
 <script>
