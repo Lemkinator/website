@@ -24,6 +24,12 @@
     border-radius: 15px;
 }
 
+.drone-image {
+    margin-top: 20px;
+    width: 80%;
+    border-radius: 15px;
+}
+
 .media-trailer {
     width: 80vw;
     height: 100vw;
