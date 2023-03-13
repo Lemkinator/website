@@ -18,41 +18,39 @@
 }
 
 #light-utopia-rip-image {
-    margin: 20px;
-    width: 80%;
+    margin-top: 20px;
+    width: 100%;
     max-width: 400px;
     border-radius: 15px;
 }
 
 .drone-image {
-    margin-top: 20px;
+    width: 100%;
     max-width: 700px;
+    margin-top: 20px;
     border-radius: 15px;
 }
 
 .media-trailer {
-    width: 80vw;
-    height: 100vw;
+    width: 100%;
     max-width: 400px;
-    max-height: 500px;
+    aspect-ratio : 4 / 5;
     border: none;
     border-radius: 15px;
 }
 
 .accelerate-video {
-    width: 80vw;
-    height: 45vw;
+    width: 100%;
     max-width: 900px;
-    max-height: 505px;
+    aspect-ratio : 16 / 9;
     border: none;
     border-radius: 15px;
 }
 
 .light-utopia-video {
-    width: 80vw;
-    height: 40vw;
+    width: 100%;
     max-width: 900px;
-    max-height: 450px;
+    aspect-ratio : 2 / 1;
     border: none;
     border-radius: 15px;
 }
