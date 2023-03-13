@@ -23,10 +23,9 @@
 }
 
 .app-trailer {
-    width: 80vw;
-    height: 45vw;
+    width: 100%;
     max-width: 900px;
-    max-height: 505px;
+    aspect-ratio : 16 / 9;
     border: none;
     border-radius: 15px;
 }
