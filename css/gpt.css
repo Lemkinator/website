@@ -1,0 +1,145 @@
+.container {
+    display: flex;
+    height: 85vh;
+}
+
+.sidebar {
+    width: 25%;
+    padding: 20px;
+}
+
+.sidebar .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.sidebar h3 {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.api-key-container {
+    display: flex;
+    margin-bottom: 10px;
+}
+.api-key-container label {
+   margin-top: 7px;
+    margin-right: 5px;
+}
+
+.api-key-container input {
+    background-color: #2f2f2f;
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.chat-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.chat-list li {
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.chat-list li.active {
+    background-color: #1e1e1e;
+}
+
+.chat-view {
+    flex: 1;
+    background-color: #181818;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.chat-view .header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.chat-view h3 {
+    font-size: 20px;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.message-list {
+    flex: 1;
+    overflow-y: scroll;
+    margin-bottom: 10px;
+}
+
+.message {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+.message p {
+    padding: 10px;
+    border-radius: 5px;
+    max-width: 70%;
+    word-wrap: break-word;
+}
+
+.message.assistant p {
+    background-color: #2f2f2f;
+    align-self: flex-start;
+}
+.message.user p {
+    background-color: #49573e;
+    align-self: flex-end;
+    margin-right: 10px;
+}
+
+.input {
+    display: flex;
+    align-items: center;
+}
+
+.input input {
+    background-color: #2f2f2f;
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.input i {
+    background-color: #3F7FBF;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.input button:hover {
+    background-color: #345F8C;
+}
+
+@media screen and (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+    .sidebar {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .message p {
+        max-width: 100%;
+    }
+}

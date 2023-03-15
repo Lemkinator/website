@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <!-- Google won't index this page or follow links on this page -->
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="canonical" href="https://www.leonard-lemke.com/labs/gpt"/>
+    <link rel="stylesheet" href="/css/styles.css"/>
+    <link rel="stylesheet" href="/css/gpt.css"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.3.0/css/all.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.0/anime.min.js"></script>
+
+    <!-- HTML Meta Tags -->
+    <title>Leonard Lemke</title>
+    <meta name="description" content="GPT">
+
+    <!-- Facebook Meta Tags -->
+    <meta property="og:url" content="https://leonard-lemke.com/labs/gpt">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Click Me">
+    <meta property="og:description" content="Leonard Lemke">
+    <meta property="og:image" content="https://www.leonard-lemke.com/images/logo/icon.png">
+
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="twitter:domain" content="leonard-lemke.com">
+    <meta property="twitter:url" content="https://leonard-lemke.com/labs/gpt">
+    <meta name="twitter:title" content="Click Me">
+    <meta name="twitter:description" content="Leonard Lemke">
+    <meta name="twitter:image" content="https://www.leonard-lemke.com/images/logo/icon.png">
+
+</head>
+<body>
+
+<div id="nav-placeholder"></div>
+<script>$.get("/navbar.html", function (data) {
+    $("#nav-placeholder").replaceWith(data);
+});</script>
+
+<div class="container">
+    <div class="sidebar">
+        <div class="api-key-container">
+            <label for="api-key-input">API Key:</label><input type="text" id="api-key-input" placeholder="Enter API key...">
+        </div>
+        <div class="header">
+            <h3>Chats</h3>
+            <i id="add-chat" class="fa-solid fa-plus"></i>
+        </div>
+        <ul class="chat-list">
+            <!--li class="chat active">Chat 1</li>
+            <li class="chat">Chat 2</li-->
+        </ul>
+    </div>
+    <div class="chat-view">
+        <div class="header">
+            <h3>Chat 1</h3>
+        </div>
+        <div class="message-list">
+            <!--div class="message received">
+                <p>Hello</p>
+            </div>
+            <div class="message sent">
+                <p>Hi, how are you?</p>
+            </div>
+            <div class="message received">
+                <p>I'm good, thanks for asking.</p>
+            </div>
+            <div class="message sent">
+                <p>Great to hear that!</p>
+            </div-->
+        </div>
+        <div class="input">
+            <!--suppress HtmlFormInputWithoutLabel -->
+            <input type="text" id="message-input" placeholder="Type your message...">
+            <i id="send-btn" class="fa-solid fa-paper-plane"></i>
+        </div>
+    </div>
+</div>
+
+<div id="footer-placeholder"></div>
+<script>
+    $.get("/footer.html", function (data) {
+        $("#footer-placeholder").replaceWith(data);
+    });
+</script>
+<script src="/js/gpt.js"></script>
+</body>
+</html>
