@@ -1,18 +1,18 @@
 .container {
     display: flex;
-    height: 85vh;
+    height: calc(100vh - 80px);
 }
 
 .sidebar {
     width: 25%;
-    padding: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
 .sidebar .header {
+    padding: 10px;
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
 }
 
 .sidebar h3 {
@@ -21,11 +21,12 @@
 }
 
 .api-key-container {
+    height: 50px;
     display: flex;
-    margin-bottom: 10px;
 }
+
 .api-key-container label {
-   margin-top: 7px;
+    margin-top: 7px;
     margin-right: 5px;
 }
 
@@ -34,28 +35,45 @@
     flex: 1;
     padding: 10px;
     border: none;
-    border-radius: 5px;
+    border-radius: 7px;
     margin-bottom: 10px;
 }
 
-.chat-list {
-    list-style: none;
+#chat-list {
+    overflow: auto;
     margin: 0;
     padding: 0;
+    height: calc(100vh - 200px);
 }
 
-.chat-list li {
-    padding: 10px;
-    border-radius: 5px;
+#chat-list div {
+    padding: 4px 10px 4px 10px;
+    border-radius: 8px;
     cursor: pointer;
     margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.chat-list li.active {
-    background-color: #1e1e1e;
+#chat-list div.active {
+    background-color: #212121;
 }
 
-.chat-view {
+.delete-chat-btn,
+#new-chat-btn {
+    padding: 8px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.delete-chat-btn:hover,
+#new-chat-btn:hover {
+    background-color: #383838;
+    cursor: pointer;
+}
+
+#chat-view {
     flex: 1;
     background-color: #181818;
     padding: 20px;
@@ -63,21 +81,21 @@
     flex-direction: column;
 }
 
-.chat-view .header {
+#chat-view .header {
     display: flex;
     align-items: center;
     margin-bottom: 10px;
 }
 
-.chat-view h3 {
+#chat-view h3 {
     font-size: 20px;
     font-weight: bold;
     margin-left: 10px;
 }
 
-.message-list {
+#message-list {
     flex: 1;
-    overflow-y: scroll;
+    overflow: auto;
     margin-bottom: 10px;
 }
 
@@ -98,10 +116,16 @@
     background-color: #2f2f2f;
     align-self: flex-start;
 }
+
 .message.user p {
     background-color: #49573e;
     align-self: flex-end;
     margin-right: 10px;
+}
+
+.message.system p {
+    color: #7a7a7a;
+    align-self: center;
 }
 
 .input {
@@ -125,16 +149,30 @@
     cursor: pointer;
 }
 
-.input button:hover {
-    background-color: #345F8C;
+.input i:hover {
+    background-color: rgba(52, 95, 140, 0.74);
 }
 
 @media screen and (max-width: 768px) {
     .container {
         flex-direction: column;
     }
+
     .sidebar {
         width: 100%;
+        height: 50vh;
+    }
+
+    #chat-list {
+        height: calc(50vh - 110px);
+    }
+
+    .container {
+        height: calc(150vh - 80px);
+    }
+
+    #chat-view {
+        height: calc(100vh - 80px);
     }
 }
 

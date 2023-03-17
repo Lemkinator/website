@@ -1,182 +1,206 @@
 const messageInput = document.getElementById('message-input');
 const sendBtn = document.getElementById('send-btn');
-const chatViewHeader = document.querySelector('.chat-view h3');
-const messageList = document.querySelector('.message-list');
-const addChatBtn = document.getElementById('add-chat');
+const chatViewHeader = document.getElementById('chat-view-header');
+const messageList = document.getElementById('message-list');
+const addChatBtn = document.getElementById('new-chat-btn');
 const apiKeyInput = document.getElementById('api-key-input');
-const chatList = document.querySelector('.chat-list');
+const chatList = document.getElementById('chat-list');
 
 apiKeyInput.value = localStorage.getItem('apiKey') || '';
 apiKeyInput.addEventListener('input', () => {
     localStorage.setItem('apiKey', apiKeyInput.value);
 });
 
-//load chat list from local storage and set first chat as active
-const chatListFromLocalStorage = JSON.parse(localStorage.getItem('chatList'));
-if (chatListFromLocalStorage) {
-    chatListFromLocalStorage.forEach(chat => {
-        const newChat = document.createElement('li');
-        newChat.classList.add('chat');
-        newChat.textContent = chat;
-        chatList.appendChild(newChat);
-    });
-    chatList.querySelector('li').classList.add('active');
-    document.querySelector('.chat-view h3').textContent = chatList.querySelector('li').textContent;
-    document.querySelector('.message-list').innerHTML = '';
-    setChatListListener()
-    openChat(chatList.querySelector('li').textContent)
-} else {
-    // Add default chat to chat list
-    const defaultChat = document.createElement('li');
-    defaultChat.classList.add('chat');
-    defaultChat.classList.add('active');
-    defaultChat.textContent = 'Chat 1';
-    chatList.appendChild(defaultChat);
-    // Add empty array for default chat messages to Local Storage
-    localStorage.setItem('Chat 1', JSON.stringify([]));
-    // Add default chat to chat list in Local Storage
-    localStorage.setItem('chatList', JSON.stringify(['Chat 1']));
-    setChatListListener()
-    openChat('Chat 1')
+let chats = JSON.parse(localStorage.getItem('chats'));
+let activeChatIndex = parseInt(localStorage.getItem('activeChatIndex')) || 0;
+refreshChatView(activeChatIndex);
+function refreshChats() {
+    if (chats === null || chats.length === 0) {
+        chats = [{'title': 'Chat 1', 'messages': []}];
+    }
+    localStorage.setItem('chats', JSON.stringify(chats));
 }
 
-// Add new chat when add chat button is clicked
-addChatBtn.addEventListener('click', () => {
-    const newChatName = prompt('Enter chat name:');
-    if (newChatName && !chatList.innerHTML.includes(newChatName)) {
-        // Add new chat to chat list
-        const newChat = document.createElement('li');
-        newChat.classList.add('chat');
-        newChat.classList.add('active');
-        newChat.textContent = newChatName;
-        chatList.appendChild(newChat);
-        // Add empty array for new chat messages to Local Storage
-        localStorage.setItem(newChatName, JSON.stringify([]));
-        // Change to new chat view
-        chatList.querySelectorAll('li').forEach(chat => {
-            chat.classList.remove('active');
+function createNewChatListItem(newChatName) {
+    const newChat = document.createElement('div');
+    newChat.classList.add('chat');
+    newChat.textContent = newChatName;
+    const deleteButton = document.createElement('i')
+    deleteButton.classList.add('delete-chat-btn')
+    deleteButton.classList.add('fa-regular')
+    deleteButton.classList.add('fa-trash-can')
+    newChat.appendChild(deleteButton)
+    return newChat;
+}
+
+function refreshChatView(index) {
+    activeChatIndex = index || 0;
+    localStorage.setItem('activeChatIndex', activeChatIndex.toString());
+    refreshChats()
+    chatList.innerHTML = '';
+    chats.forEach(chat => {
+        chatList.appendChild(createNewChatListItem(chat.title));
+    });
+    chatList.querySelectorAll('div')[activeChatIndex].classList.add('active');
+    setChatListListener()
+    openChat(activeChatIndex);
+}
+
+function deleteChat(index) {
+    chats.splice(index, 1);
+    if (index === activeChatIndex) {
+        refreshChatView(0);
+    } else if (index < activeChatIndex) {
+        refreshChatView(activeChatIndex - 1);
+    } else {
+        refreshChatView(activeChatIndex);
+    }
+}
+
+function setChatListListener() {
+    chatList.querySelectorAll('div').forEach((chat) => {
+        chat.addEventListener('click', () => {
+            const index = Array.from(chatList.querySelectorAll('div')).indexOf(chat);
+            refreshChatView(index);
         });
-        newChat.classList.add('active');
-        document.querySelector('.chat-view h3').textContent = newChatName;
-        document.querySelector('.message-list').innerHTML = '';
-        // Add new chat to chat list in Local Storage
-        localStorage.setItem('chatList', JSON.stringify([...chatList.querySelectorAll('li')].map(chat => chat.textContent)));
-        setChatListListener()
+    });
+    document.querySelectorAll('.delete-chat-btn').forEach((btn) => {
+        btn.addEventListener('click', (event) => {
+            event.stopPropagation();
+            const index = Array.from(document.querySelectorAll('.delete-chat-btn')).indexOf(btn);
+            deleteChat(index);
+        });
+    });
+}
+
+function newChat() {
+    const newChatName = prompt('Enter chat name:');
+    const assistantDescription = prompt('Assistant description (you can leave this empty for default assistant):')
+    if (newChatName) {
+        chats.push({'title': newChatName, 'messages': []});
+        const index = chats.length - 1;
+        if (assistantDescription) {
+            chats[index].messages.push({
+                'role': 'system',
+                'text': assistantDescription
+            });
+        }
+        refreshChatView(index);
+    }
+}
+
+function createNewMessageElement(message) {
+    const messageElement = document.createElement('div');
+    messageElement.classList.add('message', message.role);
+    const sentMessageText = document.createElement('p');
+    sentMessageText.textContent = message.text;
+    messageElement.appendChild(sentMessageText);
+    return messageElement;
+}
+
+function newMessage(message) {
+    chats[activeChatIndex].messages.push(message);
+    refreshChats();
+    messageList.appendChild(createNewMessageElement(message));
+    messageList.scrollTop = messageList.scrollHeight;
+}
+
+function openChat(index) {
+    const chat = chats[index];
+    if (chat) {
+        chatViewHeader.textContent = chat.title;
+        messageList.innerHTML = '';
+        if (chat.messages) {
+            chat.messages.forEach(message => {
+                messageList.appendChild(createNewMessageElement(message));
+            });
+            // Scroll to bottom of message list
+            messageList.scrollTop = messageList.scrollHeight;
+        }
+    } else {
+        chatViewHeader.textContent = '';
+        messageList.innerHTML = '';
+    }
+    messageInput.focus();
+}
+
+function onDataReceived(data) {
+    console.log(data);
+    let role, text;
+    if (data.choices) {
+        role = data.choices[0].message.role;
+        text = data.choices[0].message.content;
+    } else if (data.error) {
+        role = 'system';
+        text = data.error.message;
+    } else {
+        role = 'system';
+        text = 'Error';
+    }
+    newMessage({
+        role: role,
+        text: text
+    })
+}
+
+function sendRequest(messages) {
+    fetch('https://api.openai.com/v1/chat/completions', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + apiKeyInput.value
+        },
+        body: JSON.stringify({
+            model: "gpt-3.5-turbo",
+            messages: messages.map(message => {
+                return {
+                    role: message.role,
+                    content: message.text
+                }
+            }),
+        })
+    })
+        .then(response => response.json())
+        .then(data => onDataReceived(data))
+        .catch(error => {
+            console.error(error);
+            newMessage({
+                role: 'system',
+                text: error
+            })
+        });
+}
+
+function send() {
+    if (messageInput.value.trim() !== '') {
+        newMessage({
+            role: 'user',
+            text: messageInput.value.trim()
+        });
+        messageInput.value = '';
+        sendRequest(chats[activeChatIndex].messages);
+    }
+}
+
+addChatBtn.addEventListener('click', () => {
+    newChat();
+});
+
+sendBtn.addEventListener('click', () => {
+    send();
+});
+
+document.addEventListener('keydown', (e) => {
+    if (e.altKey && e.key === 'n') {
+        newChat();
+    }
+    if (e.altKey && e.key === 'd') {
+        deleteChat(activeChatIndex)
     }
 });
 
-function openChat(name) {
-    chatViewHeader.textContent = name;
-    // Get chat messages from Local Storage
-    const chatMessages = JSON.parse(localStorage.getItem(name));
-    // Display chat messages in message list
-    messageList.innerHTML = '';
-    if (chatMessages) {
-        chatMessages.forEach(message => {
-            const messageElement = document.createElement('div');
-            messageElement.classList.add('message', message.role);
-            const messageText = document.createElement('p');
-            messageText.textContent = message.text;
-            messageElement.appendChild(messageText);
-            messageList.appendChild(messageElement);
-        });
-        // Scroll to bottom of message list
-        messageList.scrollTop = messageList.scrollHeight;
-    }
-}
-
-// Change chat view when a chat is clicked
-function setChatListListener() {
-    chatList.querySelectorAll('li').forEach(chat => {
-        chat.addEventListener('click', () => {
-            // Remove active class from all chats
-            chatList.querySelectorAll('li').forEach(c => {
-                c.classList.remove('active');
-            });
-            // Add active class to clicked chat
-            chat.classList.add('active');
-            // Change chat view header
-            openChat(chat.textContent);
-        });
-    });
-}
-
-// Send message when enter key is pressed
 messageInput.addEventListener('keyup', (e) => {
     if (e.key === 'Enter') {
         send();
     }
-});
-
-function send() {
-    if (messageInput.value.trim() !== '') {
-        // Create sent message object
-        const sentMessage = {
-            role: 'user',
-            text: messageInput.value.trim()
-        };
-        // Add sent message to Local Storage
-        const chatName = chatViewHeader.textContent;
-        let chatMessages = JSON.parse(localStorage.getItem(chatName)) || [];
-        chatMessages.push(sentMessage);
-        localStorage.setItem(chatName, JSON.stringify(chatMessages));
-        // Create sent message element
-        const sentMessageElement = document.createElement('div');
-        sentMessageElement.classList.add('message', 'user');
-        const sentMessageText = document.createElement('p');
-        sentMessageText.textContent = sentMessage.text;
-        sentMessageElement.appendChild(sentMessageText);
-        // Append sent message to message list
-        messageList.appendChild(sentMessageElement);
-        // Clear message input
-        messageInput.value = '';
-
-        // Get response from ChatGPT API
-        fetch('https://api.openai.com/v1/chat/completions', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + apiKeyInput.value
-            },
-            body: JSON.stringify({
-                model: "gpt-3.5-turbo",
-                messages: chatMessages.map(message => {
-                    return {
-                        role: message.role,
-                        content: message.text
-                    }
-                }),
-            })
-        })
-            .then(response => response.json())
-            .then(data => {
-                console.log(data);
-                // Create received message object
-                const receivedMessage = {
-                    role: data.choices[0].message.role,
-                    text: data.choices[0].message.content
-                };
-                // Add received message to Local Storage
-                chatMessages.push(receivedMessage);
-                localStorage.setItem(chatName, JSON.stringify(chatMessages));
-                // Create received message element
-                const receivedMessageElement = document.createElement('div');
-                receivedMessageElement.classList.add('message', 'assistant');
-                const receivedMessageText = document.createElement('p');
-                receivedMessageText.textContent = receivedMessage.text;
-                receivedMessageElement.appendChild(receivedMessageText);
-                // Append received message to message list
-                messageList.appendChild(receivedMessageElement);
-                // Scroll to bottom of message list
-                messageList.scrollTop = messageList.scrollHeight;
-            })
-            .catch(error => {
-                console.error(error);
-            });
-    }
-}
-
-// Send message when send button is clicked
-sendBtn.addEventListener('click', () => {
-    send();
 });
