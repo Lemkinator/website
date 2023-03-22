@@ -27,8 +27,8 @@ function createNewChatListItem(newChatName) {
     newChat.textContent = newChatName;
     const deleteButton = document.createElement('i')
     deleteButton.classList.add('delete-chat-btn')
-    deleteButton.classList.add('fa-regular')
-    deleteButton.classList.add('fa-trash-can')
+    deleteButton.classList.add('lni')
+    deleteButton.classList.add('lni-trash-can')
     newChat.appendChild(deleteButton)
     return newChat;
 }
