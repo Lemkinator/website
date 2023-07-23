@@ -112,6 +112,7 @@
 
     .navbar__item {
         width: 100%;
+        transition-property: none;
     }
 
     .navbar__links {
@@ -119,6 +120,7 @@
         padding: 2rem;
         width: 100%;
         display: table;
+        transition-property: none;
     }
 
     #mobile-menu {
