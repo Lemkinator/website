@@ -4,6 +4,9 @@
     padding: 0;
     font-family: 'Kumbh Sans', sans-serif;
     color: white;
+    transition-property: all;
+    transition-duration: 0.6s;
+    transition-timing-function: ease;
 }
 
 body {
@@ -100,7 +103,6 @@ html:focus-within {
 
 .center {
     text-align: center;
-    alignment: center;
     align-content: center;
     align-items: center;
 }
@@ -232,9 +234,7 @@ swiper-slide img {
 }
 
 .me-swiper {
-    width: 90%;
     max-width: 400px;
-    max-height: 400px;
     display: inline-flex;
 }
 
