@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="canonical" href="https://www.leonard-lemke.com/apps/oneurl"/>
+    <link rel="stylesheet" href="/css/styles.css"/>
+    <link rel="stylesheet" href="/css/apps.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-element-bundle.min.js"></script>
+
+    <!-- HTML Meta Tags -->
+    <title>OneURL</title>
+    <meta name="description" content="Apps">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="robots" content="index, follow">
+    <meta name="keywords" content="Leonard Lemke, Android, OneUI, OneURL"/>
+    <meta name="author" content="Leonard Lemke"/>
+    <meta name="publisher" content="Leonard Lemke"/>
+
+    <!-- Facebook Meta Tags -->
+    <meta property="og:url" content="https://leonard-lemke.com/apps/oneurl">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="OneURL">
+    <meta property="og:description" content="Apps">
+    <meta property="og:image" content="https://www.leonard-lemke.com/images/apps/oneurl/app_icon.png">
+
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="twitter:domain" content="leonard-lemke.com">
+    <meta property="twitter:url" content="https://leonard-lemke.com/apps/oneurl">
+    <meta name="twitter:title" content="OneURL">
+    <meta name="twitter:description" content="Apps">
+    <meta name="twitter:image" content="https://www.leonard-lemke.com/images/apps/oneurl/app_icon.png">
+
+</head>
+<body>
+
+<div id="nav-placeholder"></div>
+<script>$.get("/navbar.html", function (data) {
+    $("#nav-placeholder").replaceWith(data);
+});</script>
+
+<div class="banner oneurl-banner">
+    <h1>OneURL</h1>
+    <p lang="en">A URL-Shortener with OneUI-Design.</p>
+    <p lang="de">Ein URL-Verkürzer mit OneUI-Design.</p>
+    <a target="_blank"
+       href='https://play.google.com/store/apps/details?id=de.lemke.oneurl&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'>
+        <img lang="en" class="playstore_button" alt='Get it on Google Play'
+             src='/images/apps/google-play-badge-en.png'/>
+        <img lang="de" class="playstore_button" alt='Jetzt bei Google Play'
+             src='/images/apps/google-play-badge-de.png'/>
+    </a>
+</div>
+
+<div class="content">
+    <img id="app-icon" src="/images/apps/oneurl/OneURL_squircle.png" alt=""/>
+    <h2>OneURL</h2>
+    <p lang="en"></p>
+    <p lang="de"></p>
+    <br id="features"><br><br>
+    <h2 onclick="window.location.href = '#features'">Features</h2>
+    <ul lang="en">
+        <li>Free</li>
+        <li>Dark Mode (automatically adapts to the system settings)</li>
+    </ul>
+    <ul lang="de">
+        <li>Kostenlos</li>
+        <li>Dark Mode (passt sich automatisch den Systemeinstellungen an)</li>
+    </ul>
+    <br id="screenshots"><br><br>
+    <h2 onclick="window.location.href = '#screenshots'">Screenshots</h2>
+    <swiper-container pagination="true" pagination-clickable="true" effect="coverflow" keyboard="true"
+                      autoplay-delay="8000" autoplay-disable-on-interaction="false" centered-slides="true"
+                      slides-per-view="auto" coverflow-effect-rotate="50" coverflow-effect-stretch="0"
+                      coverflow-effect-depth="100" coverflow-effect-modifier="1" coverflow-effect-slide-shadows="true"
+                      grab-cursor="true">
+        <swiper-slide class="mobile-slide"><img src="/images/apps/oneurl/mobile1.png" alt=""/></swiper-slide>
+        <swiper-slide class="mobile-slide"><img src="/images/apps/oneurl/mobile2.png" alt=""/></swiper-slide>
+        <swiper-slide class="mobile-slide"><img src="/images/apps/oneurl/mobile3.png" alt=""/></swiper-slide>
+        <swiper-slide class="mobile-slide"><img src="/images/apps/oneurl/mobile4.png" alt=""/></swiper-slide>
+    </swiper-container>
+
+    <br id="windows11"><br><br>
+    <h2 onclick="window.location.href = '#windows11'">Windows 11 support</h2>
+    <p lang="en">To use mobile apps on a Windows 11 PC, the
+        <a href="ms-windows-store://pdp/?productid=9NJHK44TTKSX" target="_blank">Amazon Appstore</a>
+        must be installed. </p>
+    <p lang="de">Um mobile Apps auf einem Windows 11 PC nutzen zu können, muss der
+        <a href="ms-windows-store://pdp/?productid=9NJHK44TTKSX" target="_blank">Amazon Appstore</a>
+        installiert werden. </p>
+    <a lang="en" href="https://support.microsoft.com/en-us/topic/f8d0abb5-44ad-47d8-b9fb-ad6b1459ff6c" target="_blank">
+        <p>Install Amazon Appstore on Windows 11</p>
+    </a>
+    <a lang="de"
+       href="https://support.microsoft.com/de-de/windows/installieren-mobiler-apps-und-der-amazon-appstore-unter-windows-f8d0abb5-44ad-47d8-b9fb-ad6b1459ff6c"
+       target="_blank">
+        <p>Amazon Appstore in Windows 11 installieren</p>
+    </a>
+    <a lang="en" href="https://www.amazon.com/gp/product/B0BW6HX7RG" target="_blank"><p>OneURL in Amazon
+        Appstore</p></a>
+    <a lang="de" href="https://www.amazon.de/gp/product/B0BW6HX7RG" target="_blank"><p>OneURL im Amazon
+        Appstore</p></a>
+
+    <br id="oneui"><br><br>
+    <h2 onclick="window.location.href = '#oneui'">One UI</h2>
+    <p lang="en">OneURL was developed according to Samsung's One UI guidelines. For example,
+        the title bar can be "dragged down" on large devices on any screen
+        to ensure comfortable (one-handed) operation of the top buttons.</p>
+    <p lang="de">Die App wurde nach Samsungs OneUI-Richtlinien entwickelt. Zum Beispiel kann die Titelleiste
+        bei großen Geräten auf jedem Bildschirm "nach unten gezogen werden", um eine angenehme (einhändige)
+        Bedienung der oberen Knöpfe zu gewährleisten.</p>
+    <video class="mobile-image" autoplay loop muted playsinline>
+        <source src="/images/apps/oneurl/expanding_app_bar.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <br id="materialdesign"><br><br>
+    <!--h2 onclick="window.location.href = '#materialdesign'">Android Material Design</h2>
+    <p lang="en">OneURL supports the new Material Design: Uniform, cross-app theme color.
+        (Can be customized on Samsung devices in settings under "Wallpaper and style -> Color palette").</p>
+    <p lang="de">OneURL unterstützt das neue Material Design: Einheitliche, app-übergreifende
+        Themenfarbe. (Kann auf Samsung-Geräten in den Einstellungen unter "Hintergrundbild und Stil -> Farbpalette"
+        angepasst werden).</p>
+    <br>
+    <swiper-container class="mobile-swiper" pagination="true" pagination-clickable="true" space-between="5" loop="true"
+                      autoplay-delay="8000" autoplay-disable-on-interaction="false" grab-cursor="true">
+        <swiper-slide><img src="/images/apps/oneurl/material_home_red.png" alt=""/></swiper-slide>
+        <swiper-slide><img src="/images/apps/oneurl/material_oneurl_red.png" alt=""/></swiper-slide>
+        <swiper-slide><img src="/images/apps/oneurl/material_home_blue.png" alt=""/></swiper-slide>
+        <swiper-slide><img src="/images/apps/oneurl/material_oneurl_blue.png" alt=""/></swiper-slide>
+        <swiper-slide><img src="/images/apps/oneurl/material_home_green.png" alt=""/></swiper-slide>
+        <swiper-slide><img src="/images/apps/oneurl/material_oneurl_green.png" alt=""/></swiper-slide>
+    </swiper-container-->
+    <br id="links"><br><br>
+    <div>
+        <h2 onclick="window.location.href = '#links'">Links</h2>
+        <button lang="en" class="lButton"><a href="/apps/oneurl/privacy-policy">Privacy Policy</a></button>
+        <button lang="de" class="lButton"><a href="/apps/oneurl/privacy-policy">Datenschutzerklärung</a></button>
+        <button class="lButton"><a target="_blank" aria-label="GitHub"
+                                   href="https://github.com/Lemkinator/oneurl">Source Code</a></button>
+    </div>
+    <br><br><br>
+</div>
+
+<div id="footer-placeholder"></div>
+<script>
+    $.get("/footer.html", function (data) {
+        $("#footer-placeholder").replaceWith(data);
+    });
+</script>
+</body>
+</html>

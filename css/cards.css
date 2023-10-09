@@ -28,7 +28,7 @@ a {
 .card {
     --bg-filter-opacity-start: 0.2;
     --bg-filter-opacity-end: 0.9;
-    --bg-img: url('https://www.leonard-lemke.de/images/logo/icon.png');
+    --bg-img: url('https://www.leonard-lemke.com/images/logo/icon.png');
     background-image: linear-gradient(rgba(0,0,0,var(--bg-filter-opacity-start)),rgba(0,0,0,var(--bg-filter-opacity-end))), var(--bg-img);
     height: 20em;
     width: 15em;
