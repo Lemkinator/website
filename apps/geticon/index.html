@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="canonical" href="https://www.leonard-lemke.com/apps/geticon"/>
+    <link rel="stylesheet" href="/css/styles.css"/>
+    <link rel="stylesheet" href="/css/apps.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-element-bundle.min.js"></script>
+
+    <!-- HTML Meta Tags -->
+    <title>Get Icon</title>
+    <meta name="description" content="Apps">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="robots" content="index, follow">
+    <meta name="keywords" content="Leonard Lemke, Android, OneUI, Get Icon, GetIcon"/>
+    <meta name="author" content="Leonard Lemke"/>
+    <meta name="publisher" content="Leonard Lemke"/>
+
+    <!-- Facebook Meta Tags -->
+    <meta property="og:url" content="https://leonard-lemke.com/apps/geticon">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Get Icon">
+    <meta property="og:description" content="Apps">
+    <meta property="og:image" content="https://www.leonard-lemke.com/images/apps/geticon/app_icon.png">
+
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="twitter:domain" content="leonard-lemke.com">
+    <meta property="twitter:url" content="https://leonard-lemke.com/apps/geticon">
+    <meta name="twitter:title" content="Get Icon">
+    <meta name="twitter:description" content="Apps">
+    <meta name="twitter:image" content="https://www.leonard-lemke.com/images/apps/geticon/app_icon.png">
+
+</head>
+<body>
+
+<div id="nav-placeholder"></div>
+<script>$.get("/navbar.html", function (data) {
+    $("#nav-placeholder").replaceWith(data);
+});</script>
+
+<div class="banner geticon-banner">
+    <h1>Get Icon</h1>
+    <p lang="en">An app to extract and save app icons.</p>
+    <p lang="de">Eine App zum extrahieren und speichern von App-Icons.</p>
+    <a target="_blank"
+       href='https://play.google.com/store/apps/details?id=de.lemke.geticon&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'>
+        <img lang="en" class="playstore_button" alt='Get it on Google Play'
+             src='/images/apps/google-play-badge-en.png'/>
+        <img lang="de" class="playstore_button" alt='Jetzt bei Google Play'
+             src='/images/apps/google-play-badge-de.png'/>
+    </a>
+</div>
+
+<div class="content">
+    <img id="app-icon" src="/images/apps/geticon/GetIcon_squircle.png" alt=""/>
+    <h2>Get Icon</h2>
+    <p lang="en">An app to extract and save app icons.</p>
+    <p lang="de">Eine App zum extrahieren und speichern von App-Icons.</p>
+    <!--br id="features"><br><br>
+    <h2 onclick="window.location.href = '#features'">Features</h2>
+    <h3 lang="en"></h3>
+    <p lang="en"></p>
+    <h3 lang="de"></h3>
+    <p lang="de"></p-->
+    <br id="screenshots"><br><br>
+    <h2 onclick="window.location.href = '#screenshots'">Screenshots</h2>
+    <swiper-container pagination="true" pagination-clickable="true" effect="coverflow" keyboard="true"
+                      autoplay-delay="8000" autoplay-disable-on-interaction="false" centered-slides="true"
+                      slides-per-view="auto" coverflow-effect-rotate="50" coverflow-effect-stretch="0"
+                      coverflow-effect-depth="100" coverflow-effect-modifier="1" coverflow-effect-slide-shadows="true"
+                      grab-cursor="true">
+        <swiper-slide class="mobile-slide"><img src="/images/apps/geticon/mobile1.png" alt=""/></swiper-slide>
+        <swiper-slide class="mobile-slide"><img src="/images/apps/geticon/mobile2.png" alt=""/></swiper-slide>
+        <swiper-slide class="mobile-slide"><img src="/images/apps/geticon/mobile3.png" alt=""/></swiper-slide>
+        <swiper-slide class="mobile-slide"><img src="/images/apps/geticon/mobile4.png" alt=""/></swiper-slide>
+    </swiper-container>
+    <br id="links"><br><br>
+    <div>
+        <h2 onclick="window.location.href = '#links'">Links</h2>
+        <button lang="en" class="lButton"><a href="/apps/geticon/privacy-policy">Privacy Policy</a></button>
+        <button lang="de" class="lButton"><a href="/apps/geticon/privacy-policy">Datenschutzerklärung</a></button>
+        <button class="lButton"><a target="_blank" aria-label="GitHub"
+                                   href="https://github.com/Lemkinator/geticon">Source Code</a></button>
+    </div>
+    <br><br><br>
+</div>
+
+<div id="footer-placeholder"></div>
+<script>
+    $.get("/footer.html", function (data) {
+        $("#footer-placeholder").replaceWith(data);
+    });
+</script>
+</body>
+</html>
