@@ -67,6 +67,15 @@ img.playstore_button {
     margin-top: 8px;
 }
 
+.mobile-image-landscape {
+    width: 80vw;
+    height: 40vw;
+    max-width: 600px;
+    max-height: 280px;
+    border-radius: 15px;
+    margin-top: 8px;
+}
+
 .mobile-slide {
     width: 80%;
     height: 80%;
