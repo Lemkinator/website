@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="canonical" href="https://www.leonard-lemke.com/media/2000"/>
+    <link rel="stylesheet" href="/css/styles.css"/>
+    <link rel="stylesheet" href="/css/media.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-element-bundle.min.js"></script>
+
+    <title>2000</title>
+    <meta name="description" content="Media"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="robots" content="index, follow">
+    <meta name="keywords" content="Leonard Lemke, 2000, VW, Golf 4, FPV"/>
+    <meta name="author" content="Leonard Lemke"/>
+    <meta name="publisher" content="Leonard Lemke"/>
+    <meta property="og:title" content="2000"/>
+    <meta property="og:description" content="Media"/>
+    <meta property="og:url" content="https://www.leonard-lemke.com/media/2000"/>
+    <meta property="og:image" itemprop="image"
+          content="https://www.leonard-lemke.com/images/media/2000/2000.jpg"/>
+    <meta property="og:image:width" content="1280"/>
+    <meta property="og:image:height" content="720"/>
+    <meta property="og:type" content="video"/>
+    <meta property="og:video:url" content="https://www.youtube.com/embed/swZD_CeiczE">
+    <meta property="og:video:secure_url" content="https://www.youtube.com/embed/swZD_CeiczE">
+    <meta property="og:video:type" content="video/mp4">
+    <meta property="og:video:width" content="1280"/>
+    <meta property="og:video:height" content="720"/>
+    <meta property="og:video:tag" content="Golf4">
+</head>
+<body>
+
+<div id="nav-placeholder"></div>
+<script>$.get("/navbar.html", function (data) {
+    $("#nav-placeholder").replaceWith(data);
+});</script>
+
+<div class="banner _2000-banner">
+    <h1>2000 - feat. Golf 4 </h1>
+    <h2>Cinematic/Freestyle FPV</h2>
+</div>
+
+<div class="content">
+    <h1 lang="en">2000 - Impressions</h1>
+    <h1 lang="de">2000 - Impressionen</h1>
+    <br>
+    <swiper-container pagination="true" pagination-clickable="true" effect="flip" keyboard="true"
+                      autoplay-delay="8000" autoplay-disable-on-interaction="false" grab-cursor="true">
+        <swiper-slide><img src="/images/media/2000/2000.jpg" alt=""/></swiper-slide>
+        <swiper-slide><img src="/images/media/2000/2000_2.jpg" alt=""/></swiper-slide>
+        <swiper-slide><img src="/images/media/2000/2000_3.jpg" alt=""/></swiper-slide>
+        <swiper-slide><img src="/images/media/2000/2000_4.jpg" alt=""/></swiper-slide>
+    </swiper-container>
+    <br id="video"><br>
+    <h1 onclick="window.location.href = '#video'">Video</h1>
+    <iframe class="_2000-video" src="https://www.youtube.com/embed/6YPsQD5QG5s" allowfullscreen></iframe>
+    <br><br>
+</div>
+
+<div id="footer-placeholder"></div>
+<script>
+    $.get("/footer.html", function (data) {
+        $("#footer-placeholder").replaceWith(data);
+    });
+</script>
+</body>
+</html>
