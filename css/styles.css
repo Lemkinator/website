@@ -111,11 +111,13 @@ html:focus-within {
     margin-top: 0.5rem;
 }
 
-p.small {
+p.about-grade,
+p.about-date {
     font-size: 0.8rem;
 }
 
-p.location {
+p.about-skills,
+p.about-location {
     color: rgba(255, 255, 255, 0.7);
     font-size: 1rem;
 }
