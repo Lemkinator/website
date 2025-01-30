@@ -9,7 +9,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
     <!-- HTML Meta Tags -->
-    <title>Windows Subsystem for Android - Leonard Lemke</title>
+    <title>Windows Subsystem for Android</title>
     <meta name="description" content="Apps - Leonard Lemke">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="robots" content="index, follow">
@@ -20,44 +20,128 @@
     <!-- Facebook Meta Tags -->
     <meta property="og:url" content="https://leonard-lemke.com/apps/wsa">
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Windows Subsystem for Android - Leonard Lemke">
-    <meta property="og:description" content="Leonard Lemke">
+    <meta property="og:title" content="Windows Subsystem for Android">
+    <meta property="og:description" content="Apps - Leonard Lemke">
     <meta property="og:image" content="https://www.leonard-lemke.com/images/apps/oneUI/OneUIBanner.jpg">
 
     <!-- Twitter Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
     <meta property="twitter:domain" content="leonard-lemke.com">
     <meta property="twitter:url" content="https://leonard-lemke.com/apps/wsa">
-    <meta name="twitter:title" content="Windows Subsystem for Android - Leonard Lemke">
+    <meta name="twitter:title" content="Windows Subsystem for Android">
     <meta name="twitter:description" content="Apps - Leonard Lemke">
     <meta name="twitter:image" content="https://www.leonard-lemke.com/images/apps/oneUI/OneUIBanner.jpg">
-
 </head>
 <body>
 
 <div id="nav-placeholder"></div>
-<script>$.get("/navbar.html", function (data) {
-    $("#nav-placeholder").replaceWith(data);
-});</script>
+<script>
+    $.get("/navbar.html", function (data) {
+        $("#nav-placeholder").replaceWith(data);
+    });
+</script>
 
-
-<div class="banner apps-banner">
-    <h1>Windows Subsystem for Android (WSA)</h1>
-    <p lang="en">Install Android Apps on Windows.</p>
-    <p lang="de">Android Apps auf Windows installieren.</p>
+<div class="banner wsa-banner">
+    <h1 lang="en">Windows Subsystem for Android™️ (WSA)</h1>
+    <h1 lang="de">Windows-Subsystem für Android™️ (WSA)</h1>
+    <p lang="en">Install Android Apps on Windows</p>
+    <p lang="de">Android Apps auf Windows installieren</p>
 </div>
 
 <div class="content">
+    <h2>Info</h2>
+    <p lang="en">Unfortunately, Microsoft is discontinuing support for the Windows Subsystem for Android™️ (WSA).
+        Therefore, the Amazon Appstore on Windows and all applications and games dependent on WSA will no longer be
+        supported starting March 5, 2025.</p>
+    <p lang="de">Microsoft stellt leider den Support für das Windows-Subsystem für Android™️ (WSA) ein.
+        Daher wird der Amazon Appstore unter Windows und alle von WSA abhängigen Anwendungen und Spiele ab dem
+        5. März 2025 nicht mehr unterstützt.</p>
+    <button class="lButton">
+        <a target="_blank" lang="en" href="https://learn.microsoft.com/windows/android/wsa/">More Information</a>
+        <a target="_blank" lang="de" href="https://learn.microsoft.com/windows/android/wsa/">Mehr Informationen</a>
+    </button>
+    <br><br>
+    <p lang="en">Thanks to the dedicated community, there is already a solution to continue using WSA, namely with the
+        Google Play Store instead of the Amazon Appstore.</p>
+    <p lang="de">Dank der engagierten Community gibt es jedoch bereits eine Lösung, um WSA weiterhin zu nutzen,
+        und zwar mit dem Google Play Store anstelle des Amazon Appstores.</p>
+    <br>
+    <p lang="en"><b>Before installing the new version of WSA, the old official version from the Microsoft Store
+        must be uninstalled.</b></p>
+    <p lang="de"><b>Bevor die neue Version von WSA installiert wird, muss die alte offizielle Version vom
+        Microsoft Store deinstalliert werden.</b></p>
+    <br id="install"><br><br>
     <h2 lang="en">Install WSA</h2>
     <h2 lang="de">WSA installieren</h2>
-    <p lang="en"></p>
-    <p lang="de"></p>
+    <button class="lButton">
+        <a target="_blank" href="https://github.com/MustardChef/WSABuilds">WSABuilds (GitHub)</a>
+    </button>
+    <button class="lButton">
+        <a target="_blank" lang="en" href="https://www.youtube.com/watch?v=11lw-IHPH3A">
+            WSA Installation Guide (YouTube)</a>
+        <a target="_blank" lang="de" href="https://www.youtube.com/watch?v=11lw-IHPH3A">
+            WSA Installationsanleitung (YouTube)</a>
+    </button>
+    <br id="check"><br>
+    <p lang="en">Check system type in Windows settings:</p>
+    <p lang="de">Systemtyp in den Windows-Einstellungen überprüfen:</p>
+    <img class="normal" src="/images/apps/wsa/windows.jpg" alt="Windows"/>
+    <br id="steps"><br>
+    <ol lang="en">
+        <li>Download the zip file (Depending on system type)</li>
+        <li>Unzip (e.g.: to "C:\users\%username%\WSA")</li>
+        <li>Optional: Zip file can be deleted after unzipping</li>
+        <li>Open the unzipped folder and double click on "Run.bat"</li>
+        <li>Confirm administrator rights</li>
+        <li>Close the window when "All Done! Press any key to exit"</li>
+        <li>In the dialog: "Optional Diagnostic Data" click on "Next". (Multiple of these dialogs are no problem, just
+            click on "Next" every time)
+        </li>
+    </ol>
+    <ol lang="de">
+        <li>Zip herunterladen (Je nach Systemtyp)</li>
+        <li>Zip entpacken (z.B.: nach "C:\users\%username%\WSA")</li>
+        <li>Optional: Zip-Datei kann nach dem Entpacken gelöscht werden</li>
+        <li>Entpackten Ordner öffnen und doppelklicken auf "Run.bat"</li>
+        <li>Administratorrechte bestätigen</li>
+        <li>Fenster kann geschlossen werden bei "All Done! Press any key to exit"</li>
+        <li>Im Dialog: "Optionale Diagnosedaten" auf "Weiter" klicken. (Mehrere dieser Dialoge sind kein Prolbem,
+            einfach immer auf "Weiter" klicken)
+        </li>
+    </ol>
 
-    <br id="googleaccount"><br><br>
-    <h2 onclick="window.location.href = '#googleaccount'">Google Account</h2>
+    <br id="google"><br><br>
+    <h2 onclick="window.location.href = '#googleaccount'">Google Play Store</h2>
+    <p lang="en">A Google account is required to install Android apps.</p>
+    <p lang="de">Um Android Apps zu installieren, wird ein Google-Konto benötigt.</p>
+    <p lang="en">If the Google Play Store is not opened after installation of WSA, it can also be opened manually:</p>
+    <p lang="de">Falls der Google Play Store nicht nach der Installation von WSA geöffnet wird, kann dieser auch
+        manuell geöffnet werden:</p>
+    <button class="lButton">
+        <a lang="en" href="#open">Open Android Apps</a>
+        <a lang="de" href="#open">Android Apps öffnen</a>
+    </button>
+    <p lang="en">After opening the Google Play Store, a login with a Google account is requested.</p>
+    <p lang="de">Nach dem Öffnen des Google Play Stores wird die Anmeldung mit einem Google-Konto angefordert.</p>
+    <p lang="en">If the login was successful, Android apps can now be installed.</p>
+    <p lang="de">Wenn die Anmeldung erfolgreich war, können nun Android Apps installiert werden.</p>
 
-    <br id="googleplay"><br><br>
-    <h2 onclick="window.location.href = '#googleplay'">Google Play Store</h2>
+    <br id="open"><br><br>
+    <h2 lang="en" onclick="window.location.href = '#open'">Open Android Apps</h2>
+    <h2 lang="de" onclick="window.location.href = '#open'">Android Apps öffnen</h2>
+    <h3 lang="en">Opening an Android app via the Windows search</h3>
+    <h3 lang="de">Öffnen einer Android App über die Windows-Suche</h3>
+    <p lang="en">Press Windows key and type the name of the app (e.g.: "Play Store"):</p>
+    <p lang="de">Windows-Taste drücken und den Namen der App eingeben (z.B.: "Play Store"):</p>
+    <img class="normal" src="/images/apps/wsa/wsa-open-search.jpg" alt="WSA open search"/>
+    <br><br>
+    <h3 lang="en">Opening an Android app via the WSA settings</h3>
+    <h3 lang="de">Öffnen einer Android App über die WSA-Einstellungen</h3>
+    <img class="normal" src="/images/apps/wsa/wsa-open-settings.jpg" alt="WSA open settings"/>
+    <button class="lButton">
+        <a lang="en" href="#files">Open WSA settings</a>
+        <a lang="de" href="#files">WSA-Einstellungen öffnen</a>
+    </button>
 
     <br id="files"><br><br>
     <h2 lang="en" onclick="window.location.href = '#files'">Access Windows Files in WSA</h2>
@@ -66,21 +150,28 @@
         Windows folder must be enabled in the WSA settings.</p>
     <p lang="de">Es ist möglich innerhalb des WSA auf Dateien des Windows-Systems zuzugreifen. Dazu muss in den
         WSA Einstellungen der Zugriff auf einen Windows-Ordner aktiviert werden.</p>
-    <br><br>
-    <p lang="en">Open WSA settings (press Windows key and type "Android"):</p>
-    <p lang="de">WSA Einstellungen öffnen (Windows-Taste drücken und "Android" eingeben):</p>
+    <h3 lang="en">Open WSA settings</h3>
+    <h3 lang="de">WSA Einstellungen öffnen</h3>
+    <p lang="en">Press Windows key and type "Android":</p>
+    <p lang="de">Windows-Taste drücken und "Android" eingeben:</p>
     <img class="normal" src="/images/apps/wsa/wsa-settings.jpg" alt="WSA settings"/>
-    <br><br>
-    <p lang="en">Select a folder for access within the WSA (step 4 is optional):</p>
-    <p lang="de">Einen Ordner für den Zugriff innerhalb des WSA auswählen (Schritt 4 ist optional):</p>
+    <br id="select"><br>
+    <h3 lang="en" onclick="window.location.href = '#select'">Select a folder for access within the WSA</h3>
+    <h3 lang="de" onclick="window.location.href = '#select'">Ordner für den Zugriff innerhalb des WSA auswählen</h3>
+    <p lang="en">Step 4 is optional:</p>
+    <p lang="de">Schritt 4 ist optional:</p>
     <img class="large" src="/images/apps/wsa/wsa-settings-files.jpg" alt="WSA settings files"/>
-    <br><br>
-    <p lang="en">Restart WSA:</p>
-    <p lang="de">WSA neu starten:</p>
+    <br id="restart"><br>
+    <h3 lang="en" onclick="window.location.href = '#restart'">Restart WSA</h3>
+    <h3 lang="de" onclick="window.location.href = '#restart'">WSA neu starten</h3>
+    <p lang="en">This step closes the WSA and all running Android apps. Once an Android app is opened again, the WSA
+        will automatically restart:</p>
+    <p lang="de">Dieser Schritt beendet das WSA und alle laufenden Android-Apps. Sobald eine Android-App wieder
+        geöffnet wird, wird das WSA automatisch wieder gestartet:</p>
     <img class="normal" src="/images/apps/wsa/wsa-settings-restart.jpg" alt="WSA settings restart"/>
-    <br><br>
-    <p lang="en">Access Windows files in WSA:</p>
-    <p lang="de">Zugriff auf Windows-Dateien in WSA:</p>
+    <br id="access"><br>
+    <h3 lang="en" onclick="window.location.href = '#access'">Access Windows files in WSA:</h3>
+    <h3 lang="de" onclick="window.location.href = '#access'">Zugriff auf Windows-Dateien in WSA:</h3>
     <img class="normal" src="/images/apps/wsa/wsa-files.jpg" alt="WSA files"/>
     <br><br>
 
@@ -90,19 +181,23 @@
         <button class="lButton">
             <a target="_blank" href="https://github.com/MustardChef/WSABuilds">WSABuilds (GitHub)</a>
         </button>
-        <button lang="en" class="lButton">
-            <a href="https://www.youtube.com/watch?v=11lw-IHPH3A">WSA Installation Guide (YouTube)</a>
-        </button>
-        <button lang="de" class="lButton">
-            <a href="https://www.youtube.com/watch?v=11lw-IHPH3A">WSA Installationsanleitung (YouTube)</a>
+        <button class="lButton">
+            <a target="_blank" lang="en" href="https://www.youtube.com/watch?v=11lw-IHPH3A">
+                WSA Installation Guide (YouTube)</a>
+            <a target="_blank" lang="de" href="https://www.youtube.com/watch?v=11lw-IHPH3A">
+                WSA Installationsanleitung (YouTube)</a>
         </button>
     </div>
+    <br><br>
+    <p class="small" lang="en">Android is a trademark of Google LLC. Windows™ and Windows Subsystem for Android™ are
+        trademarks of Microsoft LLC.</p>
+    <p class="small" lang="de">Android ist eine Marke von Google LLC. Windows™ und Windows-Subsystem für Android™ sind
+        Marken von Microsoft LLC.</p>
     <br><br><br>
 </div>
 
 <div id="footer-placeholder"></div>
 <script>
-
     $.get("/footer.html", function (data) {
         $("#footer-placeholder").replaceWith(data);
     });
