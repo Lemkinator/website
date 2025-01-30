@@ -280,3 +280,15 @@ swiper-slide img {
     max-width: 400px;
     border-radius: 20px;
 }
+
+img.normal {
+    width: 100%;
+    max-width: 700px;
+    border-radius: 15px;
+}
+
+img.large {
+    width: 100%;
+    max-width: 1000px;
+    border-radius: 15px;
+}

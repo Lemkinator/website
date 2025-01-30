@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="canonical" href="https://www.leonard-lemke.com/apps/wsa"/>
+    <link rel="stylesheet" href="/css/styles.css"/>
+    <link rel="stylesheet" href="/css/apps.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+    <!-- HTML Meta Tags -->
+    <title>Windows Subsystem for Android - Leonard Lemke</title>
+    <meta name="description" content="Apps - Leonard Lemke">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="robots" content="index, follow">
+    <meta name="keywords" content="Leonard Lemke, Android, OneUI, Apps, WSA, Windows"/>
+    <meta name="author" content="Leonard Lemke"/>
+    <meta name="publisher" content="Leonard Lemke"/>
+
+    <!-- Facebook Meta Tags -->
+    <meta property="og:url" content="https://leonard-lemke.com/apps/wsa">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Windows Subsystem for Android - Leonard Lemke">
+    <meta property="og:description" content="Leonard Lemke">
+    <meta property="og:image" content="https://www.leonard-lemke.com/images/apps/oneUI/OneUIBanner.jpg">
+
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="twitter:domain" content="leonard-lemke.com">
+    <meta property="twitter:url" content="https://leonard-lemke.com/apps/wsa">
+    <meta name="twitter:title" content="Windows Subsystem for Android - Leonard Lemke">
+    <meta name="twitter:description" content="Apps - Leonard Lemke">
+    <meta name="twitter:image" content="https://www.leonard-lemke.com/images/apps/oneUI/OneUIBanner.jpg">
+
+</head>
+<body>
+
+<div id="nav-placeholder"></div>
+<script>$.get("/navbar.html", function (data) {
+    $("#nav-placeholder").replaceWith(data);
+});</script>
+
+
+<div class="banner apps-banner">
+    <h1>Windows Subsystem for Android (WSA)</h1>
+    <p lang="en">Install Android Apps on Windows.</p>
+    <p lang="de">Android Apps auf Windows installieren.</p>
+</div>
+
+<div class="content">
+    <h2 lang="en">Install WSA</h2>
+    <h2 lang="de">WSA installieren</h2>
+    <p lang="en"></p>
+    <p lang="de"></p>
+
+    <br id="googleaccount"><br><br>
+    <h2 onclick="window.location.href = '#googleaccount'">Google Account</h2>
+
+    <br id="googleplay"><br><br>
+    <h2 onclick="window.location.href = '#googleplay'">Google Play Store</h2>
+
+    <br id="files"><br><br>
+    <h2 lang="en" onclick="window.location.href = '#files'">Access Windows Files in WSA</h2>
+    <h2 lang="de" onclick="window.location.href = '#files'">In WSA auf Windows-Dateien zugreifen</h2>
+    <p lang="en">It is possible to access files of the Windows system within the WSA. To do this, access to a
+        Windows folder must be enabled in the WSA settings.</p>
+    <p lang="de">Es ist möglich innerhalb des WSA auf Dateien des Windows-Systems zuzugreifen. Dazu muss in den
+        WSA Einstellungen der Zugriff auf einen Windows-Ordner aktiviert werden.</p>
+    <br><br>
+    <p lang="en">Open WSA settings (press Windows key and type "Android"):</p>
+    <p lang="de">WSA Einstellungen öffnen (Windows-Taste drücken und "Android" eingeben):</p>
+    <img class="normal" src="/images/apps/wsa/wsa-settings.jpg" alt="WSA settings"/>
+    <br><br>
+    <p lang="en">Select a folder for access within the WSA (step 4 is optional):</p>
+    <p lang="de">Einen Ordner für den Zugriff innerhalb des WSA auswählen (Schritt 4 ist optional):</p>
+    <img class="large" src="/images/apps/wsa/wsa-settings-files.jpg" alt="WSA settings files"/>
+    <br><br>
+    <p lang="en">Restart WSA:</p>
+    <p lang="de">WSA neu starten:</p>
+    <img class="normal" src="/images/apps/wsa/wsa-settings-restart.jpg" alt="WSA settings restart"/>
+    <br><br>
+    <p lang="en">Access Windows files in WSA:</p>
+    <p lang="de">Zugriff auf Windows-Dateien in WSA:</p>
+    <img class="normal" src="/images/apps/wsa/wsa-files.jpg" alt="WSA files"/>
+    <br><br>
+
+    <br id="links"><br><br>
+    <div onclick="window.location.href = '#links'">
+        <h2>Links</h2>
+        <button class="lButton">
+            <a target="_blank" href="https://github.com/MustardChef/WSABuilds">WSABuilds (GitHub)</a>
+        </button>
+        <button lang="en" class="lButton">
+            <a href="https://www.youtube.com/watch?v=11lw-IHPH3A">WSA Installation Guide (YouTube)</a>
+        </button>
+        <button lang="de" class="lButton">
+            <a href="https://www.youtube.com/watch?v=11lw-IHPH3A">WSA Installationsanleitung (YouTube)</a>
+        </button>
+    </div>
+    <br><br><br>
+</div>
+
+<div id="footer-placeholder"></div>
+<script>
+
+    $.get("/footer.html", function (data) {
+        $("#footer-placeholder").replaceWith(data);
+    });
+</script>
+</body>
+</html>
