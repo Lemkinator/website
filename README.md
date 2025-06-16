@@ -1,3 +1,4 @@
+<!--suppress HtmlDeprecatedAttribute-->
 <div align="center">
 
 [![](https://img.shields.io/website?down_color=red&down_message=offline&up_color=blue&up_message=online&url=https%3A%2F%2Fwww.leonard-lemke.com)](https://www.leonard-lemke.com/rr)
@@ -6,13 +7,12 @@
 [![](https://img.shields.io/github/issues-pr-raw/Lemkinator/website?color=%23bb00bb)](https://github.com/Lemkinator/website/pulls)
 [![](https://img.shields.io/github/contributors/Lemkinator/website)](https://github.com/Lemkinator/website/graphs/contributors)
 [![](https://img.shields.io/github/repo-size/Lemkinator/website)](https://github.com/Lemkinator/website)
-[![](https://img.shields.io/tokei/lines/github/Lemkinator/website)](https://github.com/Lemkinator/website)
-
+[![](https://sloc.xyz/github/Lemkinator/website)](https://github.com/Lemkinator/website)
+[![CodeFactor](https://www.codefactor.io/repository/github/lemkinator/website/badge)](https://www.codefactor.io/repository/github/lemkinator/website)
 
 # Personal Website
 
 www.leonard-lemke.com
-
 
 <br><hr>
 
