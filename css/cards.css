@@ -161,7 +161,3 @@ a {
         max-width: calc(100vw - 4rem);
     }
 }
-
-@media screen and (max-width: 450px) {
-
-}

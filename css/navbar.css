@@ -108,6 +108,8 @@
         margin: 5px auto;
         transition: all 0.3s ease-in-out;
         background: #fff;
+        display: block;
+        cursor: pointer;
     }
 
     .navbar__item {
@@ -128,11 +130,6 @@
         top: 20%;
         right: 5%;
         transform: translate(5%, 20%);
-    }
-
-    .navbar__toggle .bar {
-        display: block;
-        cursor: pointer;
     }
 
     #mobile-menu.is-active .bar:nth-child(2) {

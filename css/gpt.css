@@ -47,7 +47,7 @@
 }
 
 #chat-list div {
-    padding: 4px 10px 4px 10px;
+    padding: 4px 10px;
     border-radius: 8px;
     cursor: pointer;
     margin-bottom: 10px;
@@ -156,6 +156,7 @@
 @media screen and (max-width: 768px) {
     .container {
         flex-direction: column;
+        height: calc(150vh - 80px);
     }
 
     .sidebar {
@@ -165,10 +166,6 @@
 
     #chat-list {
         height: calc(50vh - 110px);
-    }
-
-    .container {
-        height: calc(150vh - 80px);
     }
 
     #chat-view {
