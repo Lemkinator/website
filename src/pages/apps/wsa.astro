@@ -1,0 +1,130 @@
+---
+import ProjectLayout from '@/layouts/ProjectLayout.astro';
+import Banner from '@/components/Banner.astro';
+---
+
+<ProjectLayout
+  title="Windows Subsystem for Android"
+  description="Apps - Leonard Lemke"
+  image="/images/apps/oneUI/OneUIBanner.jpg"
+>
+  <Banner
+    image="/images/apps/wsa/wsa.jpg"
+    title="Windows Subsystem for Android™️ (WSA)"
+    subtitle="Install Android Apps on Windows"
+  />
+
+  <div class="content">
+    <h2>Info</h2>
+    <p>Windows Subsystem for Android™️ (WSA) allows to install and use Android apps on Windows.</p>
+    <p>
+      Unfortunately, Microsoft is discontinuing support for the WSA. Therefore, the Amazon Appstore on Windows and
+      all applications and games dependent on WSA{' '}
+      <a target="_blank" rel="noopener noreferrer" href="https://learn.microsoft.com/windows/android/wsa/">
+        will no longer be supported
+      </a>{' '}
+      starting March 5, 2025.
+    </p>
+    <p>
+      Thanks to the dedicated community, there is already a solution to continue using WSA, namely with the Google
+      Play Store instead of the Amazon Appstore.
+    </p>
+    <p>
+      <b>Before installing the new version of WSA, the old official version from the Microsoft Store must be
+      uninstalled.</b>
+    </p>
+
+    <br id="install" /><br /><br />
+    <h2>Install WSA</h2>
+    <button class="lButton">
+      <a target="_blank" rel="noopener noreferrer" href="https://github.com/MustardChef/WSABuilds">WSABuilds (GitHub)</a>
+    </button>
+    <button class="lButton">
+      <a target="_blank" rel="noopener noreferrer" href="https://www.youtube.com/watch?v=11lw-IHPH3A">
+        WSA Installation Guide (YouTube)
+      </a>
+    </button>
+
+    <br id="check" /><br />
+    <p>Check system type in Windows settings:</p>
+    <img class="normal" src="/images/apps/wsa/windows.jpg" alt="Windows" />
+
+    <br id="steps" /><br />
+    <h3>Steps</h3>
+    <ol>
+      <li>Download the zip file (WSA_<i>XXXX.XXXXX.X.X</i>_<i>systemtype</i>_Release-Nightly-MindTheGapps-<i>XX.X</i>-RemovedAmazon.7z)</li>
+      <li>Unzip (e.g.: to "C:\users\<i>%yourUsername%</i>\WSA")</li>
+      <li>Optional: Zip file can be deleted after unzipping</li>
+      <li>Open the unzipped folder and double click on "Run.bat"</li>
+      <li>Confirm administrator rights</li>
+      <li>Close the window when "All Done! Press any key to exit"</li>
+      <li>
+        In the dialog: "Optional Diagnostic Data" click on "Next". (Multiple of these dialogs are no problem, just
+        click on "Next" every time)
+      </li>
+    </ol>
+
+    <br id="google" /><br /><br />
+    <h2>Google Play Store</h2>
+    <p>A Google account is required to install Android apps.</p>
+    <p>If the Google Play Store is not opened after installation of WSA, it can also be opened manually:</p>
+    <button class="lButton"><a href="#open">Open Android Apps</a></button>
+    <p>After opening the Google Play Store, a login with a Google account is requested.</p>
+    <p>If the login was successful, Android apps can now be installed.</p>
+
+    <br id="open" /><br /><br />
+    <h2>Open Android Apps</h2>
+    <h3>Opening an Android app via the Windows search</h3>
+    <p>Press Windows key and type the name of the app (e.g.: "Play Store"):</p>
+    <img class="normal" src="/images/apps/wsa/wsa-open-search.jpg" alt="WSA open search" />
+    <br /><br />
+    <h3>Opening an Android app via the WSA settings</h3>
+    <img class="normal" src="/images/apps/wsa/wsa-open-settings.jpg" alt="WSA open settings" />
+    <button class="lButton"><a href="#files">Open WSA settings</a></button>
+
+    <br id="files" /><br /><br />
+    <h2>Access Windows Files in WSA</h2>
+    <p>
+      It is possible to access files of the Windows system within the WSA. To do this, access to a Windows folder
+      must be enabled in the WSA settings.
+    </p>
+    <h3>Open WSA settings</h3>
+    <p>Press Windows key and type "Android":</p>
+    <img class="normal" src="/images/apps/wsa/wsa-settings.jpg" alt="WSA settings" />
+
+    <br id="select" /><br />
+    <h3>Select a folder for access within the WSA</h3>
+    <p>Step 4 is optional:</p>
+    <img class="large" src="/images/apps/wsa/wsa-settings-files.jpg" alt="WSA settings files" />
+
+    <br id="restart" /><br />
+    <h3>Restart WSA</h3>
+    <p>
+      This step closes the WSA and all running Android apps. Once an Android app is opened again, the WSA will
+      automatically restart:
+    </p>
+    <img class="normal" src="/images/apps/wsa/wsa-settings-restart.jpg" alt="WSA settings restart" />
+
+    <br id="access" /><br />
+    <h3>Access Windows files in WSA:</h3>
+    <img class="normal" src="/images/apps/wsa/wsa-files.jpg" alt="WSA files" />
+
+    <br id="links" /><br /><br />
+    <div>
+      <h2>Links</h2>
+      <button class="lButton"><a target="_blank" rel="noopener noreferrer" href="https://github.com/MustardChef/WSABuilds">WSABuilds (GitHub)</a></button>
+      <button class="lButton">
+        <a target="_blank" rel="noopener noreferrer" href="https://www.youtube.com/watch?v=11lw-IHPH3A">WSA Installation Guide (YouTube)</a>
+      </button>
+      <button class="lButton"><a target="_blank" rel="noopener noreferrer" href="https://learn.microsoft.com/windows/android/wsa/">WSA (Microsoft)</a></button>
+    </div>
+    <br /><br />
+    <p class="small">
+      Note: The use and installation of WSA is at your own risk. No liability is assumed for damages. Most of the
+      time the problem sits in front of the screen.
+    </p>
+    <p class="small">
+      Android is a trademark of Google LLC. Windows™ and Windows Subsystem for Android™ are trademarks of Microsoft LLC.
+    </p>
+  </div>
+</ProjectLayout>

@@ -1,0 +1,86 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Giscus from '@/components/Giscus.astro';
+import CardGrid from '@/components/CardGrid.astro';
+import Card from '@/components/Card.astro';
+import Banner from '@/components/Banner.astro';
+
+const apps = await getCollection('apps', (entry) => entry.id.startsWith('en/'));
+const media = await getCollection('media', (entry) => entry.id.startsWith('en/'));
+
+const allProjects = [
+  ...apps.map((app) => ({
+    href: `/apps/${app.data.slug}`,
+    bgImg: app.data.icon,
+    title: app.data.name,
+    description: app.data.tagline,
+    date: app.data.date,
+    dateLabel: app.data.date.toLocaleDateString('en-US', { month: 'short', year: 'numeric' }),
+    interactionIcon: 'download' as const,
+    interactionText: app.data.downloads,
+    tags: app.data.tags,
+    iconStyle: true,
+  })),
+  ...media.map((project) => ({
+    href: `/media/${project.data.slug}`,
+    bgImg: project.data.coverImage,
+    title: project.data.title,
+    description: 'Cinematic / Freestyle FPV',
+    date: project.data.date,
+    dateLabel: project.data.date.toLocaleDateString('en-US', { day: '2-digit', month: 'short', year: 'numeric' }),
+    interactionIcon: 'eye' as const,
+    interactionText: project.data.views,
+    tags: project.data.tags,
+    iconStyle: false,
+  })),
+].sort((a, b) => b.date.valueOf() - a.date.valueOf());
+---
+
+<BaseLayout title="Leonard Lemke" description="Website">
+  <Banner image="/images/about/me2.jpg" title="Leonard Lemke" subtitle="Software Developer passionate about apps in OneUI-Design & FPV drones" />
+
+  <div class="center">
+    <h1 class="colored-h1">Projects</h1>
+  </div>
+
+  <CardGrid>
+    <Card
+      href="/apps"
+      bgImg="https://www.leonard-lemke.com/images/apps/oneUI/OneUIBanner.jpg"
+      title="Apps"
+      description="Modern Apps in Samsungs OneUI-Design."
+    />
+    <Card
+      href="/media"
+      bgImg="https://www.leonard-lemke.com/images/media/evoque_v2.jpg"
+      title="Media"
+      description="Cinematic / Freestyle FPV"
+    />
+  </CardGrid>
+
+  <br id="allprojects" /><br /><br /><br /><br /><br />
+  <div class="center">
+    <h1 class="colored-h1">All Projects</h1>
+  </div>
+
+  <CardGrid>
+    {
+      allProjects.map((project) => (
+        <Card
+          href={project.href}
+          bgImg={project.bgImg}
+          title={project.title}
+          description={project.description}
+          date={project.dateLabel}
+          interactionIcon={project.interactionIcon}
+          interactionText={project.interactionText}
+          tags={project.tags}
+          iconStyle={project.iconStyle}
+        />
+      ))
+    }
+  </CardGrid>
+
+  <Giscus />
+</BaseLayout>

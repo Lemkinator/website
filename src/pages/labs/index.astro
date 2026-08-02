@@ -1,0 +1,32 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Giscus from '@/components/Giscus.astro';
+import CardGrid from '@/components/CardGrid.astro';
+import Card from '@/components/Card.astro';
+
+const labs = await getCollection('labs', (entry) => entry.id.startsWith('en/'));
+const bgImgFor = (slug: string) => `/images/labs/${slug}.png`;
+---
+
+<BaseLayout title="Labs" description="Leonard Lemke" noindex>
+  <div class="center">
+    <h1 class="colored-h1">Labs</h1>
+  </div>
+
+  <CardGrid>
+    {
+      labs.map((lab) => (
+        <Card
+          href={`/labs/${lab.data.slug}`}
+          bgImg={bgImgFor(lab.data.slug)}
+          title={lab.data.title}
+          description={lab.data.description}
+          tags={lab.data.tags}
+        />
+      ))
+    }
+  </CardGrid>
+
+  <Giscus />
+</BaseLayout>

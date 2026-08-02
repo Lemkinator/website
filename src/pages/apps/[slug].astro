@@ -1,0 +1,52 @@
+---
+import { getCollection, render } from 'astro:content';
+import ProjectLayout from '@/layouts/ProjectLayout.astro';
+import Banner from '@/components/Banner.astro';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('apps', (entry) => entry.id.startsWith('en/'));
+  return entries.map((entry) => ({
+    params: { slug: entry.data.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const { name, tagline, icon, bannerImage, playStoreUrl, githubUrl } = entry.data;
+---
+
+<ProjectLayout title={name} description={tagline} image={icon}>
+  <Banner image={bannerImage} title={name} subtitle={tagline}>
+    {
+      playStoreUrl && (
+        <a target="_blank" rel="noopener noreferrer" href={playStoreUrl}>
+          <img class="playstore_button" alt="Get it on Google Play" src="/images/apps/google-play-badge-en.png" />
+        </a>
+      )
+    }
+  </Banner>
+
+  <div class="content">
+    <img id="app-icon" src={icon} alt="" />
+    <h2>{name}</h2>
+    <Content />
+
+    <br id="links" /><br /><br />
+    <div>
+      <h2>Links</h2>
+      <button class="lButton">
+        <a href={`/apps/${entry.data.slug}/privacy-policy`}>Privacy Policy</a>
+      </button>
+      {
+        githubUrl && (
+          <button class="lButton">
+            <a target="_blank" rel="noopener noreferrer" aria-label="GitHub" href={githubUrl}>
+              Source Code
+            </a>
+          </button>
+        )
+      }
+    </div>
+  </div>
+</ProjectLayout>

@@ -1,0 +1,103 @@
+---
+import { getCollection } from 'astro:content';
+import ProjectLayout from '@/layouts/ProjectLayout.astro';
+import '@/styles/legacy/outrun.css';
+import '@/styles/legacy/space-invaders.css';
+
+export async function getStaticPaths() {
+  const entries = await getCollection(
+    'labs',
+    (entry) => entry.id.startsWith('de/') && entry.data.slug !== 'windows-update',
+  );
+  return entries.map((entry) => ({
+    params: { slug: entry.data.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { slug, title, description } = entry.data;
+---
+
+<ProjectLayout title={title} description={description} noindex>
+  {
+    slug === 'out-run' && (
+      <div class="content">
+        <h1 class="center">OutRun</h1>
+        <br />
+        <div id="game">
+          <div id="road">
+            <div id="cloud" />
+            <div id="hero" />
+          </div>
+          <div id="hud">
+            <span id="time" class="topUI">0</span>
+            <span id="score" class="topUI">0</span>
+            <span id="lap" class="topUI">0'00"000</span>
+            <span id="tacho">0</span>
+          </div>
+          <div id="home">
+            <p id="text" />
+            <div id="highscore" />
+          </div>
+        </div>
+        <div id="controls">
+          <span><span>C</span>Münze einwerfen</span>
+          <span><span>M</span>stumm</span>
+          <span><span>&lt;</span><span>&gt;</span>bewegen</span>
+          <span><span>&lt;</span><span>&gt;</span>beschleunigen</span>
+        </div>
+      </div>
+    )
+  }
+
+  {
+    slug === 'space-invaders' && (
+      <div class="content">
+        <p>Space Invaders haben diese Seite zerstört! Räche dich an ihnen!</p>
+        <br />
+        <br />
+        <div class="center">
+          <canvas id="space-invaders" />
+          <button class="gameButton" id="left"><a>&lt;</a></button>
+          <button class="gameButton" id="right"><a>&gt;</a></button>
+          <button class="gameButton" id="space"><a>Leertaste</a></button>
+          <button class="lButton" id="restart"><a>Neustart</a></button>
+        </div>
+      </div>
+    )
+  }
+
+  {
+    slug === 'click-me' && (
+      <div class="content" style="height: 100vh">
+        <button
+          class="lButton"
+          id="runaway-btn"
+          style="position: absolute; top: 50%; left: 50%; transition: none; transform: translate(-50%, -50%); z-index: 1000"
+        >
+          <a>Klick mich</a>
+        </button>
+        <script is:inline src="/js/anime.min.js" />
+        <script is:inline>
+          {`
+            const button = document.getElementById("runaway-btn");
+            const animateMove = (element, prop, pixels) =>
+              anime({ targets: element, [prop]: pixels + "px", easing: "easeOutCirc" });
+            ["mouseover", "click"].forEach(function (el) {
+              button.addEventListener(el, function () {
+                const top = Math.floor(Math.random() * (window.innerHeight - this.offsetHeight + 1));
+                const left = Math.floor(Math.random() * (window.innerWidth - this.offsetWidth + 1));
+                animateMove(this, "left", left).play();
+                animateMove(this, "top", top).play();
+              });
+            });
+          `}
+        </script>
+      </div>
+    )
+  }
+
+  {slug === 'out-run' && <script is:inline src="/js/out-run.js" />}
+  {slug === 'space-invaders' && <script is:inline src="/js/space_invaders.js" />}
+</ProjectLayout>

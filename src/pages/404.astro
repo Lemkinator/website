@@ -1,0 +1,28 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Leonard Lemke" description="404" image="/images/error-poster.jpg" noindex>
+  <div class="error">
+    <h1 class="colored-h1">404</h1>
+    <br />
+    <video autoplay loop muted playsinline poster="/images/error-poster.jpg">
+      <source src="/images/error.webm" type="video/webm" />
+      <source src="/images/error.mp4" type="video/mp4" />
+    </video>
+    <br />
+    <p>Look like you're lost,</p>
+    <p>the page you are looking for not avaible!</p>
+    <br />
+    <button class="lButton" id="button-space-invaders">
+      <a href="/labs/space-invaders">Fight for this page</a>
+    </button>
+    <button class="lButton" id="button-out-run">
+      <a href="/labs/out-run">Take a car and search for this page</a>
+    </button>
+    <button class="lButton" id="button-click-me">
+      <a href="/labs/click-me">Click on a Button to get to this page</a>
+    </button>
+    <button class="lButton"><a href="/">Home</a></button>
+  </div>
+</BaseLayout>

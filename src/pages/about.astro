@@ -1,0 +1,103 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Giscus from '@/components/Giscus.astro';
+import Gallery from '@/components/Gallery.astro';
+import Banner from '@/components/Banner.astro';
+---
+
+<BaseLayout title="Leonard Lemke" description="About Me" image="/images/about/me2.jpg">
+  <Banner
+    image="/images/about/me3.jpg"
+    title="About"
+    subtitle={'"Those looking for quick success should not program, but chop wood."'}
+  />
+
+  <div class="content">
+    <h1 id="me">Leonard Lemke</h1>
+    <p class="quote">
+      Hello, my name is Leonard. Besides my passion for technology, smartphones, Android and computer games, I
+      like to program apps for Android in OneUI-Design or edit videos that I record with my racing drone.
+    </p>
+    <Gallery class="me-swiper">
+      <img src="/images/about/me.jpg" alt="" />
+      <img src="/images/about/me3.jpg" alt="" />
+      <img src="/images/about/me4.jpg" alt="" />
+      <img src="/images/about/me5.jpg" alt="" />
+    </Gallery>
+
+    <div id="experience">
+      <br /><br /><br /><br />
+      <h1>Experience</h1>
+
+      <h2>Continental Automotive Technologies GmbH</h2>
+      <p class="about-date">September 2019 - Present</p>
+
+      <h3>Software Developer</h3>
+      <p class="about-date">February 2024 - Present</p>
+
+      <h3>Study Plus Mathem.-Tech. Softwaredeveloper</h3>
+      <p class="about-date">September 2019 - February 2024</p>
+
+      <h3>Bachelor Thesis</h3>
+      <p class="about-date">September 2023 - December 2023</p>
+      <p class="about-description">
+        Parallel execution of cryptographic operations on ECUs in the automotive sector.
+      </p>
+      <p class="about-skills">
+        Skills: AUTOSAR, AUTOSAR Crypto Stack, Cryptography, Cipher-Based Message Authentication Code
+      </p>
+
+      <h3>Student Internship</h3>
+      <p class="about-date">October 2022 - March 2023</p>
+      <p class="about-description">Port and adapt various tests from a platform to a customer project.</p>
+      <p class="about-skills">Skills: Elektrobit Tresos Studio, AUTOSAR, AUTOSAR Builder, CAPL, CAN, CANoe</p>
+
+      <h3>Mathematical-Technical Software Engineer (MATSE)</h3>
+      <p class="about-date">September 2019 - August 2021</p>
+      <p class="about-description">Apprenticeship as Mathematical-Technical Software Engineer (MATSE)</p>
+      <p class="about-description">(Included in Study Plus)</p>
+
+      <br /><br /><br />
+      <h2>Software Developer Mobile Apps</h2>
+      <p class="about-location">Remote - Leonard Lemke</p>
+      <p class="about-date">December 2019 - Present</p>
+      <p class="about-description">Developing modern Apps in Samsungs OneUI-Design.</p>
+      <button class="lButton"><a href="/apps">Projects</a></button>
+      <button class="lButton"><a href="mailto:apps@leonard-lemke.com">Contact</a></button>
+
+      <br /><br /><br />
+      <h2>Digital Creator</h2>
+      <p class="about-location">Remote - Leonard Lemke</p>
+      <p class="about-date">May 2019 - Present</p>
+      <p class="about-description">Edit video recordings of a racing drone.</p>
+      <p class="about-description">Sharing experiences through the eyes of a Drone.</p>
+      <button class="lButton"><a href="/media">Projects</a></button>
+      <button class="lButton"><a href="mailto:media@leonard-lemke.com">Contact</a></button>
+    </div>
+
+    <div id="education">
+      <br /><br /><br /><br />
+      <h1>Education</h1>
+      <h2>Bachelor of Science (B.Sc.)</h2>
+      <p class="about-location">Hochschule Furtwangen University (HFU) / Continental</p>
+      <p class="about-date">September 2019 - February 2024</p>
+      <p class="about-description">General Computer Science (Specialization Software Engineering)</p>
+      <p class="about-description">Study Plus</p>
+      <p class="about-grade">Grade: 1.4</p>
+
+      <h2>Apprenticeship</h2>
+      <p class="about-location">Kaufmännische und Hauswirtschaftliche Schulen Donaueschingen (KHS) / Continental</p>
+      <p class="about-date">September 2019 - July 2021</p>
+      <p class="about-description">Mathematical-technical Software Engineer (MATSE)</p>
+      <p class="about-description">(Included in Study Plus)</p>
+      <p class="about-grade">Grade: 90/100 P.</p>
+
+      <h2>High School Diploma</h2>
+      <p class="about-location">Gymnasium Trossingen</p>
+      <p class="about-date">September 2011 - July 2019</p>
+      <p class="about-grade">Grade: 1.7</p>
+    </div>
+  </div>
+
+  <Giscus />
+</BaseLayout>

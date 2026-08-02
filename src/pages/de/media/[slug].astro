@@ -1,0 +1,25 @@
+---
+import { getCollection, render } from 'astro:content';
+import ProjectLayout from '@/layouts/ProjectLayout.astro';
+import Banner from '@/components/Banner.astro';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('media', (entry) => entry.id.startsWith('de/'));
+  return entries.map((entry) => ({
+    params: { slug: entry.data.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const { title, description, coverImage } = entry.data;
+---
+
+<ProjectLayout title={title} description={description} image={coverImage}>
+  <Banner image={coverImage} title={title} subtitle="Cinematic/Freestyle FPV" />
+
+  <div class="content">
+    <Content />
+  </div>
+</ProjectLayout>

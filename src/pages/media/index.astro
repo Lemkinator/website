@@ -1,0 +1,188 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Giscus from '@/components/Giscus.astro';
+import CardGrid from '@/components/CardGrid.astro';
+import Card from '@/components/Card.astro';
+import Gallery from '@/components/Gallery.astro';
+import Banner from '@/components/Banner.astro';
+
+const projects = (await getCollection('media', (entry) => entry.id.startsWith('en/'))).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+);
+---
+
+<BaseLayout title="Media" description="Leonard Lemke" image="/images/media/evoque_v2.jpg">
+  <Banner image="/images/media/evoque_v2.jpg" title="Media" subtitle="Cinematic/Freestyle FPV" />
+
+  <div class="center" id="projects">
+    <h1 class="colored-h1">Projects</h1>
+  </div>
+
+  <CardGrid>
+    {
+      projects.map((project) => (
+        <Card
+          href={`/media/${project.data.slug}`}
+          bgImg={project.data.coverImage}
+          title={project.data.title}
+          description={project.data.description}
+          date={project.data.date.toLocaleDateString('en-US', { day: '2-digit', month: 'short', year: 'numeric' })}
+          interactionIcon="eye"
+          interactionText={project.data.views}
+          tags={project.data.tags}
+        />
+      ))
+    }
+  </CardGrid>
+
+  <div class="content" id="fpv">
+    <h1>What is Cinematic/Freestyle FPV?</h1>
+    <ul>
+      <li>
+        <b>First-person view (FPV)</b> is a method where a radio-controlled aircraft (drone) is piloted remotely
+        from a first-person perspective via an onboard camera, fed wirelessly to video FPV goggles.
+      </li>
+      <li><b>Freestyle FPV</b> is all about flying skills and doing nice tricks or movements.</li>
+      <li>
+        <b>Cinematic FPV</b> content tends to be slower and smoother than Freestyle FPV. The settings are chosen
+        more for their visual attraction than for the technical flying skills they demand.
+      </li>
+    </ul>
+
+    <h2>What is special about FPV?</h2>
+    <p>The difference to normal drone pilots is that FPV pilots mostly build their drone(s) themselves.</p>
+    <h3>This includes:</h3>
+    <ul>
+      <li>Search and buy parts</li>
+      <li>Assembling the drone</li>
+      <li>Setting up the drone (Software)</li>
+    </ul>
+    <p>
+      Furthermore, it requires much more practice, since FPV drones are usually flown in acro mode (acrobatic
+      mode: e.g. when releasing the control sticks, the drone does not automatically level itself or if you move
+      the sticks forward, the drone will pitch forward continuously instead of accelerating forward...).
+    </p>
+    <p>But the practice is worth it, because flying FPV is incredibly fun!</p>
+
+    <h2>What got me into FPV?</h2>
+    <Gallery full>
+      <div>
+        <img src="/images/media/drone1.jpg" alt="" />
+        <p class="description">The journey began with a normal consumer drone...</p>
+      </div>
+      <div>
+        <img src="/images/media/drone2.jpg" alt="" />
+        <p class="description">
+          ... but ended very early with a broken drone and the fact, that its nearly impossible to repair those
+          drones by your own.
+        </p>
+      </div>
+      <div>
+        <img src="/images/media/drone3.jpg" alt="" />
+        <p class="description">
+          Since the repair at the manufacturer is quite expensive, i decided to build a drone myself... Which
+          turned out not to be cheaper...
+        </p>
+      </div>
+      <div>
+        <img src="/images/media/drone4.jpg" alt="" />
+        <p class="description">After researching for the needed parts, the assembly began.</p>
+      </div>
+      <div>
+        <img src="/images/media/drone5.jpg" alt="" />
+        <p class="description">Assembling and wiring...</p>
+      </div>
+      <div>
+        <img src="/images/media/drone6.jpg" alt="" />
+        <p class="description">Getting the Hardware ready...</p>
+      </div>
+      <div>
+        <img src="/images/media/drone7.jpg" alt="" />
+        <p class="description">Setup and configuration of the software...</p>
+      </div>
+      <div>
+        <img src="/images/media/drone8.jpg" alt="" />
+        <p class="description">Done!</p>
+      </div>
+      <div>
+        <img src="/images/media/drone9.jpg" alt="" />
+        <p class="description">
+          Well (after a few encounters with the snowy ground)... seems a lot more durable than the drone before...
+        </p>
+      </div>
+    </Gallery>
+  </div>
+
+  <div class="content">
+    <h1 id="setup">Setup</h1>
+    <h2 id="2023">2023</h2>
+    <h3>iFlight Nazgul Evoque F5 V2 HD</h3>
+    <ul>
+      <li>Frame: Nazgul F5 DeadCat</li>
+      <li>Motor: XING2 2207 1855KV</li>
+      <li>Props: Nazgul F5</li>
+      <li>FC: BLITZ Mini F722</li>
+      <li>ESC: BLITZ Mini E55 4-IN-1 2-6S 55A</li>
+      <li>Video Transmission: DJI O3 Air Unit</li>
+      <li>Receiver: TBS Crossfire Nano</li>
+      <li>LiPo: Tattu R-LINE V4.0 1300mAh 130C 6S</li>
+    </ul>
+    <img class="drone-image" src="/images/media/evoque_v2.jpg" alt="iFlight Nazgul Evoque F5 V2 HD" />
+
+    <br id="2021" /><br /><br />
+    <h2>2021 - 2023</h2>
+    <h3>Drone (Custom Build, 5 Inch)</h3>
+    <ul>
+      <li>Frame: iFlight Cidora SL5</li>
+      <li>Motor: iFlight XING-E 2306 1700KV</li>
+      <li>Props: HQProp DP5X4.3X3V1S</li>
+      <li>Stack: Mamba F722S 60A</li>
+      <li>Video Transmission: Caddx Vista Kit / Air Unit Lite</li>
+      <li>Receiver: TBS Crossfire Nano</li>
+      <li>LiPo: Tattu R-LINE V3.0 1300mAh 120C 6S</li>
+      <li>GoPro Hero 6 Black</li>
+    </ul>
+    <img class="drone-image" src="/images/media/drone8.jpg" alt="Drone (Custom Build, 5 Inch)" />
+    <h3>Cinewhoop (iFlight ProTek25)</h3>
+    <ul>
+      <li>Motor: iFlight XING 1404 4600KV</li>
+      <li>Props: Nazgul 2525</li>
+      <li>Stack: SucceX-D 20A Whoop AIO</li>
+      <li>Video Transmission: Caddx Vista Kit / Air Unit Lite</li>
+      <li>Receiver: TBS Crossfire Nano</li>
+      <li>LiPo: Tattu R-LINE V1.0 850mAh 95C 4S</li>
+      <li>Naked GoPro Hero 6 Black</li>
+    </ul>
+    <img class="drone-image" src="/images/media/protek_25.jpg" alt="Cinewhoop (iFlight ProTek25)" />
+    <h3>Other</h3>
+    <ul>
+      <li>Radio: FrSky Taranis X-Lite S</li>
+      <li>Goggles: DJI FPV Goggles V2</li>
+      <li>Charger: HOTA D6 PRO DUAL Smart Charger AC/DC</li>
+    </ul>
+
+    <br id="2020" /><br /><br />
+    <h2>2020 - 2021</h2>
+    <h3>Drone (Custom Build, 5 Inch)</h3>
+    <ul>
+      <li>Frame: iFlight Cidora SL5</li>
+      <li>Motor: iFlight XING-E 2306 1700KV</li>
+      <li>Props: HQProp DP5X4.3X3V1S</li>
+      <li>Stack: Mamba F722S 60A</li>
+      <li>Cam: Foxeer Falkor 2 Mini</li>
+      <li>VTX: Rush Tank Ultimate</li>
+      <li>Receiver: TBS Crossfire Nano</li>
+      <li>LiPo: Goldbat 1300mAh 100C 6S</li>
+      <li>GoPro Hero 6 Black</li>
+    </ul>
+    <h3>Other</h3>
+    <ul>
+      <li>Radio: FrSky Taranis X-Lite S</li>
+      <li>Goggles: Eachine EV800D</li>
+      <li>Charger: ISDT 600AC</li>
+    </ul>
+  </div>
+
+  <Giscus />
+</BaseLayout>
