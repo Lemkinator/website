@@ -1,0 +1,20 @@
+---
+// Explicit EN/DE switch that links to the CURRENT page's counterpart
+// (getRelativeLocaleUrl), rather than relying purely on navigator.language
+// the way the legacy site did.
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import { useTranslations, defaultLocale, type Locale } from '@/i18n/ui';
+
+const locale = (Astro.currentLocale ?? defaultLocale) as Locale;
+const otherLocale: Locale = locale === 'en' ? 'de' : 'en';
+const t = useTranslations(locale);
+
+const localeAgnosticPath =
+  locale === defaultLocale ? Astro.url.pathname : Astro.url.pathname.replace(new RegExp(`^/${locale}`), '') || '/';
+
+const href = getRelativeLocaleUrl(otherLocale, localeAgnosticPath);
+---
+
+<a class="lang-toggle" href={href} rel="alternate" hreflang={otherLocale}>
+  {t('nav.lang')}
+</a>

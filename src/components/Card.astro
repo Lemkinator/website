@@ -1,0 +1,62 @@
+---
+// One project card. Replaces the hand-copied
+// <div class="card-grid-space"><a class="card" style="--bg-img: ..."> markup
+// that used to be pasted per-project (with lang="en"/lang="de" pairs inside)
+// on index.html, apps/index.html, media/index.html and labs/index.html.
+// Styling lives in src/styles/site.css (.cards-wrapper/.card/.tag/...).
+import Icon from './Icon.astro';
+
+interface Props {
+  href: string;
+  bgImg: string;
+  title: string;
+  description: string;
+  date?: string;
+  interactionIcon?: 'download' | 'eye';
+  interactionText?: string;
+  tags?: string[];
+  // App icons are small squircle glyphs — full-bleed `cover` stretches them
+  // to fill the whole card. Media covers are real photos, where `cover`
+  // looks right. Set this for icon-backed cards (apps listings).
+  iconStyle?: boolean;
+}
+
+const {
+  href,
+  bgImg,
+  title,
+  description,
+  date,
+  interactionIcon,
+  interactionText,
+  tags = [],
+  iconStyle = false,
+} = Astro.props;
+---
+
+<div class="card-grid-space">
+  <a class:list={['card', { 'card--icon': iconStyle }]} href={href} style={`--bg-img: url(${bgImg})`}>
+    <div>
+      <h1>{title}</h1>
+      <p>{description}</p>
+      {date && <div class="date">{date}</div>}
+      {
+        interactionIcon && interactionText && (
+          <div class="interaction">
+            <Icon name={interactionIcon} />
+            &nbsp;&nbsp;{interactionText}
+          </div>
+        )
+      }
+      {
+        tags.length > 0 && (
+          <div class="tags">
+            {tags.map((tag) => (
+              <div class="tag">{tag}</div>
+            ))}
+          </div>
+        )
+      }
+    </div>
+  </a>
+</div>

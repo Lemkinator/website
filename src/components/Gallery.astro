@@ -1,0 +1,72 @@
+---
+// Replaces <swiper-container>/<swiper-slide> (Swiper 9 loaded unpinned from
+// jsdelivr on 10 legacy pages) with a dependency-free CSS scroll-snap
+// carousel. No JS, no CDN request, works with keyboard/touch natively.
+//
+// Two sizing modes, since "one size fits all" kept breaking one context or
+// another:
+// - default: compact, height-driven (portrait phone screenshots, square
+//   about-page photos) — each item sized by its own aspect ratio, capped
+//   so it doesn't dominate.
+// - full: landscape media (FPV clips/photos) — each item fills the content
+//   column width, one at a time, scroll/snap to the next.
+interface Props {
+  class?: string;
+  full?: boolean;
+}
+
+const { class: className, full = false } = Astro.props;
+---
+
+<div class:list={['gallery', className, { 'gallery--full': full }]}>
+  <div class="gallery__track">
+    <slot />
+  </div>
+</div>
+
+<style>
+  .gallery__track {
+    display: flex;
+    /* align-items defaults to stretch — combined with height:auto below,
+       that was silently vertically stretching every image to match the
+       row's cross-axis size (width stayed correct, height didn't), which
+       is exactly what read as "distorted". flex-start opts every item out
+       of stretch regardless of whether its height is auto or explicit. */
+    align-items: flex-start;
+    gap: var(--space-2);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: thin;
+    padding-bottom: var(--space-2);
+  }
+
+  /* Some slides are a bare <img>/<video>; others (e.g. the drone-journey
+     gallery on media/index.astro) wrap it in a <div><img><p class="description">
+     for a caption. flex:0 0 auto shrink-wraps the slide to its content. */
+  .gallery__track > :global(*) {
+    flex: 0 0 auto;
+    scroll-snap-align: center;
+  }
+
+  .gallery__track :global(img),
+  .gallery__track :global(video) {
+    border-radius: var(--radius-md);
+    display: block;
+    height: min(60vh, 480px);
+    width: auto;
+    max-width: 90vw;
+  }
+
+  /* Full mode: item fills the content column width; height follows the
+     image's own aspect ratio instead of being height-capped. */
+  .gallery--full .gallery__track > :global(*) {
+    width: 100%;
+  }
+
+  .gallery--full .gallery__track :global(img),
+  .gallery--full .gallery__track :global(video) {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+  }
+</style>

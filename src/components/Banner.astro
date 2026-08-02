@@ -1,0 +1,74 @@
+---
+// Full-bleed photo banner (direction B's treatment, adopted site-wide at the
+// Phase 2 gate): background image + bottom gradient scrim + title/subtitle
+// overlaid at the bottom. Replaces the legacy per-slug CSS classes
+// (.geticon-banner, .sudoku-banner, .media-banner, ...) that each hardcoded
+// their own background-image — this is one component driven by data.
+interface Props {
+  image: string;
+  title: string;
+  subtitle?: string;
+  compact?: boolean;
+}
+
+const { image, title, subtitle, compact = false } = Astro.props;
+---
+
+<div class:list={['banner', { 'banner--compact': compact }]} style={`--bg-img: url(${image})`}>
+  <div class="banner__content">
+    <h1>{title}</h1>
+    {subtitle && <p>{subtitle}</p>}
+    <slot />
+  </div>
+</div>
+
+<style>
+  .banner {
+    position: relative;
+    height: 60vh;
+    min-height: 320px;
+    max-height: 560px;
+    display: flex;
+    align-items: flex-end;
+    background-image: var(--bg-img);
+    background-size: cover;
+    background-position: center;
+  }
+
+  .banner--compact {
+    height: 40vh;
+    min-height: 240px;
+    max-height: 380px;
+  }
+
+  .banner::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.05) 60%);
+  }
+
+  .banner__content {
+    position: relative;
+    z-index: 1;
+    max-width: var(--grid-width);
+    margin: 0 auto;
+    width: 100%;
+    padding: var(--space-4) var(--space-4) var(--space-5);
+    color: #fff;
+  }
+
+  .banner__content h1 {
+    margin: 0;
+    font-size: clamp(2rem, 6vw, 3.5rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+  }
+
+  .banner__content p {
+    margin: 0.5rem 0 0;
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 1.05rem;
+    max-width: 60ch;
+  }
+</style>

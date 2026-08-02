@@ -1,0 +1,21 @@
+---
+// Replaces bare youtube.com <iframe> embeds (no -nocookie, no lazy facade,
+// each one a ~1MB+ up-front payload for third-party scripts/cookies on 5
+// legacy pages).
+interface Props {
+  id: string;
+  title: string;
+  class?: string;
+}
+
+const { id, title, class: className } = Astro.props;
+---
+
+<iframe
+  class:list={[className]}
+  src={`https://www.youtube-nocookie.com/embed/${id}`}
+  title={title}
+  loading="lazy"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+  allowfullscreen
+></iframe>

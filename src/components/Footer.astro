@@ -1,0 +1,67 @@
+---
+// Replaces footer.html + the client-side $.get("/footer.html").replaceWith()
+// injection. Rendered server-side, once per locale, no duplicate lang="en"/
+// lang="de" markup.
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import { useTranslations, footerLinks, defaultLocale, type Locale } from '@/i18n/ui';
+import Icon from './Icon.astro';
+
+const locale = (Astro.currentLocale ?? defaultLocale) as Locale;
+const t = useTranslations(locale);
+const year = new Date().getFullYear();
+---
+
+<footer class="footer__container">
+  <div class="footer__links">
+    <div class="footer__link--wrapper">
+      <div class="footer__link--items">
+        <h2>{t('footer.contactMe')}</h2>
+        <a href="mailto:contact@leonard-lemke.com">{t('footer.contact')}</a>
+        <a href="mailto:support@leonard-lemke.com">{t('footer.support')}</a>
+        <a target="_blank" rel="noopener noreferrer" href={footerLinks[locale].firstMeeting}>
+          {t('footer.firstMeeting')}
+        </a>
+      </div>
+      <div class="footer__link--items">
+        <h2>{t('footer.links')}</h2>
+        <a target="_blank" rel="noopener noreferrer" href="https://github.com/Lemkinator">Github</a>
+        <a target="_blank" rel="noopener noreferrer" href="https://github.com/Lemkinator/website">
+          {t('footer.sourceCode')}
+        </a>
+      </div>
+    </div>
+  </div>
+  <section class="social__media">
+    <div class="social__media--wrap">
+      <a href={getRelativeLocaleUrl(locale, '/')} class="footer__name">
+        <img class="footer__logo" src="/images/logo/icon_50.png" width="50" height="50" alt="logo" />
+      </a>
+      <p class="website__rights">&copy; Leonard Lemke {year}. {t('footer.rights')}</p>
+      <div class="social__icons">
+        <a class="social__icon--link" target="_blank" rel="noopener noreferrer" aria-label="Instagram"
+          href="https://www.instagram.com/lemkinator5/">
+          <Icon name="instagram" />
+        </a>
+        <a class="social__icon--link" target="_blank" rel="noopener noreferrer" aria-label="Youtube"
+          href="https://www.youtube.com/@leonardlemke">
+          <Icon name="youtube" />
+        </a>
+        <a class="social__icon--link" target="_blank" rel="noopener noreferrer" aria-label="X"
+          href="https://x.com/lemkinator">
+          <Icon name="x" />
+        </a>
+        <a class="social__icon--link" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"
+          href="https://www.linkedin.com/in/leonard-lemke-201029238/">
+          <Icon name="linkedin" />
+        </a>
+        <a class="social__icon--link" target="_blank" rel="noopener noreferrer" aria-label="Google Play"
+          href="https://play.google.com/store/apps/dev?id=4759149701353957861">
+          <Icon name="play-store" />
+        </a>
+        <a class="social__icon--link" target="_blank" rel="noopener noreferrer" aria-label="Tik Tok" href="/rr">
+          <Icon name="tiktok" />
+        </a>
+      </div>
+    </div>
+  </section>
+</footer>

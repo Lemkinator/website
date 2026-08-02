@@ -1,0 +1,22 @@
+---
+// Shared wrapper for apps/[slug], labs/[slug] and media/[slug] pages: SEO via
+// BaseLayout, page body via slot, giscus comments pinned at the bottom the
+// same way every legacy project page had them.
+import BaseLayout from './BaseLayout.astro';
+import Giscus from '@/components/Giscus.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  noindex?: boolean;
+  comments?: boolean;
+}
+
+const { title, description, image, noindex, comments = true } = Astro.props;
+---
+
+<BaseLayout title={title} description={description} image={image} noindex={noindex}>
+  <slot />
+  {comments && <Giscus />}
+</BaseLayout>

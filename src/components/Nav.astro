@@ -1,0 +1,58 @@
+---
+// Replaces navbar.html + the client-side $.get("/navbar.html").replaceWith()
+// injection. This renders server-side as part of the page, so there is no
+// AJAX round-trip, no anti-FOUC display:none hack, and no delay before the
+// nav/font/links exist in the DOM.
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import { useTranslations, defaultLocale, type Locale } from '@/i18n/ui';
+import LangToggle from './LangToggle.astro';
+
+const locale = (Astro.currentLocale ?? defaultLocale) as Locale;
+const t = useTranslations(locale);
+
+const links = [
+  { key: 'nav.home', path: '/' },
+  { key: 'nav.about', path: '/about' },
+  { key: 'nav.apps', path: '/apps' },
+  { key: 'nav.media', path: '/media' },
+] as const;
+---
+
+<nav class="navbar">
+  <div class="navbar__container">
+    <a href={getRelativeLocaleUrl(locale, '/')} class="navbar__name">
+      <img class="navbar__logo" src="/images/logo/icon_50.png" width="50" height="50" alt="logo" />
+    </a>
+    <button class="navbar__toggle" id="mobile-menu" aria-label="Toggle menu" aria-expanded="false">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+    <ul class="navbar__menu">
+      {
+        links.map((link) => (
+          <li class="navbar__item">
+            <a href={getRelativeLocaleUrl(locale, link.path)} class="navbar__links">
+              {t(link.key)}
+            </a>
+          </li>
+        ))
+      }
+      <li class="navbar__item navbar__item--lang">
+        <LangToggle />
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<script>
+  const menu = document.querySelector('#mobile-menu');
+  const menuLinks = document.querySelector('.navbar__menu');
+
+  menu?.addEventListener('click', () => {
+    const expanded = menu.getAttribute('aria-expanded') === 'true';
+    menu.setAttribute('aria-expanded', String(!expanded));
+    menu.classList.toggle('is-active');
+    menuLinks?.classList.toggle('active');
+  });
+</script>

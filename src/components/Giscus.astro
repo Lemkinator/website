@@ -1,0 +1,30 @@
+---
+// Replaces the 36+ hand-pasted giscus <script> tag pairs (one EN + one DE
+// copy on every page that had comments). Renders exactly one tag, matched to
+// the current locale, with data-mapping="pathname" left untouched — that's
+// the setting every existing GitHub Discussion thread is keyed against, and
+// it's why the site's URLs could not change shape during this rebuild.
+import { defaultLocale } from '@/i18n/ui';
+
+const locale = Astro.currentLocale ?? defaultLocale;
+---
+
+<div class="giscus-container" style="max-width: var(--content-width); margin: 0 auto; padding: 0 var(--space-4);">
+  <script
+    is:inline
+    src="https://giscus.app/client.js"
+    data-repo="Lemkinator/website"
+    data-repo-id="R_kgDOHa-Y0g"
+    data-category="Comments"
+    data-category-id="DIC_kwDOHa-Y0s4CrnrG"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="transparent_dark"
+    data-lang={locale}
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async></script>
+</div>

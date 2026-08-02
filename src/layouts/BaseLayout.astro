@@ -1,0 +1,66 @@
+---
+// Replaces the per-page copy-pasted <head> block, the navbar.html/footer.html
+// AJAX injection, and the jQuery dependency that existed only to do those two
+// things. Every real page (see src/pages/**) wraps its content in this.
+import { Font } from 'astro:assets';
+import Seo from '@/components/Seo.astro';
+import JsonLd from '@/components/JsonLd.astro';
+import Nav from '@/components/Nav.astro';
+import Footer from '@/components/Footer.astro';
+import { defaultLocale, type Locale } from '@/i18n/ui';
+import '@/styles/tokens.css';
+import '@/styles/base.css';
+import '@/styles/site.css';
+
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  type?: 'website' | 'article';
+  noindex?: boolean;
+}
+
+const { title, description, image, type, noindex } = Astro.props;
+const locale = (Astro.currentLocale ?? defaultLocale) as Locale;
+
+// GoatCounter is opt-in via env var — no account code is hardcoded here.
+// Set PUBLIC_GOATCOUNTER_CODE in .env to enable it. See .env.example.
+const goatcounterCode = import.meta.env.PUBLIC_GOATCOUNTER_CODE;
+---
+
+<!doctype html>
+<html lang={locale}>
+  <head>
+    <Seo title={title} description={description} image={image} type={type} noindex={noindex} />
+    <Font cssVariable="--font-kumbh" preload />
+    <JsonLd
+      data={{
+        '@type': 'Person',
+        name: 'Leonard Lemke',
+        url: 'https://www.leonard-lemke.com',
+        sameAs: [
+          'https://github.com/Lemkinator',
+          'https://www.instagram.com/lemkinator5/',
+          'https://www.youtube.com/@leonardlemke',
+          'https://x.com/lemkinator',
+          'https://www.linkedin.com/in/leonard-lemke-201029238/',
+        ],
+      }}
+    />
+    {goatcounterCode && (
+      <script
+        is:inline
+        data-goatcounter={`https://${goatcounterCode}.goatcounter.com/count`}
+        async
+        src="//gc.zgo.at/count.js"
+      />
+    )}
+  </head>
+  <body>
+    <Nav />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

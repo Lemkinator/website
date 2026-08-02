@@ -1,0 +1,72 @@
+---
+// Replaces the ~28-line <head> boilerplate that used to be pasted into 25
+// pages by hand (HTML/Facebook/Twitter meta-tag blocks, each page only
+// differing by title/description/canonical/og:image).
+//
+// og:url and canonical are both derived from the same Astro.site value, which
+// fixes the non-www/www mismatch that existed on every legacy page.
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import { locales, defaultLocale } from '@/i18n/ui';
+
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  type?: 'website' | 'article';
+  noindex?: boolean;
+}
+
+const { title, description, image = '/images/logo/icon.png', type = 'website', noindex = false } = Astro.props;
+
+const locale = (Astro.currentLocale ?? defaultLocale) as (typeof locales)[number];
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
+const imageUrl = new URL(image, Astro.site);
+
+// path with the current locale prefix stripped, so we can rebuild an
+// alternate-locale URL for each hreflang entry below.
+const localeAgnosticPath =
+  locale === defaultLocale ? Astro.url.pathname : Astro.url.pathname.replace(new RegExp(`^/${locale}`), '') || '/';
+---
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>{title}</title>
+<meta name="description" content={description} />
+<meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow'} />
+<meta name="author" content="Leonard Lemke" />
+<meta name="publisher" content="Leonard Lemke" />
+<meta name="theme-color" content="#131313" />
+<link rel="canonical" href={canonicalUrl} />
+
+<link rel="icon" href="/favicon.ico" sizes="32x32" />
+<link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16" />
+<link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
+<link rel="manifest" href="/site.webmanifest" />
+
+{
+  locales.map((l) => (
+    <link
+      rel="alternate"
+      hreflang={l}
+      href={new URL(getRelativeLocaleUrl(l, localeAgnosticPath), Astro.site)}
+    />
+  ))
+}
+<link rel="alternate" hreflang="x-default" href={new URL(getRelativeLocaleUrl(defaultLocale, localeAgnosticPath), Astro.site)} />
+
+<!-- Open Graph -->
+<meta property="og:url" content={canonicalUrl} />
+<meta property="og:type" content={type} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={imageUrl} />
+<meta property="og:locale" content={locale === 'de' ? 'de_DE' : 'en_US'} />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:domain" content="leonard-lemke.com" />
+<meta property="twitter:url" content={canonicalUrl} />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={imageUrl} />

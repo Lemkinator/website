@@ -1,0 +1,38 @@
+---
+// Collapses the 5 near-identical apps/*/privacy-policy.html pages (diffed:
+// they differ only by app name, contact email, last-updated date, and meta
+// tags — Sudoku is the one outlier with an extra Play Games data section)
+// into a single template driven by content-collection frontmatter.
+import BaseLayout from './BaseLayout.astro';
+import { useTranslations, defaultLocale, type Locale } from '@/i18n/ui';
+
+interface Props {
+  appName: string;
+  contactEmail: string;
+  lastUpdated: Date;
+  image?: string;
+}
+
+const { appName, lastUpdated } = Astro.props;
+const locale = (Astro.currentLocale ?? defaultLocale) as Locale;
+const t = useTranslations(locale);
+
+const dateFormatted = new Intl.DateTimeFormat(locale === 'de' ? 'de-DE' : 'en-US', {
+  year: 'numeric',
+  month: '2-digit',
+  day: '2-digit',
+}).format(lastUpdated);
+---
+
+<BaseLayout title={`${appName} — ${t('privacy.title')}`} description={`${appName} ${t('privacy.title')}`}>
+  <div class="content">
+    <slot />
+    <p class="privacy-updated">
+      {
+        locale === 'de'
+          ? `Diese Aussage wurde zuletzt am ${dateFormatted} aktualisiert.`
+          : `This statement was last updated on ${dateFormatted}.`
+      }
+    </p>
+  </div>
+</BaseLayout>
