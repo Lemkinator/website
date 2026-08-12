@@ -9,7 +9,6 @@ export const ui = {
   en: {
     'nav.home': 'Home',
     'nav.apps': 'Apps',
-    'nav.labs': 'Labs',
     'nav.media': 'Media',
     'nav.about': 'About',
     'nav.lang': 'DE',
@@ -28,7 +27,6 @@ export const ui = {
   de: {
     'nav.home': 'Start',
     'nav.apps': 'Apps',
-    'nav.labs': 'Labs',
     'nav.media': 'Medien',
     'nav.about': 'Über mich',
     'nav.lang': 'EN',

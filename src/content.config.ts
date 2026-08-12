@@ -42,23 +42,6 @@ const apps = defineCollection({
     }),
 });
 
-// Self-contained lab experiments/games (labs/*.html today). gpt.html is
-// intentionally NOT migrated — retired per the design decision (dead
-// gpt-3.5-turbo dependency).
-const labs = defineCollection({
-  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/labs', generateId }),
-  schema: () =>
-    z.object({
-      slug: z.string(),
-      title: z.string(),
-      description: z.string(),
-      date: z.coerce.date(),
-      tags: z.array(z.string()).default([]),
-      // Which vanilla-JS island this page mounts, if any.
-      script: z.enum(['out-run', 'space-invaders', 'click-me', 'windows-update']).optional(),
-    }),
-});
-
 // FPV/cinematic video project pages (media/{2000,accelerate,light-utopia}.html today).
 const media = defineCollection({
   loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/media', generateId }),
@@ -76,4 +59,4 @@ const media = defineCollection({
     }),
 });
 
-export const collections = { apps, labs, media };
+export const collections = { apps, media };

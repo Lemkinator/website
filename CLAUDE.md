@@ -25,22 +25,16 @@ Standard Astro workflow: `npm install`, `npm run dev` (dev server), `npm run bui
 
 ## Content collections (`src/content.config.ts`)
 
-Three collections, each with `en/` and `de/` subdirectories under `src/content/<collection>/`:
+Two collections, each with `en/` and `de/` subdirectories under `src/content/<collection>/`:
 
 - **`apps`** — the 5 Android app landing pages (geticon, nakbuch, oneurl, studiportal, sudoku).
   Frontmatter holds structured fields (`name`, `tagline`, `icon`, `bannerImage`, `playStoreUrl`,
   `downloads`, `privacyPolicy.*`); the MDX body holds the actual prose/screenshots/videos.
   `privacyPolicy` frontmatter drives `src/pages/apps/[slug]/privacy-policy.astro` — the 5
   privacy-policy pages are one template, not 5 separate files.
-- **`labs`** — self-contained game/demo pages (out-run, space-invaders, click-me,
-  windows-update). `windows-update` is the one exception: it's NOT rendered through
-  `labs/[slug].astro` — it has its own fully standalone route
-  (`src/pages/labs/windows-update.astro`, own `<html>`, no shared layout) because the legacy page
-  was a full-viewport prank page with no nav/footer. `gpt.html` (the old OpenAI chat demo) was
-  retired during the migration and has no collection entry.
 - **`media`** — the 3 FPV/cinematic video projects (2000, accelerate, light-utopia).
 
-All three collections use a `glob` loader with a custom `generateId` (see `content.config.ts`) —
+Both collections use a `glob` loader with a custom `generateId` (see `content.config.ts`) —
 **do not remove it**. Without it, `en/foo.mdx` and `de/foo.mdx` both get id `"foo"` and silently
 collide (last one loaded wins), because the default id is just the basename.
 
@@ -59,15 +53,6 @@ collide (last one loaded wins), because the default id is just the basename.
   rather than pulling in an icon font/CDN.
 - `src/components/Gallery.astro` — CSS scroll-snap carousel, replaces the old Swiper 9 CDN
   dependency. Use this for any screenshot/image gallery.
-- `outrun.css` / `space-invaders.css` under `src/styles/legacy/` are the *only* surviving legacy
-  stylesheets — the games keep their own look by design; don't fold them into `site.css`.
-
-## Known issue
-
-`labs/out-run` hotlinks its sprites/audio from a CodePen S3 bucket
-(`s3-us-west-2.amazonaws.com/s.cdpn.io/155629/...`) that now returns `AccessDenied` on every
-object — the game is visually broken on production. Not caused by the migration; needs the
-original assets sourced from somewhere before it can be fixed (see `public/js/out-run.js`).
 
 ## Deferred work
 

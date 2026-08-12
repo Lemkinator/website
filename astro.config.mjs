@@ -13,7 +13,6 @@ export default defineConfig({
         defaultLocale: 'en',
         locales: { en: 'en', de: 'de' },
       },
-      filter: (page) => !page.includes('/labs/') && !page.includes('/proto/'),
     }),
   ],
   i18n: {
