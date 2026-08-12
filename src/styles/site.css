@@ -70,8 +70,8 @@
 
   .error img {
     margin: var(--space-3) auto;
-    border-radius: var(--radius-md);
     max-width: 320px;
+    display: block;
   }
 }
 
