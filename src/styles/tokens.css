@@ -3,13 +3,13 @@
  * (direction A: OneUI-inspired). Supports light + dark via light-dark().
  */
 :root {
-  color-scheme: light dark;
+  color-scheme: dark;
 
-  --color-bg: light-dark(#f4f5f7, #16171b);
-  --color-surface: light-dark(#ffffff, #202227);
-  --color-fg: light-dark(#1b1c1f, #f2f3f5);
-  --color-muted: light-dark(#68697a, #9a9ba8);
-  --color-accent: light-dark(#4c6fff, #7d97ff);
+  --color-bg: #16171b;
+  --color-surface: #202227;
+  --color-fg: #f2f3f5;
+  --color-muted: #9a9ba8;
+  --color-accent: #7d97ff;
   --color-line: color-mix(in srgb, var(--color-fg) 8%, transparent);
 
   --font-body: var(--font-kumbh), system-ui, sans-serif;
