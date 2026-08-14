@@ -5,3 +5,13 @@
 <section class="cards-wrapper">
   <slot />
 </section>
+<script>
+  // Astro dedupes identical inline module scripts per page, so this runs
+  // once even when a page renders multiple CardGrids (e.g. the homepage) —
+  // and since module scripts execute after the full document is parsed, it
+  // safely finds every [data-tilt] card on the page regardless of which
+  // CardGrid instance's script tag actually ran.
+  import { initCardTilt, initVideoPeek } from '@/scripts/pointer';
+  initCardTilt();
+  initVideoPeek();
+</script>

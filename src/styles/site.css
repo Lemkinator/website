@@ -140,6 +140,12 @@
     padding: var(--space-4);
   }
 
+  /* perspective must live on .card's direct parent to affect its 3D
+     tilt transform — .card is a grandchild of .cards-wrapper. */
+  .card-grid-space {
+    perspective: 1200px;
+  }
+
   .card {
     /* Full-strength photo/icon background with a bottom gradient scrim for
        text legibility — a low-opacity (0.16) background was tried here and
@@ -165,7 +171,49 @@
     min-height: 20em;
     position: relative;
     overflow: hidden;
-    transition: transform 0.25s ease;
+    contain: layout; /* single-box guarantee for view-transition-name */
+    /* --rx/--ry/--mx/--my are written by initCardTilt() in pointer.ts
+       (pointer:fine + motion-ok devices only); everyone else just gets the
+       --lift hover animation below. */
+    --rx: 0deg;
+    --ry: 0deg;
+    --mx: 50%;
+    --my: 50%;
+    --lift: 0px;
+    transform: translateY(var(--lift)) rotateX(var(--rx)) rotateY(var(--ry));
+    transition: transform 0.25s var(--ease-out, ease), box-shadow 0.25s ease;
+  }
+
+  /* Cursor spotlight, positioned via the same --mx/--my pointer.ts writes. */
+  .card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at var(--mx) var(--my), rgba(255, 255, 255, 0.16), transparent 55%);
+    opacity: 0;
+    transition: opacity 0.25s ease;
+    pointer-events: none;
+  }
+
+  .card:hover::before {
+    opacity: 1;
+  }
+
+  /* Hover video-peek (media cards only — see initVideoPeek() in pointer.ts).
+     Sits above the photo/spotlight, below the text content in DOM order. */
+  .card__preview {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    pointer-events: none;
+  }
+
+  .card:hover .card__preview {
+    opacity: 1;
   }
 
   /* App-icon cards: shrink just the icon layer (2nd background-image) while
@@ -178,7 +226,7 @@
   }
 
   .card:hover {
-    transform: translateY(-4px);
+    --lift: -4px;
   }
 
   .card h1 {
@@ -263,9 +311,24 @@
   }
 
   .navbar__links {
+    position: relative;
     text-decoration: none;
     font-weight: 600;
     font-size: 0.95rem;
+  }
+
+  /* Active-link indicator — one exists per document at most (only one link
+     is active), so view-transition-name stays trivially unique. See
+     src/components/Nav.astro and src/styles/motion.css. */
+  .navbar__indicator {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -6px;
+    height: 2px;
+    border-radius: 999px;
+    background: var(--color-accent);
+    view-transition-name: nav-indicator;
   }
 
   /* Checkbox-driven disclosure — no JS. The checkbox

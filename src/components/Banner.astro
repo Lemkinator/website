@@ -4,19 +4,58 @@
 // overlaid at the bottom. Replaces the legacy per-slug CSS classes
 // (.geticon-banner, .sudoku-banner, .media-banner, ...) that each hardcoded
 // their own background-image — this is one component driven by data.
+import { getImage } from 'astro:assets';
+import SplitText from './SplitText.astro';
+
 interface Props {
-  image: string;
+  // Either a plain public/ path (every content-collection-driven Banner —
+  // apps/media detail pages, apps/wsa, about) or a local src/assets import
+  // (currently just the homepage hero and /media's banner — the two
+  // full-bleed images that also carry the shader/parallax scroll effects).
+  // Only the latter goes through getImage() below; a plain string is used
+  // as-is, exactly like before this prop existed.
+  image: ImageMetadata | string;
   title: string;
   subtitle?: string;
   compact?: boolean;
+  // Shared-element name matching the origin Card's `transitionName` (see
+  // Card.astro), so the browser morphs the grid card straight into this
+  // banner across a real navigation. See src/styles/motion.css.
+  transitionName?: string;
+  // Runs the title through SplitText's glyph-decode reveal (see
+  // SplitText.astro / scramble.ts). Opt-in — only the homepage hero uses it.
+  scrambleTitle?: boolean;
+  // Drifts the background-position while the banner scrolls through view
+  // (animation-timeline: view() — see the scoped <style> below). Opt-in —
+  // only /media's banner uses it.
+  parallax?: boolean;
 }
 
-const { image, title, subtitle, compact = false } = Astro.props;
+const {
+  image,
+  title,
+  subtitle,
+  compact = false,
+  transitionName,
+  scrambleTitle = false,
+  parallax = false,
+} = Astro.props;
+
+// Background-image can't use <Image>'s <img srcset> — it's a CSS url().
+// getImage() gives us the same AVIF-encoded, resized output as a plain URL
+// we can feed into the existing --bg-img custom property unchanged.
+const resolvedImage =
+  typeof image === 'string' ? image : (await getImage({ src: image, format: 'avif', width: 1920 })).src;
+
+const style = [`--bg-img: url(${resolvedImage})`, transitionName && `view-transition-name: ${transitionName}`]
+  .filter(Boolean)
+  .join('; ');
 ---
 
-<div class:list={['banner', { 'banner--compact': compact }]} style={`--bg-img: url(${image})`}>
+<div class:list={['banner', { 'banner--compact': compact, 'banner--parallax': parallax }]} style={style}>
+  <slot name="backdrop" />
   <div class="banner__content">
-    <h1>{title}</h1>
+    <h1>{scrambleTitle ? <SplitText text={title} /> : title}</h1>
     {subtitle && <p>{subtitle}</p>}
     <slot />
   </div>
@@ -33,12 +72,37 @@ const { image, title, subtitle, compact = false } = Astro.props;
     background-image: var(--bg-img);
     background-size: cover;
     background-position: center;
+    contain: layout; /* single-box guarantee for view-transition-name */
   }
 
   .banner--compact {
     height: 40vh;
     min-height: 240px;
     max-height: 380px;
+  }
+
+  /* Scroll parallax — lives here rather than motion.css because Astro's
+     scoped styles hash .banner's selector; a global stylesheet rule for
+     .banner--parallax wouldn't match this element. Reduced-motion is still
+     handled globally by motion.css's transition/animation-duration
+     backstop, since this is a real @keyframes animation. */
+  @keyframes banner-parallax {
+    from {
+      background-position: center 15%;
+    }
+    to {
+      background-position: center 85%;
+    }
+  }
+
+  @supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+      .banner--parallax {
+        animation: banner-parallax linear both;
+        animation-timeline: view();
+        animation-range: cover 0% cover 100%;
+      }
+    }
   }
 
   .banner::after {

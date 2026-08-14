@@ -13,7 +13,22 @@ export interface ProjectCard {
   interactionText?: string;
   tags: string[];
   iconStyle: boolean;
+  // Shared-element name for the card->detail-page view-transition morph
+  // (see Card.astro / Banner.astro). Namespaced by collection since app and
+  // media slugs aren't guaranteed disjoint.
+  transitionName: string;
+  // Base path (no extension) of a hover preview clip — see Card.astro's
+  // `previewVideo` prop. Media cards only, and only where footage exists.
+  previewVideo?: string;
 }
+
+// Not every media project has usable preview footage ("2000" is
+// photos-only) — this is a lookup, not a schema field, since it's a display
+// nicety rather than content. Base path only; Card.astro appends .webm/.mp4.
+const MEDIA_PREVIEW_VIDEO: Partial<Record<string, string>> = {
+  accelerate: '/images/media/accelerate/accelerate1',
+  'light-utopia': '/images/media/light-utopia/light_utopia1',
+};
 
 // Card props for the apps listing (/apps, /de/apps). Shared with
 // getAllProjects so the homepage and the dedicated listing pages build the
@@ -34,6 +49,7 @@ export async function getAppCards(locale: Locale): Promise<ProjectCard[]> {
       interactionText: app.data.downloads,
       tags: app.data.tags,
       iconStyle: true,
+      transitionName: `proj-app-${app.data.slug}`,
     }))
     .sort((a, b) => b.date.valueOf() - a.date.valueOf());
 }
@@ -59,6 +75,8 @@ export async function getMediaCards(locale: Locale): Promise<ProjectCard[]> {
       interactionText: project.data.views,
       tags: project.data.tags,
       iconStyle: false,
+      transitionName: `proj-media-${project.data.slug}`,
+      previewVideo: MEDIA_PREVIEW_VIDEO[project.data.slug],
     }))
     .sort((a, b) => b.date.valueOf() - a.date.valueOf());
 }

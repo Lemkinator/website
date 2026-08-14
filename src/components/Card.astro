@@ -4,11 +4,15 @@
 // that used to be pasted per-project (with lang="en"/lang="de" pairs inside)
 // on index.html, apps/index.html and media/index.html.
 // Styling lives in src/styles/site.css (.cards-wrapper/.card/.tag/...).
+import { getImage } from 'astro:assets';
 import Icon from './Icon.astro';
 
 interface Props {
   href: string;
-  bgImg: string;
+  // Either a plain public/ path (every content-collection-driven card —
+  // apps and media listings) or a local src/assets import (currently just
+  // the homepage's two hub tiles). See Banner.astro for the same pattern.
+  bgImg: ImageMetadata | string;
   title: string;
   description: string;
   date?: string;
@@ -19,6 +23,17 @@ interface Props {
   // to fill the whole card. Media covers are real photos, where `cover`
   // looks right. Set this for icon-backed cards (apps listings).
   iconStyle?: boolean;
+  // Shared-element name for the native view-transition morph into the
+  // detail page's Banner (see src/styles/motion.css). Must be unique per
+  // document — callers derive it from the project slug (e.g. `proj-${slug}`).
+  transitionName?: string;
+  // Stagger index for the scroll-reveal in motion.css ([data-reveal]'s --i).
+  revealIndex?: number;
+  // Base path (no extension) of a muted preview clip that plays on hover —
+  // see initVideoPeek() in pointer.ts. Both `${previewVideo}.webm` and
+  // `${previewVideo}.mp4` must exist. Optional: cards without footage
+  // (e.g. the "2000" media project) just skip this entirely.
+  previewVideo?: string;
 }
 
 const {
@@ -31,11 +46,40 @@ const {
   interactionText,
   tags = [],
   iconStyle = false,
+  transitionName,
+  revealIndex,
+  previewVideo,
 } = Astro.props;
+
+const resolvedBg =
+  typeof bgImg === 'string' ? bgImg : (await getImage({ src: bgImg, format: 'avif', width: 800 })).src;
+
+const style = [
+  `--bg-img: url(${resolvedBg})`,
+  transitionName && `view-transition-name: ${transitionName}`,
+  revealIndex !== undefined && `--i: ${revealIndex}`,
+]
+  .filter(Boolean)
+  .join('; ');
 ---
 
 <div class="card-grid-space">
-  <a class:list={['card', { 'card--icon': iconStyle }]} href={href} style={`--bg-img: url(${bgImg})`}>
+  <a
+    class:list={['card', { 'card--icon': iconStyle }]}
+    href={href}
+    style={style}
+    data-reveal={revealIndex !== undefined ? 'stagger' : undefined}
+    data-tilt
+    data-video-peek={previewVideo ? '' : undefined}
+  >
+    {
+      previewVideo && (
+        <video class="card__preview" muted loop playsinline preload="none" aria-hidden="true">
+          <source src={`${previewVideo}.webm`} type="video/webm" />
+          <source src={`${previewVideo}.mp4`} type="video/mp4" />
+        </video>
+      )
+    }
     <div>
       <h1>{title}</h1>
       <p>{description}</p>

@@ -11,6 +11,7 @@ import { defaultLocale, type Locale } from '@/i18n/ui';
 import '@/styles/tokens.css';
 import '@/styles/base.css';
 import '@/styles/site.css';
+import '@/styles/motion.css';
 
 interface Props {
   title: string;
@@ -57,6 +58,7 @@ const goatcounterCode = import.meta.env.PUBLIC_GOATCOUNTER_CODE;
     )}
   </head>
   <body>
+    <div class="scroll-progress" aria-hidden="true"></div>
     <Nav />
     <main>
       <slot />
@@ -64,3 +66,17 @@ const goatcounterCode = import.meta.env.PUBLIC_GOATCOUNTER_CODE;
     <Footer />
   </body>
 </html>
+<script>
+  import { initKonami } from '@/scripts/konami';
+  initKonami();
+
+  console.log(
+    '%c leonard-lemke.com ',
+    'background:#7d97ff;color:#131313;font-weight:800;padding:2px 8px;border-radius:4px;',
+  );
+  console.log(
+    '%cLike the animations? Source: https://github.com/Lemkinator/website\n' +
+      "Psst — there's a Konami code on this page.",
+    'color:#9a9ba8;font-size:12px;',
+  );
+</script>
