@@ -8,6 +8,24 @@
  * markup didn't need a rewrite — only the visual values changed.
  */
 
+/* Registered once, used by .card::after and .lButton::after's rotating
+   border glow below — @property makes a custom property animatable
+   (without this, browsers can't interpolate <angle> values, so the
+   rotation would just snap through steps instead of animating smoothly).
+   Not inside @layer: @property registers a property globally regardless
+   of layer, so it reads clearer unscoped. */
+@property --border-angle {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@keyframes border-glow-rotate {
+  to {
+    --border-angle: 360deg;
+  }
+}
+
 @layer layout {
   .center {
     text-align: center;
@@ -89,6 +107,7 @@
 @layer layout {
   .lButton {
     display: inline-block;
+    position: relative; /* anchors the ::after glow ring below */
     margin: 0.3em 0.4em 0.3em 0;
     border-radius: 999px;
     background: var(--color-surface);
@@ -99,6 +118,29 @@
     --mag-y: 0px;
     transform: translate(var(--mag-x), var(--mag-y));
     transition: transform 0.2s ease-out;
+  }
+
+  /* Rotating gradient-border glow on hover — same technique as .card::after,
+     see the @property --border-angle registration near the top of this
+     file. */
+  .lButton::after {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 1.5px;
+    background: conic-gradient(from var(--border-angle), transparent, var(--color-accent), transparent 40%);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+
+  .lButton:hover::after {
+    opacity: 1;
+    animation: border-glow-rotate 3s linear infinite;
   }
 
   .lButton a,
@@ -203,6 +245,32 @@
 
   .card:hover::before {
     opacity: 1;
+  }
+
+  /* Rotating gradient-border glow on hover — pure CSS, see the @property
+     --border-angle registration + @keyframes border-glow-rotate near the
+     top of this file. The conic-gradient is masked to just the border
+     ring (mask-composite: exclude cuts out everything but the padding
+     area between the two mask layers), so it reads as a glowing outline
+     rather than filling the whole card. */
+  .card::after {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 1.5px;
+    background: conic-gradient(from var(--border-angle), transparent, var(--color-accent), transparent 40%);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+
+  .card:hover::after {
+    opacity: 1;
+    animation: border-glow-rotate 3s linear infinite;
   }
 
   /* Hover video-peek (media cards only — see initVideoPeek() in pointer.ts).
