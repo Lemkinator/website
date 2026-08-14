@@ -25,7 +25,6 @@ const apps = defineCollection({
       bannerImage: z.string(),
       playStoreUrl: z.string().url().optional(),
       githubUrl: z.string().url().optional(),
-      screenshots: z.array(z.string()).default([]),
       // Card badge, e.g. "10000 +" downloads or "400" installs — display text
       // only, not a real analytics figure.
       downloads: z.string().optional(),
