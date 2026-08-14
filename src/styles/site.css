@@ -256,7 +256,12 @@
   .card::after {
     content: '';
     position: absolute;
-    inset: -1px;
+    /* .lButton::after (no overflow constraint) uses inset: -1px so the
+       ring protrudes slightly past the edge; .card has overflow: hidden
+       (its image/video content relies on that), which clipped that
+       protruding half unevenly. inset: 0 keeps the ring fully inside the
+       clipped box instead. */
+    inset: 0;
     border-radius: inherit;
     padding: 1.5px;
     background: conic-gradient(from var(--border-angle), transparent, var(--color-accent), transparent 40%);
