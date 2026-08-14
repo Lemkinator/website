@@ -7,6 +7,7 @@ import Gallery from '@/components/Gallery.astro';
 import Banner from '@/components/Banner.astro';
 import { useTranslations } from '@/i18n/ui';
 import { getMediaCards } from '@/lib/projects';
+import mediaBannerImage from '@/assets/images/media/evoque_v2.jpg';
 
 const t = useTranslations('de');
 
@@ -14,7 +15,13 @@ const projects = await getMediaCards('de');
 ---
 
 <BaseLayout title="Media" description="Leonard Lemke" image="/images/media/evoque_v2.jpg">
-  <Banner image="/images/media/evoque_v2.jpg" title="Media" subtitle={t('home.mediaTagline')} />
+  <Banner
+    image={mediaBannerImage}
+    title="Media"
+    subtitle={t('home.mediaTagline')}
+    transitionName="hub-media"
+    parallax
+  />
 
   <div class="center" id="projects">
     <h1 class="colored-h1">Projekte</h1>
@@ -22,7 +29,7 @@ const projects = await getMediaCards('de');
 
   <CardGrid>
     {
-      projects.map((project) => (
+      projects.map((project, i) => (
         <Card
           href={project.href}
           bgImg={project.bgImg}
@@ -32,6 +39,9 @@ const projects = await getMediaCards('de');
           interactionIcon={project.interactionIcon}
           interactionText={project.interactionText}
           tags={project.tags}
+          transitionName={project.transitionName}
+          revealIndex={i}
+          previewVideo={project.previewVideo}
         />
       ))
     }

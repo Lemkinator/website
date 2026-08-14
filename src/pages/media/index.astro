@@ -6,12 +6,19 @@ import Card from '@/components/Card.astro';
 import Gallery from '@/components/Gallery.astro';
 import Banner from '@/components/Banner.astro';
 import { getMediaCards } from '@/lib/projects';
+import mediaBannerImage from '@/assets/images/media/evoque_v2.jpg';
 
 const projects = await getMediaCards('en');
 ---
 
 <BaseLayout title="Media" description="Leonard Lemke" image="/images/media/evoque_v2.jpg">
-  <Banner image="/images/media/evoque_v2.jpg" title="Media" subtitle="Cinematic/Freestyle FPV" />
+  <Banner
+    image={mediaBannerImage}
+    title="Media"
+    subtitle="Cinematic/Freestyle FPV"
+    transitionName="hub-media"
+    parallax
+  />
 
   <div class="center" id="projects">
     <h1 class="colored-h1">Projects</h1>
@@ -19,7 +26,7 @@ const projects = await getMediaCards('en');
 
   <CardGrid>
     {
-      projects.map((project) => (
+      projects.map((project, i) => (
         <Card
           href={project.href}
           bgImg={project.bgImg}
@@ -29,6 +36,9 @@ const projects = await getMediaCards('en');
           interactionIcon={project.interactionIcon}
           interactionText={project.interactionText}
           tags={project.tags}
+          transitionName={project.transitionName}
+          revealIndex={i}
+          previewVideo={project.previewVideo}
         />
       ))
     }
