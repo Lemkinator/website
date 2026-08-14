@@ -16,16 +16,23 @@ export function initReveal(selector = '[data-reveal]'): void {
   const elements = document.querySelectorAll<HTMLElement>(selector);
   if (!elements.length) return;
 
+  // .reveal-pending sets the hidden position with no transition active yet,
+  // so this jump doesn't itself animate.
   elements.forEach((el) => el.classList.add('reveal-pending'));
 
+  // Two rAFs guarantee the .reveal-pending state has actually painted at
+  // least once before anything else happens — matters both for the
+  // .reveal-armed swap below (see motion.css) and because
   // IntersectionObserver fires its first callback for already-in-view
-  // elements almost immediately — often before the browser has painted the
-  // .reveal-pending state even once. Without a real "hidden" frame to
-  // transition away from, the CSS transition has nothing to animate: the
-  // element just appears at rest, looking like it never animated at all.
-  // Two rAFs guarantee at least one paint has happened first.
+  // elements almost immediately, which would otherwise race the initial
+  // paint entirely.
   requestAnimationFrame(() => {
     requestAnimationFrame(() => {
+      // Turns the transition on with no accompanying value change, so
+      // enabling it doesn't animate anything either — only the later
+      // pending -> visible swap does.
+      elements.forEach((el) => el.classList.add('reveal-armed'));
+
       const io = new IntersectionObserver(
         (entries) => {
           for (const entry of entries) {

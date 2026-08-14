@@ -45,14 +45,23 @@
      elements are fully visible until JS explicitly arms them (adds
      .reveal-pending below) — so no-JS, JS-error, and
      IntersectionObserver-unsupported all fail open to "just visible",
-     never to "stuck invisible". */
+     never to "stuck invisible".
+
+     Three classes, added in this order by reveal.ts, and each matters:
+     .reveal-pending sets the hidden position with NO transition active
+     yet (so the jump to hidden doesn't itself animate). Two frames later,
+     .reveal-armed turns the transition on with no accompanying value
+     change (so turning it on doesn't animate anything either). Later,
+     on intersection, .reveal-pending is swapped for .reveal-visible —
+     .reveal-armed's transition is still present through that swap, so
+     THIS is the change that actually animates. An earlier version put
+     `transition` inside .reveal-pending itself, which gets removed at
+     the exact moment .reveal-visible is added — a CSS transition only
+     animates a property change if `transition` is present on the
+     element AFTER the change, so it was silently a no-op the entire
+     time: elements just snapped to visible, no animation, ever. */
   [data-reveal].reveal-pending {
     translate: 0 var(--reveal-distance);
-    transition:
-      translate var(--dur-slow) var(--ease-out),
-      scale var(--dur-slow) var(--ease-out),
-      filter var(--dur-slow) var(--ease-out);
-    transition-delay: calc(var(--i, 0) * 60ms);
   }
 
   [data-reveal='scale'].reveal-pending {
@@ -62,6 +71,14 @@
 
   [data-reveal='blur'].reveal-pending {
     filter: blur(14px);
+  }
+
+  [data-reveal].reveal-armed {
+    transition:
+      translate var(--dur-slow) var(--ease-out),
+      scale var(--dur-slow) var(--ease-out),
+      filter var(--dur-slow) var(--ease-out);
+    transition-delay: calc(var(--i, 0) * 60ms);
   }
 
   [data-reveal].reveal-visible {
