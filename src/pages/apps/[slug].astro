@@ -16,7 +16,7 @@ const { Content } = await render(entry);
 const { name, tagline, icon, bannerImage, playStoreUrl, githubUrl } = entry.data;
 ---
 
-<ProjectLayout title={name} description={tagline} image={icon}>
+<ProjectLayout title={name} description={tagline} image={bannerImage}>
   <Banner image={bannerImage} title={name} subtitle={tagline}>
     {
       playStoreUrl && (
