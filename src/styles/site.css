@@ -469,6 +469,46 @@
   }
 }
 
+/* Gallery dot indicator — src/components/Gallery.astro, src/scripts/gallery.ts.
+   Lives here (global), not in Gallery.astro's scoped <style>, because the
+   dots are created client-side via document.createElement: Astro's style
+   scoping attribute is only added to server-rendered markup, so a scoped
+   rule silently wouldn't have matched these elements at all. */
+@layer layout {
+  .gallery__dots {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: var(--space-2);
+  }
+
+  .gallery__dot {
+    appearance: none;
+    width: 8px;
+    height: 8px;
+    padding: 0;
+    border: none;
+    border-radius: 999px;
+    background: var(--color-line);
+    cursor: pointer;
+    transition: width 0.25s ease, background 0.25s ease;
+  }
+
+  .gallery__dot:hover {
+    background: var(--color-muted);
+  }
+
+  .gallery__dot:focus-visible {
+    outline: 2px solid var(--color-fg);
+    outline-offset: 2px;
+  }
+
+  .gallery__dot.is-active {
+    width: 22px;
+    background: var(--color-accent);
+  }
+}
+
 /* Content-embedded media — screenshots/videos inside MDX bodies. */
 @layer layout {
   .content img,
