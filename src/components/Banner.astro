@@ -44,8 +44,14 @@ const {
 // Background-image can't use <Image>'s <img srcset> — it's a CSS url().
 // getImage() gives us the same AVIF-encoded, resized output as a plain URL
 // we can feed into the existing --bg-img custom property unchanged.
+// Capped at the source's own width: sharp's withoutEnlargement silently
+// caps a too-small source at its native resolution rather than erroring,
+// so requesting 1920 against e.g. a 400px-wide portrait crop would ship a
+// pixelated 400px image with no build warning.
 const resolvedImage =
-  typeof image === 'string' ? image : (await getImage({ src: image, format: 'avif', width: 1920 })).src;
+  typeof image === 'string'
+    ? image
+    : (await getImage({ src: image, format: 'avif', width: Math.min(1920, image.width) })).src;
 
 const style = [`--bg-img: url(${resolvedImage})`, transitionName && `view-transition-name: ${transitionName}`]
   .filter(Boolean)
