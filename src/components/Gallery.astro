@@ -23,6 +23,10 @@ const { class: className, full = false } = Astro.props;
     <slot />
   </div>
 </div>
+<script>
+  import { initGalleryScroll } from '@/scripts/gallery';
+  initGalleryScroll();
+</script>
 
 <style>
   .gallery__track {
@@ -36,8 +40,32 @@ const { class: className, full = false } = Astro.props;
     gap: var(--space-2);
     overflow-x: auto;
     scroll-snap-type: x mandatory;
-    scrollbar-width: thin;
     padding-bottom: var(--space-2);
+    cursor: grab;
+    /* Native scrollbar replaced by the snap+drag/wheel affordances below —
+       a visible track competed with the images for attention and was the
+       main complaint. Touch/trackpad swipe and keyboard scrolling still
+       work identically; only the visible bar is gone. */
+    scrollbar-width: none;
+  }
+
+  .gallery__track::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* While actively dragged with a mouse (src/scripts/gallery.ts), scrollLeft
+     is set directly every pointermove — snap fighting that mid-drag reads as
+     stutter, so it's suspended until release. Also blocks the image-drag
+     ghost/text-selection a raw mouse drag would otherwise trigger. */
+  .gallery__track.is-dragging {
+    scroll-snap-type: none;
+    cursor: grabbing;
+    user-select: none;
+  }
+
+  .gallery__track.is-dragging :global(img),
+  .gallery__track.is-dragging :global(video) {
+    pointer-events: none;
   }
 
   /* Some slides are a bare <img>/<video>; others (e.g. the drone-journey
