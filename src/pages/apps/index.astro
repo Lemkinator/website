@@ -1,14 +1,12 @@
 ---
-import { getCollection } from 'astro:content';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Giscus from '@/components/Giscus.astro';
 import CardGrid from '@/components/CardGrid.astro';
 import Card from '@/components/Card.astro';
 import Banner from '@/components/Banner.astro';
+import { getAppCards } from '@/lib/projects';
 
-const apps = (await getCollection('apps', (entry) => entry.id.startsWith('en/'))).sort(
-  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
-);
+const apps = await getAppCards('en');
 ---
 
 <BaseLayout title="Apps" description="Leonard Lemke" image="/images/apps/oneUI/OneUIBanner.jpg">
@@ -18,15 +16,15 @@ const apps = (await getCollection('apps', (entry) => entry.id.startsWith('en/'))
     {
       apps.map((app) => (
         <Card
-          href={`/apps/${app.data.slug}`}
-          bgImg={app.data.icon}
-          title={app.data.name}
-          description={app.data.tagline}
-          date={app.data.date.toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}
-          interactionIcon="download"
-          interactionText={app.data.downloads}
-          tags={app.data.tags}
-          iconStyle
+          href={app.href}
+          bgImg={app.bgImg}
+          title={app.title}
+          description={app.description}
+          date={app.dateLabel}
+          interactionIcon={app.interactionIcon}
+          interactionText={app.interactionText}
+          tags={app.tags}
+          iconStyle={app.iconStyle}
         />
       ))
     }

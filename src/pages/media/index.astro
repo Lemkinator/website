@@ -1,15 +1,13 @@
 ---
-import { getCollection } from 'astro:content';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Giscus from '@/components/Giscus.astro';
 import CardGrid from '@/components/CardGrid.astro';
 import Card from '@/components/Card.astro';
 import Gallery from '@/components/Gallery.astro';
 import Banner from '@/components/Banner.astro';
+import { getMediaCards } from '@/lib/projects';
 
-const projects = (await getCollection('media', (entry) => entry.id.startsWith('en/'))).sort(
-  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
-);
+const projects = await getMediaCards('en');
 ---
 
 <BaseLayout title="Media" description="Leonard Lemke" image="/images/media/evoque_v2.jpg">
@@ -23,14 +21,14 @@ const projects = (await getCollection('media', (entry) => entry.id.startsWith('e
     {
       projects.map((project) => (
         <Card
-          href={`/media/${project.data.slug}`}
-          bgImg={project.data.coverImage}
-          title={project.data.title}
-          description={project.data.description}
-          date={project.data.date.toLocaleDateString('en-US', { day: '2-digit', month: 'short', year: 'numeric' })}
-          interactionIcon="eye"
-          interactionText={project.data.views}
-          tags={project.data.tags}
+          href={project.href}
+          bgImg={project.bgImg}
+          title={project.title}
+          description={project.description}
+          date={project.dateLabel}
+          interactionIcon={project.interactionIcon}
+          interactionText={project.interactionText}
+          tags={project.tags}
         />
       ))
     }
