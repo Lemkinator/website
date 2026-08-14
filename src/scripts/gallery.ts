@@ -77,7 +77,12 @@ export function initGallery(): void {
       'wheel',
       (e) => {
         if (Math.abs(e.deltaX) >= Math.abs(e.deltaY)) return;
-        track.scrollLeft += e.deltaY;
+        // deltaY is only pixels in DOM_DELTA_PIXEL mode (0). Line mode (1,
+        // notably Firefox/Windows with a traditional mouse) and page mode
+        // (2) report tiny/large unitless counts instead — scale those up
+        // to something that actually moves the track.
+        const pixels = e.deltaMode === 0 ? e.deltaY : e.deltaY * 16;
+        track.scrollLeft += pixels;
         e.preventDefault();
         userInteracted();
       },
