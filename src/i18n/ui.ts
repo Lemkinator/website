@@ -26,6 +26,10 @@ export const ui = {
     'privacy.title': 'Privacy Policy',
     'privacy.lastUpdated': 'This statement was last updated on {date}.',
     'home.mediaTagline': 'Cinematic / Freestyle FPV',
+    'command.trigger': 'Search',
+    'command.placeholder': 'Jump to a page or project…',
+    'command.empty': 'No matches',
+    'command.switchLang': 'Switch to Deutsch',
   },
   de: {
     'nav.home': 'Start',
@@ -47,6 +51,10 @@ export const ui = {
     'privacy.title': 'Datenschutzerklärung',
     'privacy.lastUpdated': 'Diese Aussage wurde zuletzt am {date} aktualisiert.',
     'home.mediaTagline': 'Kinematisch / Freestyle FPV',
+    'command.trigger': 'Suche',
+    'command.placeholder': 'Springe zu einer Seite oder einem Projekt…',
+    'command.empty': 'Keine Treffer',
+    'command.switchLang': 'Auf Englisch wechseln',
   },
 } as const;
 

@@ -1,0 +1,205 @@
+---
+// Ctrl/Cmd+K quick-nav palette. Self-contained like Nav.astro — fetches its
+// own project list rather than threading props through BaseLayout. Native
+// <dialog> gives focus-trap, Esc-to-close, and a ::backdrop for free;
+// src/scripts/command-palette.ts only handles the keyboard shortcut,
+// arrow-key navigation between results, and substring filtering.
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import { useTranslations, defaultLocale, getLocaleAgnosticPath, type Locale } from '@/i18n/ui';
+import { getAllProjects } from '@/lib/projects';
+
+const locale = (Astro.currentLocale ?? defaultLocale) as Locale;
+const otherLocale: Locale = locale === 'en' ? 'de' : 'en';
+const t = useTranslations(locale);
+const localeAgnosticPath = getLocaleAgnosticPath(locale, Astro.url.pathname);
+
+const projects = await getAllProjects(locale);
+
+interface Command {
+  label: string;
+  hint?: string;
+  href: string;
+}
+
+const pages: Command[] = [
+  { label: t('nav.home'), href: getRelativeLocaleUrl(locale, '/') },
+  { label: t('nav.apps'), href: getRelativeLocaleUrl(locale, '/apps') },
+  { label: t('nav.media'), href: getRelativeLocaleUrl(locale, '/media') },
+  { label: t('nav.about'), href: getRelativeLocaleUrl(locale, '/about') },
+  { label: t('footer.imprint'), href: getRelativeLocaleUrl(locale, '/impressum') },
+];
+
+const projectCommands: Command[] = projects.map((project) => ({
+  label: project.title,
+  hint: project.description,
+  href: project.href,
+}));
+
+const actions: Command[] = [
+  { label: t('command.switchLang'), href: getRelativeLocaleUrl(otherLocale, localeAgnosticPath) },
+  { label: 'GitHub', hint: 'github.com/Lemkinator', href: 'https://github.com/Lemkinator' },
+];
+
+const commands = [...pages, ...projectCommands, ...actions];
+---
+
+<button type="button" class="command-trigger" data-command-trigger aria-label={t('command.trigger')}>
+  <span>{t('command.trigger')}</span>
+  <kbd>⌘K</kbd>
+</button>
+
+<dialog class="command-palette" data-command-palette aria-label={t('command.trigger')}>
+  <input
+    type="text"
+    class="command-palette__input"
+    placeholder={t('command.placeholder')}
+    data-command-input
+    autocomplete="off"
+    spellcheck="false"
+  />
+  <ul class="command-palette__list" data-command-list>
+    {
+      commands.map((cmd) => (
+        <li>
+          <a href={cmd.href} class="command-palette__item" data-command-item>
+            <span class="command-palette__label">{cmd.label}</span>
+            {cmd.hint && <span class="command-palette__hint">{cmd.hint}</span>}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+  <p class="command-palette__empty" data-command-empty hidden>
+    {t('command.empty')}
+  </p>
+</dialog>
+
+<script>
+  import { initCommandPalette } from '@/scripts/command-palette';
+  initCommandPalette();
+</script>
+
+<style>
+  .command-trigger {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    background: none;
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-sm);
+    color: var(--color-muted);
+    font: inherit;
+    font-size: 0.85rem;
+    padding: 0.4rem 0.7rem;
+    cursor: pointer;
+  }
+
+  .command-trigger:hover {
+    color: var(--color-fg);
+    border-color: var(--color-muted);
+  }
+
+  .command-trigger kbd {
+    font-family: inherit;
+    font-size: 0.75rem;
+    background: var(--color-surface);
+    border-radius: 4px;
+    padding: 0.1rem 0.35rem;
+  }
+
+  .command-palette {
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-lg);
+    padding: 0;
+    background: var(--color-surface);
+    color: var(--color-fg);
+    width: min(560px, calc(100vw - 2rem));
+    max-height: min(28rem, 70vh);
+    box-shadow: var(--shadow-sm);
+    margin: 10vh auto auto;
+  }
+
+  .command-palette[open] {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .command-palette::backdrop {
+    background: rgba(0, 0, 0, 0.6);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .command-palette[open] {
+      animation: command-palette-in var(--dur-fast) var(--ease-out);
+    }
+
+    .command-palette[open]::backdrop {
+      animation: command-palette-backdrop-in var(--dur-fast) var(--ease-out);
+    }
+  }
+
+  @keyframes command-palette-in {
+    from {
+      opacity: 0;
+      scale: 0.96;
+    }
+  }
+
+  @keyframes command-palette-backdrop-in {
+    from {
+      opacity: 0;
+    }
+  }
+
+  .command-palette__input {
+    all: unset;
+    box-sizing: border-box;
+    width: 100%;
+    padding: var(--space-4);
+    font-size: 1.05rem;
+    color: var(--color-fg);
+    border-bottom: 1px solid var(--color-line);
+  }
+
+  .command-palette__input::placeholder {
+    color: var(--color-muted);
+  }
+
+  .command-palette__list {
+    list-style: none;
+    margin: 0;
+    padding: var(--space-2);
+    overflow-y: auto;
+  }
+
+  .command-palette__item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    padding: var(--space-2) var(--space-3);
+    border-radius: var(--radius-sm);
+    color: var(--color-fg);
+    text-decoration: none;
+  }
+
+  .command-palette__item:hover,
+  .command-palette__item:focus-visible {
+    background: color-mix(in srgb, var(--color-fg) 8%, transparent);
+    outline: none;
+  }
+
+  .command-palette__hint {
+    color: var(--color-muted);
+    font-size: 0.85rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .command-palette__empty {
+    padding: var(--space-4);
+    text-align: center;
+    color: var(--color-muted);
+    margin: 0;
+  }
+</style>
