@@ -69,11 +69,17 @@ const goatcounterCode = import.meta.env.PUBLIC_GOATCOUNTER_CODE;
 <script>
   import { initKonami } from '@/scripts/konami';
   import { initReveal } from '@/scripts/reveal';
+  import { initMagnetic } from '@/scripts/magnetic';
   initKonami();
   // Global, not just from CardGrid — every page wraps in BaseLayout, so any
   // [data-reveal] element anywhere (prose sections, privacy-policy text,
   // not just card grids) gets picked up automatically.
   initReveal();
+  // .lButton exists in server-rendered markup on every page that has one,
+  // so this is safe to run immediately here. .gallery__dot is created
+  // client-side by gallery.ts, which calls initMagnetic() itself once its
+  // dots actually exist.
+  initMagnetic('.lButton');
 
   console.log(
     '%c leonard-lemke.com ',

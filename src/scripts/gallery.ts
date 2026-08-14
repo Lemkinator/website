@@ -5,6 +5,8 @@
 // Dots are the primary, always-reliable navigation — a click always
 // resolves to a scrollIntoView() call, independent of wheel/drag input
 // quirks on any particular device. Wheel and drag are additive.
+import { initMagnetic } from '@/scripts/magnetic';
+
 const AUTOPLAY_DELAY = 4000;
 
 export function initGallery(): void {
@@ -31,6 +33,7 @@ export function initGallery(): void {
     });
     dots[0]?.classList.add('is-active');
     gallery.appendChild(dotsEl);
+    initMagnetic(dots);
 
     let active = 0;
     function setActiveDot(i: number) {

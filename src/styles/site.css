@@ -93,6 +93,12 @@
     border-radius: 999px;
     background: var(--color-surface);
     box-shadow: var(--shadow-sm);
+    /* Magnetic cursor pull — see initMagnetic() in magnetic.ts, called
+       for .lButton from BaseLayout.astro. */
+    --mag-x: 0px;
+    --mag-y: 0px;
+    transform: translate(var(--mag-x), var(--mag-y));
+    transition: transform 0.2s ease-out;
   }
 
   .lButton a,
@@ -494,7 +500,12 @@
     border-radius: 999px;
     background: var(--color-line);
     cursor: pointer;
-    transition: width 0.25s ease, background 0.25s ease;
+    /* Magnetic cursor pull — see initMagnetic() in magnetic.ts, called for
+       each gallery's own dots from gallery.ts once they're created. */
+    --mag-x: 0px;
+    --mag-y: 0px;
+    transform: translate(var(--mag-x), var(--mag-y));
+    transition: width 0.25s ease, background 0.25s ease, transform 0.2s ease-out;
   }
 
   .gallery__dot:hover {
