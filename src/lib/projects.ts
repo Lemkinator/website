@@ -22,8 +22,10 @@ export interface ProjectCard {
 export async function getAllProjects(locale: Locale): Promise<ProjectCard[]> {
   const dateLocale = locale === 'de' ? 'de-DE' : 'en-US';
 
-  const apps = await getCollection('apps', (entry) => entry.id.startsWith(`${locale}/`));
-  const media = await getCollection('media', (entry) => entry.id.startsWith(`${locale}/`));
+  const [apps, media] = await Promise.all([
+    getCollection('apps', (entry) => entry.id.startsWith(`${locale}/`)),
+    getCollection('media', (entry) => entry.id.startsWith(`${locale}/`)),
+  ]);
 
   const appCards = apps.map((app) => ({
     href: getRelativeLocaleUrl(locale, `/apps/${app.data.slug}`),
