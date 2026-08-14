@@ -51,7 +51,6 @@ const media = defineCollection({
       description: z.string(),
       date: z.coerce.date(),
       tags: z.array(z.string()).default([]),
-      youtubeId: z.string(),
       coverImage: z.string(),
       // Card badge, e.g. "5000 +" views — display text only, not live analytics.
       views: z.string().optional(),
