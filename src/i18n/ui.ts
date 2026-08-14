@@ -23,6 +23,7 @@ export const ui = {
     'card.viewProject': 'View project',
     'card.download': 'Download',
     'privacy.title': 'Privacy Policy',
+    'home.mediaTagline': 'Cinematic / Freestyle FPV',
   },
   de: {
     'nav.home': 'Start',
@@ -41,6 +42,7 @@ export const ui = {
     'card.viewProject': 'Projekt ansehen',
     'card.download': 'Herunterladen',
     'privacy.title': 'Datenschutzerklärung',
+    'home.mediaTagline': 'Kinematisch / Freestyle FPV',
   },
 } as const;
 

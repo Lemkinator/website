@@ -5,6 +5,10 @@ import Giscus from '@/components/Giscus.astro';
 import CardGrid from '@/components/CardGrid.astro';
 import Card from '@/components/Card.astro';
 import Banner from '@/components/Banner.astro';
+import { useTranslations, defaultLocale, type Locale } from '@/i18n/ui';
+
+const locale = (Astro.currentLocale ?? defaultLocale) as Locale;
+const t = useTranslations(locale);
 
 const apps = await getCollection('apps', (entry) => entry.id.startsWith('en/'));
 const media = await getCollection('media', (entry) => entry.id.startsWith('en/'));
@@ -26,7 +30,7 @@ const allProjects = [
     href: `/media/${project.data.slug}`,
     bgImg: project.data.coverImage,
     title: project.data.title,
-    description: 'Cinematic / Freestyle FPV',
+    description: project.data.description,
     date: project.data.date,
     dateLabel: project.data.date.toLocaleDateString('en-US', { day: '2-digit', month: 'short', year: 'numeric' }),
     interactionIcon: 'eye' as const,
@@ -55,7 +59,7 @@ const allProjects = [
       href="/media"
       bgImg="https://www.leonard-lemke.com/images/media/evoque_v2.jpg"
       title="Media"
-      description="Cinematic / Freestyle FPV"
+      description={t('home.mediaTagline')}
     />
   </CardGrid>
 
