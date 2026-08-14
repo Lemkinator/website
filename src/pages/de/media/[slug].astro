@@ -2,6 +2,9 @@
 import { getCollection, render } from 'astro:content';
 import ProjectLayout from '@/layouts/ProjectLayout.astro';
 import Banner from '@/components/Banner.astro';
+import { useTranslations } from '@/i18n/ui';
+
+const t = useTranslations('de');
 
 export async function getStaticPaths() {
   const entries = await getCollection('media', (entry) => entry.id.startsWith('de/'));
@@ -17,7 +20,7 @@ const { title, description, coverImage } = entry.data;
 ---
 
 <ProjectLayout title={title} description={description} image={coverImage}>
-  <Banner image={coverImage} title={title} subtitle="Cinematic/Freestyle FPV" />
+  <Banner image={coverImage} title={title} subtitle={t('home.mediaTagline')} />
 
   <div class="content">
     <Content />

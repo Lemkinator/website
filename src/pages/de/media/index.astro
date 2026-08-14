@@ -6,6 +6,9 @@ import CardGrid from '@/components/CardGrid.astro';
 import Card from '@/components/Card.astro';
 import Gallery from '@/components/Gallery.astro';
 import Banner from '@/components/Banner.astro';
+import { useTranslations } from '@/i18n/ui';
+
+const t = useTranslations('de');
 
 const projects = (await getCollection('media', (entry) => entry.id.startsWith('de/'))).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
@@ -13,7 +16,7 @@ const projects = (await getCollection('media', (entry) => entry.id.startsWith('d
 ---
 
 <BaseLayout title="Media" description="Leonard Lemke" image="/images/media/evoque_v2.jpg">
-  <Banner image="/images/media/evoque_v2.jpg" title="Media" subtitle="Cinematic/Freestyle FPV" />
+  <Banner image="/images/media/evoque_v2.jpg" title="Media" subtitle={t('home.mediaTagline')} />
 
   <div class="center" id="projects">
     <h1 class="colored-h1">Projekte</h1>
