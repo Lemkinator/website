@@ -4,8 +4,12 @@ import Giscus from '@/components/Giscus.astro';
 import CardGrid from '@/components/CardGrid.astro';
 import Card from '@/components/Card.astro';
 import Banner from '@/components/Banner.astro';
+import ShaderBackdrop from '@/components/ShaderBackdrop.astro';
 import { useTranslations, defaultLocale, type Locale } from '@/i18n/ui';
 import { getAllProjects } from '@/lib/projects';
+import heroImage from '@/assets/images/about/me2.jpg';
+import appsHubImage from '@/assets/images/apps/oneUI/OneUIBanner.jpg';
+import mediaHubImage from '@/assets/images/media/evoque_v2.jpg';
 
 const locale = (Astro.currentLocale ?? defaultLocale) as Locale;
 const t = useTranslations(locale);
@@ -14,7 +18,14 @@ const allProjects = await getAllProjects(locale);
 ---
 
 <BaseLayout title="Leonard Lemke" description="Website">
-  <Banner image="/images/about/me2.jpg" title="Leonard Lemke" subtitle="Software Developer passionate about apps in OneUI-Design & FPV drones" />
+  <Banner
+    image={heroImage}
+    title="Leonard Lemke"
+    subtitle="Software Developer passionate about apps in OneUI-Design & FPV drones"
+    scrambleTitle
+  >
+    <ShaderBackdrop slot="backdrop" />
+  </Banner>
 
   <div class="center">
     <h1 class="colored-h1">Projects</h1>
@@ -23,15 +34,19 @@ const allProjects = await getAllProjects(locale);
   <CardGrid>
     <Card
       href="/apps"
-      bgImg="https://www.leonard-lemke.com/images/apps/oneUI/OneUIBanner.jpg"
+      bgImg={appsHubImage}
       title="Apps"
       description="Modern Apps in Samsungs OneUI-Design."
+      transitionName="hub-apps"
+      revealIndex={0}
     />
     <Card
       href="/media"
-      bgImg="https://www.leonard-lemke.com/images/media/evoque_v2.jpg"
+      bgImg={mediaHubImage}
       title="Media"
       description={t('home.mediaTagline')}
+      transitionName="hub-media"
+      revealIndex={1}
     />
   </CardGrid>
 
@@ -42,7 +57,7 @@ const allProjects = await getAllProjects(locale);
 
   <CardGrid>
     {
-      allProjects.map((project) => (
+      allProjects.map((project, i) => (
         <Card
           href={project.href}
           bgImg={project.bgImg}
@@ -53,6 +68,8 @@ const allProjects = await getAllProjects(locale);
           interactionText={project.interactionText}
           tags={project.tags}
           iconStyle={project.iconStyle}
+          transitionName={project.transitionName}
+          revealIndex={i}
         />
       ))
     }

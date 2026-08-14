@@ -1,0 +1,35 @@
+---
+// Cursor-reactive WebGL2 flow-field haze, meant to sit in Banner's
+// `backdrop` slot (first child, painted below Banner's gradient scrim and
+// title). Pure GLSL, no image/model assets. Fully self-guarding — see
+// src/scripts/backdrop.ts — so if WebGL2 is unavailable or the visitor
+// prefers reduced motion, this renders nothing and Banner's photo is the
+// complete, intentional-looking page on its own.
+---
+
+<canvas class="shader-backdrop" data-shader-canvas aria-hidden="true"></canvas>
+<script>
+  const canvas = document.querySelector('[data-shader-canvas]');
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (canvas instanceof HTMLCanvasElement && !reduced) {
+    const start = () => {
+      import('@/scripts/backdrop').then((mod) => mod.initBackdrop(canvas));
+    };
+    if ('requestIdleCallback' in window) {
+      window.requestIdleCallback(start, { timeout: 2000 });
+    } else {
+      setTimeout(start, 200);
+    }
+  }
+</script>
+
+<style>
+  .shader-backdrop {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+</style>

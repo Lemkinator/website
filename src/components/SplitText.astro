@@ -1,0 +1,21 @@
+---
+// Splits `text` into per-character spans at build time, for the
+// glyph-decode reveal in src/scripts/scramble.ts. The real string lives in
+// aria-label on the wrapper; the per-character spans are aria-hidden, so
+// screen readers read the word once and never see the scramble.
+interface Props {
+  text: string;
+  class?: string;
+}
+
+const { text, class: className } = Astro.props;
+const chars = [...text];
+---
+
+<span class:list={['split-text', className]} aria-label={text} data-scramble>
+  {chars.map((char) => <span aria-hidden="true">{char === ' ' ? ' ' : char}</span>)}
+</span>
+<script>
+  import { initScramble } from '@/scripts/scramble';
+  initScramble();
+</script>
