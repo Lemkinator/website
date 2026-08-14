@@ -1,44 +1,16 @@
 ---
-import { getCollection } from 'astro:content';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Giscus from '@/components/Giscus.astro';
 import CardGrid from '@/components/CardGrid.astro';
 import Card from '@/components/Card.astro';
 import Banner from '@/components/Banner.astro';
 import { useTranslations, defaultLocale, type Locale } from '@/i18n/ui';
+import { getAllProjects } from '@/lib/projects';
 
 const locale = (Astro.currentLocale ?? defaultLocale) as Locale;
 const t = useTranslations(locale);
 
-const apps = await getCollection('apps', (entry) => entry.id.startsWith('de/'));
-const media = await getCollection('media', (entry) => entry.id.startsWith('de/'));
-
-const allProjects = [
-  ...apps.map((app) => ({
-    href: `/de/apps/${app.data.slug}`,
-    bgImg: app.data.icon,
-    title: app.data.name,
-    description: app.data.tagline,
-    date: app.data.date,
-    dateLabel: app.data.date.toLocaleDateString('de-DE', { month: 'short', year: 'numeric' }),
-    interactionIcon: 'download' as const,
-    interactionText: app.data.downloads,
-    tags: app.data.tags,
-    iconStyle: true,
-  })),
-  ...media.map((project) => ({
-    href: `/de/media/${project.data.slug}`,
-    bgImg: project.data.coverImage,
-    title: project.data.title,
-    description: project.data.description,
-    date: project.data.date,
-    dateLabel: project.data.date.toLocaleDateString('de-DE', { day: '2-digit', month: 'short', year: 'numeric' }),
-    interactionIcon: 'eye' as const,
-    interactionText: project.data.views,
-    tags: project.data.tags,
-    iconStyle: false,
-  })),
-].sort((a, b) => b.date.valueOf() - a.date.valueOf());
+const allProjects = await getAllProjects(locale);
 ---
 
 <BaseLayout title="Leonard Lemke" description="Website">
