@@ -17,13 +17,20 @@ export function initGallery(): void {
     if (slides.length < 2) return; // nothing to page through
 
     // ---- Dot indicator ----
+    // Localized via the `data-goto-label` template Gallery.astro renders
+    // from src/i18n/ui.ts (see CLAUDE.md: UI chrome strings live there, not
+    // hardcoded in scripts) — falls back to English if it's ever missing.
+    const gotoLabel = gallery.dataset.gotoLabel ?? 'Go to slide {n} of {total}';
     const dotsEl = document.createElement('div');
     dotsEl.className = 'gallery__dots';
     const dots = slides.map((_, i) => {
       const dot = document.createElement('button');
       dot.type = 'button';
       dot.className = 'gallery__dot';
-      dot.setAttribute('aria-label', `Go to slide ${i + 1} of ${slides.length}`);
+      dot.setAttribute(
+        'aria-label',
+        gotoLabel.replace('{n}', String(i + 1)).replace('{total}', String(slides.length)),
+      );
       dot.addEventListener('click', () => {
         goTo(i);
         userInteracted();
