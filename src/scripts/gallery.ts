@@ -114,9 +114,13 @@ export function initGallery(): void {
       dragging = false;
       track.classList.remove('is-dragging');
     };
+    // No pointerleave listener here: setPointerCapture (above) keeps
+    // pointermove/pointerup targeting the track even once the cursor
+    // physically leaves it, but pointerleave still fires regardless of
+    // capture — ending the drag on it would freeze the gesture mid-drag
+    // while the button is still held.
     track.addEventListener('pointerup', endDrag);
     track.addEventListener('pointercancel', endDrag);
-    track.addEventListener('pointerleave', endDrag);
     track.addEventListener('touchstart', userInteracted, { passive: true });
 
     // ---- Autoplay: advances every few seconds, pauses on any interaction
