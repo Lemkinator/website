@@ -162,6 +162,10 @@ export function initBackdrop(canvas: HTMLCanvasElement): void {
   }
 
   window.addEventListener('pointermove', (e) => {
+    // Skip the layout read + allocation once the canvas is offscreen or
+    // the tab is backgrounded — frame() already bails in that state, so
+    // this work would just be discarded.
+    if (!isActive()) return;
     const rect = canvas.getBoundingClientRect();
     mouse = [(e.clientX - rect.left) / rect.width, (e.clientY - rect.top) / rect.height];
   });
