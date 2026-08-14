@@ -327,7 +327,6 @@
   }
 
   .card .tag {
-    display: inline-block;
     background: color-mix(in srgb, var(--color-accent) 14%, transparent);
     color: var(--color-accent);
     font-size: 0.75rem;
