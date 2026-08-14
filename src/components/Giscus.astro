@@ -9,7 +9,11 @@ import { defaultLocale } from '@/i18n/ui';
 const locale = Astro.currentLocale ?? defaultLocale;
 ---
 
-<div class="giscus-container" style="max-width: var(--content-width); margin: 0 auto; padding: 0 var(--space-4);">
+<div
+  class="giscus-container"
+  data-reveal="up"
+  style="max-width: var(--content-width); margin: 0 auto; padding: 0 var(--space-4);"
+>
   <script
     is:inline
     src="https://giscus.app/client.js"
