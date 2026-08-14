@@ -270,6 +270,9 @@
 
   .card .interaction {
     left: var(--space-2);
+    /* Keeps digit width stable while counter.ts counts up, so the badge
+       doesn't jitter/reflow as the number grows. */
+    font-variant-numeric: tabular-nums;
   }
 
   .card .date {

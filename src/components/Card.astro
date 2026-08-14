@@ -54,6 +54,14 @@ const {
 const resolvedBg =
   typeof bgImg === 'string' ? bgImg : (await getImage({ src: bgImg, format: 'avif', width: 800 })).src;
 
+// Splits "10000 +" into a countable number (animated by counter.ts) and a
+// static suffix (" +"), so the count-up only ever touches the digits.
+// Falls back to rendering interactionText verbatim if it doesn't start
+// with a number.
+const countMatch = interactionText?.match(/^(\d+)(.*)$/);
+const countValue = countMatch?.[1];
+const countSuffix = countMatch?.[2] ?? '';
+
 const style = [
   `--bg-img: url(${resolvedBg})`,
   transitionName && `view-transition-name: ${transitionName}`,
@@ -88,7 +96,15 @@ const style = [
         interactionIcon && interactionText && (
           <div class="interaction">
             <Icon name={interactionIcon} />
-            &nbsp;&nbsp;{interactionText}
+            &nbsp;&nbsp;
+            {countValue ? (
+              <>
+                <span data-count-to={countValue}>{countValue}</span>
+                {countSuffix}
+              </>
+            ) : (
+              interactionText
+            )}
           </div>
         )
       }
