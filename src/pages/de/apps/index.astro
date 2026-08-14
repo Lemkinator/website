@@ -1,5 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
+import { getRelativeLocaleUrl } from 'astro:i18n';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Giscus from '@/components/Giscus.astro';
 import CardGrid from '@/components/CardGrid.astro';
@@ -18,7 +19,7 @@ const apps = (await getCollection('apps', (entry) => entry.id.startsWith('de/'))
     {
       apps.map((app) => (
         <Card
-          href={`/de/apps/${app.data.slug}`}
+          href={getRelativeLocaleUrl('de', `/apps/${app.data.slug}`)}
           bgImg={app.data.icon}
           title={app.data.name}
           description={app.data.tagline}

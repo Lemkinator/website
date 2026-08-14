@@ -1,4 +1,5 @@
 ---
+import { getRelativeLocaleUrl } from 'astro:i18n';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Giscus from '@/components/Giscus.astro';
 import Gallery from '@/components/Gallery.astro';
@@ -63,7 +64,7 @@ import Banner from '@/components/Banner.astro';
       <p class="about-location">Remote - Leonard Lemke</p>
       <p class="about-date">Dezember 2019 - Heute</p>
       <p class="about-description">Entwicklung moderner Apps in Samsungs OneUI-Design.</p>
-      <button class="lButton"><a href="/de/apps">Projekte</a></button>
+      <button class="lButton"><a href={getRelativeLocaleUrl('de', '/apps')}>Projekte</a></button>
       <button class="lButton"><a href="mailto:apps@leonard-lemke.com">Kontakt</a></button>
 
       <br /><br /><br />
@@ -72,7 +73,7 @@ import Banner from '@/components/Banner.astro';
       <p class="about-date">Mai 2019 - Heute</p>
       <p class="about-description">Bearbeiten von Videoaufnahmen einer Racing-Drohne.</p>
       <p class="about-description">Teilen von Erlebnissen durch die Augen einer Drohne.</p>
-      <button class="lButton"><a href="/de/media">Projekte</a></button>
+      <button class="lButton"><a href={getRelativeLocaleUrl('de', '/media')}>Projekte</a></button>
       <button class="lButton"><a href="mailto:media@leonard-lemke.com">Kontakt</a></button>
     </div>
 

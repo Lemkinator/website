@@ -1,4 +1,5 @@
 ---
+import { getRelativeLocaleUrl } from 'astro:i18n';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Giscus from '@/components/Giscus.astro';
 import CardGrid from '@/components/CardGrid.astro';
@@ -22,13 +23,13 @@ const allProjects = await getAllProjects(locale);
 
   <CardGrid>
     <Card
-      href="/de/apps"
+      href={getRelativeLocaleUrl('de', '/apps')}
       bgImg="https://www.leonard-lemke.com/images/apps/oneUI/OneUIBanner.jpg"
       title="Apps"
       description="Moderne Apps in Samsungs OneUI-Design."
     />
     <Card
-      href="/de/media"
+      href={getRelativeLocaleUrl('de', '/media')}
       bgImg="https://www.leonard-lemke.com/images/media/evoque_v2.jpg"
       title="Media"
       description={t('home.mediaTagline')}

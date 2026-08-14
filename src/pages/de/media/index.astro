@@ -1,5 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
+import { getRelativeLocaleUrl } from 'astro:i18n';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Giscus from '@/components/Giscus.astro';
 import CardGrid from '@/components/CardGrid.astro';
@@ -26,7 +27,7 @@ const projects = (await getCollection('media', (entry) => entry.id.startsWith('d
     {
       projects.map((project) => (
         <Card
-          href={`/de/media/${project.data.slug}`}
+          href={getRelativeLocaleUrl('de', `/media/${project.data.slug}`)}
           bgImg={project.data.coverImage}
           title={project.data.title}
           description={project.data.description}

@@ -1,5 +1,6 @@
 ---
 import { getCollection, render } from 'astro:content';
+import { getRelativeLocaleUrl } from 'astro:i18n';
 import ProjectLayout from '@/layouts/ProjectLayout.astro';
 import Banner from '@/components/Banner.astro';
 
@@ -38,7 +39,7 @@ const { name, tagline, icon, bannerImage, playStoreUrl, githubUrl, privacyPolicy
       {
         privacyPolicy && (
           <button class="lButton">
-            <a href={`/de/apps/${entry.data.slug}/privacy-policy`}>Datenschutzerklärung</a>
+            <a href={getRelativeLocaleUrl('de', `/apps/${entry.data.slug}/privacy-policy`)}>Datenschutzerklärung</a>
           </button>
         )
       }
