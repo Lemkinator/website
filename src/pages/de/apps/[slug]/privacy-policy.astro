@@ -14,11 +14,11 @@ export async function getStaticPaths() {
 }
 
 const { entry } = Astro.props;
-const { name } = entry.data;
+const { name, icon } = entry.data;
 const { contactEmail, lastUpdated, includesPlayGamesSection } = entry.data.privacyPolicy!;
 ---
 
-<PrivacyPolicyLayout appName={name} lastUpdated={lastUpdated}>
+<PrivacyPolicyLayout appName={name} lastUpdated={lastUpdated} icon={icon}>
   <h1>Datenschutzerklärung</h1>
 
   <h2>App</h2>

@@ -9,9 +9,10 @@ import { useTranslations, defaultLocale, type Locale } from '@/i18n/ui';
 interface Props {
   appName: string;
   lastUpdated: Date;
+  icon: string;
 }
 
-const { appName, lastUpdated } = Astro.props;
+const { appName, lastUpdated, icon } = Astro.props;
 const locale = (Astro.currentLocale ?? defaultLocale) as Locale;
 const t = useTranslations(locale);
 
@@ -22,7 +23,11 @@ const dateFormatted = new Intl.DateTimeFormat(locale === 'de' ? 'de-DE' : 'en-US
 }).format(lastUpdated);
 ---
 
-<BaseLayout title={`${appName} — ${t('privacy.title')}`} description={`${appName} ${t('privacy.title')}`}>
+<BaseLayout
+  title={`${appName} — ${t('privacy.title')}`}
+  description={`${appName} ${t('privacy.title')}`}
+  image={icon}
+>
   <div class="content">
     <slot />
     <p class="privacy-updated">
