@@ -1,14 +1,17 @@
 /*
- * Motion layer: scroll-driven reveals, nav shrink-to-glass, scroll progress
- * bar. Everything here is pure CSS (animation-timeline: view()/scroll()) —
- * no JS, runs on the compositor thread, cannot cause scroll jank.
+ * Motion layer: scroll reveals, nav shrink-to-glass, scroll progress bar,
+ * native view transitions. Reveals are IntersectionObserver + a CSS
+ * transition (src/scripts/reveal.ts) — see the note at the reveal rules for
+ * why, after a real incident with the CSS-native alternative. Nav
+ * shrink/progress-bar are pure CSS (animation-timeline: scroll()), no JS,
+ * running on the compositor thread.
  *
  * Browser support is intentionally Chrome/Chromium-first (see CLAUDE.md
- * motion decisions): every effect is wrapped in @supports so browsers
- * without it (Firefox, as of FF 152/June 2026 still behind a flag) simply
- * never apply it. Nothing here sets a resting state of invisible outside an
- * @supports block, so the no-support fallback is automatically a complete,
- * fully visible page — not a broken one.
+ * motion decisions): scroll()-timeline effects are wrapped in @supports so
+ * browsers without it (Firefox, as of FF 152/June 2026 still behind a flag)
+ * simply never apply them. Nothing in this file sets a resting state of
+ * invisible outside a JS-armed or @supports-gated block, so every fallback
+ * path is a complete, fully visible page — not a broken one.
  */
 @layer motion {
   /* ---------- Reduced motion: global backstop ---------- */
@@ -28,70 +31,43 @@
   }
 
   /* ---------- Scroll-driven reveals ---------- */
-  /* Deliberately no `opacity` in any of these three keyframes. Earlier
-     versions animated opacity 0->1 here; a scroll-driven timeline that
-     doesn't reach 100% for any reason (browser quirk, animation-delay
-     math — see the note in the [data-reveal] rule below) left content
-     stuck at opacity:0, i.e. invisible AND unclickable. Sliding/scaling
-     from an off state is a nice reveal; hiding content behind a timeline
-     that might never resolve is not worth the risk twice. Transform
-     (translate/scale) only for "up"/"scale":
-     never causes layout shift. "blur" animates filter, which also doesn't
-     affect layout. Apply via data-reveal="up|scale|blur|stagger" on the
-     element that should animate; "stagger" is the same motion as "up" but
-     signals the element is expected to carry --i (see Card.astro). */
-  @keyframes reveal-up {
-    from {
-      translate: 0 var(--reveal-distance);
-    }
-    to {
-      translate: 0 0;
-    }
+  /* IntersectionObserver-driven (src/scripts/reveal.ts), not CSS
+     animation-timeline: view(). That was the original implementation and
+     it shipped a real incident — elements went permanently invisible for
+     some visitors. animation-delay on a scroll-linked (non-monotonic)
+     timeline doesn't mean "wait Nms": spec converts a time value into a
+     proportion of the timeline's own range, which can push a staggered
+     card's "finished" point past 100% of its range, so it never reaches
+     the visible end state. Root-caused by reproducing it locally, not
+     guessed. IntersectionObserver has none of that: it's a plain
+     boolean "is this on screen", decades-proven, no range math.
+     Progressive enhancement, not a hide-by-default: [data-reveal]
+     elements are fully visible until JS explicitly arms them (adds
+     .reveal-pending below) — so no-JS, JS-error, and
+     IntersectionObserver-unsupported all fail open to "just visible",
+     never to "stuck invisible". */
+  [data-reveal].reveal-pending {
+    translate: 0 var(--reveal-distance);
+    transition:
+      translate var(--dur-slow) var(--ease-out),
+      scale var(--dur-slow) var(--ease-out),
+      filter var(--dur-slow) var(--ease-out);
+    transition-delay: calc(var(--i, 0) * 60ms);
   }
 
-  @keyframes reveal-scale {
-    from {
-      scale: 0.92;
-    }
-    to {
-      scale: 1;
-    }
+  [data-reveal='scale'].reveal-pending {
+    translate: none;
+    scale: 0.92;
   }
 
-  @keyframes reveal-blur {
-    from {
-      filter: blur(14px);
-    }
-    to {
-      filter: blur(0);
-    }
+  [data-reveal='blur'].reveal-pending {
+    filter: blur(14px);
   }
 
-  @supports (animation-timeline: view()) {
-    @media (prefers-reduced-motion: no-preference) {
-      [data-reveal] {
-        animation-name: reveal-up;
-        animation-timing-function: linear;
-        animation-fill-mode: both;
-        animation-timeline: view();
-        animation-range: entry 5% cover 35%;
-        /* No animation-delay here on purpose (see incident note above): a
-           scroll-driven timeline is non-monotonic, and a time value like
-           `60ms` doesn't mean "wait 60ms" — spec converts it into a
-           proportion of the timeline's own range, which can push a card's
-           "finished" point past 100% of its range. --i is kept as a custom
-           property (some callers still set it) but intentionally unused
-           here. */
-      }
-
-      [data-reveal='scale'] {
-        animation-name: reveal-scale;
-      }
-
-      [data-reveal='blur'] {
-        animation-name: reveal-blur;
-      }
-    }
+  [data-reveal].reveal-visible {
+    translate: 0 0;
+    scale: 1;
+    filter: blur(0);
   }
 
   /* ---------- Nav: shrink-to-glass on scroll ---------- */
