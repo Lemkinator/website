@@ -23,6 +23,11 @@ export function initKonami(): void {
           `%c${engaged ? '⚡ max motion engaged' : 'back to normal'}`,
           'font-size:14px;font-weight:bold;color:#7d97ff',
         );
+        // Only on engage, not on disengage — a burst fits "you found the
+        // secret," not "you turned it back off." Dynamically imported so
+        // the particle code never loads for the near-total majority of
+        // visitors who don't type the code.
+        if (engaged) import('@/scripts/confetti').then((mod) => mod.burstConfetti());
       }
       return;
     }

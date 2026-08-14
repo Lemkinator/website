@@ -247,6 +247,14 @@
     background: color-mix(in srgb, var(--color-fg) 15%, transparent);
   }
 
+  /* ---------- Konami confetti burst (src/scripts/confetti.ts) ---------- */
+  .confetti-burst {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    pointer-events: none;
+  }
+
   /* ---------- Native cross-document view transitions ---------- */
   /* Deliberately NOT Astro's <ClientRouter /> — that turns navigation into
      SPA-style DOM swaps, which would require re-initializing Giscus
