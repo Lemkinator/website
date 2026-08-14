@@ -154,6 +154,49 @@
     }
   }
 
+  /* ---------- Ambient background drift ---------- */
+  /* A very faint two-blob radial wash, fixed behind all content, that
+     slowly hue-rotates as the whole document scrolls — same
+     animation-timeline: scroll(root) compositor technique as the navbar
+     glass effect above, so it's 0 KB JS and runs off the main thread.
+     z-index: -1 is safe here specifically because a box's own background
+     always paints before any of its descendants (including negative-z-index
+     ones) — body's var(--color-bg) is still the floor, this sits just above
+     it, and every normal-flow descendant (nav, main, footer) paints over it
+     untouched. */
+  body {
+    position: relative;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background:
+      radial-gradient(circle at 20% 15%, color-mix(in srgb, var(--color-accent) 10%, transparent), transparent 55%),
+      radial-gradient(circle at 85% 75%, color-mix(in srgb, #ff8fd6 8%, transparent), transparent 55%);
+  }
+
+  @keyframes ambient-drift {
+    from {
+      filter: hue-rotate(0deg);
+    }
+    to {
+      filter: hue-rotate(35deg);
+    }
+  }
+
+  @supports (animation-timeline: scroll()) {
+    @media (prefers-reduced-motion: no-preference) {
+      body::before {
+        animation: ambient-drift linear both;
+        animation-timeline: scroll(root);
+      }
+    }
+  }
+
   /* ---------- Native cross-document view transitions ---------- */
   /* Deliberately NOT Astro's <ClientRouter /> — that turns navigation into
      SPA-style DOM swaps, which would require re-initializing Giscus
