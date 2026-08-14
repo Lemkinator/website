@@ -268,14 +268,33 @@
     font-size: 0.95rem;
   }
 
+  /* Checkbox-driven disclosure — no JS. The checkbox
+     (.navbar__toggle-input) is the actual interactive/focusable control;
+     .navbar__toggle is just its visible hamburger-icon label. */
+  .navbar__toggle-input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
   .navbar__toggle {
     display: none;
     flex-direction: column;
     gap: 4px;
-    background: none;
-    border: none;
     cursor: pointer;
     padding: 0.5em;
+  }
+
+  .navbar__toggle-input:focus-visible + .navbar__toggle {
+    outline: 2px solid var(--color-fg);
+    outline-offset: 2px;
+    border-radius: var(--radius-md);
   }
 
   .navbar__toggle .bar {
@@ -312,7 +331,7 @@
       gap: var(--space-3);
     }
 
-    .navbar__menu.active {
+    .navbar__toggle-input:checked ~ .navbar__menu {
       display: flex;
     }
   }

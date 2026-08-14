@@ -24,11 +24,12 @@ const links = [
     <a href={getRelativeLocaleUrl(locale, '/')} class="navbar__name">
       <img class="navbar__logo" src="/images/logo/icon_50.png" width="50" height="50" alt="logo" />
     </a>
-    <button class="navbar__toggle" id="mobile-menu" aria-label="Toggle menu" aria-expanded="false">
+    <input type="checkbox" id="mobile-menu-toggle" class="navbar__toggle-input" aria-label="Toggle menu" />
+    <label for="mobile-menu-toggle" class="navbar__toggle" aria-hidden="true">
       <span class="bar"></span>
       <span class="bar"></span>
       <span class="bar"></span>
-    </button>
+    </label>
     <ul class="navbar__menu">
       {
         links.map((link) => (
@@ -45,15 +46,3 @@ const links = [
     </ul>
   </div>
 </nav>
-
-<script>
-  const menu = document.querySelector('#mobile-menu');
-  const menuLinks = document.querySelector('.navbar__menu');
-
-  menu?.addEventListener('click', () => {
-    const expanded = menu.getAttribute('aria-expanded') === 'true';
-    menu.setAttribute('aria-expanded', String(!expanded));
-    menu.classList.toggle('is-active');
-    menuLinks?.classList.toggle('active');
-  });
-</script>
