@@ -25,9 +25,22 @@ interface Props {
   // Runs the title through SplitText's glyph-decode reveal (see
   // SplitText.astro / scramble.ts). Opt-in — only the homepage hero uses it.
   scrambleTitle?: boolean;
+  // Sweeps an animated gradient highlight across the title (background-clip:
+  // text). Opt-in and deliberately exclusive to the homepage hero, same as
+  // scrambleTitle+ShaderBackdrop — one page gets the full flourish stack,
+  // interior banners stay calmer.
+  shineTitle?: boolean;
 }
 
-const { image, title, subtitle, compact = false, transitionName, scrambleTitle = false } = Astro.props;
+const {
+  image,
+  title,
+  subtitle,
+  compact = false,
+  transitionName,
+  scrambleTitle = false,
+  shineTitle = false,
+} = Astro.props;
 
 // Background-image can't use <Image>'s <img srcset> — it's a CSS url().
 // getImage() gives us the same AVIF-encoded, resized output as a plain URL
@@ -49,7 +62,7 @@ const style = [`--bg-img: url(${resolvedImage})`, transitionName && `view-transi
 <div class:list={['banner', { 'banner--compact': compact }]} style={style}>
   <slot name="backdrop" />
   <div class="banner__content">
-    <h1>{scrambleTitle ? <SplitText text={title} /> : title}</h1>
+    <h1 class:list={{ shine: shineTitle }}>{scrambleTitle ? <SplitText text={title} /> : title}</h1>
     {subtitle && <p>{subtitle}</p>}
     <slot />
   </div>
@@ -141,6 +154,41 @@ const style = [`--bg-img: url(${resolvedImage})`, transitionName && `view-transi
     font-size: clamp(2rem, 6vw, 3.5rem);
     font-weight: 800;
     letter-spacing: -0.02em;
+  }
+
+  /* Shiny gradient sweep. The gradient tiles seamlessly at background-size:
+     200% (both edges of the pattern are --color-fg), so animating
+     background-position from 0 to -200% loops with no visible seam or
+     snap-back. Under reduced motion, motion.css's global backstop collapses
+     the animation to a single near-instant frame, which lands back on the
+     same tile phase — so it fails open to plain gradient-tinted text, not a
+     stuck highlight. */
+  .banner__content h1.shine {
+    background: linear-gradient(
+      100deg,
+      var(--color-fg) 0%,
+      var(--color-fg) 40%,
+      #fff 50%,
+      var(--color-accent) 54%,
+      var(--color-fg) 62%,
+      var(--color-fg) 100%
+    );
+    background-size: 200% auto;
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .banner__content h1.shine {
+      animation: hero-shine 5s linear infinite;
+    }
+  }
+
+  @keyframes hero-shine {
+    to {
+      background-position: -200% center;
+    }
   }
 
   .banner__content p {
