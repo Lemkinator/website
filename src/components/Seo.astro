@@ -6,7 +6,7 @@
 // og:url and canonical are both derived from the same Astro.site value, which
 // fixes the non-www/www mismatch that existed on every legacy page.
 import { getRelativeLocaleUrl } from 'astro:i18n';
-import { locales, defaultLocale } from '@/i18n/ui';
+import { locales, defaultLocale, getLocaleAgnosticPath } from '@/i18n/ui';
 
 interface Props {
   title: string;
@@ -24,8 +24,7 @@ const imageUrl = new URL(image, Astro.site);
 
 // path with the current locale prefix stripped, so we can rebuild an
 // alternate-locale URL for each hreflang entry below.
-const localeAgnosticPath =
-  locale === defaultLocale ? Astro.url.pathname : Astro.url.pathname.replace(new RegExp(`^/${locale}`), '') || '/';
+const localeAgnosticPath = getLocaleAgnosticPath(locale, Astro.url.pathname);
 ---
 
 <meta charset="UTF-8" />
