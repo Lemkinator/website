@@ -1,0 +1,226 @@
+/*
+ * Motion layer: scroll-driven reveals, nav shrink-to-glass, scroll progress
+ * bar. Everything here is pure CSS (animation-timeline: view()/scroll()) —
+ * no JS, runs on the compositor thread, cannot cause scroll jank.
+ *
+ * Browser support is intentionally Chrome/Chromium-first (see CLAUDE.md
+ * motion decisions): every effect is wrapped in @supports so browsers
+ * without it (Firefox, as of FF 152/June 2026 still behind a flag) simply
+ * never apply it. Nothing here sets a resting state of invisible outside an
+ * @supports block, so the no-support fallback is automatically a complete,
+ * fully visible page — not a broken one.
+ */
+@layer motion {
+  /* ---------- Reduced motion: global backstop ---------- */
+  /* Catches every animation/transition site-wide, including ones added
+     later without their own guard. Individual effects below additionally
+     gate on (prefers-reduced-motion: no-preference) so they never even
+     attach a timeline for these users, but this is the safety net. */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  /* ---------- Scroll-driven reveals ---------- */
+  /* Deliberately no `opacity` in any of these three keyframes. Earlier
+     versions animated opacity 0->1 here; a scroll-driven timeline that
+     doesn't reach 100% for any reason (browser quirk, animation-delay
+     math — see the note in the [data-reveal] rule below) left content
+     stuck at opacity:0, i.e. invisible AND unclickable. Sliding/scaling
+     from an off state is a nice reveal; hiding content behind a timeline
+     that might never resolve is not worth the risk twice. Transform
+     (translate/scale) only for "up"/"scale":
+     never causes layout shift. "blur" animates filter, which also doesn't
+     affect layout. Apply via data-reveal="up|scale|blur|stagger" on the
+     element that should animate; "stagger" is the same motion as "up" but
+     signals the element is expected to carry --i (see Card.astro). */
+  @keyframes reveal-up {
+    from {
+      translate: 0 var(--reveal-distance);
+    }
+    to {
+      translate: 0 0;
+    }
+  }
+
+  @keyframes reveal-scale {
+    from {
+      scale: 0.92;
+    }
+    to {
+      scale: 1;
+    }
+  }
+
+  @keyframes reveal-blur {
+    from {
+      filter: blur(14px);
+    }
+    to {
+      filter: blur(0);
+    }
+  }
+
+  @supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+      [data-reveal] {
+        animation-name: reveal-up;
+        animation-timing-function: linear;
+        animation-fill-mode: both;
+        animation-timeline: view();
+        animation-range: entry 5% cover 35%;
+        /* No animation-delay here on purpose (see incident note above): a
+           scroll-driven timeline is non-monotonic, and a time value like
+           `60ms` doesn't mean "wait 60ms" — spec converts it into a
+           proportion of the timeline's own range, which can push a card's
+           "finished" point past 100% of its range. --i is kept as a custom
+           property (some callers still set it) but intentionally unused
+           here. */
+      }
+
+      [data-reveal='scale'] {
+        animation-name: reveal-scale;
+      }
+
+      [data-reveal='blur'] {
+        animation-name: reveal-blur;
+      }
+    }
+  }
+
+  /* ---------- Nav: shrink-to-glass on scroll ---------- */
+  @keyframes navbar-glass {
+    from {
+      background-color: color-mix(in srgb, var(--color-surface) 85%, transparent);
+      backdrop-filter: blur(16px);
+    }
+    to {
+      background-color: color-mix(in srgb, var(--color-surface) 97%, transparent);
+      backdrop-filter: blur(28px);
+    }
+  }
+
+  @keyframes navbar-container-shrink {
+    from {
+      padding-block: var(--space-3);
+    }
+    to {
+      padding-block: 0.55rem;
+    }
+  }
+
+  @supports (animation-timeline: scroll()) {
+    @media (prefers-reduced-motion: no-preference) {
+      .navbar {
+        animation: navbar-glass linear both;
+        animation-timeline: scroll(root);
+        animation-range: 0 220px;
+      }
+
+      .navbar__container {
+        animation: navbar-container-shrink linear both;
+        animation-timeline: scroll(root);
+        animation-range: 0 220px;
+      }
+    }
+  }
+
+  /* ---------- Scroll progress bar (BaseLayout renders .scroll-progress) --------- */
+  .scroll-progress {
+    position: fixed;
+    inset: 0 0 auto 0;
+    height: 3px;
+    transform-origin: left;
+    scale: 0 1;
+    background: linear-gradient(90deg, var(--color-accent), color-mix(in srgb, var(--color-accent) 40%, #ff8fd6));
+    z-index: 20;
+    pointer-events: none;
+  }
+
+  @keyframes progress-grow {
+    from {
+      scale: 0 1;
+    }
+    to {
+      scale: 1 1;
+    }
+  }
+
+  @supports (animation-timeline: scroll()) {
+    @media (prefers-reduced-motion: no-preference) {
+      .scroll-progress {
+        animation: progress-grow linear both;
+        animation-timeline: scroll(root);
+      }
+    }
+  }
+
+  /* ---------- Native cross-document view transitions ---------- */
+  /* Deliberately NOT Astro's <ClientRouter /> — that turns navigation into
+     SPA-style DOM swaps, which would require re-initializing Giscus
+     (data-mapping="pathname") on every astro:page-load. This is a real
+     navigation, so Giscus/GoatCounter/every inline script keep working
+     untouched; the browser just animates the swap. 0 KB. */
+  @view-transition {
+    navigation: auto;
+  }
+
+  /* Nav and footer are visually identical across navigations — hold them
+     static instead of letting the default root cross-fade double-expose
+     them for a frame. */
+  .navbar {
+    view-transition-name: site-nav;
+  }
+
+  .footer__container {
+    view-transition-name: site-footer;
+  }
+
+  ::view-transition-old(site-nav),
+  ::view-transition-new(site-nav),
+  ::view-transition-old(site-footer),
+  ::view-transition-new(site-footer) {
+    animation: none;
+    mix-blend-mode: normal;
+  }
+
+  /* Default page-body transition: a soft directional fade, replacing the
+     browser's plain cross-fade for the root group. */
+  @keyframes vt-fade-out {
+    to {
+      opacity: 0;
+      transform: translateY(-12px) scale(0.99);
+    }
+  }
+
+  @keyframes vt-fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(12px) scale(0.99);
+    }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    ::view-transition-old(root) {
+      animation: vt-fade-out var(--dur-base) var(--ease-in-out) both;
+    }
+
+    ::view-transition-new(root) {
+      animation: vt-fade-in var(--dur-base) var(--ease-in-out) both;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    ::view-transition-group(*),
+    ::view-transition-old(*),
+    ::view-transition-new(*) {
+      animation: none !important;
+    }
+  }
+}

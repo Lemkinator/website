@@ -1,6 +1,7 @@
 /*
  * Design system tokens — promoted from the winning Phase 2 prototype
- * (direction A: OneUI-inspired). Supports light + dark via light-dark().
+ * (direction A: OneUI-inspired). Dark-only (see commit c3c6b5a); the
+ * light-dark() plan was reverted, and color-scheme below is fixed to dark.
  */
 :root {
   color-scheme: dark;
@@ -28,4 +29,43 @@
 
   --content-width: 700px;
   --grid-width: 1100px;
+
+  /* Motion — see src/styles/motion.css for the primitives built on these. */
+  --dur-fast: 0.18s;
+  --dur-base: 0.4s;
+  --dur-slow: 0.9s;
+  --dur-scene: 1.6s;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-spring: linear(
+    0,
+    0.221 2.2%,
+    0.821 8.2%,
+    1.101 11.6%,
+    1.209 13.5%,
+    1.24 15%,
+    1.201 17.4%,
+    1.098 21.1%,
+    1.011 26.9%,
+    0.986 32.5%,
+    0.996 39%,
+    1.003 51%,
+    1
+  );
+  --reveal-distance: 2.5rem;
+}
+
+/* Konami code easter egg (src/scripts/konami.ts) — toggles .max-motion on
+   <html>. Every scroll-driven/view-transition rule in motion.css (and the
+   parallax keyframes in Banner.astro) reads these as var(), so turning the
+   tokens up is enough to turn those effects up with them: slower,
+   longer-throw reveals; a longer view-transition fade. Plain hover
+   micro-interactions (card lift, spotlight) use fixed short durations by
+   design and are unaffected. */
+:root.max-motion {
+  --dur-fast: 0.4s;
+  --dur-base: 0.9s;
+  --dur-slow: 1.8s;
+  --dur-scene: 3s;
+  --reveal-distance: 7rem;
 }
