@@ -70,7 +70,9 @@ const goatcounterCode = import.meta.env.PUBLIC_GOATCOUNTER_CODE;
   import { initKonami } from '@/scripts/konami';
   import { initReveal } from '@/scripts/reveal';
   import { initMagnetic } from '@/scripts/magnetic';
+  import { initCursor } from '@/scripts/cursor';
   initKonami();
+  initCursor();
   // Global, not just from CardGrid — every page wraps in BaseLayout, so any
   // [data-reveal] element anywhere (prose sections, privacy-policy text,
   // not just card grids) gets picked up automatically.
