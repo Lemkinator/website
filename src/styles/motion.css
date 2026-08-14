@@ -197,56 +197,6 @@
     }
   }
 
-  /* ---------- Custom cursor (JS-armed, see src/scripts/cursor.ts) ---------- */
-  /* Only hides the system cursor once .custom-cursor lands on <html> — a JS
-     error, touch, or reduced-motion all fail open to the plain system
-     cursor, never a missing one. */
-  html.custom-cursor,
-  html.custom-cursor a,
-  html.custom-cursor button {
-    cursor: none;
-  }
-
-  .cursor-dot,
-  .cursor-ring {
-    position: fixed;
-    top: 0;
-    left: 0;
-    translate: -50% -50%;
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 999;
-    opacity: 0;
-    mix-blend-mode: difference;
-    transition:
-      opacity var(--dur-fast) var(--ease-out),
-      width var(--dur-fast) var(--ease-out),
-      height var(--dur-fast) var(--ease-out);
-  }
-
-  .cursor-dot--visible,
-  .cursor-ring--visible {
-    opacity: 1;
-  }
-
-  .cursor-dot {
-    width: 8px;
-    height: 8px;
-    background: var(--color-fg);
-  }
-
-  .cursor-ring {
-    width: 34px;
-    height: 34px;
-    border: 1.5px solid var(--color-fg);
-  }
-
-  .cursor-ring--active {
-    width: 54px;
-    height: 54px;
-    background: color-mix(in srgb, var(--color-fg) 15%, transparent);
-  }
-
   /* ---------- Konami confetti burst (src/scripts/confetti.ts) ---------- */
   .confetti-burst {
     position: fixed;
