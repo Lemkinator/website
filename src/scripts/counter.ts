@@ -11,36 +11,26 @@ export function initCounters(selector = '[data-count-to]'): void {
   const elements = document.querySelectorAll<HTMLElement>(selector);
   if (!elements.length) return;
 
-  elements.forEach((el) => {
-    el.textContent = '0';
-  });
+  // The real server-rendered number stays on screen until an element is
+  // actually about to animate — only blank it to "0" right before starting,
+  // not upfront for every badge on the page. Off-screen badges (never
+  // observed) keep showing their correct count the whole time.
+  const io = new IntersectionObserver(
+    (entries) => {
+      for (const entry of entries) {
+        if (!entry.isIntersecting) continue;
+        const el = entry.target as HTMLElement;
+        io.unobserve(el);
+        const target = Number(el.dataset.countTo);
+        if (!Number.isFinite(target)) continue;
+        el.textContent = '0';
+        animateCount(el, target);
+      }
+    },
+    { threshold: 0.5 },
+  );
 
-  // Same two-rAF pattern as reveal.ts: guarantees the "0" state has
-  // actually painted before anything can jump straight to the target,
-  // and avoids racing IntersectionObserver's near-instant first callback
-  // for already-in-view badges.
-  requestAnimationFrame(() => {
-    requestAnimationFrame(() => {
-      const io = new IntersectionObserver(
-        (entries) => {
-          for (const entry of entries) {
-            if (!entry.isIntersecting) continue;
-            const el = entry.target as HTMLElement;
-            io.unobserve(el);
-            const target = Number(el.dataset.countTo);
-            if (!Number.isFinite(target)) {
-              el.textContent = el.dataset.countTo ?? '';
-              continue;
-            }
-            animateCount(el, target);
-          }
-        },
-        { threshold: 0.5 },
-      );
-
-      elements.forEach((el) => io.observe(el));
-    });
-  });
+  elements.forEach((el) => io.observe(el));
 }
 
 function animateCount(el: HTMLElement, target: number): void {
