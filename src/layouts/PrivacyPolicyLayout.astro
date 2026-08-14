@@ -30,12 +30,6 @@ const dateFormatted = new Intl.DateTimeFormat(locale === 'de' ? 'de-DE' : 'en-US
 >
   <div class="content">
     <slot />
-    <p class="privacy-updated">
-      {
-        locale === 'de'
-          ? `Diese Aussage wurde zuletzt am ${dateFormatted} aktualisiert.`
-          : `This statement was last updated on ${dateFormatted}.`
-      }
-    </p>
+    <p class="privacy-updated">{t('privacy.lastUpdated').replace('{date}', dateFormatted)}</p>
   </div>
 </BaseLayout>

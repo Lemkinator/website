@@ -23,6 +23,7 @@ export const ui = {
     'card.viewProject': 'View project',
     'card.download': 'Download',
     'privacy.title': 'Privacy Policy',
+    'privacy.lastUpdated': 'This statement was last updated on {date}.',
     'home.mediaTagline': 'Cinematic / Freestyle FPV',
   },
   de: {
@@ -42,6 +43,7 @@ export const ui = {
     'card.viewProject': 'Projekt ansehen',
     'card.download': 'Herunterladen',
     'privacy.title': 'Datenschutzerklärung',
+    'privacy.lastUpdated': 'Diese Aussage wurde zuletzt am {date} aktualisiert.',
     'home.mediaTagline': 'Kinematisch / Freestyle FPV',
   },
 } as const;
