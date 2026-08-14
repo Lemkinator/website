@@ -18,17 +18,27 @@ export function initReveal(selector = '[data-reveal]'): void {
 
   elements.forEach((el) => el.classList.add('reveal-pending'));
 
-  const io = new IntersectionObserver(
-    (entries) => {
-      for (const entry of entries) {
-        if (!entry.isIntersecting) continue;
-        entry.target.classList.remove('reveal-pending');
-        entry.target.classList.add('reveal-visible');
-        io.unobserve(entry.target);
-      }
-    },
-    { threshold: 0.1, rootMargin: '0px 0px -10% 0px' },
-  );
+  // IntersectionObserver fires its first callback for already-in-view
+  // elements almost immediately — often before the browser has painted the
+  // .reveal-pending state even once. Without a real "hidden" frame to
+  // transition away from, the CSS transition has nothing to animate: the
+  // element just appears at rest, looking like it never animated at all.
+  // Two rAFs guarantee at least one paint has happened first.
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      const io = new IntersectionObserver(
+        (entries) => {
+          for (const entry of entries) {
+            if (!entry.isIntersecting) continue;
+            entry.target.classList.remove('reveal-pending');
+            entry.target.classList.add('reveal-visible');
+            io.unobserve(entry.target);
+          }
+        },
+        { threshold: 0.1, rootMargin: '0px 0px -10% 0px' },
+      );
 
-  elements.forEach((el) => io.observe(el));
+      elements.forEach((el) => io.observe(el));
+    });
+  });
 }
