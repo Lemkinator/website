@@ -13,7 +13,7 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props;
 const { Content } = await render(entry);
-const { name, tagline, icon, bannerImage, playStoreUrl, githubUrl } = entry.data;
+const { name, tagline, icon, bannerImage, playStoreUrl, githubUrl, privacyPolicy } = entry.data;
 ---
 
 <ProjectLayout title={name} description={tagline} image={bannerImage}>
@@ -35,9 +35,13 @@ const { name, tagline, icon, bannerImage, playStoreUrl, githubUrl } = entry.data
     <br id="links" /><br /><br />
     <div>
       <h2>Links</h2>
-      <button class="lButton">
-        <a href={`/apps/${entry.data.slug}/privacy-policy`}>Privacy Policy</a>
-      </button>
+      {
+        privacyPolicy && (
+          <button class="lButton">
+            <a href={`/apps/${entry.data.slug}/privacy-policy`}>Privacy Policy</a>
+          </button>
+        )
+      }
       {
         githubUrl && (
           <button class="lButton">
