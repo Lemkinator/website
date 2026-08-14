@@ -327,12 +327,18 @@
   }
 
   .card .tag {
+    display: inline-block;
     background: color-mix(in srgb, var(--color-accent) 14%, transparent);
     color: var(--color-accent);
     font-size: 0.75rem;
     font-weight: 600;
     padding: 0.25em 0.7em;
     border-radius: 999px;
+    transition: scale var(--dur-fast) var(--ease-spring);
+  }
+
+  .card .tag:hover {
+    scale: 1.12;
   }
 
   .card .interaction,
@@ -548,6 +554,16 @@
     color: var(--color-fg);
     font-size: 1.2rem;
     display: flex;
+    transition:
+      translate var(--dur-fast) var(--ease-spring),
+      scale var(--dur-fast) var(--ease-spring),
+      color var(--dur-fast) var(--ease-out);
+  }
+
+  .social__icon--link:hover {
+    translate: 0 -3px;
+    scale: 1.15;
+    color: var(--color-accent);
   }
 }
 
