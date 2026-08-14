@@ -16,7 +16,7 @@ interface Props {
 const { title, description, image, noindex, comments = true } = Astro.props;
 ---
 
-<BaseLayout title={title} description={description} image={image} noindex={noindex}>
+<BaseLayout title={title} description={description} image={image} type="article" noindex={noindex}>
   <slot />
   {comments && <Giscus />}
 </BaseLayout>
