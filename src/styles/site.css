@@ -229,7 +229,7 @@
     --my: 50%;
     --lift: 0px;
     transform: translateY(var(--lift)) rotateX(var(--rx)) rotateY(var(--ry));
-    transition: transform 0.25s var(--ease-out, ease), box-shadow 0.25s ease;
+    transition: transform 0.25s var(--ease-out, ease), box-shadow var(--dur-fast) var(--ease-spring);
   }
 
   /* Cursor spotlight, positioned via the same --mx/--my pointer.ts writes. */
@@ -594,7 +594,7 @@
     --mag-x: 0px;
     --mag-y: 0px;
     transform: translate(var(--mag-x), var(--mag-y));
-    transition: width 0.25s ease, background 0.25s ease, transform 0.2s ease-out;
+    transition: width var(--dur-fast) var(--ease-spring), background var(--dur-fast) var(--ease-spring), transform 0.2s ease-out;
   }
 
   .gallery__dot:hover {
