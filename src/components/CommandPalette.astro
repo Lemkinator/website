@@ -45,7 +45,10 @@ const commands = [...pages, ...projectCommands, ...actions];
 
 <button type="button" class="command-trigger" data-command-trigger aria-label={t('command.trigger')}>
   <span>{t('command.trigger')}</span>
-  <kbd>⌘K</kbd>
+  <span class="command-trigger__keys">
+    <kbd>Ctrl</kbd>
+    <kbd>K</kbd>
+  </span>
 </button>
 
 <dialog class="command-palette" data-command-palette aria-label={t('command.trigger')}>
@@ -99,12 +102,18 @@ const commands = [...pages, ...projectCommands, ...actions];
     border-color: var(--color-muted);
   }
 
+  .command-trigger__keys {
+    display: inline-flex;
+    gap: 0.25rem;
+  }
+
   .command-trigger kbd {
     font-family: inherit;
     font-size: 0.75rem;
     background: var(--color-surface);
+    border: 1px solid var(--color-line);
     border-radius: 4px;
-    padding: 0.1rem 0.35rem;
+    padding: 0.1rem 0.4rem;
   }
 
   .command-palette {
