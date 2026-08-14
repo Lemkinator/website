@@ -17,7 +17,7 @@ const { name, tagline, icon, bannerImage, playStoreUrl, githubUrl, privacyPolicy
 ---
 
 <ProjectLayout title={name} description={tagline} image={bannerImage}>
-  <Banner image={bannerImage} title={name} subtitle={tagline}>
+  <Banner image={bannerImage} title={name} subtitle={tagline} transitionName={`proj-app-${entry.data.slug}`}>
     {
       playStoreUrl && (
         <a target="_blank" rel="noopener noreferrer" href={playStoreUrl}>

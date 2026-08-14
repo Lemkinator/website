@@ -20,7 +20,12 @@ const { title, description, coverImage } = entry.data;
 ---
 
 <ProjectLayout title={title} description={description} image={coverImage}>
-  <Banner image={coverImage} title={title} subtitle={t('home.mediaTagline')} />
+  <Banner
+    image={coverImage}
+    title={title}
+    subtitle={t('home.mediaTagline')}
+    transitionName={`proj-media-${entry.data.slug}`}
+  />
 
   <div class="content">
     <Content />

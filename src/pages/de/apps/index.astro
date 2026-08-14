@@ -10,11 +10,16 @@ const apps = await getAppCards('de');
 ---
 
 <BaseLayout title="Apps" description="Leonard Lemke" image="/images/apps/oneUI/OneUIBanner.jpg">
-  <Banner image="/images/apps/oneUI/OneUIBanner.jpg" title="Apps" subtitle="Moderne Apps in Samsungs OneUI-Design." />
+  <Banner
+    image="/images/apps/oneUI/OneUIBanner.jpg"
+    title="Apps"
+    subtitle="Moderne Apps in Samsungs OneUI-Design."
+    transitionName="hub-apps"
+  />
 
   <CardGrid>
     {
-      apps.map((app) => (
+      apps.map((app, i) => (
         <Card
           href={app.href}
           bgImg={app.bgImg}
@@ -25,6 +30,8 @@ const apps = await getAppCards('de');
           interactionText={app.interactionText}
           tags={app.tags}
           iconStyle={app.iconStyle}
+          transitionName={app.transitionName}
+          revealIndex={i}
         />
       ))
     }

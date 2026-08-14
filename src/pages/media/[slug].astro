@@ -17,7 +17,12 @@ const { title, description, coverImage } = entry.data;
 ---
 
 <ProjectLayout title={title} description={description} image={coverImage}>
-  <Banner image={coverImage} title={title} subtitle="Cinematic/Freestyle FPV" />
+  <Banner
+    image={coverImage}
+    title={title}
+    subtitle="Cinematic/Freestyle FPV"
+    transitionName={`proj-media-${entry.data.slug}`}
+  />
 
   <div class="content">
     <Content />
