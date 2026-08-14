@@ -12,8 +12,7 @@
   // safely finds every [data-tilt] card on the page regardless of which
   // CardGrid instance's script tag actually ran.
   import { initCardTilt, initVideoPeek } from '@/scripts/pointer';
-  import { initReveal } from '@/scripts/reveal';
+  // initReveal() runs globally from BaseLayout.astro now, not per-grid.
   initCardTilt();
   initVideoPeek();
-  initReveal();
 </script>

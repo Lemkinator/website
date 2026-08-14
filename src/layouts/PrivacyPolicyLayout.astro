@@ -28,7 +28,7 @@ const dateFormatted = new Intl.DateTimeFormat(locale === 'de' ? 'de-DE' : 'en-US
   description={`${appName} ${t('privacy.title')}`}
   image={icon}
 >
-  <div class="content">
+  <div class="content" data-reveal="up">
     <slot />
     <p class="privacy-updated">{t('privacy.lastUpdated').replace('{date}', dateFormatted)}</p>
   </div>
