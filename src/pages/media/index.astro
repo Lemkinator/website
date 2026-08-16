@@ -6,7 +6,7 @@ import Card from '@/components/Card.astro';
 import Gallery from '@/components/Gallery.astro';
 import Banner from '@/components/Banner.astro';
 import { getMediaCards } from '@/lib/projects';
-import mediaBannerImage from '@/assets/images/media/evoque_v2.jpg';
+import mediaBannerImage from '@/assets/images/media/banner.jpg';
 
 const projects = await getMediaCards('en');
 ---
@@ -16,6 +16,7 @@ const projects = await getMediaCards('en');
     image={mediaBannerImage}
     title="Media"
     subtitle="Cinematic/Freestyle FPV"
+    imageAlt="AI-generated abstract artwork of FPV drone light trails over a night sky"
     transitionName="hub-media"
     scrambleTitle
   />

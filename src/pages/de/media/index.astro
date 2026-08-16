@@ -7,7 +7,7 @@ import Gallery from '@/components/Gallery.astro';
 import Banner from '@/components/Banner.astro';
 import { useTranslations } from '@/i18n/ui';
 import { getMediaCards } from '@/lib/projects';
-import mediaBannerImage from '@/assets/images/media/evoque_v2.jpg';
+import mediaBannerImage from '@/assets/images/media/banner.jpg';
 
 const t = useTranslations('de');
 
@@ -19,6 +19,7 @@ const projects = await getMediaCards('de');
     image={mediaBannerImage}
     title="Media"
     subtitle={t('home.mediaTagline')}
+    imageAlt="KI-generierte abstrakte Grafik von FPV-Drohnen-Lichtspuren am Nachthimmel"
     transitionName="hub-media"
     scrambleTitle
   />
