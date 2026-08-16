@@ -4,15 +4,20 @@
 // tags — Sudoku is the one outlier with an extra Play Games data section)
 // into a single template driven by content-collection frontmatter.
 import BaseLayout from './BaseLayout.astro';
+import Banner from '@/components/Banner.astro';
 import { useTranslations, defaultLocale, type Locale } from '@/i18n/ui';
 
 interface Props {
   appName: string;
   lastUpdated: Date;
   icon: ImageMetadata;
+  // Reuses the app's own banner (content collection bannerImage/bannerImageAlt)
+  // instead of generating a dedicated image per privacy-policy page.
+  bannerImage: string;
+  bannerImageAlt: string;
 }
 
-const { appName, lastUpdated, icon } = Astro.props;
+const { appName, lastUpdated, icon, bannerImage, bannerImageAlt } = Astro.props;
 const locale = (Astro.currentLocale ?? defaultLocale) as Locale;
 const t = useTranslations(locale);
 
@@ -28,6 +33,8 @@ const dateFormatted = new Intl.DateTimeFormat(locale === 'de' ? 'de-DE' : 'en-US
   description={`${appName} ${t('privacy.title')}`}
   image={icon}
 >
+  <Banner image={bannerImage} title={appName} subtitle={t('privacy.title')} imageAlt={bannerImageAlt} compact />
+
   <div class="content" data-reveal="up">
     <slot />
     <p class="privacy-updated">{t('privacy.lastUpdated').replace('{date}', dateFormatted)}</p>
