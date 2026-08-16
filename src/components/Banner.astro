@@ -30,6 +30,11 @@ interface Props {
   // scrambleTitle+ShaderBackdrop — one page gets the full flourish stack,
   // interior banners stay calmer.
   shineTitle?: boolean;
+  // Screen-reader-only description of the background image, since it's a
+  // CSS background-image (no native <img alt>). Also doubles as the EU AI
+  // Act Art. 50(4) disclosure for banners generated with AI — say so in the
+  // text itself (e.g. "AI-generated artwork of ...").
+  imageAlt?: string;
 }
 
 const {
@@ -40,6 +45,7 @@ const {
   transitionName,
   scrambleTitle = false,
   shineTitle = false,
+  imageAlt,
 } = Astro.props;
 
 // Background-image can't use <Image>'s <img srcset> — it's a CSS url().
@@ -60,6 +66,7 @@ const style = [`--bg-img: url(${resolvedImage})`, transitionName && `view-transi
 ---
 
 <div class:list={['banner', { 'banner--compact': compact }]} style={style}>
+  {imageAlt && <span class="sr-only">{imageAlt}</span>}
   <slot name="backdrop" />
   <div class="banner__content">
     <h1 class:list={{ shine: shineTitle }}>{scrambleTitle ? <SplitText text={title} /> : title}</h1>
@@ -196,5 +203,17 @@ const style = [`--bg-img: url(${resolvedImage})`, transitionName && `view-transi
     color: rgba(255, 255, 255, 0.85);
     font-size: 1.05rem;
     max-width: 60ch;
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
   }
 </style>
