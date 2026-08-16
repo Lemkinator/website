@@ -16,6 +16,20 @@ privacyPolicy:
 ---
 
 import Gallery from '@/components/Gallery.astro';
+import { Image } from 'astro:assets';
+import mobile1Img from '../../../assets/images/apps/nakbuch/mobile1.png';
+import mobile2Img from '../../../assets/images/apps/nakbuch/mobile2.png';
+import mobile3Img from '../../../assets/images/apps/nakbuch/mobile3.png';
+import mobile4Img from '../../../assets/images/apps/nakbuch/mobile4.png';
+import mobile5Img from '../../../assets/images/apps/nakbuch/mobile5.png';
+import mobile6Img from '../../../assets/images/apps/nakbuch/mobile6.png';
+import wear1Img from '../../../assets/images/apps/nakbuch/wear1.png';
+import wear2Img from '../../../assets/images/apps/nakbuch/wear2.png';
+import wear3Img from '../../../assets/images/apps/nakbuch/wear3.png';
+import wear4Img from '../../../assets/images/apps/nakbuch/wear4.png';
+import shortcutImg from '../../../assets/images/apps/nakbuch/shortcut.png';
+import quickActionsImg from '../../../assets/images/apps/nakbuch/quick_actions.png';
+import virtualpianoImg from '../../../assets/images/apps/nakbuch/virtualpiano.png';
 
 This app is in no way affiliated with the New Apostolic Church or Verlag Friedrich Bischoff GmbH and
 contains only the copyright-free texts (856 of 1593 songs) from the following books:
@@ -67,12 +81,12 @@ and can be used on all Android smartphones, tablets, [smartwatches](#wear-os-sup
 ## Screenshots
 
 <Gallery>
-  <img src="/images/apps/nakbuch/mobile1.png" alt="" />
-  <img src="/images/apps/nakbuch/mobile2.png" alt="" />
-  <img src="/images/apps/nakbuch/mobile3.png" alt="" />
-  <img src="/images/apps/nakbuch/mobile4.png" alt="" />
-  <img src="/images/apps/nakbuch/mobile5.png" alt="" />
-  <img src="/images/apps/nakbuch/mobile6.png" alt="" />
+  <Image src={mobile1Img} alt="" />
+  <Image src={mobile2Img} alt="" />
+  <Image src={mobile3Img} alt="" />
+  <Image src={mobile4Img} alt="" />
+  <Image src={mobile5Img} alt="" />
+  <Image src={mobile6Img} alt="" />
 </Gallery>
 
 ## Wear OS support
@@ -81,10 +95,10 @@ Forgotten your smartphone? No problem, the text contents of the app can be displ
 without any problems (in a pleasant design).
 
 <Gallery>
-  <img src="/images/apps/nakbuch/wear1.png" alt="" />
-  <img src="/images/apps/nakbuch/wear2.png" alt="" />
-  <img src="/images/apps/nakbuch/wear3.png" alt="" />
-  <img src="/images/apps/nakbuch/wear4.png" alt="" />
+  <Image src={wear1Img} alt="" />
+  <Image src={wear2Img} alt="" />
+  <Image src={wear3Img} alt="" />
+  <Image src={wear4Img} alt="" />
 </Gallery>
 
 ## Windows support
@@ -163,18 +177,18 @@ Your personal data at a glance.
 
 Don't like all books in one app? With NAKBuch you can create a shortcut for each book.
 
-<img class="mobile-image" src="/images/apps/nakbuch/shortcut.png" alt="" />
+<Image class="mobile-image" src={shortcutImg} alt="" />
 
 ### Quick Actions
 
 To quickly mute your smartphone, activate Do Not Disturb mode or open the official app if the full
 lyrics cannot displayed.
 
-<img class="mobile-image" src="/images/apps/nakbuch/quick_actions.png" alt="" />
+<Image class="mobile-image" src={quickActionsImg} alt="" />
 
 ### Virtual Piano
 
 Discover the magic of music with the virtual piano. Whether you are looking for relaxation or want to
 be creative - it accompanies you with its harmonious tones, no matter where you are.
 
-<img class="mobile-image-landscape" src="/images/apps/nakbuch/virtualpiano.png" alt="" />
+<Image class="mobile-image-landscape" src={virtualpianoImg} alt="" />

@@ -16,6 +16,20 @@ privacyPolicy:
 ---
 
 import Gallery from '@/components/Gallery.astro';
+import { Image } from 'astro:assets';
+import mobile1Img from '../../../assets/images/apps/nakbuch/mobile1.png';
+import mobile2Img from '../../../assets/images/apps/nakbuch/mobile2.png';
+import mobile3Img from '../../../assets/images/apps/nakbuch/mobile3.png';
+import mobile4Img from '../../../assets/images/apps/nakbuch/mobile4.png';
+import mobile5Img from '../../../assets/images/apps/nakbuch/mobile5.png';
+import mobile6Img from '../../../assets/images/apps/nakbuch/mobile6.png';
+import wear1Img from '../../../assets/images/apps/nakbuch/wear1.png';
+import wear2Img from '../../../assets/images/apps/nakbuch/wear2.png';
+import wear3Img from '../../../assets/images/apps/nakbuch/wear3.png';
+import wear4Img from '../../../assets/images/apps/nakbuch/wear4.png';
+import shortcutImg from '../../../assets/images/apps/nakbuch/shortcut.png';
+import quickActionsImg from '../../../assets/images/apps/nakbuch/quick_actions.png';
+import virtualpianoImg from '../../../assets/images/apps/nakbuch/virtualpiano.png';
 
 Diese App steht in keiner Verbindung zur Neuapostolischen Kirche oder der Verlag Friedrich Bischoff GmbH
 und beinhaltet lediglich die urheberrechtsfreien Texte (856 von 1593 Liedern) aus den folgenden Büchern:
@@ -69,12 +83,12 @@ von NAKBuch als [Web App](#web-app-nakbuch-lite) entwickelt.
 ## Screenshots
 
 <Gallery>
-  <img src="/images/apps/nakbuch/mobile1.png" alt="" />
-  <img src="/images/apps/nakbuch/mobile2.png" alt="" />
-  <img src="/images/apps/nakbuch/mobile3.png" alt="" />
-  <img src="/images/apps/nakbuch/mobile4.png" alt="" />
-  <img src="/images/apps/nakbuch/mobile5.png" alt="" />
-  <img src="/images/apps/nakbuch/mobile6.png" alt="" />
+  <Image src={mobile1Img} alt="" />
+  <Image src={mobile2Img} alt="" />
+  <Image src={mobile3Img} alt="" />
+  <Image src={mobile4Img} alt="" />
+  <Image src={mobile5Img} alt="" />
+  <Image src={mobile6Img} alt="" />
 </Gallery>
 
 ## Wear OS Unterstützung
@@ -83,10 +97,10 @@ Smartphone vergessen? Kein Problem, die Textinhalte der App lassen sich Probleml
 Design) auf der Smartwatch anzeigen.
 
 <Gallery>
-  <img src="/images/apps/nakbuch/wear1.png" alt="" />
-  <img src="/images/apps/nakbuch/wear2.png" alt="" />
-  <img src="/images/apps/nakbuch/wear3.png" alt="" />
-  <img src="/images/apps/nakbuch/wear4.png" alt="" />
+  <Image src={wear1Img} alt="" />
+  <Image src={wear2Img} alt="" />
+  <Image src={wear3Img} alt="" />
+  <Image src={wear4Img} alt="" />
 </Gallery>
 
 ## Windows-Unterstützung
@@ -165,18 +179,18 @@ Deine persönlichen Daten auf einen Blick.
 
 Alle Bücher in einer App ist unpraktisch? Für jedes Buch kann eine Verknüpfung erstellt werden.
 
-<img class="mobile-image" src="/images/apps/nakbuch/shortcut.png" alt="" />
+<Image class="mobile-image" src={shortcutImg} alt="" />
 
 ### Schnelle Aktionen
 
 Um das Smartphone schnell stumm zu schalten, den Bitte Nicht Stören Modus zu aktivieren oder die
 offizielle App zu öffnen, falls der vollständige Liedtext nicht angezeigt werden kann.
 
-<img class="mobile-image" src="/images/apps/nakbuch/quick_actions.png" alt="" />
+<Image class="mobile-image" src={quickActionsImg} alt="" />
 
 ### Virtuelles Klavier
 
 Entdecke die Magie der Musik mit dem virtuellen Klavier. Ob du nach Entspannung suchst oder kreativ
 werden möchtest – es begleitet dich mit seinen harmonischen Tönen, egal wo du gerade bist.
 
-<img class="mobile-image-landscape" src="/images/apps/nakbuch/virtualpiano.png" alt="" />
+<Image class="mobile-image-landscape" src={virtualpianoImg} alt="" />
