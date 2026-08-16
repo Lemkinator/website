@@ -57,12 +57,17 @@ const media = defineCollection({
       description: z.string(),
       date: z.coerce.date(),
       tags: z.array(z.string()).default([]),
-      // Card thumbnail + detail-page hero — same image() pipeline as apps.icon.
+      // Card thumbnail (project grid on /media) — real photo, same image()
+      // pipeline as apps.icon. Deliberately NOT the AI-generated banner: a
+      // small grid thumbnail reads better as an actual photo of the flight.
       coverImage: image(),
-      // Screen-reader description of coverImage when used as a Banner
-      // background (see apps.bannerImageAlt) — also the EU AI Act Art. 50(4)
-      // disclosure for the AI-generated banner artwork.
-      coverImageAlt: z.string(),
+      // Full-bleed detail-page Banner background — same split as
+      // apps.icon vs apps.bannerImage.
+      bannerImage: image(),
+      // Screen-reader description of bannerImage (see apps.bannerImageAlt) —
+      // also the EU AI Act Art. 50(4) disclosure for the AI-generated
+      // banner artwork.
+      bannerImageAlt: z.string(),
       // Card badge, e.g. "5000 +" views — display text only, not live analytics.
       views: z.string().optional(),
     }),

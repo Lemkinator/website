@@ -16,15 +16,15 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props;
 const { Content } = await render(entry);
-const { title, description, coverImage, coverImageAlt } = entry.data;
+const { title, description, bannerImage, bannerImageAlt } = entry.data;
 ---
 
-<ProjectLayout title={title} description={description} image={coverImage}>
+<ProjectLayout title={title} description={description} image={bannerImage}>
   <Banner
-    image={coverImage}
+    image={bannerImage}
     title={title}
     subtitle={t('home.mediaTagline')}
-    imageAlt={coverImageAlt}
+    imageAlt={bannerImageAlt}
     transitionName={`proj-media-${entry.data.slug}`}
     scrambleTitle
   />
