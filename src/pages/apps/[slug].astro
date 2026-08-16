@@ -14,7 +14,7 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props;
 const { Content } = await render(entry);
-const { name, tagline, icon, bannerImage, playStoreUrl, githubUrl, privacyPolicy } = entry.data;
+const { name, tagline, icon, bannerImage, bannerImageAlt, playStoreUrl, githubUrl, privacyPolicy } = entry.data;
 ---
 
 <ProjectLayout title={name} description={tagline} image={bannerImage}>
@@ -22,6 +22,7 @@ const { name, tagline, icon, bannerImage, playStoreUrl, githubUrl, privacyPolicy
     image={bannerImage}
     title={name}
     subtitle={tagline}
+    imageAlt={bannerImageAlt}
     transitionName={`proj-app-${entry.data.slug}`}
     scrambleTitle
   >

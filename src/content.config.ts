@@ -25,6 +25,10 @@ const apps = defineCollection({
       // presentation graphic) — distinct from `icon`, which is the small
       // squircle used in cards and the app-page corner icon.
       bannerImage: z.string(),
+      // Screen-reader description of bannerImage, since Banner renders it as a
+      // CSS background (no native <img alt>). Also the per-image EU AI Act
+      // Art. 50(4) disclosure for the AI-generated banner artwork.
+      bannerImageAlt: z.string(),
       playStoreUrl: z.string().url().optional(),
       githubUrl: z.string().url().optional(),
       // Card badge, e.g. "10000 +" downloads or "400" installs — display text
