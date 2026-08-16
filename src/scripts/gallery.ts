@@ -48,12 +48,8 @@ export function initGallery(): void {
       active = i;
       dots.forEach((d, idx) => d.classList.toggle('is-active', idx === i));
       // Re-arm autoplay now that `active` actually points at the slide the
-      // user/scroll landed on — scheduleAutoplay() reads slides[active] for
-      // its delay, and this is the only place that value is authoritative
-      // (goTo() itself is just a scroll call; this observer confirms it
-      // landed). Without this, the timeout set right after an autoplay
-      // advance (see scheduleAutoplay below) still measured the OLD slide's
-      // video, since `active` hadn't caught up yet.
+      // user/scroll landed on (goTo() itself is just a scroll call; this
+      // observer confirms it landed) — see scheduleAutoplay below.
       scheduleAutoplay();
     }
     function goTo(i: number) {
@@ -80,16 +76,20 @@ export function initGallery(): void {
     );
     slides.forEach((s) => activeObserver.observe(s));
 
-    // ---- Wheel: let vertical wheel motion drive horizontal scroll ----
+    // ---- Wheel: only genuinely horizontal wheel/trackpad input (shift+wheel,
+    //      two-finger horizontal swipe) drives the carousel. Plain vertical
+    //      wheel motion is left alone so scrolling the page while the cursor
+    //      happens to be over a gallery still scrolls the page — an earlier
+    //      version redirected vertical wheel into horizontal scroll instead,
+    //      which trapped the page scroll under any full-width gallery. ----
     track.addEventListener(
       'wheel',
       (e) => {
-        if (Math.abs(e.deltaX) >= Math.abs(e.deltaY)) return;
-        // deltaY is only pixels in DOM_DELTA_PIXEL mode (0). Line mode (1,
-        // notably Firefox/Windows with a traditional mouse) and page mode
-        // (2) report tiny/large unitless counts instead — scale those up
-        // to something that actually moves the track.
-        const pixels = e.deltaMode === 0 ? e.deltaY : e.deltaY * 16;
+        if (Math.abs(e.deltaX) <= Math.abs(e.deltaY)) return;
+        // deltaX is only pixels in DOM_DELTA_PIXEL mode (0). Line mode (1)
+        // and page mode (2) report tiny/large unitless counts instead —
+        // scale those up to something that actually moves the track.
+        const pixels = e.deltaMode === 0 ? e.deltaX : e.deltaX * 16;
         track.scrollLeft += pixels;
         e.preventDefault();
         userInteracted();
@@ -131,31 +131,65 @@ export function initGallery(): void {
     track.addEventListener('pointercancel', endDrag);
     track.addEventListener('touchstart', userInteracted, { passive: true });
 
-    // ---- Autoplay: advances every few seconds, pauses on any interaction
-    //      and while the gallery is scrolled off-screen, skipped entirely
-    //      under reduced motion. A <video> slide gets its own real duration
-    //      instead of the flat delay, so it plays out fully (once through
-    //      its loop) before the carousel moves on — a fixed short delay was
-    //      cutting clips off mid-loop. ----
+    // ---- Autoplay: advances once the active slide has run its course,
+    //      pauses on any interaction and while the gallery is scrolled
+    //      off-screen, skipped entirely under reduced motion.
+    //
+    //      A <video> slide advances on its own loop boundary (watched via
+    //      timeupdate, since these all have the `loop` attribute — `loop`
+    //      restarts playback internally without ever firing `ended`) rather
+    //      than a pre-computed duration: computing the delay from
+    //      video.duration up front raced the metadata actually being
+    //      loaded (NaN right after the slide first became active, before
+    //      the browser had buffered enough to know the clip's length),
+    //      which silently fell back to the flat image delay below instead
+    //      of the clip's real length. Watching playback directly sidesteps
+    //      that entirely. A capped fallback timer still applies in case
+    //      autoplay never actually starts (blocked by the browser). Image
+    //      slides just use the flat delay. ----
     let autoplayTimer = 0;
     let inView = false;
     const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let videoWatcher: { video: HTMLVideoElement; onTimeUpdate: () => void } | null = null;
 
-    function autoplayDelay(): number {
-      const video = slides[active].querySelector('video');
-      if (video && video.duration && !Number.isNaN(video.duration)) {
-        return video.duration * 1000;
-      }
-      return AUTOPLAY_DELAY;
+    function stopVideoWatcher() {
+      if (!videoWatcher) return;
+      videoWatcher.video.removeEventListener('timeupdate', videoWatcher.onTimeUpdate);
+      videoWatcher = null;
+    }
+
+    function advance() {
+      window.clearTimeout(autoplayTimer);
+      stopVideoWatcher();
+      goTo((active + 1) % slides.length);
     }
 
     function scheduleAutoplay() {
       window.clearTimeout(autoplayTimer);
+      stopVideoWatcher();
       if (reducedMotion || !inView) return;
-      autoplayTimer = window.setTimeout(() => {
-        goTo((active + 1) % slides.length);
-        scheduleAutoplay();
-      }, autoplayDelay());
+
+      const video = slides[active].querySelector('video');
+      if (!video) {
+        autoplayTimer = window.setTimeout(advance, AUTOPLAY_DELAY);
+        return;
+      }
+
+      let lastTime = video.currentTime;
+      const onTimeUpdate = () => {
+        // A loop restart snaps currentTime back near 0 instead of
+        // advancing — that drop is the loop boundary.
+        if (video.currentTime < lastTime - 0.25) {
+          advance();
+          return;
+        }
+        lastTime = video.currentTime;
+      };
+      video.addEventListener('timeupdate', onTimeUpdate);
+      videoWatcher = { video, onTimeUpdate };
+      // Safety net in case autoplay never starts (so timeupdate never
+      // fires) — don't strand the carousel on this slide forever.
+      autoplayTimer = window.setTimeout(advance, 15000);
     }
 
     function userInteracted() {
@@ -165,8 +199,12 @@ export function initGallery(): void {
     if (!reducedMotion) {
       new IntersectionObserver(([entry]) => {
         inView = entry.isIntersecting;
-        if (inView) scheduleAutoplay();
-        else window.clearTimeout(autoplayTimer);
+        if (inView) {
+          scheduleAutoplay();
+        } else {
+          window.clearTimeout(autoplayTimer);
+          stopVideoWatcher();
+        }
       }, {
         threshold: 0.3,
       }).observe(gallery);
