@@ -678,4 +678,18 @@
     border: none;
     border-radius: var(--radius-md);
   }
+
+  /* Shorts are vertical source — a 16/9 box left them tiny and pillarboxed
+     inside YouTube's own player chrome. */
+  .ventimiglia-video,
+  .san-gottardo-video,
+  .cala-del-forte-ventimiglia-video {
+    display: block;
+    width: 100%;
+    max-width: 360px;
+    aspect-ratio: 9 / 16;
+    border: none;
+    border-radius: var(--radius-md);
+    margin: 0 auto;
+  }
 }
