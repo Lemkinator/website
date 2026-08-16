@@ -47,6 +47,14 @@ export function initGallery(): void {
       if (i === active) return;
       active = i;
       dots.forEach((d, idx) => d.classList.toggle('is-active', idx === i));
+      // Re-arm autoplay now that `active` actually points at the slide the
+      // user/scroll landed on — scheduleAutoplay() reads slides[active] for
+      // its delay, and this is the only place that value is authoritative
+      // (goTo() itself is just a scroll call; this observer confirms it
+      // landed). Without this, the timeout set right after an autoplay
+      // advance (see scheduleAutoplay below) still measured the OLD slide's
+      // video, since `active` hadn't caught up yet.
+      scheduleAutoplay();
     }
     function goTo(i: number) {
       slides[i].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
