@@ -16,7 +16,7 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props;
 const { Content } = await render(entry);
-const { title, description, coverImage } = entry.data;
+const { title, description, coverImage, coverImageAlt } = entry.data;
 ---
 
 <ProjectLayout title={title} description={description} image={coverImage}>
@@ -24,6 +24,7 @@ const { title, description, coverImage } = entry.data;
     image={coverImage}
     title={title}
     subtitle={t('home.mediaTagline')}
+    imageAlt={coverImageAlt}
     transitionName={`proj-media-${entry.data.slug}`}
     scrambleTitle
   />

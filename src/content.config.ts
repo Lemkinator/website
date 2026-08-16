@@ -59,6 +59,10 @@ const media = defineCollection({
       tags: z.array(z.string()).default([]),
       // Card thumbnail + detail-page hero — same image() pipeline as apps.icon.
       coverImage: image(),
+      // Screen-reader description of coverImage when used as a Banner
+      // background (see apps.bannerImageAlt) — also the EU AI Act Art. 50(4)
+      // disclosure for the AI-generated banner artwork.
+      coverImageAlt: z.string(),
       // Card badge, e.g. "5000 +" views — display text only, not live analytics.
       views: z.string().optional(),
     }),
