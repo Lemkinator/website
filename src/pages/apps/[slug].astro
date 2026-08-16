@@ -3,6 +3,7 @@ import { getCollection, render } from 'astro:content';
 import { Image } from 'astro:assets';
 import ProjectLayout from '@/layouts/ProjectLayout.astro';
 import Banner from '@/components/Banner.astro';
+import playStoreBadge from '@/assets/images/apps/google-play-badge-en.png';
 
 export async function getStaticPaths() {
   const entries = await getCollection('apps', (entry) => entry.id.startsWith('en/'));
@@ -29,7 +30,7 @@ const { name, tagline, icon, bannerImage, bannerImageAlt, playStoreUrl, githubUr
     {
       playStoreUrl && (
         <a target="_blank" rel="noopener noreferrer" href={playStoreUrl}>
-          <img class="playstore_button" alt="Get it on Google Play" src="/images/apps/google-play-badge-en.png" />
+          <Image class="playstore_button" alt="Get it on Google Play" src={playStoreBadge} format="png" />
         </a>
       )
     }

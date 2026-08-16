@@ -3,8 +3,10 @@
 // injection. Rendered server-side, once per locale, no duplicate lang="en"/
 // lang="de" markup.
 import { getRelativeLocaleUrl } from 'astro:i18n';
+import { Image } from 'astro:assets';
 import { useTranslations, footerLinks, defaultLocale, type Locale } from '@/i18n/ui';
 import Icon from './Icon.astro';
+import logoImg from '@/assets/images/logo/icon_50.png';
 
 const locale = (Astro.currentLocale ?? defaultLocale) as Locale;
 const t = useTranslations(locale);
@@ -35,7 +37,7 @@ const year = new Date().getFullYear();
   <section class="social__media" data-reveal="stagger" style="--i: 1">
     <div class="social__media--wrap">
       <a href={getRelativeLocaleUrl(locale, '/')} class="footer__name">
-        <img class="footer__logo" src="/images/logo/icon_50.png" width="50" height="50" alt="logo" />
+        <Image class="footer__logo" src={logoImg} width={50} height={50} alt="logo" />
       </a>
       <div class="website__legal">
         <p class="website__rights">&copy; Leonard Lemke {year}. {t('footer.rights')}</p>

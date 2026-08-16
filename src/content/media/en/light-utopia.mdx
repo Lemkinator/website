@@ -12,7 +12,9 @@ bannerImageAlt: AI-generated abstract artwork of a car bathed in soft radiant li
 views: "1000 +"
 ---
 
+import { Image } from 'astro:assets';
 import Gallery from '@/components/Gallery.astro';
+import inMemoriamImg from '../../../assets/images/media/light-utopia/in_memoriam_rs3.jpg';
 import YouTube from '@/components/YouTube.astro';
 
 In Memoriam RS3
@@ -46,7 +48,7 @@ In Memoriam RS3
 
 This is the last video with the Audi RS3, as it has now been sold...
 
-<img id="light-utopia-rip-image" src="/images/media/light-utopia/in_memoriam_rs3.jpg" alt="In Memoriam RS3" />
+<Image id="light-utopia-rip-image" src={inMemoriamImg} alt="In Memoriam RS3" />
 
 Watch out, kids! This is what marriage does to you...
 

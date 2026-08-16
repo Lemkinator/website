@@ -4,9 +4,11 @@
 // AJAX round-trip, no anti-FOUC display:none hack, and no delay before the
 // nav/font/links exist in the DOM.
 import { getRelativeLocaleUrl } from 'astro:i18n';
+import { Image } from 'astro:assets';
 import { useTranslations, defaultLocale, getLocaleAgnosticPath, type Locale } from '@/i18n/ui';
 import LangToggle from './LangToggle.astro';
 import CommandPalette from './CommandPalette.astro';
+import logoImg from '@/assets/images/logo/icon_50.png';
 
 const locale = (Astro.currentLocale ?? defaultLocale) as Locale;
 const t = useTranslations(locale);
@@ -30,7 +32,7 @@ function isActive(path: string): boolean {
 <nav class="navbar">
   <div class="navbar__container">
     <a href={getRelativeLocaleUrl(locale, '/')} class="navbar__name">
-      <img class="navbar__logo" src="/images/logo/icon_50.png" width="50" height="50" alt="logo" />
+      <Image class="navbar__logo" src={logoImg} width={50} height={50} alt="logo" />
     </a>
     <input type="checkbox" id="mobile-menu-toggle" class="navbar__toggle-input" aria-label="Toggle menu" />
     <label for="mobile-menu-toggle" class="navbar__toggle" aria-hidden="true">

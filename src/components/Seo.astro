@@ -8,20 +8,21 @@
 import { getImage } from 'astro:assets';
 import { getRelativeLocaleUrl } from 'astro:i18n';
 import { locales, defaultLocale, getLocaleAgnosticPath } from '@/i18n/ui';
+import defaultImage from '@/assets/images/logo/icon.png';
 
 interface Props {
   title: string;
   description: string;
-  // Either a plain public/ path (the default logo, and any page that hasn't
-  // been migrated to src/assets yet) or a content-collection image() import
-  // (apps.icon / media.coverImage) — see Card.astro/Banner.astro for the
-  // same pattern.
+  // Every image on the site goes through src/assets — ImageMetadata is the
+  // only real input. The plain-string branch stays only because
+  // getImage() itself accepts either and it costs nothing to keep it typed
+  // that way; every current caller passes ImageMetadata.
   image?: ImageMetadata | string;
   type?: 'website' | 'article';
   noindex?: boolean;
 }
 
-const { title, description, image = '/images/logo/icon.png', type = 'website', noindex = false } = Astro.props;
+const { title, description, image = defaultImage, type = 'website', noindex = false } = Astro.props;
 
 const locale = (Astro.currentLocale ?? defaultLocale) as (typeof locales)[number];
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
