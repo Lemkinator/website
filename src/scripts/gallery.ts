@@ -56,6 +56,14 @@ export function initGallery(): void {
       slides[i].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
     }
 
+    // A slide is either a bare <video> itself (accelerate/light-utopia/2000)
+    // or a wrapper containing one (e.g. media/index.astro's captioned
+    // drone-journey gallery) — querySelector alone only finds the wrapped
+    // case, since it searches descendants, not the element itself.
+    function getSlideVideo(slideEl: HTMLElement): HTMLVideoElement | null {
+      return slideEl instanceof HTMLVideoElement ? slideEl : slideEl.querySelector('video');
+    }
+
     // ---- Keep the active dot in sync with whatever scrolled the track
     //      (wheel, drag, native touch swipe, or a dot click) ----
     const ratios = new Map<HTMLElement, number>();
@@ -135,26 +143,29 @@ export function initGallery(): void {
     //      pauses on any interaction and while the gallery is scrolled
     //      off-screen, skipped entirely under reduced motion.
     //
-    //      A <video> slide advances on its own loop boundary (watched via
-    //      timeupdate, since these all have the `loop` attribute — `loop`
-    //      restarts playback internally without ever firing `ended`) rather
-    //      than a pre-computed duration: computing the delay from
-    //      video.duration up front raced the metadata actually being
-    //      loaded (NaN right after the slide first became active, before
-    //      the browser had buffered enough to know the clip's length),
-    //      which silently fell back to the flat image delay below instead
-    //      of the clip's real length. Watching playback directly sidesteps
-    //      that entirely. A capped fallback timer still applies in case
-    //      autoplay never actually starts (blocked by the browser). Image
-    //      slides just use the flat delay. ----
+    //      A <video> slide advances on its own loop boundary rather than a
+    //      pre-computed duration: computing the delay from video.duration up
+    //      front raced the metadata actually being loaded (NaN right after
+    //      the slide first became active, before the browser had buffered
+    //      enough to know the clip's length), which silently fell back to
+    //      the flat image delay below instead of the clip's real length.
+    //      These clips all carry the `loop` attribute for graceful
+    //      degradation if this script never runs, which normally suppresses
+    //      `ended` — so the loop boundary here is watched by overriding
+    //      `loop` for the duration of the watch and restoring it after,
+    //      giving a first-class `ended` signal instead of guessing the
+    //      boundary from a currentTime delta. A capped fallback timer still
+    //      applies in case autoplay never actually starts (blocked by the
+    //      browser). Image slides just use the flat delay. ----
     let autoplayTimer = 0;
     let inView = false;
     const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
-    let videoWatcher: { video: HTMLVideoElement; onTimeUpdate: () => void } | null = null;
+    let videoWatcher: { video: HTMLVideoElement; onEnded: () => void; hadLoop: boolean } | null = null;
 
     function stopVideoWatcher() {
       if (!videoWatcher) return;
-      videoWatcher.video.removeEventListener('timeupdate', videoWatcher.onTimeUpdate);
+      videoWatcher.video.removeEventListener('ended', videoWatcher.onEnded);
+      videoWatcher.video.loop = videoWatcher.hadLoop;
       videoWatcher = null;
     }
 
@@ -175,32 +186,23 @@ export function initGallery(): void {
       stopVideoWatcher();
       if (reducedMotion || !inView) return;
 
-      // A slide is either a bare <video> itself (accelerate/light-utopia/
-      // 2000) or a wrapper containing one (e.g. media/index.astro's
-      // captioned drone-journey gallery) — querySelector alone only finds
-      // the wrapped case, since it searches descendants, not the element
-      // itself.
-      const slideEl = slides[active];
-      const video = slideEl instanceof HTMLVideoElement ? slideEl : slideEl.querySelector('video');
+      const video = getSlideVideo(slides[active]);
       if (!video) {
         autoplayTimer = window.setTimeout(advance, AUTOPLAY_DELAY);
         return;
       }
 
-      let lastTime = video.currentTime;
-      const onTimeUpdate = () => {
-        // A loop restart snaps currentTime back near 0 instead of
-        // advancing — that drop is the loop boundary.
-        if (video.currentTime < lastTime - 0.25) {
-          advance();
-          return;
-        }
-        lastTime = video.currentTime;
+      const hadLoop = video.loop;
+      video.loop = false;
+      const onEnded = () => {
+        video.currentTime = 0;
+        video.loop = hadLoop;
+        advance();
       };
-      video.addEventListener('timeupdate', onTimeUpdate);
-      videoWatcher = { video, onTimeUpdate };
-      // Safety net in case autoplay never starts (so timeupdate never
-      // fires) — don't strand the carousel on this slide forever.
+      video.addEventListener('ended', onEnded, { once: true });
+      videoWatcher = { video, onEnded, hadLoop };
+      // Safety net in case autoplay never starts (so `ended` never fires) —
+      // don't strand the carousel on this slide forever.
       autoplayTimer = window.setTimeout(advance, 15000);
     }
 
