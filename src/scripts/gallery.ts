@@ -159,9 +159,15 @@ export function initGallery(): void {
     }
 
     function advance() {
-      window.clearTimeout(autoplayTimer);
-      stopVideoWatcher();
-      goTo((active + 1) % slides.length);
+      const next = (active + 1) % slides.length;
+      goTo(next);
+      // goTo() is just a scroll call — normally the IntersectionObserver
+      // confirms it landed and calls setActiveDot itself. But scrollIntoView
+      // can be a no-op (e.g. a narrow gallery where both slides are already
+      // fully visible side-by-side), in which case the observer never
+      // reports a ratio change and autoplay would silently never re-arm.
+      // Advance the dot directly instead of relying solely on the observer.
+      setActiveDot(next);
     }
 
     function scheduleAutoplay() {
