@@ -32,7 +32,8 @@ Two collections, each with `en/` and `de/` subdirectories under `src/content/<co
   `downloads`, `privacyPolicy.*`); the MDX body holds the actual prose/screenshots/videos.
   `privacyPolicy` frontmatter drives `src/pages/apps/[slug]/privacy-policy.astro` — the 5
   privacy-policy pages are one template, not 5 separate files.
-- **`media`** — the 3 FPV/cinematic video projects (2000, accelerate, light-utopia).
+- **`media`** — the 6 FPV/cinematic video projects (2000, accelerate, light-utopia, ventimiglia,
+  san-gottardo, cala-del-forte-ventimiglia).
 
 Both collections use a `glob` loader with a custom `generateId` (see `content.config.ts`) —
 **do not remove it**. Without it, `en/foo.mdx` and `de/foo.mdx` both get id `"foo"` and silently
@@ -56,8 +57,9 @@ collide (last one loaded wins), because the default id is just the basename.
 
 ## Deferred work
 
-Screenshot/UI PNGs and JPGs (`public/images/apps/**`, `public/images/media/**`) are still served
-as-is rather than through Astro's `<Image />` pipeline (AVIF/WebP + responsive `srcset`) — that
-would require moving them from `public/` into `src/assets/` and converting every reference from a
-string path to an ESM import, which touches nearly every page. Flagged as a separate follow-up,
-not started.
+Screenshot/UI PNGs and JPGs (`public/images/apps/**`, `public/images/media/**`) have been fully
+migrated to Astro's `<Image />` pipeline (AVIF/WebP + responsive `srcset`) via `src/assets/` —
+nothing raster remains served as-is from those paths. The `.mp4`/`.webm` gallery clips under the
+same `public/images/apps/**` and `public/images/media/**` paths are still served as-is; Astro has
+no equivalent optimization pipeline for video, so migrating those is a separate, not-yet-started
+follow-up.

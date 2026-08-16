@@ -47,7 +47,8 @@ const apps = defineCollection({
     }),
 });
 
-// FPV/cinematic video project pages (media/{2000,accelerate,light-utopia}.html today).
+// FPV/cinematic video project pages (media/{2000,accelerate,light-utopia,
+// ventimiglia,san-gottardo,cala-del-forte-ventimiglia}.html today).
 const media = defineCollection({
   loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/media', generateId }),
   schema: ({ image }) =>
