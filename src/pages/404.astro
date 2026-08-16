@@ -1,18 +1,22 @@
 ---
+import { Image } from 'astro:assets';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Banner from '@/components/Banner.astro';
+import bannerImg from '@/assets/images/404/banner.jpg';
+import errorPosterImg from '@/assets/images/error/error-poster.jpg';
+import errorImg from '@/assets/images/error/error.webp';
 ---
 
-<BaseLayout title="Leonard Lemke" description="404" image="/images/error-poster.jpg" noindex>
+<BaseLayout title="Leonard Lemke" description="404" image={errorPosterImg} noindex>
   <Banner
-    image="/images/404/banner.jpg"
+    image={bannerImg}
     title="404"
     subtitle="Looks like you're lost, the page you are looking for is not available!"
     imageAlt="AI-generated abstract artwork of a signpost dissolving into scattered light particles"
     compact
   />
   <div class="error">
-    <img src="/images/error.webp" alt="" width="480" height="360" />
+    <Image src={errorImg} alt="" width={480} height={360} />
     <button class="lButton"><a href="/">Home</a></button>
   </div>
 </BaseLayout>

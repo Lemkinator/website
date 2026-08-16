@@ -5,13 +5,14 @@ import CardGrid from '@/components/CardGrid.astro';
 import Card from '@/components/Card.astro';
 import Banner from '@/components/Banner.astro';
 import { getAppCards } from '@/lib/projects';
+import bannerImg from '@/assets/images/apps/banner.jpg';
 
 const apps = await getAppCards('en');
 ---
 
-<BaseLayout title="Apps" description="Leonard Lemke" image="/images/apps/banner.jpg">
+<BaseLayout title="Apps" description="Leonard Lemke" image={bannerImg}>
   <Banner
-    image="/images/apps/banner.jpg"
+    image={bannerImg}
     title="Apps"
     subtitle="Modern Apps in Samsungs OneUI-Design."
     imageAlt="AI-generated abstract artwork of OneUI app icon grids"

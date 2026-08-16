@@ -1,15 +1,17 @@
 ---
 import ProjectLayout from '@/layouts/ProjectLayout.astro';
 import Banner from '@/components/Banner.astro';
+import appsBannerImg from '@/assets/images/apps/banner.jpg';
+import wsaBannerImg from '@/assets/images/apps/wsa/banner.jpg';
 ---
 
 <ProjectLayout
   title="Windows Subsystem for Android"
   description="Apps - Leonard Lemke"
-  image="/images/apps/banner.jpg"
+  image={appsBannerImg}
 >
   <Banner
-    image="/images/apps/wsa/banner.jpg"
+    image={wsaBannerImg}
     title="Windows Subsystem for Android™️"
     subtitle="Install Android Apps on Windows"
     imageAlt="AI-generated abstract artwork of the Windows and Android logos merging"

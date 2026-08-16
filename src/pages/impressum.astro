@@ -1,11 +1,12 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Banner from '@/components/Banner.astro';
+import bannerImg from '@/assets/images/impressum/banner.jpg';
 ---
 
 <BaseLayout title="Leonard Lemke" description="Impressum">
   <Banner
-    image="/images/impressum/banner.jpg"
+    image={bannerImg}
     title="Imprint"
     imageAlt="AI-generated abstract artwork of glowing document panels floating in space"
     compact
