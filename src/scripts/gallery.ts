@@ -169,7 +169,13 @@ export function initGallery(): void {
       stopVideoWatcher();
       if (reducedMotion || !inView) return;
 
-      const video = slides[active].querySelector('video');
+      // A slide is either a bare <video> itself (accelerate/light-utopia/
+      // 2000) or a wrapper containing one (e.g. media/index.astro's
+      // captioned drone-journey gallery) — querySelector alone only finds
+      // the wrapped case, since it searches descendants, not the element
+      // itself.
+      const slideEl = slides[active];
+      const video = slideEl instanceof HTMLVideoElement ? slideEl : slideEl.querySelector('video');
       if (!video) {
         autoplayTimer = window.setTimeout(advance, AUTOPLAY_DELAY);
         return;
