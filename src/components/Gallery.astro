@@ -11,6 +11,7 @@
 // - full: landscape media (FPV clips/photos) — each item fills the content
 //   column width, one at a time, scroll/snap to the next.
 import { useTranslations, defaultLocale, type Locale } from '@/i18n/ui';
+import Icon from './Icon.astro';
 
 interface Props {
   class?: string;
@@ -29,6 +30,12 @@ const t = useTranslations(locale);
   <div class="gallery__track">
     <slot />
   </div>
+  <button type="button" class="gallery__arrow gallery__arrow--prev" aria-label={t('gallery.prev')}>
+    <Icon name="chevron" />
+  </button>
+  <button type="button" class="gallery__arrow gallery__arrow--next" aria-label={t('gallery.next')}>
+    <Icon name="chevron" />
+  </button>
 </div>
 <script>
   import { initGallery } from '@/scripts/gallery';
@@ -36,6 +43,60 @@ const t = useTranslations(locale);
 </script>
 
 <style>
+  .gallery {
+    position: relative;
+  }
+
+  /* Prev/next affordance — primarily for mouse/keyboard users, since touch
+     already has native swipe and desktop has drag (see gallery.ts). Sits
+     over the track rather than taking layout space, centered vertically. */
+  .gallery__arrow {
+    appearance: none;
+    position: absolute;
+    top: 50%;
+    translate: 0 -50%;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    padding: 0;
+    border: none;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--color-bg) 70%, transparent);
+    color: var(--color-fg);
+    cursor: pointer;
+    backdrop-filter: blur(4px);
+    transition: background var(--dur-fast) var(--ease-spring), opacity var(--dur-fast) var(--ease-spring);
+  }
+
+  .gallery__arrow:hover {
+    background: color-mix(in srgb, var(--color-bg) 90%, transparent);
+  }
+
+  .gallery__arrow:focus-visible {
+    outline: 2px solid var(--color-fg);
+    outline-offset: 2px;
+  }
+
+  .gallery__arrow:disabled {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .gallery__arrow--prev {
+    left: var(--space-2);
+  }
+
+  .gallery__arrow--next {
+    right: var(--space-2);
+  }
+
+  .gallery__arrow--next :global(svg) {
+    transform: rotate(180deg);
+  }
+
   .gallery__track {
     display: flex;
     /* align-items defaults to stretch — combined with height:auto below,

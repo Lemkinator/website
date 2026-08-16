@@ -1,13 +1,15 @@
-// Carousel behavior for .gallery (see Gallery.astro): dot navigation,
-// autoplay, and wheel/drag scrolling on top of the native touch/trackpad
-// swipe overflow-x:auto already provides.
+// Carousel behavior for .gallery (see Gallery.astro): dot indicator,
+// prev/next arrows, and wheel/drag scrolling on top of the native
+// touch/trackpad swipe overflow-x:auto already provides. No autoplay —
+// deliberately removed in favor of arrows (see git history): autoplay
+// content that advances on its own is a known UX/accessibility anti-pattern
+// (WCAG 2.2.2 requires a pause control past 5s of auto-advance) and users
+// reliably miss slides that move before they've finished looking.
 //
 // Dots are the primary, always-reliable navigation — a click always
 // resolves to a scrollIntoView() call, independent of wheel/drag input
-// quirks on any particular device. Wheel and drag are additive.
+// quirks on any particular device. Arrows, wheel, and drag are additive.
 import { initMagnetic } from '@/scripts/magnetic';
-
-const AUTOPLAY_DELAY = 4000;
 
 export function initGallery(): void {
   document.querySelectorAll<HTMLElement>('.gallery').forEach((gallery) => {
@@ -31,10 +33,7 @@ export function initGallery(): void {
         'aria-label',
         gotoLabel.replace('{n}', String(i + 1)).replace('{total}', String(slides.length)),
       );
-      dot.addEventListener('click', () => {
-        goTo(i);
-        userInteracted();
-      });
+      dot.addEventListener('click', () => goTo(i));
       dotsEl.appendChild(dot);
       return dot;
     });
@@ -42,19 +41,28 @@ export function initGallery(): void {
     gallery.appendChild(dotsEl);
     initMagnetic(dots);
 
+    // ---- Prev/next arrows ----
+    const prevBtn = gallery.querySelector<HTMLButtonElement>('.gallery__arrow--prev');
+    const nextBtn = gallery.querySelector<HTMLButtonElement>('.gallery__arrow--next');
+
     let active = 0;
     function setActiveDot(i: number) {
       if (i === active) return;
       active = i;
       dots.forEach((d, idx) => d.classList.toggle('is-active', idx === i));
-      // Re-arm autoplay now that `active` actually points at the slide the
-      // user/scroll landed on (goTo() itself is just a scroll call; this
-      // observer confirms it landed) — see scheduleAutoplay below.
-      scheduleAutoplay();
+      updateArrows();
+    }
+    function updateArrows() {
+      if (prevBtn) prevBtn.disabled = active === 0;
+      if (nextBtn) nextBtn.disabled = active === slides.length - 1;
     }
     function goTo(i: number) {
       slides[i].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
     }
+
+    prevBtn?.addEventListener('click', () => goTo(Math.max(0, active - 1)));
+    nextBtn?.addEventListener('click', () => goTo(Math.min(slides.length - 1, active + 1)));
+    updateArrows();
 
     // A slide may be a bare <video> or a wrapper containing one —
     // querySelector alone misses the bare case (it only searches descendants).
@@ -108,7 +116,6 @@ export function initGallery(): void {
         const pixels = e.deltaMode === 0 ? e.deltaX : e.deltaX * 16;
         track.scrollLeft += pixels;
         e.preventDefault();
-        userInteracted();
       },
       { passive: false },
     );
@@ -125,7 +132,6 @@ export function initGallery(): void {
       startScroll = track.scrollLeft;
       track.classList.add('is-dragging');
       track.setPointerCapture(e.pointerId);
-      userInteracted();
     });
 
     track.addEventListener('pointermove', (e) => {
@@ -145,84 +151,5 @@ export function initGallery(): void {
     // while the button is still held.
     track.addEventListener('pointerup', endDrag);
     track.addEventListener('pointercancel', endDrag);
-    track.addEventListener('touchstart', userInteracted, { passive: true });
-
-    // ---- Autoplay: advances once the active slide has run its course,
-    //      pauses on any interaction and while the gallery is scrolled
-    //      off-screen, skipped entirely under reduced motion.
-    //
-    //      Video slides advance on `ended` rather than a precomputed
-    //      duration (video.duration is NaN right after becoming active,
-    //      before enough is buffered). Clips carry `loop` for graceful
-    //      degradation without this script, so it's toggled off for the
-    //      watch and restored after to get a first-class `ended` signal.
-    //      A capped fallback timer covers autoplay never starting at all.
-    //      Image slides just use the flat delay. ----
-    let autoplayTimer = 0;
-    let inView = false;
-    const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
-    let videoWatcher: { video: HTMLVideoElement; onEnded: () => void; hadLoop: boolean } | null = null;
-
-    function stopVideoWatcher() {
-      if (!videoWatcher) return;
-      videoWatcher.video.removeEventListener('ended', videoWatcher.onEnded);
-      videoWatcher.video.loop = videoWatcher.hadLoop;
-      videoWatcher = null;
-    }
-
-    function advance() {
-      const next = (active + 1) % slides.length;
-      goTo(next);
-      // goTo() is just a scroll call — normally the IntersectionObserver
-      // confirms it landed and calls setActiveDot itself. But scrollIntoView
-      // can be a no-op (e.g. a narrow gallery where both slides are already
-      // fully visible side-by-side), in which case the observer never
-      // reports a ratio change and autoplay would silently never re-arm.
-      // Advance the dot directly instead of relying solely on the observer.
-      setActiveDot(next);
-    }
-
-    function scheduleAutoplay() {
-      window.clearTimeout(autoplayTimer);
-      stopVideoWatcher();
-      if (reducedMotion || !inView) return;
-
-      const video = getSlideVideo(slides[active]);
-      if (!video) {
-        autoplayTimer = window.setTimeout(advance, AUTOPLAY_DELAY);
-        return;
-      }
-
-      const hadLoop = video.loop;
-      video.loop = false;
-      const onEnded = () => {
-        video.currentTime = 0;
-        video.loop = hadLoop;
-        advance();
-      };
-      video.addEventListener('ended', onEnded, { once: true });
-      videoWatcher = { video, onEnded, hadLoop };
-      // Safety net in case autoplay never starts (so `ended` never fires) —
-      // don't strand the carousel on this slide forever.
-      autoplayTimer = window.setTimeout(advance, 15000);
-    }
-
-    function userInteracted() {
-      scheduleAutoplay();
-    }
-
-    if (!reducedMotion) {
-      new IntersectionObserver(([entry]) => {
-        inView = entry.isIntersecting;
-        if (inView) {
-          scheduleAutoplay();
-        } else {
-          window.clearTimeout(autoplayTimer);
-          stopVideoWatcher();
-        }
-      }, {
-        threshold: 0.3,
-      }).observe(gallery);
-    }
   });
 }
