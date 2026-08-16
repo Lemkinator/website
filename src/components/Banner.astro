@@ -77,17 +77,11 @@ const style = [
   .filter(Boolean)
   .join('; ');
 
-// The default scroll-parallax animation swings background-position from
-// 15% to 85% — geometry-driven (animation-range: cover), not "starts at
-// the from keyframe on load", so at scrollY 0 a banner pinned near the
-// top of the page is already partway through its cover range and can
-// land anywhere in that swing immediately (confirmed: resolves to
-// ~50% 55% on load in real Chrome for an undecorated banner). A banner
-// with a deliberately off-center focalPosition can't tolerate the full
-// 15–85% swing without cropping its subject at some point in that range,
-// so it gets a narrower parallax (banner-parallax-narrow below) confined
-// to a band that keeps the subject in frame at every viewport, instead
-// of losing the motion effect entirely.
+// The default parallax swings background-position 15%->85% on a geometry-
+// driven timeline (animation-range: cover), so on load it can already be
+// mid-swing rather than pinned to 15%. A custom focalPosition can't
+// tolerate that full range without cropping its subject, so it gets the
+// narrower banner-parallax-narrow swing below instead.
 const hasCustomFocal = focalPosition !== 'center';
 ---
 
@@ -111,7 +105,10 @@ const hasCustomFocal = focalPosition !== 'center';
     align-items: flex-end;
     background-image: var(--bg-img);
     background-size: cover;
-    background-position: var(--bg-pos, center);
+    /* No fallback value here: the inline style attribute below always sets
+       --bg-pos (focalPosition itself defaults to 'center' in the props
+       destructure), so a CSS-side fallback could never actually apply. */
+    background-position: var(--bg-pos);
     contain: layout; /* single-box guarantee for view-transition-name */
   }
 
@@ -138,11 +135,9 @@ const hasCustomFocal = focalPosition !== 'center';
     }
   }
 
-  /* Confined swing for banners with a custom focalPosition (see
-     hasCustomFocal above) — 15–22% is inside the safe band for the
-     homepage hero's drone (checked against ultrawide monitors, where
-     the crop is most aggressive), so this still drifts on scroll
-     without ever cropping the subject out. */
+  /* Narrower swing for banners with a custom focalPosition (hasCustomFocal
+     above). 15–22% is tuned to the homepage hero's drone shot specifically —
+     not yet generalized for other focal positions. */
   @keyframes banner-parallax-narrow {
     from {
       background-position: center 15%;
@@ -252,17 +247,5 @@ const hasCustomFocal = focalPosition !== 'center';
     color: rgba(255, 255, 255, 0.85);
     font-size: 1.05rem;
     max-width: 60ch;
-  }
-
-  .sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
   }
 </style>

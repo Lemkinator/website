@@ -26,6 +26,22 @@
   }
 }
 
+/* Visually-hidden but screen-reader-accessible text — e.g. Banner.astro's
+   background-image description, since a CSS background-image has no native
+   <img alt>. Shared here instead of redeclared per-component so it doesn't
+   grow a second near-identical copy the next time something needs it. */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 /* Astro's <Image>/<Picture> components emit width/height HTML attributes
    on every <img> (for the Image pipeline migration) — those act as
    low-priority "presentational hints" that set a literal pixel height
