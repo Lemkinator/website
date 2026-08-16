@@ -76,9 +76,22 @@ const style = [
 ]
   .filter(Boolean)
   .join('; ');
+
+// The default scroll-parallax animation swings background-position from
+// 15% to 85% — geometry-driven (animation-range: cover), not "starts at
+// the from keyframe on load", so at scrollY 0 a banner pinned near the
+// top of the page is already partway through its cover range and can
+// land anywhere in that swing immediately (confirmed: resolves to
+// ~50% 55% on load in real Chrome for an undecorated banner). A banner
+// with a deliberately off-center focalPosition can't tolerate the full
+// 15–85% swing without cropping its subject at some point in that range,
+// so it gets a narrower parallax (banner-parallax-narrow below) confined
+// to a band that keeps the subject in frame at every viewport, instead
+// of losing the motion effect entirely.
+const hasCustomFocal = focalPosition !== 'center';
 ---
 
-<div class:list={['banner', { 'banner--compact': compact }]} style={style}>
+<div class:list={['banner', { 'banner--compact': compact }]} style={style} data-static-focal={hasCustomFocal || undefined}>
   {imageAlt && <span class="sr-only">{imageAlt}</span>}
   <slot name="backdrop" />
   <div class="banner__content">
@@ -125,10 +138,30 @@ const style = [
     }
   }
 
+  /* Confined swing for banners with a custom focalPosition (see
+     hasCustomFocal above) — 15–22% is inside the safe band for the
+     homepage hero's drone (checked against ultrawide monitors, where
+     the crop is most aggressive), so this still drifts on scroll
+     without ever cropping the subject out. */
+  @keyframes banner-parallax-narrow {
+    from {
+      background-position: center 15%;
+    }
+    to {
+      background-position: center 22%;
+    }
+  }
+
   @supports (animation-timeline: view()) {
     @media (prefers-reduced-motion: no-preference) {
-      .banner {
+      .banner:not([data-static-focal]) {
         animation: banner-parallax linear both;
+        animation-timeline: view();
+        animation-range: cover 0% cover 100%;
+      }
+
+      .banner[data-static-focal] {
+        animation: banner-parallax-narrow linear both;
         animation-timeline: view();
         animation-range: cover 0% cover 100%;
       }
