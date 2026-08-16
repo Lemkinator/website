@@ -143,7 +143,10 @@ const style = [`--bg-img: url(${resolvedImage})`, transitionName && `view-transi
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.05) 60%);
+    /* Baseline dim across the whole banner (was 0.05 at the top — bright
+       AI-generated art could wash out well before reaching the text),
+       ramping darker toward the bottom where the title/subtitle sit. */
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.82), rgba(0, 0, 0, 0.35) 60%, rgba(0, 0, 0, 0.2));
   }
 
   .banner__content {
