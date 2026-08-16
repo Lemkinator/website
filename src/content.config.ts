@@ -21,10 +21,10 @@ const apps = defineCollection({
       // Card thumbnail + corner glyph — path relative to this file, resolved
       // through src/assets so it gets the Image pipeline (AVIF + srcset).
       icon: image(),
-      // Full-bleed banner backdrop (the legacy site's per-app "Vorstellungsgrafik"
-      // presentation graphic) — distinct from `icon`, which is the small
-      // squircle used in cards and the app-page corner icon.
-      bannerImage: z.string(),
+      // Full-bleed banner backdrop — distinct from `icon`, which is the small
+      // squircle used in cards and the app-page corner icon. Same image()
+      // pipeline as icon (AVIF + srcset).
+      bannerImage: image(),
       // Screen-reader description of bannerImage, since Banner renders it as a
       // CSS background (no native <img alt>). Also the per-image EU AI Act
       // Art. 50(4) disclosure for the AI-generated banner artwork.
