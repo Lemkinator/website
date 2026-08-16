@@ -65,11 +65,21 @@ export function initGallery(): void {
     }
 
     // ---- Keep the active dot in sync with whatever scrolled the track
-    //      (wheel, drag, native touch swipe, or a dot click) ----
+    //      (wheel, drag, native touch swipe, or a dot click), and only ever
+    //      play the video slide(s) actually on screen — the multi-video
+    //      galleries (media/*.mdx) don't carry the `autoplay` attribute
+    //      precisely so a gallery with several clips doesn't fetch/decode/
+    //      play all of them concurrently regardless of which is visible. ----
     const ratios = new Map<HTMLElement, number>();
     const activeObserver = new IntersectionObserver(
       (entries) => {
-        entries.forEach((entry) => ratios.set(entry.target as HTMLElement, entry.intersectionRatio));
+        entries.forEach((entry) => {
+          ratios.set(entry.target as HTMLElement, entry.intersectionRatio);
+          const video = getSlideVideo(entry.target as HTMLElement);
+          if (!video) return;
+          if (entry.isIntersecting) video.play().catch(() => {});
+          else video.pause();
+        });
         let bestSlide: HTMLElement | undefined;
         let bestRatio = 0;
         ratios.forEach((ratio, slide) => {
