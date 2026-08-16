@@ -37,7 +37,10 @@ const year = new Date().getFullYear();
       <a href={getRelativeLocaleUrl(locale, '/')} class="footer__name">
         <img class="footer__logo" src="/images/logo/icon_50.png" width="50" height="50" alt="logo" />
       </a>
-      <p class="website__rights">&copy; Leonard Lemke {year}. {t('footer.rights')}</p>
+      <div class="website__legal">
+        <p class="website__rights">&copy; Leonard Lemke {year}. {t('footer.rights')}</p>
+        <p class="website__ai-notice">{t('footer.aiImageNotice')}</p>
+      </div>
       <div class="social__icons">
         <a class="social__icon--link" target="_blank" rel="noopener noreferrer" aria-label="Instagram"
           href="https://www.instagram.com/lemkinator5/">

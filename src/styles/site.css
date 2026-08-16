@@ -538,9 +538,22 @@
     border-radius: 50%;
   }
 
+  .website__legal {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+
   .website__rights {
     color: var(--color-muted);
     font-size: 0.85rem;
+    margin: 0;
+  }
+
+  .website__ai-notice {
+    color: var(--color-muted);
+    font-size: 0.75rem;
+    opacity: 0.75;
     margin: 0;
   }
 
