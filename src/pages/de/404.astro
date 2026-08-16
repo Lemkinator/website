@@ -1,12 +1,18 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import Banner from '@/components/Banner.astro';
 ---
 
 <BaseLayout title="Leonard Lemke" description="404" image="/images/error-poster.jpg" noindex>
+  <Banner
+    image="/images/404/banner.jpg"
+    title="404"
+    subtitle="Völlig verloren, die Seite die du suchst, ist nicht verfügbar!"
+    imageAlt="KI-generierte abstrakte Grafik eines Wegweisers, der sich in verstreute Lichtpartikel auflöst"
+    compact
+  />
   <div class="error">
-    <h1 class="colored-h1">404</h1>
     <img src="/images/error.webp" alt="" width="480" height="360" />
-    <p>Völlig verloren, die Seite die du suchst, ist nicht verfügbar!</p>
     <button class="lButton"><a href="/de">Home</a></button>
   </div>
 </BaseLayout>
