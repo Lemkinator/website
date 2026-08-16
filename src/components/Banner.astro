@@ -76,16 +76,9 @@ const style = [
 ]
   .filter(Boolean)
   .join('; ');
-
-// The default parallax swings background-position 15%->85% on a geometry-
-// driven timeline (animation-range: cover), so on load it can already be
-// mid-swing rather than pinned to 15%. A custom focalPosition can't
-// tolerate that full range without cropping its subject, so it gets the
-// narrower banner-parallax-narrow swing below instead.
-const hasCustomFocal = focalPosition !== 'center';
 ---
 
-<div class:list={['banner', { 'banner--compact': compact }]} style={style} data-static-focal={hasCustomFocal || undefined}>
+<div class:list={['banner', { 'banner--compact': compact }]} style={style}>
   {imageAlt && <span class="sr-only">{imageAlt}</span>}
   <slot name="backdrop" />
   <div class="banner__content">
@@ -135,28 +128,10 @@ const hasCustomFocal = focalPosition !== 'center';
     }
   }
 
-  /* Narrower swing for banners with a custom focalPosition (hasCustomFocal
-     above). 15–22% is tuned to the homepage hero's drone shot specifically —
-     not yet generalized for other focal positions. */
-  @keyframes banner-parallax-narrow {
-    from {
-      background-position: center 15%;
-    }
-    to {
-      background-position: center 22%;
-    }
-  }
-
   @supports (animation-timeline: view()) {
     @media (prefers-reduced-motion: no-preference) {
-      .banner:not([data-static-focal]) {
+      .banner {
         animation: banner-parallax linear both;
-        animation-timeline: view();
-        animation-range: cover 0% cover 100%;
-      }
-
-      .banner[data-static-focal] {
-        animation: banner-parallax-narrow linear both;
         animation-timeline: view();
         animation-range: cover 0% cover 100%;
       }
