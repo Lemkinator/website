@@ -4,7 +4,7 @@ import type { Locale } from '@/i18n/ui';
 
 export interface ProjectCard {
   href: string;
-  bgImg: string;
+  bgImg: ImageMetadata;
   title: string;
   description: string;
   date: Date;
@@ -22,12 +22,13 @@ export interface ProjectCard {
   previewVideo?: string;
 }
 
-// Not every media project has usable preview footage ("2000" is
-// photos-only) — this is a lookup, not a schema field, since it's a display
-// nicety rather than content. Base path only; Card.astro appends .webm/.mp4.
+// Not every media project has usable preview footage — this is a lookup,
+// not a schema field, since it's a display nicety rather than content. Base
+// path only; Card.astro appends .webm/.mp4.
 const MEDIA_PREVIEW_VIDEO: Partial<Record<string, string>> = {
-  accelerate: '/images/media/accelerate/accelerate1',
-  'light-utopia': '/images/media/light-utopia/light_utopia1',
+  accelerate: '/images/media/accelerate/accelerate3',
+  'light-utopia': '/images/media/light-utopia/light_utopia2',
+  '2000': '/images/media/2000/2000_4',
 };
 
 // Card props for the apps listing (/apps, /de/apps). Shared with

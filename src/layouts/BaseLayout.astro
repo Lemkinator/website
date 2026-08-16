@@ -16,7 +16,7 @@ import '@/styles/motion.css';
 interface Props {
   title: string;
   description: string;
-  image?: string;
+  image?: ImageMetadata | string;
   type?: 'website' | 'article';
   noindex?: boolean;
 }

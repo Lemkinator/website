@@ -10,7 +10,7 @@ const generateId = ({ entry }: { entry: string }) => entry.replace(/\.(md|mdx)$/
 // pages (apps/{geticon,nakbuch,oneurl,studiportal,sudoku}/index.html today).
 const apps = defineCollection({
   loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/apps', generateId }),
-  schema: () =>
+  schema: ({ image }) =>
     z.object({
       // Slug shared across locales so /apps/[slug] and its DE counterpart line up.
       slug: z.string(),
@@ -18,7 +18,9 @@ const apps = defineCollection({
       tagline: z.string(),
       date: z.coerce.date(),
       tags: z.array(z.string()).default([]),
-      icon: z.string(), // path under src/assets or public
+      // Card thumbnail + corner glyph — path relative to this file, resolved
+      // through src/assets so it gets the Image pipeline (AVIF + srcset).
+      icon: image(),
       // Full-bleed banner backdrop (the legacy site's per-app "Vorstellungsgrafik"
       // presentation graphic) — distinct from `icon`, which is the small
       // squircle used in cards and the app-page corner icon.
@@ -44,14 +46,15 @@ const apps = defineCollection({
 // FPV/cinematic video project pages (media/{2000,accelerate,light-utopia}.html today).
 const media = defineCollection({
   loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/media', generateId }),
-  schema: () =>
+  schema: ({ image }) =>
     z.object({
       slug: z.string(),
       title: z.string(),
       description: z.string(),
       date: z.coerce.date(),
       tags: z.array(z.string()).default([]),
-      coverImage: z.string(),
+      // Card thumbnail + detail-page hero — same image() pipeline as apps.icon.
+      coverImage: image(),
       // Card badge, e.g. "5000 +" views — display text only, not live analytics.
       views: z.string().optional(),
     }),

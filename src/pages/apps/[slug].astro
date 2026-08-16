@@ -1,5 +1,6 @@
 ---
 import { getCollection, render } from 'astro:content';
+import { Image } from 'astro:assets';
 import ProjectLayout from '@/layouts/ProjectLayout.astro';
 import Banner from '@/components/Banner.astro';
 
@@ -34,7 +35,8 @@ const { name, tagline, icon, bannerImage, playStoreUrl, githubUrl, privacyPolicy
   </Banner>
 
   <div class="content" data-reveal="up">
-    <img id="app-icon" src={icon} alt="" />
+    {/* Rendered at 80x80 CSS px (site.css #app-icon) — 160 covers 2x DPR. */}
+    <Image id="app-icon" src={icon} alt="" width={160} height={160} />
     <h2>{name}</h2>
     <Content />
 

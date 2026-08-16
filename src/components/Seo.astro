@@ -5,13 +5,18 @@
 //
 // og:url and canonical are both derived from the same Astro.site value, which
 // fixes the non-www/www mismatch that existed on every legacy page.
+import { getImage } from 'astro:assets';
 import { getRelativeLocaleUrl } from 'astro:i18n';
 import { locales, defaultLocale, getLocaleAgnosticPath } from '@/i18n/ui';
 
 interface Props {
   title: string;
   description: string;
-  image?: string;
+  // Either a plain public/ path (the default logo, and any page that hasn't
+  // been migrated to src/assets yet) or a content-collection image() import
+  // (apps.icon / media.coverImage) — see Card.astro/Banner.astro for the
+  // same pattern.
+  image?: ImageMetadata | string;
   type?: 'website' | 'article';
   noindex?: boolean;
 }
@@ -20,7 +25,9 @@ const { title, description, image = '/images/logo/icon.png', type = 'website', n
 
 const locale = (Astro.currentLocale ?? defaultLocale) as (typeof locales)[number];
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
-const imageUrl = new URL(image, Astro.site);
+const resolvedImage =
+  typeof image === 'string' ? image : (await getImage({ src: image, format: 'jpg', width: Math.min(1200, image.width) })).src;
+const imageUrl = new URL(resolvedImage, Astro.site);
 
 // path with the current locale prefix stripped, so we can rebuild an
 // alternate-locale URL for each hreflang entry below.
