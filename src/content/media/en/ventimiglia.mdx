@@ -13,19 +13,14 @@ bannerImageAlt: AI-generated artwork of the Ventimiglia coastline with glowing F
 ---
 
 import Gallery from '@/components/Gallery.astro';
+import GalleryVideo from '@/components/GalleryVideo.astro';
 import YouTube from '@/components/YouTube.astro';
 
 ## Ventimiglia - Impressions
 
 <Gallery>
-  <video loop muted playsinline preload="none">
-    <source src="/images/media/ventimiglia/ventimiglia_1.webm" type="video/webm" />
-    <source src="/images/media/ventimiglia/ventimiglia_1.mp4" type="video/mp4" />
-  </video>
-  <video loop muted playsinline preload="none">
-    <source src="/images/media/ventimiglia/ventimiglia_2.webm" type="video/webm" />
-    <source src="/images/media/ventimiglia/ventimiglia_2.mp4" type="video/mp4" />
-  </video>
+  <GalleryVideo src="/images/media/ventimiglia/ventimiglia_1" />
+  <GalleryVideo src="/images/media/ventimiglia/ventimiglia_2" />
 </Gallery>
 
 ## Video

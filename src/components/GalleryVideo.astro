@@ -1,0 +1,22 @@
+---
+// One video slide inside a <Gallery> (see Gallery.astro / gallery.ts).
+// Replaces the hand-copied <video loop muted playsinline preload="none">
+// + matched <source webm/mp4> pair that used to be pasted per-clip across
+// every media project's screenshot gallery. Mirrors Card.astro's
+// previewVideo prop for the same webm+mp4 pair convention.
+//
+// No autoplay attribute: gallery.ts's IntersectionObserver play()s/pause()s
+// each slide's video based on visibility, so a multi-clip gallery never
+// fetches/decodes/plays more than the one slide currently on screen.
+interface Props {
+  // Base path (no extension) — `${src}.webm` and `${src}.mp4` must exist.
+  src: string;
+}
+
+const { src } = Astro.props;
+---
+
+<video loop muted playsinline preload="none">
+  <source src={`${src}.webm`} type="video/webm" />
+  <source src={`${src}.mp4`} type="video/mp4" />
+</video>
