@@ -1,12 +1,18 @@
 ---
+import { Image } from 'astro:assets';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Giscus from '@/components/Giscus.astro';
 import Gallery from '@/components/Gallery.astro';
 import Banner from '@/components/Banner.astro';
 import bannerImg from '@/assets/images/about/banner.jpg';
+import ogImg from '@/assets/images/about/me2.jpg';
+import meImg from '@/assets/images/about/me.jpg';
+import me3Img from '@/assets/images/about/me3.jpg';
+import me4Img from '@/assets/images/about/me4.jpg';
+import me5Img from '@/assets/images/about/me5.jpg';
 ---
 
-<BaseLayout title="Leonard Lemke" description="About Me" image="/images/about/me2.jpg">
+<BaseLayout title="Leonard Lemke" description="About Me" image={ogImg}>
   <Banner
     image={bannerImg}
     title="About"
@@ -22,10 +28,10 @@ import bannerImg from '@/assets/images/about/banner.jpg';
       like to program apps for Android in OneUI-Design or edit videos that I record with my racing drone.
     </p>
     <Gallery class="me-swiper">
-      <img src="/images/about/me.jpg" alt="" />
-      <img src="/images/about/me3.jpg" alt="" />
-      <img src="/images/about/me4.jpg" alt="" />
-      <img src="/images/about/me5.jpg" alt="" />
+      <Image src={meImg} alt="" />
+      <Image src={me3Img} alt="" />
+      <Image src={me4Img} alt="" />
+      <Image src={me5Img} alt="" />
     </Gallery>
 
     <div id="experience" data-reveal="up">
