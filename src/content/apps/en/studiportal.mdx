@@ -16,6 +16,12 @@ privacyPolicy:
 ---
 
 import Gallery from '@/components/Gallery.astro';
+import { Image } from 'astro:assets';
+import mobile1Img from '../../../assets/images/apps/studiportal/mobile1.png';
+import mobile2Img from '../../../assets/images/apps/studiportal/mobile2.png';
+import mobile3Img from '../../../assets/images/apps/studiportal/mobile3.png';
+import mobile4Img from '../../../assets/images/apps/studiportal/mobile4.png';
+import mobile5Img from '../../../assets/images/apps/studiportal/mobile5.png';
 
 This app is in no way affiliated with Furtwangen University and is only used to display the data from
 the Studiportal. The logo is used with the kind permission of the Strategy and Communication Department
@@ -50,10 +56,10 @@ newly added Single Sign-on, the Studiportal app is not available.
 ## Screenshots
 
 <Gallery>
-  <img src="/images/apps/studiportal/mobile1.png" alt="" />
-  <img src="/images/apps/studiportal/mobile3.png" alt="" />
-  <img src="/images/apps/studiportal/mobile4.png" alt="" />
-  <img src="/images/apps/studiportal/mobile5.png" alt="" />
+  <Image src={mobile1Img} alt="" />
+  <Image src={mobile3Img} alt="" />
+  <Image src={mobile4Img} alt="" />
+  <Image src={mobile5Img} alt="" />
 </Gallery>
 
 ## Windows support
@@ -78,4 +84,4 @@ Studiportal was developed according to Samsung's One UI guidelines. For example,
 
 Receive a notification when changes occur in Studiportal.
 
-<img class="mobile-image" src="/images/apps/studiportal/mobile2.png" alt="" />
+<Image class="mobile-image" src={mobile2Img} alt="" />
