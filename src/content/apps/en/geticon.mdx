@@ -18,16 +18,21 @@ privacyPolicy:
 ---
 
 import Gallery from '@/components/Gallery.astro';
+import { Image } from 'astro:assets';
+import mobile1Img from '../../../assets/images/apps/geticon/mobile1.png';
+import mobile2Img from '../../../assets/images/apps/geticon/mobile2.png';
+import mobile3Img from '../../../assets/images/apps/geticon/mobile3.png';
+import mobile4Img from '../../../assets/images/apps/geticon/mobile4.png';
 
 An app to extract and save app icons.
 
 ## Screenshots
 
 <Gallery>
-  <img src="/images/apps/geticon/mobile1.png" alt="" />
-  <img src="/images/apps/geticon/mobile2.png" alt="" />
-  <img src="/images/apps/geticon/mobile3.png" alt="" />
-  <img src="/images/apps/geticon/mobile4.png" alt="" />
+  <Image src={mobile1Img} alt="" />
+  <Image src={mobile2Img} alt="" />
+  <Image src={mobile3Img} alt="" />
+  <Image src={mobile4Img} alt="" />
 </Gallery>
 
 ## Windows support
