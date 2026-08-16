@@ -125,10 +125,21 @@ export function initGallery(): void {
 
     // ---- Autoplay: advances every few seconds, pauses on any interaction
     //      and while the gallery is scrolled off-screen, skipped entirely
-    //      under reduced motion. ----
+    //      under reduced motion. A <video> slide gets its own real duration
+    //      instead of the flat delay, so it plays out fully (once through
+    //      its loop) before the carousel moves on — a fixed short delay was
+    //      cutting clips off mid-loop. ----
     let autoplayTimer = 0;
     let inView = false;
     const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function autoplayDelay(): number {
+      const video = slides[active].querySelector('video');
+      if (video && video.duration && !Number.isNaN(video.duration)) {
+        return video.duration * 1000;
+      }
+      return AUTOPLAY_DELAY;
+    }
 
     function scheduleAutoplay() {
       window.clearTimeout(autoplayTimer);
@@ -136,7 +147,7 @@ export function initGallery(): void {
       autoplayTimer = window.setTimeout(() => {
         goTo((active + 1) % slides.length);
         scheduleAutoplay();
-      }, AUTOPLAY_DELAY);
+      }, autoplayDelay());
     }
 
     function userInteracted() {
