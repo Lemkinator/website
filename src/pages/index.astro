@@ -7,7 +7,7 @@ import Banner from '@/components/Banner.astro';
 import ShaderBackdrop from '@/components/ShaderBackdrop.astro';
 import { useTranslations, defaultLocale, type Locale } from '@/i18n/ui';
 import { getAllProjects } from '@/lib/projects';
-import heroImage from '@/assets/images/about/me2.jpg';
+import heroImage from '@/assets/images/home/hero.jpg';
 import appsHubImage from '@/assets/images/apps/oneUI/OneUIBanner.jpg';
 import mediaHubImage from '@/assets/images/media/evoque_v2.jpg';
 
@@ -22,6 +22,7 @@ const allProjects = await getAllProjects(locale);
     image={heroImage}
     title="Leonard Lemke"
     subtitle="Software Developer passionate about apps in OneUI-Design & FPV drones"
+    imageAlt="AI-generated abstract artwork blending OneUI app icons with FPV drone light trails"
     scrambleTitle
     shineTitle
   >
