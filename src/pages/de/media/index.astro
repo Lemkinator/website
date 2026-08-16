@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Giscus from '@/components/Giscus.astro';
 import CardGrid from '@/components/CardGrid.astro';
@@ -8,13 +9,24 @@ import Banner from '@/components/Banner.astro';
 import { useTranslations } from '@/i18n/ui';
 import { getMediaCards } from '@/lib/projects';
 import mediaBannerImage from '@/assets/images/media/banner.jpg';
+import evoqueImg from '@/assets/images/media/evoque_v2.jpg';
+import protek25Img from '@/assets/images/media/gear/protek_25.jpg';
+import drone1Img from '@/assets/images/media/gear/drone1.jpg';
+import drone2Img from '@/assets/images/media/gear/drone2.jpg';
+import drone3Img from '@/assets/images/media/gear/drone3.jpg';
+import drone4Img from '@/assets/images/media/gear/drone4.jpg';
+import drone5Img from '@/assets/images/media/gear/drone5.jpg';
+import drone6Img from '@/assets/images/media/gear/drone6.jpg';
+import drone7Img from '@/assets/images/media/gear/drone7.jpg';
+import drone8Img from '@/assets/images/media/gear/drone8.jpg';
+import drone9Img from '@/assets/images/media/gear/drone9.jpg';
 
 const t = useTranslations('de');
 
 const projects = await getMediaCards('de');
 ---
 
-<BaseLayout title="Media" description="Leonard Lemke" image="/images/media/evoque_v2.jpg">
+<BaseLayout title="Media" description="Leonard Lemke" image={evoqueImg}>
   <Banner
     image={mediaBannerImage}
     title="Media"
@@ -82,45 +94,45 @@ const projects = await getMediaCards('de');
     <h2>Was hat mich zu FPV gebracht?</h2>
     <Gallery full>
       <div>
-        <img src="/images/media/drone1.jpg" alt="" />
+        <Image src={drone1Img} alt="" />
         <p class="description">Die Reise begann mit einer normalen Verbraucherdrohne...</p>
       </div>
       <div>
-        <img src="/images/media/drone2.jpg" alt="" />
+        <Image src={drone2Img} alt="" />
         <p class="description">
           ... endete aber sehr früh mit einer kaputten Drohne und der Tatsache, dass es fast unmöglich ist, diese
           Drohnen selbst zu reparieren.
         </p>
       </div>
       <div>
-        <img src="/images/media/drone3.jpg" alt="" />
+        <Image src={drone3Img} alt="" />
         <p class="description">
           Da die Reparatur beim Hersteller teuer ist, habe ich mich entschlossen, selbst eine Drohne zu bauen...
           Was sich als nicht billiger erwies...
         </p>
       </div>
       <div>
-        <img src="/images/media/drone4.jpg" alt="" />
+        <Image src={drone4Img} alt="" />
         <p class="description">Nach der Suche nach den benötigten Teilen begann der Zusammenbau.</p>
       </div>
       <div>
-        <img src="/images/media/drone5.jpg" alt="" />
+        <Image src={drone5Img} alt="" />
         <p class="description">Zusammenbau und Verkabelung...</p>
       </div>
       <div>
-        <img src="/images/media/drone6.jpg" alt="" />
+        <Image src={drone6Img} alt="" />
         <p class="description">Vorbereitungen für die Hardware...</p>
       </div>
       <div>
-        <img src="/images/media/drone7.jpg" alt="" />
+        <Image src={drone7Img} alt="" />
         <p class="description">Einrichtung und Konfiguration der Software...</p>
       </div>
       <div>
-        <img src="/images/media/drone8.jpg" alt="" />
+        <Image src={drone8Img} alt="" />
         <p class="description">Fertig!</p>
       </div>
       <div>
-        <img src="/images/media/drone9.jpg" alt="" />
+        <Image src={drone9Img} alt="" />
         <p class="description">
           Nun (nach ein paar Begegnungen mit dem schneebedeckten Boden)... scheint robuster als die alte Drohne...
         </p>
@@ -142,7 +154,7 @@ const projects = await getMediaCards('de');
       <li>Receiver: TBS Crossfire Nano</li>
       <li>LiPo: Tattu R-LINE V4.0 1300mAh 130C 6S</li>
     </ul>
-    <img class="drone-image" src="/images/media/evoque_v2.jpg" alt="iFlight Nazgul Evoque F5 V2 HD" />
+    <Image class="drone-image" src={evoqueImg} alt="iFlight Nazgul Evoque F5 V2 HD" />
 
     <br id="2021" /><br /><br />
     <h2>2021 - 2023</h2>
@@ -157,7 +169,7 @@ const projects = await getMediaCards('de');
       <li>LiPo: Tattu R-LINE V3.0 1300mAh 120C 6S</li>
       <li>GoPro Hero 6 Black</li>
     </ul>
-    <img class="drone-image" src="/images/media/drone8.jpg" alt="Drone (Custom Build, 5 Inch)" />
+    <Image class="drone-image" src={drone8Img} alt="Drone (Custom Build, 5 Inch)" />
     <h3>Cinewhoop (iFlight ProTek25)</h3>
     <ul>
       <li>Motor: iFlight XING 1404 4600KV</li>
@@ -168,7 +180,7 @@ const projects = await getMediaCards('de');
       <li>LiPo: Tattu R-LINE V1.0 850mAh 95C 4S</li>
       <li>Naked GoPro Hero 6 Black</li>
     </ul>
-    <img class="drone-image" src="/images/media/protek_25.jpg" alt="Cinewhoop (iFlight ProTek25)" />
+    <Image class="drone-image" src={protek25Img} alt="Cinewhoop (iFlight ProTek25)" />
     <h3>Other</h3>
     <ul>
       <li>Radio: FrSky Taranis X-Lite S</li>
