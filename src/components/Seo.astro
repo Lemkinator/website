@@ -26,8 +26,21 @@ const { title, description, image = defaultImage, type = 'website', noindex = fa
 
 const locale = (Astro.currentLocale ?? defaultLocale) as (typeof locales)[number];
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
+// Forcing every image to jpg regardless of source format drops any alpha
+// channel — Sharp flattens transparent pixels to black rather than erroring,
+// so a transparent PNG (e.g. the default logo icon, every app's squircle
+// icon) silently turned into artwork on a solid black square in link
+// previews. Keep png output for png sources so transparency survives.
 const resolvedImage =
-  typeof image === 'string' ? image : (await getImage({ src: image, format: 'jpg', width: Math.min(1200, image.width) })).src;
+  typeof image === 'string'
+    ? image
+    : (
+        await getImage({
+          src: image,
+          format: image.format === 'png' ? 'png' : 'jpg',
+          width: Math.min(1200, image.width),
+        })
+      ).src;
 const imageUrl = new URL(resolvedImage, Astro.site);
 
 // path with the current locale prefix stripped, so we can rebuild an
