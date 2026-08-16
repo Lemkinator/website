@@ -1,8 +1,16 @@
 ---
+import { Image } from 'astro:assets';
 import ProjectLayout from '@/layouts/ProjectLayout.astro';
 import Banner from '@/components/Banner.astro';
 import appsBannerImg from '@/assets/images/apps/banner.jpg';
 import wsaBannerImg from '@/assets/images/apps/wsa/banner.jpg';
+import windowsImg from '@/assets/images/apps/wsa/windows.jpg';
+import openSearchImg from '@/assets/images/apps/wsa/wsa-open-search.jpg';
+import openSettingsImg from '@/assets/images/apps/wsa/wsa-open-settings.jpg';
+import settingsImg from '@/assets/images/apps/wsa/wsa-settings.jpg';
+import settingsFilesImg from '@/assets/images/apps/wsa/wsa-settings-files.jpg';
+import settingsRestartImg from '@/assets/images/apps/wsa/wsa-settings-restart.jpg';
+import filesImg from '@/assets/images/apps/wsa/wsa-files.jpg';
 ---
 
 <ProjectLayout
@@ -51,7 +59,7 @@ import wsaBannerImg from '@/assets/images/apps/wsa/banner.jpg';
 
     <br id="check" /><br />
     <p>Check system type in Windows settings:</p>
-    <img class="normal" src="/images/apps/wsa/windows.jpg" alt="Windows" />
+    <Image class="normal" src={windowsImg} alt="Windows" />
 
     <br id="steps" /><br />
     <h3>Steps</h3>
@@ -80,10 +88,10 @@ import wsaBannerImg from '@/assets/images/apps/wsa/banner.jpg';
     <h2>Open Android Apps</h2>
     <h3>Opening an Android app via the Windows search</h3>
     <p>Press Windows key and type the name of the app (e.g.: "Play Store"):</p>
-    <img class="normal" src="/images/apps/wsa/wsa-open-search.jpg" alt="WSA open search" />
+    <Image class="normal" src={openSearchImg} alt="WSA open search" />
     <br /><br />
     <h3>Opening an Android app via the WSA settings</h3>
-    <img class="normal" src="/images/apps/wsa/wsa-open-settings.jpg" alt="WSA open settings" />
+    <Image class="normal" src={openSettingsImg} alt="WSA open settings" />
     <button class="lButton"><a href="#files">Open WSA settings</a></button>
 
     <br id="files" /><br /><br />
@@ -94,12 +102,12 @@ import wsaBannerImg from '@/assets/images/apps/wsa/banner.jpg';
     </p>
     <h3>Open WSA settings</h3>
     <p>Press Windows key and type "Android":</p>
-    <img class="normal" src="/images/apps/wsa/wsa-settings.jpg" alt="WSA settings" />
+    <Image class="normal" src={settingsImg} alt="WSA settings" />
 
     <br id="select" /><br />
     <h3>Select a folder for access within the WSA</h3>
     <p>Step 4 is optional:</p>
-    <img class="large" src="/images/apps/wsa/wsa-settings-files.jpg" alt="WSA settings files" />
+    <Image class="large" src={settingsFilesImg} alt="WSA settings files" />
 
     <br id="restart" /><br />
     <h3>Restart WSA</h3>
@@ -107,11 +115,11 @@ import wsaBannerImg from '@/assets/images/apps/wsa/banner.jpg';
       This step closes the WSA and all running Android apps. Once an Android app is opened again, the WSA will
       automatically restart:
     </p>
-    <img class="normal" src="/images/apps/wsa/wsa-settings-restart.jpg" alt="WSA settings restart" />
+    <Image class="normal" src={settingsRestartImg} alt="WSA settings restart" />
 
     <br id="access" /><br />
     <h3>Access Windows files in WSA:</h3>
-    <img class="normal" src="/images/apps/wsa/wsa-files.jpg" alt="WSA files" />
+    <Image class="normal" src={filesImg} alt="WSA files" />
 
     <br id="links" /><br /><br />
     <div>
