@@ -52,7 +52,7 @@
     1.003 51%,
     1
   );
-  --reveal-distance: 2.5rem;
+  --reveal-distance: 4.5rem;
 }
 
 /* Konami code easter egg (src/scripts/konami.ts) — toggles .max-motion on
@@ -67,5 +67,5 @@
   --dur-base: 0.9s;
   --dur-slow: 1.8s;
   --dur-scene: 3s;
-  --reveal-distance: 7rem;
+  --reveal-distance: 10rem;
 }

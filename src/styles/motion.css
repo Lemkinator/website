@@ -61,7 +61,7 @@
      element AFTER the change, so it was silently a no-op the entire
      time: elements just snapped to visible, no animation, ever. */
   [data-reveal].reveal-pending {
-    translate: 0 var(--reveal-distance);
+    translate: var(--reveal-distance) 0;
   }
 
   [data-reveal='scale'].reveal-pending {
@@ -166,6 +166,10 @@
      untouched. */
   body {
     position: relative;
+    /* [data-reveal] slides in from the right (see .reveal-pending above) —
+       clip so an off-screen-right element can't open a transient horizontal
+       scrollbar while it's translated into place. */
+    overflow-x: clip;
   }
 
   body::before {
