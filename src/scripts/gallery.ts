@@ -56,10 +56,8 @@ export function initGallery(): void {
       slides[i].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
     }
 
-    // A slide is either a bare <video> itself (accelerate/light-utopia/2000)
-    // or a wrapper containing one (e.g. media/index.astro's captioned
-    // drone-journey gallery) — querySelector alone only finds the wrapped
-    // case, since it searches descendants, not the element itself.
+    // A slide may be a bare <video> or a wrapper containing one —
+    // querySelector alone misses the bare case (it only searches descendants).
     function getSlideVideo(slideEl: HTMLElement): HTMLVideoElement | null {
       return slideEl instanceof HTMLVideoElement ? slideEl : slideEl.querySelector('video');
     }
@@ -153,20 +151,13 @@ export function initGallery(): void {
     //      pauses on any interaction and while the gallery is scrolled
     //      off-screen, skipped entirely under reduced motion.
     //
-    //      A <video> slide advances on its own loop boundary rather than a
-    //      pre-computed duration: computing the delay from video.duration up
-    //      front raced the metadata actually being loaded (NaN right after
-    //      the slide first became active, before the browser had buffered
-    //      enough to know the clip's length), which silently fell back to
-    //      the flat image delay below instead of the clip's real length.
-    //      These clips all carry the `loop` attribute for graceful
-    //      degradation if this script never runs, which normally suppresses
-    //      `ended` — so the loop boundary here is watched by overriding
-    //      `loop` for the duration of the watch and restoring it after,
-    //      giving a first-class `ended` signal instead of guessing the
-    //      boundary from a currentTime delta. A capped fallback timer still
-    //      applies in case autoplay never actually starts (blocked by the
-    //      browser). Image slides just use the flat delay. ----
+    //      Video slides advance on `ended` rather than a precomputed
+    //      duration (video.duration is NaN right after becoming active,
+    //      before enough is buffered). Clips carry `loop` for graceful
+    //      degradation without this script, so it's toggled off for the
+    //      watch and restored after to get a first-class `ended` signal.
+    //      A capped fallback timer covers autoplay never starting at all.
+    //      Image slides just use the flat delay. ----
     let autoplayTimer = 0;
     let inView = false;
     const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
