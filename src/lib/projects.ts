@@ -29,6 +29,9 @@ const MEDIA_PREVIEW_VIDEO: Partial<Record<string, string>> = {
   accelerate: '/images/media/accelerate/accelerate3',
   'light-utopia': '/images/media/light-utopia/light_utopia2',
   '2000': '/images/media/2000/2000_4',
+  ventimiglia: '/images/media/ventimiglia/ventimiglia_1',
+  'san-gottardo': '/images/media/san-gottardo/san-gottardo_1',
+  'cala-del-forte-ventimiglia': '/images/media/cala-del-forte-ventimiglia/cala-del-forte-ventimiglia_1',
 };
 
 // Card props for the apps listing (/apps, /de/apps). Shared with
