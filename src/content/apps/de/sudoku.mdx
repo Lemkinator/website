@@ -18,8 +18,17 @@ privacyPolicy:
   includesPlayGamesSection: true
 ---
 
+import { Image } from 'astro:assets';
 import Gallery from '@/components/Gallery.astro';
 import YouTube from '@/components/YouTube.astro';
+import mobile1Img from '../../../assets/images/apps/sudoku/mobile1.png';
+import mobile2Img from '../../../assets/images/apps/sudoku/mobile2.png';
+import mobile3Img from '../../../assets/images/apps/sudoku/mobile3.png';
+import mobile4Img from '../../../assets/images/apps/sudoku/mobile4.png';
+import mobile5Img from '../../../assets/images/apps/sudoku/mobile5.png';
+import playGamesImg from '../../../assets/images/apps/sudoku/play_games.png';
+import levelImg from '../../../assets/images/apps/sudoku/level.png';
+import dailyImg from '../../../assets/images/apps/sudoku/daily.png';
 
 <YouTube id="zxecO9Muo4Q" title="Sudoku Trailer" class="app-trailer" />
 
@@ -45,11 +54,11 @@ Also worauf wartest du noch? Lade jetzt die App im Play Store herunter und lass 
 ## Screenshots
 
 <Gallery>
-  <img src="/images/apps/sudoku/mobile1.png" alt="" />
-  <img src="/images/apps/sudoku/mobile2.png" alt="" />
-  <img src="/images/apps/sudoku/mobile3.png" alt="" />
-  <img src="/images/apps/sudoku/mobile4.png" alt="" />
-  <img src="/images/apps/sudoku/mobile5.png" alt="" />
+  <Image src={mobile1Img} alt="" />
+  <Image src={mobile2Img} alt="" />
+  <Image src={mobile3Img} alt="" />
+  <Image src={mobile4Img} alt="" />
+  <Image src={mobile5Img} alt="" />
 </Gallery>
 
 ## Windows-Unterstützung
@@ -76,16 +85,16 @@ oberen Knöpfe zu gewährleisten.
 Durch die Google Play Spiele integration kannst du spannende Erfolge freischalten, dich mit deinen
 Freunden messen und dir einen guten Platz in verschiedenen Bestenlisten erkämpfen.
 
-<img class="mobile-image" src="/images/apps/sudoku/play_games.png" alt="" />
+<Image class="mobile-image" src={playGamesImg} alt="" />
 
 ### Sudoku Level
 
 Spiele Sudoku Level mit steigendem Schwierigkeitsgrad und verfolge deinen Level-Fortschritt.
 
-<img class="mobile-image" src="/images/apps/sudoku/level.png" alt="" />
+<Image class="mobile-image" src={levelImg} alt="" />
 
 ### Tägliches Sudoku
 
 Spiele jeden Tag Sudoku und verfolge deinen täglichen Fortschritt.
 
-<img class="mobile-image" src="/images/apps/sudoku/daily.png" alt="" />
+<Image class="mobile-image" src={dailyImg} alt="" />
