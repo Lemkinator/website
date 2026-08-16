@@ -26,6 +26,20 @@
   }
 }
 
+/* Astro's <Image>/<Picture> components emit width/height HTML attributes
+   on every <img> (for the Image pipeline migration) — those act as
+   low-priority "presentational hints" that set a literal pixel height
+   even when a class only constrains width (e.g. .playstore_button's
+   width: 200px), stretching the image instead of scaling it. Any plain
+   <img>/<video> without both dimensions constrained by its own class
+   needs this to fall back to intrinsic-ratio scaling. */
+@layer layout {
+  img,
+  video {
+    height: auto;
+  }
+}
+
 @layer layout {
   .center {
     text-align: center;
