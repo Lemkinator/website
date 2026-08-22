@@ -14,22 +14,108 @@ export function initCommandPalette(): void {
   const input = inputEl;
   const empty = emptyEl;
 
-  const items = Array.from(listEl.querySelectorAll<HTMLAnchorElement>('[data-command-item]'));
+  // listEl is narrowed non-null by the guard above, but (like dialog/input/
+  // empty) that narrowing doesn't survive into the closures below.
+  const list = listEl;
+  const items = Array.from(list.querySelectorAll<HTMLAnchorElement>('[data-command-item]'));
 
   function visibleItems(): HTMLAnchorElement[] {
     return items.filter((item) => !item.closest('li')?.hidden);
   }
 
+  // True if a and b are within edit distance 1 of each other (a single
+  // substitution/insertion/deletion) — the "typo-tolerant" half of fuzzyScore.
+  function isCloseMatch(a: string, b: string): boolean {
+    if (Math.abs(a.length - b.length) > 1) return false;
+    let i = 0;
+    let j = 0;
+    let edits = 0;
+    while (i < a.length && j < b.length) {
+      if (a[i] === b[j]) {
+        i++;
+        j++;
+        continue;
+      }
+      if (++edits > 1) return false;
+      if (a.length > b.length) i++;
+      else if (a.length < b.length) j++;
+      else {
+        i++;
+        j++;
+      }
+    }
+    edits += a.length - i + (b.length - j);
+    return edits <= 1;
+  }
+
+  // Lower is better; null means no match. Tries, in order: exact substring
+  // (ranked by position), then an in-order subsequence match (ranked by how
+  // spread out the letters are), then a single-typo match against some
+  // equal-ish-length window of the text.
+  function fuzzyScore(text: string, query: string): number | null {
+    const t = text.toLowerCase();
+    const q = query.toLowerCase();
+    if (!q) return 0;
+
+    const substringIndex = t.indexOf(q);
+    if (substringIndex !== -1) return substringIndex;
+
+    let cursor = 0;
+    let gapScore = 1000;
+    let matched = true;
+    for (const ch of q) {
+      const idx = t.indexOf(ch, cursor);
+      if (idx === -1) {
+        matched = false;
+        break;
+      }
+      gapScore += idx - cursor;
+      cursor = idx + 1;
+    }
+    if (matched) return gapScore;
+
+    if (q.length >= 3) {
+      for (let start = 0; start <= t.length - q.length + 1; start++) {
+        for (const len of [q.length - 1, q.length, q.length + 1]) {
+          const window = t.slice(start, start + len);
+          if (window.length && isCloseMatch(window, q)) return 2000 + start;
+        }
+      }
+    }
+
+    return null;
+  }
+
   function filter(query: string): void {
-    const q = query.trim().toLowerCase();
-    let visibleCount = 0;
+    const q = query.trim();
+
+    if (!q) {
+      for (const item of items) {
+        const li = item.closest('li');
+        if (li) li.hidden = false;
+      }
+      empty.hidden = true;
+      return;
+    }
+
+    const scored = items
+      .map((item) => ({ item, score: fuzzyScore(item.textContent ?? '', q) }))
+      .filter((entry): entry is { item: HTMLAnchorElement; score: number } => entry.score !== null)
+      .sort((a, b) => a.score - b.score);
+
     for (const item of items) {
       const li = item.closest('li');
-      const matches = !q || (item.textContent ?? '').toLowerCase().includes(q);
-      if (li) li.hidden = !matches;
-      if (matches) visibleCount++;
+      if (li) li.hidden = true;
     }
-    empty.hidden = visibleCount > 0;
+
+    for (const { item } of scored) {
+      const li = item.closest('li');
+      if (!li) continue;
+      li.hidden = false;
+      list.appendChild(li);
+    }
+
+    empty.hidden = scored.length > 0;
   }
 
   function open(): void {
