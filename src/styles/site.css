@@ -223,6 +223,29 @@
       box-shadow var(--dur-fast) var(--ease-spring);
   }
 
+  /* Subtle scroll-linked swing on the card's own photo, mirroring Banner's
+     view()-timeline parallax at a much narrower range (see Card.astro's
+     narrowFrom/narrowTo). @supports/reduced-motion fall back to the static
+     background-position set above — never a broken/blank state. */
+  @keyframes card-parallax {
+    from {
+      background-position: center var(--bg-pos-narrow-from);
+    }
+    to {
+      background-position: center var(--bg-pos-narrow-to);
+    }
+  }
+
+  @supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+      .card {
+        animation: card-parallax linear both;
+        animation-timeline: view();
+        animation-range: cover 0% cover 100%;
+      }
+    }
+  }
+
   .card::before {
     content: '';
     position: absolute;

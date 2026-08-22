@@ -51,9 +51,18 @@ const countMatch = interactionText?.match(/^(\d+)(.*)$/);
 const countValue = countMatch?.[1];
 const countSuffix = countMatch?.[2] ?? '';
 
+// Narrow scroll-parallax swing around the card's own vertical focal point —
+// same technique as Banner.astro's hasCustomFocal narrow swing, just a much
+// smaller +/-4pt range since a card is far shorter than a full banner.
+const focalY = Number(/(-?\d+(?:\.\d+)?)%\s*$/.exec(bgPosition ?? '')?.[1] ?? 50);
+const narrowFrom = `${Math.max(0, focalY - 4)}%`;
+const narrowTo = `${Math.min(100, focalY + 4)}%`;
+
 const style = [
   `--bg-img: url(${resolvedBg})`,
   bgPosition && `--bg-pos: ${bgPosition}`,
+  `--bg-pos-narrow-from: ${narrowFrom}`,
+  `--bg-pos-narrow-to: ${narrowTo}`,
   transitionName && `view-transition-name: ${transitionName}`,
   revealIndex !== undefined && `--i: ${revealIndex}`,
 ]
