@@ -32,8 +32,8 @@ Two collections, each with `en/` and `de/` subdirectories under `src/content/<co
   `downloads`, `privacyPolicy.*`); the MDX body holds the actual prose/screenshots/videos.
   `privacyPolicy` frontmatter drives `src/pages/apps/[slug]/privacy-policy.astro` — the 5
   privacy-policy pages are one template, not 5 separate files.
-- **`media`** — the 6 FPV/cinematic video projects (2000, accelerate, light-utopia, ventimiglia,
-  san-gottardo, cala-del-forte-ventimiglia).
+- **`media`** — the FPV/cinematic video projects (2000, accelerate, light-utopia, ventimiglia,
+  san-gottardo, cala-del-forte-ventimiglia, st-tropez, les-issambres).
 
 Both collections use a `glob` loader with a custom `generateId` (see `content.config.ts`) —
 **do not remove it**. Without it, `en/foo.mdx` and `de/foo.mdx` both get id `"foo"` and silently
@@ -54,6 +54,30 @@ collide (last one loaded wins), because the default id is just the basename.
   rather than pulling in an icon font/CDN.
 - `src/components/Gallery.astro` — CSS scroll-snap carousel, replaces the old Swiper 9 CDN
   dependency. Use this for any screenshot/image gallery.
+
+## Banner artwork
+
+The user generates every banner image themselves (via Google Flow/ImageFX) — Claude's job is
+writing the prompt and wiring the resulting file in, never generating it.
+
+Two prompt templates:
+
+- **Abstract** (home, about, apps index/WSA, the 5 individual app banners, imprint, 404, `/media`
+  index): `Abstract dark banner: <subject-relevant motif>, periwinkle-blue (#7d97ff) glow on
+  near-black background, <2-3 word mood>. No text, no logos, no readable script/UI/branding.`
+- **Photoreal** (every individual media project): `Abstract dark banner: <the actual scene from
+  the footage — a chase shot behind a boat, a coastline of private-pool villas, be specific, not
+  generic>, dissolving into glowing FPV drone light trails, periwinkle-blue (#7d97ff) glow blended
+  with warm golden-hour light over <sea/water/coastline>. No text, no logos, no real landmarks.`
+
+Both: full-bleed, edge-to-edge content — no padding/letterboxing/empty-background "sticker" look.
+Keep the actual subject/detail inside x: 25%–75%, y: 30%–70% (`Banner.astro`'s full-bleed `cover`
+crop clips outside that box on common viewports — mobile crops the sides, wide desktops crop
+top/bottom).
+
+If a generated image still comes back off-center, give it `Banner`'s `focalPosition` prop (e.g.
+`focalPosition="center 20%"`) — this also swaps it to a narrow parallax swing centered on that
+value instead of the default wide one (see `hasCustomFocal` in `Banner.astro`).
 
 ## Deferred work
 
