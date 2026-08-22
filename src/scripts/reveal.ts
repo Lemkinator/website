@@ -1,3 +1,34 @@
+// Must run before initReveal, which collects the [data-reveal] elements
+// this creates. .section-gap marks a sub-section boundary (e.g. about.astro's
+// #experience) meant to be recursed into via its own containerSelector
+// entry, not swallowed into the parent's grouping here.
+export function autoRevealSections(containerSelector = '.content'): void {
+  document.querySelectorAll<HTMLElement>(containerSelector).forEach((container) => {
+    let group: HTMLElement[] = [];
+
+    function flush(): void {
+      if (group.length === 0) return;
+      const wrapper = document.createElement('div');
+      wrapper.className = 'reveal-block';
+      wrapper.dataset.reveal = 'up';
+      group[0].before(wrapper);
+      group.forEach((el) => wrapper.appendChild(el));
+      group = [];
+    }
+
+    for (const child of Array.from(container.children) as HTMLElement[]) {
+      const isHeading = /^H[2-4]$/.test(child.tagName);
+      const isManaged = child.hasAttribute('data-reveal') || child.classList.contains('section-gap');
+
+      if (isHeading || isManaged) flush();
+      if (isManaged) continue;
+
+      group.push(child);
+    }
+    flush();
+  });
+}
+
 // IntersectionObserver-driven, not CSS animation-timeline: view() — that
 // shipped a real incident: animation-delay on a scroll-linked timeline is a
 // % of the timeline's range, not a wait time, which pushed a staggered

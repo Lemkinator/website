@@ -66,9 +66,11 @@ const goatcounterCode = import.meta.env.PUBLIC_GOATCOUNTER_CODE;
 </html>
 <script>
   import { initKonami } from '@/scripts/konami';
-  import { initReveal } from '@/scripts/reveal';
+  import { initReveal, autoRevealSections } from '@/scripts/reveal';
   import { initMagnetic } from '@/scripts/magnetic';
   initKonami();
+  // Must run before initReveal, which collects the [data-reveal] elements this creates.
+  autoRevealSections('.content, #experience, #education');
   // Runs once globally — every [data-reveal] element on the page (not just
   // card grids) gets picked up.
   initReveal();

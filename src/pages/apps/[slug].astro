@@ -35,13 +35,15 @@ const { name, tagline, icon, bannerImage, bannerImageAlt, playStoreUrl, githubUr
     }
   </Banner>
 
-  <div class="content" data-reveal="up">
-    {/* Rendered at 80x80 CSS px (site.css #app-icon) — 160 covers 2x DPR. */}
-    <Image id="app-icon" src={icon} alt="" width={160} height={160} />
-    <h2>{name}</h2>
+  <div class="content">
+    <div class="reveal-block" data-reveal="up">
+      {/* Rendered at 80x80 CSS px (site.css #app-icon) — 160 covers 2x DPR. */}
+      <Image id="app-icon" src={icon} alt="" width={160} height={160} />
+      <h2>{name}</h2>
+    </div>
     <Content />
 
-    <div id="links" class="section-gap">
+    <div id="links" class="section-gap" data-reveal="up">
       <h2>Links</h2>
       {
         privacyPolicy && (

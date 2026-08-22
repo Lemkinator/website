@@ -22,118 +22,95 @@ import filesImg from '@/assets/images/apps/wsa/wsa-files.jpg';
   />
 
   <div class="content">
-    <div class="reveal-block" data-reveal="up">
-      <h2>Info</h2>
-      <p>Windows Subsystem for Android™️ (WSA) allows to install and use Android apps on Windows.</p>
-      <p>
-        Unfortunately, Microsoft is discontinuing support for the WSA. Therefore, the Amazon Appstore on Windows and all
-        applications and games dependent on WSA{' '}
-        <a target="_blank" rel="noopener noreferrer" href="https://learn.microsoft.com/windows/android/wsa/">
-          will no longer be supported
-        </a>{' '}
-        starting March 5, 2025.
-      </p>
-      <p>
-        Thanks to the dedicated community, there is already a solution to continue using WSA, namely with the Google
-        Play Store instead of the Amazon Appstore.
-      </p>
-      <p>
-        <b>
-          Before installing the new version of WSA, the old official version from the Microsoft Store must be
-          uninstalled.
-        </b>
-      </p>
-    </div>
+    <h2>Info</h2>
+    <p>Windows Subsystem for Android™️ (WSA) allows to install and use Android apps on Windows.</p>
+    <p>
+      Unfortunately, Microsoft is discontinuing support for the WSA. Therefore, the Amazon Appstore on Windows and all
+      applications and games dependent on WSA{' '}
+      <a target="_blank" rel="noopener noreferrer" href="https://learn.microsoft.com/windows/android/wsa/">
+        will no longer be supported
+      </a>{' '}
+      starting March 5, 2025.
+    </p>
+    <p>
+      Thanks to the dedicated community, there is already a solution to continue using WSA, namely with the Google Play
+      Store instead of the Amazon Appstore.
+    </p>
+    <p>
+      <b>
+        Before installing the new version of WSA, the old official version from the Microsoft Store must be uninstalled.
+      </b>
+    </p>
 
-    <div class="reveal-block" data-reveal="up">
-      <h2 id="install">Install WSA</h2>
-      <button class="button-pill">
-        <a target="_blank" rel="noopener noreferrer" href="https://github.com/MustardChef/WSABuilds">
-          WSABuilds (GitHub)
-        </a>
-      </button>
-      <button class="button-pill">
-        <a target="_blank" rel="noopener noreferrer" href="https://www.youtube.com/watch?v=11lw-IHPH3A">
-          WSA Installation Guide (YouTube)
-        </a>
-      </button>
+    <h2 id="install">Install WSA</h2>
+    <button class="button-pill">
+      <a target="_blank" rel="noopener noreferrer" href="https://github.com/MustardChef/WSABuilds">
+        WSABuilds (GitHub)
+      </a>
+    </button>
+    <button class="button-pill">
+      <a target="_blank" rel="noopener noreferrer" href="https://www.youtube.com/watch?v=11lw-IHPH3A">
+        WSA Installation Guide (YouTube)
+      </a>
+    </button>
 
-      <p id="check" class="gap-sm">Check system type in Windows settings:</p>
-      <Image src={windowsImg} alt="Windows" />
-    </div>
+    <p id="check" class="gap-sm">Check system type in Windows settings:</p>
+    <Image src={windowsImg} alt="Windows" />
 
-    <div class="reveal-block" data-reveal="up">
-      <h3 id="steps">Steps</h3>
-      <ol>
-        <li>
-          Download the zip file (WSA_<i>XXXX.XXXXX.X.X</i>_<i>systemtype</i>_Release-Nightly-MindTheGapps-<i>XX.X</i
-          >-RemovedAmazon.7z)
-        </li>
-        <li>Unzip (e.g.: to "C:\users\<i>%yourUsername%</i>\WSA")</li>
-        <li>Optional: Zip file can be deleted after unzipping</li>
-        <li>Open the unzipped folder and double click on "Run.bat"</li>
-        <li>Confirm administrator rights</li>
-        <li>Close the window when "All Done! Press any key to exit"</li>
-        <li>
-          In the dialog: "Optional Diagnostic Data" click on "Next". (Multiple of these dialogs are no problem, just
-          click on "Next" every time)
-        </li>
-      </ol>
-    </div>
+    <h3 id="steps">Steps</h3>
+    <ol>
+      <li>
+        Download the zip file (WSA_<i>XXXX.XXXXX.X.X</i>_<i>systemtype</i>_Release-Nightly-MindTheGapps-<i>XX.X</i
+        >-RemovedAmazon.7z)
+      </li>
+      <li>Unzip (e.g.: to "C:\users\<i>%yourUsername%</i>\WSA")</li>
+      <li>Optional: Zip file can be deleted after unzipping</li>
+      <li>Open the unzipped folder and double click on "Run.bat"</li>
+      <li>Confirm administrator rights</li>
+      <li>Close the window when "All Done! Press any key to exit"</li>
+      <li>
+        In the dialog: "Optional Diagnostic Data" click on "Next". (Multiple of these dialogs are no problem, just click
+        on "Next" every time)
+      </li>
+    </ol>
 
-    <div class="reveal-block" data-reveal="up">
-      <h2 id="google">Google Play Store</h2>
-      <p>
-        A Google account is required to install Android apps. If the Google Play Store is not opened after installation
-        of WSA, it can also be opened manually. After opening the Google Play Store, a login with a Google account is
-        requested. If the login was successful, Android apps can now be installed.
-      </p>
-    </div>
+    <h2 id="google">Google Play Store</h2>
+    <p>
+      A Google account is required to install Android apps. If the Google Play Store is not opened after installation of
+      WSA, it can also be opened manually. After opening the Google Play Store, a login with a Google account is
+      requested. If the login was successful, Android apps can now be installed.
+    </p>
 
-    <div class="reveal-block" data-reveal="up">
-      <h2>Opening an Android app via the Windows search</h2>
-      <p>Press Windows key and type the name of the app (e.g.: "Play Store"):</p>
-      <Image src={openSearchImg} alt="WSA open search" />
-    </div>
+    <h2>Opening an Android app via the Windows search</h2>
+    <p>Press Windows key and type the name of the app (e.g.: "Play Store"):</p>
+    <Image src={openSearchImg} alt="WSA open search" />
 
-    <div class="reveal-block" data-reveal="up">
-      <h2>Opening an Android app via the WSA settings</h2>
-      <Image src={openSettingsImg} alt="WSA open settings" />
-    </div>
+    <h2>Opening an Android app via the WSA settings</h2>
+    <Image src={openSettingsImg} alt="WSA open settings" />
 
-    <div class="reveal-block" data-reveal="up">
-      <h2 id="files">Access Windows Files in WSA</h2>
-      <p>
-        It is possible to access files of the Windows system within the WSA. To do this, access to a Windows folder must
-        be enabled in the WSA settings.
-      </p>
-    </div>
+    <h2 id="files">Access Windows Files in WSA</h2>
+    <p>
+      It is possible to access files of the Windows system within the WSA. To do this, access to a Windows folder must
+      be enabled in the WSA settings.
+    </p>
 
-    <div class="reveal-block" data-reveal="up">
-      <h3>Open WSA settings</h3>
-      <p>Press Windows key and type "Android":</p>
-      <Image src={settingsImg} alt="WSA settings" />
-    </div>
+    <h3>Open WSA settings</h3>
+    <p>Press Windows key and type "Android":</p>
+    <Image src={settingsImg} alt="WSA settings" />
 
-    <div class="reveal-block" data-reveal="up">
-      <h3 id="select">Select a folder for access within the WSA</h3>
-      <p>Step 4 is optional:</p>
-      <Image src={settingsFilesImg} alt="WSA settings files" />
-    </div>
+    <h3 id="select">Select a folder for access within the WSA</h3>
+    <p>Step 4 is optional:</p>
+    <Image src={settingsFilesImg} alt="WSA settings files" />
 
-    <div class="reveal-block" data-reveal="up">
-      <h3 id="restart">Restart WSA</h3>
-      <p>
-        This step closes the WSA and all running Android apps. Once an Android app is opened again, the WSA will
-        automatically restart:
-      </p>
-      <Image src={settingsRestartImg} alt="WSA settings restart" />
-    </div>
+    <h3 id="restart">Restart WSA</h3>
+    <p>
+      This step closes the WSA and all running Android apps. Once an Android app is opened again, the WSA will
+      automatically restart:
+    </p>
+    <Image src={settingsRestartImg} alt="WSA settings restart" />
 
-    <div class="reveal-block" data-reveal="up">
-      <h3 id="access">Access Windows files in WSA:</h3>
-      <Image src={filesImg} alt="WSA files" />
-    </div>
+    <h3 id="access">Access Windows files in WSA:</h3>
+    <Image src={filesImg} alt="WSA files" />
 
     <div id="links" class="section-gap" data-reveal="up">
       <h2>Links</h2>
@@ -154,15 +131,12 @@ import filesImg from '@/assets/images/apps/wsa/wsa-files.jpg';
       </button>
     </div>
 
-    <div class="reveal-block" data-reveal="up">
-      <p class="small">
-        Note: The use and installation of WSA is at your own risk. No liability is assumed for damages. Most of the time
-        the problem sits in front of the screen.
-      </p>
-      <p class="small">
-        Android is a trademark of Google LLC. Windows™ and Windows Subsystem for Android™ are trademarks of Microsoft
-        LLC.
-      </p>
-    </div>
+    <p class="small">
+      Note: The use and installation of WSA is at your own risk. No liability is assumed for damages. Most of the time
+      the problem sits in front of the screen.
+    </p>
+    <p class="small">
+      Android is a trademark of Google LLC. Windows™ and Windows Subsystem for Android™ are trademarks of Microsoft LLC.
+    </p>
   </div>
 </ProjectLayout>

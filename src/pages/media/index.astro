@@ -55,42 +55,35 @@ const projects = await getMediaCards('en');
   </CardGrid>
 
   <div class="content" id="fpv">
-    <div class="reveal-block" data-reveal="up">
-      <h2 class="text-gradient">What is Cinematic/Freestyle FPV?</h2>
-      <ul>
-        <li>
-          <b>First-person view (FPV)</b> is a method where a radio-controlled aircraft (drone) is piloted remotely from a
-          first-person perspective via an onboard camera, fed wirelessly to video FPV goggles.
-        </li>
-        <li><b>Freestyle FPV</b> is all about flying skills and doing nice tricks or movements.</li>
-        <li>
-          <b>Cinematic FPV</b> content tends to be slower and smoother than Freestyle FPV. The settings are chosen more for
-          their visual attraction than for the technical flying skills they demand.
-        </li>
-      </ul>
-    </div>
+    <h2 class="text-gradient">What is Cinematic/Freestyle FPV?</h2>
+    <ul>
+      <li>
+        <b>First-person view (FPV)</b> is a method where a radio-controlled aircraft (drone) is piloted remotely from a first-person
+        perspective via an onboard camera, fed wirelessly to video FPV goggles.
+      </li>
+      <li><b>Freestyle FPV</b> is all about flying skills and doing nice tricks or movements.</li>
+      <li>
+        <b>Cinematic FPV</b> content tends to be slower and smoother than Freestyle FPV. The settings are chosen more for
+        their visual attraction than for the technical flying skills they demand.
+      </li>
+    </ul>
 
-    <div class="reveal-block" data-reveal="up">
-      <h3>What is special about FPV?</h3>
-      <p>The difference to normal drone pilots is that FPV pilots mostly build their drone(s) themselves.</p>
-    </div>
+    <h3>What is special about FPV?</h3>
+    <p>The difference to normal drone pilots is that FPV pilots mostly build their drone(s) themselves.</p>
+    <h4>This includes:</h4>
+    <ul>
+      <li>Search and buy parts</li>
+      <li>Assembling the drone</li>
+      <li>Setting up the drone (Software)</li>
+    </ul>
+    <p>
+      Furthermore, it requires much more practice, since FPV drones are usually flown in acro mode (acrobatic mode: e.g.
+      when releasing the control sticks, the drone does not automatically level itself or if you move the sticks
+      forward, the drone will pitch forward continuously instead of accelerating forward...).
+    </p>
+    <p>But the practice is worth it, because flying FPV is incredibly fun!</p>
 
-    <div class="reveal-block" data-reveal="up">
-      <h4>This includes:</h4>
-      <ul>
-        <li>Search and buy parts</li>
-        <li>Assembling the drone</li>
-        <li>Setting up the drone (Software)</li>
-      </ul>
-      <p>
-        Furthermore, it requires much more practice, since FPV drones are usually flown in acro mode (acrobatic mode:
-        e.g. when releasing the control sticks, the drone does not automatically level itself or if you move the sticks
-        forward, the drone will pitch forward continuously instead of accelerating forward...).
-      </p>
-      <p>But the practice is worth it, because flying FPV is incredibly fun!</p>
-    </div>
-
-    <h3 data-reveal="up">What got me into FPV?</h3>
+    <h3>What got me into FPV?</h3>
     <Gallery full>
       <div>
         <Image src={drone1Img} alt="" />
@@ -144,82 +137,70 @@ const projects = await getMediaCards('en');
       <h1 id="setup" class="heading-display text-gradient">Setup</h1>
     </div>
 
-    <h2 id="2023" data-reveal="up">2023</h2>
-    <div class="reveal-block" data-reveal="up">
-      <h3 class="text-gradient">iFlight Nazgul Evoque F5 V2 HD</h3>
-      <ul>
-        <li>Frame: Nazgul F5 DeadCat</li>
-        <li>Motor: XING2 2207 1855KV</li>
-        <li>Props: Nazgul F5</li>
-        <li>FC: BLITZ Mini F722</li>
-        <li>ESC: BLITZ Mini E55 4-IN-1 2-6S 55A</li>
-        <li>Video Transmission: DJI O3 Air Unit</li>
-        <li>Receiver: TBS Crossfire Nano</li>
-        <li>LiPo: Tattu R-LINE V4.0 1300mAh 130C 6S</li>
-      </ul>
-    </div>
+    <h2 id="2023">2023</h2>
+    <h3 class="text-gradient">iFlight Nazgul Evoque F5 V2 HD</h3>
+    <ul>
+      <li>Frame: Nazgul F5 DeadCat</li>
+      <li>Motor: XING2 2207 1855KV</li>
+      <li>Props: Nazgul F5</li>
+      <li>FC: BLITZ Mini F722</li>
+      <li>ESC: BLITZ Mini E55 4-IN-1 2-6S 55A</li>
+      <li>Video Transmission: DJI O3 Air Unit</li>
+      <li>Receiver: TBS Crossfire Nano</li>
+      <li>LiPo: Tattu R-LINE V4.0 1300mAh 130C 6S</li>
+    </ul>
     <Image class="drone-image" data-reveal="up" src={evoqueImg} alt="iFlight Nazgul Evoque F5 V2 HD" />
 
-    <h2 id="2021" data-reveal="up">2021 - 2023</h2>
-    <div class="reveal-block" data-reveal="up">
-      <h3 class="text-gradient">Drone (Custom Build, 5 Inch)</h3>
-      <ul>
-        <li>Frame: iFlight Cidora SL5</li>
-        <li>Motor: iFlight XING-E 2306 1700KV</li>
-        <li>Props: HQProp DP5X4.3X3V1S</li>
-        <li>Stack: Mamba F722S 60A</li>
-        <li>Video Transmission: Caddx Vista Kit / Air Unit Lite</li>
-        <li>Receiver: TBS Crossfire Nano</li>
-        <li>LiPo: Tattu R-LINE V3.0 1300mAh 120C 6S</li>
-        <li>GoPro Hero 6 Black</li>
-      </ul>
-    </div>
+    <h2 id="2021">2021 - 2023</h2>
+    <h3 class="text-gradient">Drone (Custom Build, 5 Inch)</h3>
+    <ul>
+      <li>Frame: iFlight Cidora SL5</li>
+      <li>Motor: iFlight XING-E 2306 1700KV</li>
+      <li>Props: HQProp DP5X4.3X3V1S</li>
+      <li>Stack: Mamba F722S 60A</li>
+      <li>Video Transmission: Caddx Vista Kit / Air Unit Lite</li>
+      <li>Receiver: TBS Crossfire Nano</li>
+      <li>LiPo: Tattu R-LINE V3.0 1300mAh 120C 6S</li>
+      <li>GoPro Hero 6 Black</li>
+    </ul>
     <Image class="drone-image" data-reveal="up" src={drone8Img} alt="Drone (Custom Build, 5 Inch)" />
-    <div class="reveal-block" data-reveal="up">
-      <h3 class="text-gradient">Cinewhoop (iFlight ProTek25)</h3>
-      <ul>
-        <li>Motor: iFlight XING 1404 4600KV</li>
-        <li>Props: Nazgul 2525</li>
-        <li>Stack: SucceX-D 20A Whoop AIO</li>
-        <li>Video Transmission: Caddx Vista Kit / Air Unit Lite</li>
-        <li>Receiver: TBS Crossfire Nano</li>
-        <li>LiPo: Tattu R-LINE V1.0 850mAh 95C 4S</li>
-        <li>Naked GoPro Hero 6 Black</li>
-      </ul>
-    </div>
+    <h3 class="text-gradient">Cinewhoop (iFlight ProTek25)</h3>
+    <ul>
+      <li>Motor: iFlight XING 1404 4600KV</li>
+      <li>Props: Nazgul 2525</li>
+      <li>Stack: SucceX-D 20A Whoop AIO</li>
+      <li>Video Transmission: Caddx Vista Kit / Air Unit Lite</li>
+      <li>Receiver: TBS Crossfire Nano</li>
+      <li>LiPo: Tattu R-LINE V1.0 850mAh 95C 4S</li>
+      <li>Naked GoPro Hero 6 Black</li>
+    </ul>
     <Image class="drone-image" data-reveal="up" src={protek25Img} alt="Cinewhoop (iFlight ProTek25)" />
-    <div class="reveal-block" data-reveal="up">
-      <h3 class="text-gradient">Other</h3>
-      <ul>
-        <li>Radio: FrSky Taranis X-Lite S</li>
-        <li>Goggles: DJI FPV Goggles V2</li>
-        <li>Charger: HOTA D6 PRO DUAL Smart Charger AC/DC</li>
-      </ul>
-    </div>
+    <h3 class="text-gradient">Other</h3>
+    <ul>
+      <li>Radio: FrSky Taranis X-Lite S</li>
+      <li>Goggles: DJI FPV Goggles V2</li>
+      <li>Charger: HOTA D6 PRO DUAL Smart Charger AC/DC</li>
+    </ul>
 
-    <h2 id="2020" data-reveal="up">2020 - 2021</h2>
-    <div class="reveal-block" data-reveal="up">
-      <h3 class="text-gradient">Drone (Custom Build, 5 Inch)</h3>
-      <ul>
-        <li>Frame: iFlight Cidora SL5</li>
-        <li>Motor: iFlight XING-E 2306 1700KV</li>
-        <li>Props: HQProp DP5X4.3X3V1S</li>
-        <li>Stack: Mamba F722S 60A</li>
-        <li>Cam: Foxeer Falkor 2 Mini</li>
-        <li>VTX: Rush Tank Ultimate</li>
-        <li>Receiver: TBS Crossfire Nano</li>
-        <li>LiPo: Goldbat 1300mAh 100C 6S</li>
-        <li>GoPro Hero 6 Black</li>
-      </ul>
-    </div>
-    <div class="reveal-block" data-reveal="up">
-      <h3 class="text-gradient">Other</h3>
-      <ul>
-        <li>Radio: FrSky Taranis X-Lite S</li>
-        <li>Goggles: Eachine EV800D</li>
-        <li>Charger: ISDT 600AC</li>
-      </ul>
-    </div>
+    <h2 id="2020">2020 - 2021</h2>
+    <h3 class="text-gradient">Drone (Custom Build, 5 Inch)</h3>
+    <ul>
+      <li>Frame: iFlight Cidora SL5</li>
+      <li>Motor: iFlight XING-E 2306 1700KV</li>
+      <li>Props: HQProp DP5X4.3X3V1S</li>
+      <li>Stack: Mamba F722S 60A</li>
+      <li>Cam: Foxeer Falkor 2 Mini</li>
+      <li>VTX: Rush Tank Ultimate</li>
+      <li>Receiver: TBS Crossfire Nano</li>
+      <li>LiPo: Goldbat 1300mAh 100C 6S</li>
+      <li>GoPro Hero 6 Black</li>
+    </ul>
+    <h3 class="text-gradient">Other</h3>
+    <ul>
+      <li>Radio: FrSky Taranis X-Lite S</li>
+      <li>Goggles: Eachine EV800D</li>
+      <li>Charger: ISDT 600AC</li>
+    </ul>
   </div>
 
   <Giscus />
