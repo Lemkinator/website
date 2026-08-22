@@ -21,100 +21,121 @@ import filesImg from '@/assets/images/apps/wsa/wsa-files.jpg';
     imageAlt="KI-generierte abstrakte Grafik der verschmelzenden Windows- und Android-Logos"
   />
 
-  <div class="content" data-reveal="up">
-    <h2>Info</h2>
-    <p>Windows Subsystem for Android™️ (WSA) ermöglicht es, Android-Apps auf Windows zu installieren und zu nutzen.</p>
-    <p>
-      Microsoft stellt leider den Support für das WSA ein. Daher wird der Amazon Appstore unter Windows und alle von WSA
-      abhängigen Anwendungen und Spiele ab dem 5. März 2025{' '}
-      <a target="_blank" rel="noopener noreferrer" href="https://learn.microsoft.com/windows/android/wsa/">
-        nicht mehr unterstützt
-      </a>.
-    </p>
-    <p>
-      Dank der engagierten Community gibt es jedoch bereits eine Lösung, um WSA weiterhin zu nutzen, und zwar mit dem
-      Google Play Store anstelle des Amazon Appstores.
-    </p>
-    <p>
-      <b
-        >Bevor die neue Version von WSA installiert wird, muss die alte offizielle Version vom Microsoft Store
-        deinstalliert werden.</b
-      >
-    </p>
+  <div class="content">
+    <div class="reveal-block" data-reveal="up">
+      <h2>Info</h2>
+      <p>Windows Subsystem for Android™️ (WSA) ermöglicht es, Android-Apps auf Windows zu installieren und zu nutzen.</p>
+      <p>
+        Microsoft stellt leider den Support für das WSA ein. Daher wird der Amazon Appstore unter Windows und alle von
+        WSA abhängigen Anwendungen und Spiele ab dem 5. März 2025{' '}
+        <a target="_blank" rel="noopener noreferrer" href="https://learn.microsoft.com/windows/android/wsa/">
+          nicht mehr unterstützt
+        </a>.
+      </p>
+      <p>
+        Dank der engagierten Community gibt es jedoch bereits eine Lösung, um WSA weiterhin zu nutzen, und zwar mit dem
+        Google Play Store anstelle des Amazon Appstores.
+      </p>
+      <p>
+        <b
+          >Bevor die neue Version von WSA installiert wird, muss die alte offizielle Version vom Microsoft Store
+          deinstalliert werden.</b
+        >
+      </p>
+    </div>
 
-    <h2 id="install">WSA installieren</h2>
-    <button class="button-pill">
-      <a target="_blank" rel="noopener noreferrer" href="https://github.com/MustardChef/WSABuilds">WSABuilds (GitHub)</a
-      >
-    </button>
-    <button class="button-pill">
-      <a target="_blank" rel="noopener noreferrer" href="https://www.youtube.com/watch?v=11lw-IHPH3A">
-        WSA Installationsanleitung (YouTube)
-      </a>
-    </button>
+    <div class="reveal-block" data-reveal="up">
+      <h2 id="install">WSA installieren</h2>
+      <button class="button-pill">
+        <a target="_blank" rel="noopener noreferrer" href="https://github.com/MustardChef/WSABuilds"
+          >WSABuilds (GitHub)</a
+        >
+      </button>
+      <button class="button-pill">
+        <a target="_blank" rel="noopener noreferrer" href="https://www.youtube.com/watch?v=11lw-IHPH3A">
+          WSA Installationsanleitung (YouTube)
+        </a>
+      </button>
 
-    <p id="check" class="gap-sm">Systemtyp in den Windows-Einstellungen überprüfen:</p>
-    <Image src={windowsImg} alt="Windows" />
+      <p id="check" class="gap-sm">Systemtyp in den Windows-Einstellungen überprüfen:</p>
+      <Image src={windowsImg} alt="Windows" />
+    </div>
 
-    <h3 id="steps">Schritte</h3>
-    <ol>
-      <li>
-        Zip herunterladen (WSA_<i>XXXX.XXXXX.X.X</i>_<i>systemtyp</i>_Release-Nightly-MindTheGapps-<i>XX.X</i
-        >-RemovedAmazon.7z)
-      </li>
-      <li>Zip entpacken (z.B.: nach "C:\Benutzer\<i>%deinBenutzername%</i>\WSA")</li>
-      <li>Optional: Zip-Datei kann nach dem Entpacken gelöscht werden</li>
-      <li>Entpackten Ordner öffnen und doppelklicken auf "Run.bat"</li>
-      <li>Administratorrechte bestätigen</li>
-      <li>Fenster kann geschlossen werden bei "All Done! Press any key to exit"</li>
-      <li>
-        Im Dialog: "Optionale Diagnosedaten" auf "Weiter" klicken. (Mehrere dieser Dialoge sind kein Problem, einfach
-        immer auf "Weiter" klicken)
-      </li>
-    </ol>
+    <div class="reveal-block" data-reveal="up">
+      <h3 id="steps">Schritte</h3>
+      <ol>
+        <li>
+          Zip herunterladen (WSA_<i>XXXX.XXXXX.X.X</i>_<i>systemtyp</i>_Release-Nightly-MindTheGapps-<i>XX.X</i
+          >-RemovedAmazon.7z)
+        </li>
+        <li>Zip entpacken (z.B.: nach "C:\Benutzer\<i>%deinBenutzername%</i>\WSA")</li>
+        <li>Optional: Zip-Datei kann nach dem Entpacken gelöscht werden</li>
+        <li>Entpackten Ordner öffnen und doppelklicken auf "Run.bat"</li>
+        <li>Administratorrechte bestätigen</li>
+        <li>Fenster kann geschlossen werden bei "All Done! Press any key to exit"</li>
+        <li>
+          Im Dialog: "Optionale Diagnosedaten" auf "Weiter" klicken. (Mehrere dieser Dialoge sind kein Problem, einfach
+          immer auf "Weiter" klicken)
+        </li>
+      </ol>
+    </div>
 
-    <h2 id="google">Google Play Store</h2>
-    <p>Um Android Apps zu installieren, wird ein Google-Konto benötigt.</p>
-    <p>
-      Falls der Google Play Store nicht nach der Installation von WSA geöffnet wird, kann dieser auch manuell geöffnet
-      werden:
-    </p>
-    <button class="button-pill"><a href="#open">Android Apps öffnen</a></button>
-    <p>Nach dem Öffnen des Google Play Stores wird die Anmeldung mit einem Google-Konto angefordert.</p>
-    <p>Wenn die Anmeldung erfolgreich war, können nun Android Apps installiert werden.</p>
+    <div class="reveal-block" data-reveal="up">
+      <h2 id="google">Google Play Store</h2>
+      <p>
+        Um Android Apps zu installieren, wird ein Google-Konto benötigt. Falls der Google Play Store nicht nach der
+        Installation von WSA geöffnet wird, kann dieser auch manuell geöffnet werden. Nach dem Öffnen des Google Play
+        Stores wird die Anmeldung mit einem Google-Konto angefordert. Wenn die Anmeldung erfolgreich war, können nun
+        Android Apps installiert werden.
+      </p>
+    </div>
 
-    <h2 id="open">Android Apps öffnen</h2>
-    <h3>Öffnen einer Android App über die Windows-Suche</h3>
-    <p>Windows-Taste drücken und den Namen der App eingeben (z.B.: "Play Store"):</p>
-    <Image src={openSearchImg} alt="WSA open search" />
-    <h3>Öffnen einer Android App über die WSA-Einstellungen</h3>
-    <Image src={openSettingsImg} alt="WSA open settings" />
-    <button class="button-pill"><a href="#files">WSA-Einstellungen öffnen</a></button>
+    <div class="reveal-block" data-reveal="up">
+      <h2>Öffnen einer Android App über die Windows-Suche</h2>
+      <p>Windows-Taste drücken und den Namen der App eingeben (z.B.: "Play Store"):</p>
+      <Image src={openSearchImg} alt="WSA open search" />
+    </div>
 
-    <h2 id="files">In WSA auf Windows-Dateien zugreifen</h2>
-    <p>
-      Es ist möglich innerhalb des WSA auf Dateien des Windows-Systems zuzugreifen. Dazu muss in den WSA Einstellungen
-      der Zugriff auf einen Windows-Ordner aktiviert werden.
-    </p>
-    <h3>WSA Einstellungen öffnen</h3>
-    <p>Windows-Taste drücken und "Android" eingeben:</p>
-    <Image src={settingsImg} alt="WSA settings" />
+    <div class="reveal-block" data-reveal="up">
+      <h2>Öffnen einer Android App über die WSA-Einstellungen</h2>
+      <Image src={openSettingsImg} alt="WSA open settings" />
+    </div>
 
-    <h3 id="select">Ordner für den Zugriff innerhalb des WSA auswählen</h3>
-    <p>Schritt 4 ist optional:</p>
-    <Image src={settingsFilesImg} alt="WSA settings files" />
+    <div class="reveal-block" data-reveal="up">
+      <h2 id="files">In WSA auf Windows-Dateien zugreifen</h2>
+      <p>
+        Es ist möglich innerhalb des WSA auf Dateien des Windows-Systems zuzugreifen. Dazu muss in den WSA
+        Einstellungen der Zugriff auf einen Windows-Ordner aktiviert werden.
+      </p>
+    </div>
 
-    <h3 id="restart">WSA neu starten</h3>
-    <p>
-      Dieser Schritt beendet das WSA und alle laufenden Android-Apps. Sobald eine Android-App wieder geöffnet wird, wird
-      das WSA automatisch wieder gestartet:
-    </p>
-    <Image src={settingsRestartImg} alt="WSA settings restart" />
+    <div class="reveal-block" data-reveal="up">
+      <h3>WSA Einstellungen öffnen</h3>
+      <p>Windows-Taste drücken und "Android" eingeben:</p>
+      <Image src={settingsImg} alt="WSA settings" />
+    </div>
 
-    <h3 id="access">Zugriff auf Windows-Dateien in WSA:</h3>
-    <Image src={filesImg} alt="WSA files" />
+    <div class="reveal-block" data-reveal="up">
+      <h3 id="select">Ordner für den Zugriff innerhalb des WSA auswählen</h3>
+      <p>Schritt 4 ist optional:</p>
+      <Image src={settingsFilesImg} alt="WSA settings files" />
+    </div>
 
-    <div id="links" class="section-gap">
+    <div class="reveal-block" data-reveal="up">
+      <h3 id="restart">WSA neu starten</h3>
+      <p>
+        Dieser Schritt beendet das WSA und alle laufenden Android-Apps. Sobald eine Android-App wieder geöffnet wird,
+        wird das WSA automatisch wieder gestartet:
+      </p>
+      <Image src={settingsRestartImg} alt="WSA settings restart" />
+    </div>
+
+    <div class="reveal-block" data-reveal="up">
+      <h3 id="access">Zugriff auf Windows-Dateien in WSA:</h3>
+      <Image src={filesImg} alt="WSA files" />
+    </div>
+
+    <div id="links" class="section-gap" data-reveal="up">
       <h2>Links</h2>
       <button class="button-pill"
         ><a target="_blank" rel="noopener noreferrer" href="https://github.com/MustardChef/WSABuilds"
@@ -132,12 +153,16 @@ import filesImg from '@/assets/images/apps/wsa/wsa-files.jpg';
         ></button
       >
     </div>
-    <p class="small gap-sm">
-      Hinweis: Die Verwendung und Installation des WSA erfolgt auf eigene Gefahr. Es wird keine Haftung für Schäden
-      übernommen. Meistens sitzt das Problem vor dem Bildschirm.
-    </p>
-    <p class="small">
-      Android ist eine Marke von Google LLC. Windows™ und Windows-Subsystem für Android™ sind Marken von Microsoft LLC.
-    </p>
+
+    <div class="reveal-block" data-reveal="up">
+      <p class="small">
+        Hinweis: Die Verwendung und Installation des WSA erfolgt auf eigene Gefahr. Es wird keine Haftung für Schäden
+        übernommen. Meistens sitzt das Problem vor dem Bildschirm.
+      </p>
+      <p class="small">
+        Android ist eine Marke von Google LLC. Windows™ und Windows-Subsystem für Android™ sind Marken von Microsoft
+        LLC.
+      </p>
+    </div>
   </div>
 </ProjectLayout>
