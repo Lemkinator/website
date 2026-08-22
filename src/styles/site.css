@@ -403,6 +403,7 @@
     background: color-mix(in srgb, var(--color-surface) 85%, transparent);
     backdrop-filter: blur(16px);
     border-bottom: 1px solid var(--color-line);
+    transition: transform var(--dur-fast) var(--ease-spring);
   }
 
   .navbar__container {
@@ -513,6 +514,17 @@
 
     .navbar__toggle-input:checked ~ .navbar__menu {
       display: flex;
+    }
+
+    /* Immersive scroll (src/scripts/nav-scroll.ts) sets this inline,
+       tracking scroll position 1:1 rather than snapping at a threshold.
+       !important: keyboard focus landing anywhere in the nav (e.g. Tab
+       from the address bar) must not leave it scrolled off-screen and
+       unreachable, and the open mobile menu must never slide away out
+       from under the user — both need to beat the inline style. */
+    .navbar:focus-within,
+    .navbar:has(.navbar__toggle-input:checked) {
+      transform: none !important;
     }
   }
 }
@@ -675,6 +687,7 @@
     width: 80px;
     height: 80px;
     float: right;
+    margin: 0 0 var(--space-2) var(--space-3);
     border-radius: var(--radius-md);
     box-shadow: var(--shadow-sm);
   }
