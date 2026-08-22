@@ -327,7 +327,7 @@
     position: absolute;
     inset: 0;
     opacity: 0;
-    transition: opacity var(--dur-slow) var(--ease-out);
+    transition: opacity 3s var(--ease-out);
   }
 
   .card__preview {
