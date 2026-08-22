@@ -1,10 +1,4 @@
 ---
-// Replaces the ~28-line <head> boilerplate that used to be pasted into 25
-// pages by hand (HTML/Facebook/Twitter meta-tag blocks, each page only
-// differing by title/description/canonical/og:image).
-//
-// og:url and canonical are both derived from the same Astro.site value, which
-// fixes the non-www/www mismatch that existed on every legacy page.
 import { getImage } from 'astro:assets';
 import { getRelativeLocaleUrl } from 'astro:i18n';
 import { locales, defaultLocale, getLocaleAgnosticPath } from '@/i18n/ui';
@@ -13,10 +7,8 @@ import defaultImage from '@/assets/images/logo/icon.png';
 interface Props {
   title: string;
   description: string;
-  // Every image on the site goes through src/assets — ImageMetadata is the
-  // only real input. The plain-string branch stays only because
-  // getImage() itself accepts either and it costs nothing to keep it typed
-  // that way; every current caller passes ImageMetadata.
+  // Every current caller passes ImageMetadata; the string branch is kept
+  // only because getImage() accepts either type anyway.
   image?: ImageMetadata | string;
   type?: 'website' | 'article';
   noindex?: boolean;
@@ -41,8 +33,6 @@ const resolvedImage =
       ).src;
 const imageUrl = new URL(resolvedImage, Astro.site);
 
-// path with the current locale prefix stripped, so we can rebuild an
-// alternate-locale URL for each hreflang entry below.
 const localeAgnosticPath = getLocaleAgnosticPath(locale, Astro.url.pathname);
 ---
 

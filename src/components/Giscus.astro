@@ -1,9 +1,7 @@
 ---
-// Replaces the 36+ hand-pasted giscus <script> tag pairs (one EN + one DE
-// copy on every page that had comments). Renders exactly one tag, matched to
-// the current locale, with data-mapping="pathname" left untouched — that's
-// the setting every existing GitHub Discussion thread is keyed against, and
-// it's why the site's URLs could not change shape during this rebuild.
+// data-mapping="pathname" below must stay as-is — every existing GitHub
+// Discussion thread is keyed against it; changing it or a page's URL shape
+// orphans that page's comments.
 import { defaultLocale } from '@/i18n/ui';
 
 const locale = Astro.currentLocale ?? defaultLocale;

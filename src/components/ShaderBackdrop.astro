@@ -1,10 +1,7 @@
 ---
-// Cursor-reactive WebGL2 flow-field haze, meant to sit in Banner's
-// `backdrop` slot (first child, painted below Banner's gradient scrim and
-// title). Pure GLSL, no image/model assets. Fully self-guarding — see
-// src/scripts/backdrop.ts — so if WebGL2 is unavailable or the visitor
-// prefers reduced motion, this renders nothing and Banner's photo is the
-// complete, intentional-looking page on its own.
+// Self-guarding: if WebGL2 is unavailable or the visitor prefers reduced
+// motion (see backdrop.ts), this renders nothing — Banner's photo behind
+// it is still a complete page.
 ---
 
 <canvas class="shader-backdrop" data-shader-canvas aria-hidden="true"></canvas>

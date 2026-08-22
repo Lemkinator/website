@@ -1,8 +1,4 @@
 ---
-// Replaces navbar.html + the client-side $.get("/navbar.html").replaceWith()
-// injection. This renders server-side as part of the page, so there is no
-// AJAX round-trip, no anti-FOUC display:none hack, and no delay before the
-// nav/font/links exist in the DOM.
 import { getRelativeLocaleUrl } from 'astro:i18n';
 import { Image } from 'astro:assets';
 import { useTranslations, defaultLocale, getLocaleAgnosticPath, type Locale } from '@/i18n/ui';
@@ -20,9 +16,8 @@ const links = [
   { key: 'nav.media', path: '/media' },
 ] as const;
 
-// Drives both aria-current and the sliding .navbar__indicator pill, which
-// carries view-transition-name: nav-indicator (site.css) so it glides to
-// its new position instead of popping across navigations.
+// Drives aria-current and the .navbar__indicator pill, which carries
+// view-transition-name: nav-indicator (site.css).
 const currentPath = getLocaleAgnosticPath(locale, Astro.url.pathname);
 function isActive(path: string): boolean {
   return path === '/' ? currentPath === '/' : currentPath === path || currentPath.startsWith(`${path}/`);

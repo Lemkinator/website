@@ -1,7 +1,4 @@
 ---
-// Explicit EN/DE switch that links to the CURRENT page's counterpart
-// (getRelativeLocaleUrl), rather than relying purely on navigator.language
-// the way the legacy site did.
 import { getRelativeLocaleUrl } from 'astro:i18n';
 import { useTranslations, defaultLocale, getLocaleAgnosticPath, type Locale } from '@/i18n/ui';
 
