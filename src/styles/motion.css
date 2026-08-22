@@ -22,6 +22,7 @@
      animated swap). Don't move `transition` onto .reveal-pending — see
      reveal.ts for why that silently breaks the animation entirely. */
   [data-reveal].reveal-pending {
+    opacity: 0;
     translate: 0 var(--reveal-distance);
   }
 
@@ -36,6 +37,7 @@
 
   [data-reveal].reveal-armed {
     transition:
+      opacity var(--dur-slow) var(--ease-out),
       translate var(--dur-slow) var(--ease-out),
       scale var(--dur-slow) var(--ease-out),
       filter var(--dur-slow) var(--ease-out);
@@ -43,6 +45,7 @@
   }
 
   [data-reveal].reveal-visible {
+    opacity: 1;
     translate: 0 0;
     scale: 1;
     filter: blur(0);
