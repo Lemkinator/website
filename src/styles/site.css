@@ -85,6 +85,12 @@
     color: var(--color-muted);
   }
 
+  .privacy-updated {
+    font-size: 0.8rem;
+    color: var(--color-muted);
+    margin-top: var(--space-4);
+  }
+
   .error {
     display: flex;
     flex-direction: column;
