@@ -1,7 +1,4 @@
 ---
-// Replaces the per-page copy-pasted <head> block, the navbar.html/footer.html
-// AJAX injection, and the jQuery dependency that existed only to do those two
-// things. Every real page (see src/pages/**) wraps its content in this.
 import { Font } from 'astro:assets';
 import Seo from '@/components/Seo.astro';
 import JsonLd from '@/components/JsonLd.astro';
@@ -24,8 +21,7 @@ interface Props {
 const { title, description, image, type, noindex } = Astro.props;
 const locale = (Astro.currentLocale ?? defaultLocale) as Locale;
 
-// GoatCounter is opt-in via env var — no account code is hardcoded here.
-// Set PUBLIC_GOATCOUNTER_CODE in .env to enable it. See .env.example.
+// Set PUBLIC_GOATCOUNTER_CODE in .env to enable (see .env.example).
 const goatcounterCode = import.meta.env.PUBLIC_GOATCOUNTER_CODE;
 ---
 
@@ -71,14 +67,12 @@ const goatcounterCode = import.meta.env.PUBLIC_GOATCOUNTER_CODE;
   import { initReveal } from '@/scripts/reveal';
   import { initMagnetic } from '@/scripts/magnetic';
   initKonami();
-  // Global, not just from CardGrid — every page wraps in BaseLayout, so any
-  // [data-reveal] element anywhere (prose sections, privacy-policy text,
-  // not just card grids) gets picked up automatically.
+  // Runs once globally — every [data-reveal] element on the page (not just
+  // card grids) gets picked up.
   initReveal();
-  // .button-pill exists in server-rendered markup on every page that has one,
-  // so this is safe to run immediately here. .gallery__dot is created
-  // client-side by gallery.ts, which calls initMagnetic() itself once its
-  // dots actually exist.
+  // .button-pill is safe to init here since it's always server-rendered by
+  // this point; .gallery__dot is created client-side by gallery.ts, which
+  // calls initMagnetic() itself once its dots exist.
   initMagnetic('.button-pill');
 
   console.log(

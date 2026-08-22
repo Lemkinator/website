@@ -1,6 +1,5 @@
-// One-off script — regenerates favicon.ico (was 199KB with no <link> tag
-// pointing at it) plus a proper PNG icon set from the existing logo source.
-// Not part of the build; run manually if the logo ever changes:
+// One-off script, not part of the build — regenerates the favicon set from
+// the logo source. Run manually if the logo ever changes:
 //   node scripts/generate-favicons.mjs
 import sharp from 'sharp';
 import pngToIco from 'png-to-ico';

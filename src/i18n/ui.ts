@@ -81,11 +81,8 @@ export function useTranslations(locale: Locale) {
   };
 }
 
-// Strips the current locale's URL prefix (e.g. "/de/about" -> "/about"),
-// so callers can rebuild an alternate-locale URL via getRelativeLocaleUrl.
-// Shared by Seo.astro (hreflang tags) and LangToggle.astro (the visible
-// language switcher) — they must agree on this path or the two disagree
-// about where the "other language" version of the current page lives.
+// Shared by Seo.astro and LangToggle.astro — both must agree on this path
+// or they disagree about where the alternate-locale page lives.
 export function getLocaleAgnosticPath(locale: Locale, pathname: string): string {
   return locale === defaultLocale ? pathname : pathname.replace(new RegExp(`^/${locale}`), '') || '/';
 }

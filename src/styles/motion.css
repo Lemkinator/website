@@ -1,24 +1,10 @@
-/*
- * Motion layer: scroll reveals, nav shrink-to-glass, scroll progress bar,
- * native view transitions. Reveals are IntersectionObserver + a CSS
- * transition (src/scripts/reveal.ts) — see the note at the reveal rules for
- * why, after a real incident with the CSS-native alternative. Nav
- * shrink/progress-bar are pure CSS (animation-timeline: scroll()), no JS,
- * running on the compositor thread.
- *
- * Browser support is intentionally Chrome/Chromium-first (see CLAUDE.md
- * motion decisions): scroll()-timeline effects are wrapped in @supports so
- * browsers without it (Firefox, as of FF 152/June 2026 still behind a flag)
- * simply never apply them. Nothing in this file sets a resting state of
- * invisible outside a JS-armed or @supports-gated block, so every fallback
- * path is a complete, fully visible page — not a broken one.
- */
+/* Browser support is intentionally Chrome/Chromium-first: scroll()-timeline
+   effects are wrapped in @supports so unsupported browsers simply never
+   apply them — every fallback path is a complete, visible page, never a broken one. */
 @layer motion {
-  /* ---------- Reduced motion: global backstop ---------- */
-  /* Catches every animation/transition site-wide, including ones added
-     later without their own guard. Individual effects below additionally
-     gate on (prefers-reduced-motion: no-preference) so they never even
-     attach a timeline for these users, but this is the safety net. */
+  /* Global safety net — individual effects also gate on
+     (prefers-reduced-motion: no-preference) so they never attach for these
+     users, but this catches anything added later without its own guard. */
   @media (prefers-reduced-motion: reduce) {
     *,
     *::before,
@@ -30,36 +16,11 @@
     }
   }
 
-  /* ---------- Scroll-driven reveals ---------- */
-  /* IntersectionObserver-driven (src/scripts/reveal.ts), not CSS
-     animation-timeline: view(). That was the original implementation and
-     it shipped a real incident — elements went permanently invisible for
-     some visitors. animation-delay on a scroll-linked (non-monotonic)
-     timeline doesn't mean "wait Nms": spec converts a time value into a
-     proportion of the timeline's own range, which can push a staggered
-     card's "finished" point past 100% of its range, so it never reaches
-     the visible end state. Root-caused by reproducing it locally, not
-     guessed. IntersectionObserver has none of that: it's a plain
-     boolean "is this on screen", decades-proven, no range math.
-     Progressive enhancement, not a hide-by-default: [data-reveal]
-     elements are fully visible until JS explicitly arms them (adds
-     .reveal-pending below) — so no-JS, JS-error, and
-     IntersectionObserver-unsupported all fail open to "just visible",
-     never to "stuck invisible".
-
-     Three classes, added in this order by reveal.ts, and each matters:
-     .reveal-pending sets the hidden position with NO transition active
-     yet (so the jump to hidden doesn't itself animate). Two frames later,
-     .reveal-armed turns the transition on with no accompanying value
-     change (so turning it on doesn't animate anything either). Later,
-     on intersection, .reveal-pending is swapped for .reveal-visible —
-     .reveal-armed's transition is still present through that swap, so
-     THIS is the change that actually animates. An earlier version put
-     `transition` inside .reveal-pending itself, which gets removed at
-     the exact moment .reveal-visible is added — a CSS transition only
-     animates a property change if `transition` is present on the
-     element AFTER the change, so it was silently a no-op the entire
-     time: elements just snapped to visible, no animation, ever. */
+  /* [data-reveal] visibility is driven by reveal.ts via three classes, in
+     order: .reveal-pending (hidden, no transition yet), .reveal-armed
+     (transition enabled, no value change yet), .reveal-visible (the actual
+     animated swap). Don't move `transition` onto .reveal-pending — see
+     reveal.ts for why that silently breaks the animation entirely. */
   [data-reveal].reveal-pending {
     translate: 0 var(--reveal-distance);
   }
@@ -87,7 +48,6 @@
     filter: blur(0);
   }
 
-  /* ---------- Nav: shrink-to-glass on scroll ---------- */
   @keyframes navbar-glass {
     from {
       background-color: color-mix(in srgb, var(--color-surface) 85%, transparent);
@@ -124,7 +84,6 @@
     }
   }
 
-  /* ---------- Scroll progress bar (BaseLayout renders .scroll-progress) --------- */
   .scroll-progress {
     position: fixed;
     inset: 0 0 auto 0;
@@ -154,20 +113,13 @@
     }
   }
 
-  /* ---------- Ambient background drift ---------- */
-  /* A very faint two-blob radial wash, fixed behind all content, that
-     slowly hue-rotates as the whole document scrolls — same
-     animation-timeline: scroll(root) compositor technique as the navbar
-     glass effect above, so it's 0 KB JS and runs off the main thread.
-     z-index: -1 is safe here specifically because a box's own background
-     always paints before any of its descendants (including negative-z-index
-     ones) — body's var(--color-bg) is still the floor, this sits just above
-     it, and every normal-flow descendant (nav, main, footer) paints over it
-     untouched. */
   body {
     position: relative;
   }
 
+  /* z-index: -1 is safe here because a box's own background always paints
+     before any of its descendants, including negative-z-index ones —
+     body's var(--color-bg) is still the floor beneath this. */
   body::before {
     content: '';
     position: fixed;
@@ -197,7 +149,6 @@
     }
   }
 
-  /* ---------- Konami confetti burst (src/scripts/confetti.ts) ---------- */
   .confetti-burst {
     position: fixed;
     inset: 0;
@@ -205,19 +156,14 @@
     pointer-events: none;
   }
 
-  /* ---------- Native cross-document view transitions ---------- */
-  /* Deliberately NOT Astro's <ClientRouter /> — that turns navigation into
-     SPA-style DOM swaps, which would require re-initializing Giscus
-     (data-mapping="pathname") on every astro:page-load. This is a real
-     navigation, so Giscus/GoatCounter/every inline script keep working
-     untouched; the browser just animates the swap. 0 KB. */
+  /* Deliberately not Astro's <ClientRouter /> — that turns navigation into
+     SPA-style DOM swaps, which would require re-initializing Giscus on
+     every astro:page-load. This is a real navigation, so Giscus/
+     GoatCounter/every inline script keep working untouched. */
   @view-transition {
     navigation: auto;
   }
 
-  /* Nav and footer are visually identical across navigations — hold them
-     static instead of letting the default root cross-fade double-expose
-     them for a frame. */
   .navbar {
     view-transition-name: site-nav;
   }
@@ -226,21 +172,12 @@
     view-transition-name: site-footer;
   }
 
-  /* Every card->banner morph (hub-apps/hub-media, proj-app-* / proj-media-*)
-     shares this one rule (::view-transition-old/-new's functional-pseudo
-     argument only accepts '*' or a name list — no :not(), so this has to be
-     the wildcard rather than excluding root/site-nav/site-footer by name;
-     harmless for those three since none of them have an aspect ratio that
-     changes across a navigation, so object-fit can't visibly do anything
-     there). The browser's default sizing otherwise lets each named group's
-     own aspect ratio drift from the card's shape to the banner's much
-     wider, shorter one over the animation, which reads as
-     letterboxing/gaps rather than a clean morph — worse the bigger that
-     mismatch is (small square-ish listing cards -> full-bleed banner is a
-     much bigger jump than the 2-wide homepage hub tiles, which is why the
-     hub transition already looked fine while the others didn't). cover
-     keeps the snapshot filling the box at every point in the animation
-     regardless of the aspect-ratio delta. */
+  /* Every card->banner morph shares this one wildcard rule:
+     ::view-transition-old/-new only accept '*' or a name list, no :not(),
+     so excluding root/site-nav/site-footer by name isn't possible
+     (harmless for them since their aspect ratio never changes across a
+     navigation). object-fit: cover keeps the snapshot filling the box
+     despite the card's much smaller/differently-shaped source photo. */
   ::view-transition-old(*),
   ::view-transition-new(*) {
     object-fit: cover;
@@ -254,8 +191,6 @@
     mix-blend-mode: normal;
   }
 
-  /* Default page-body transition: a soft directional fade, replacing the
-     browser's plain cross-fade for the root group. */
   @keyframes vt-fade-out {
     to {
       opacity: 0;

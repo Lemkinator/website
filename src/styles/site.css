@@ -1,19 +1,6 @@
-/*
- * Site-wide design system (Phase 3). Replaces the legacy per-page
- * stylesheets (styles.css, cards.css, apps.css, media.css, navbar.css,
- * footer.css) with one system built on the tokens in tokens.css.
- *
- * Deliberately targets the SAME class names the legacy site used
- * (.content, .card, .button-pill, .navbar__*, .mobile-image, ...) so page
- * markup didn't need a rewrite — only the visual values changed.
- */
-
-/* Registered once, used by .card::after and .button-pill::after's rotating
-   border glow below — @property makes a custom property animatable
-   (without this, browsers can't interpolate <angle> values, so the
-   rotation would just snap through steps instead of animating smoothly).
-   Not inside @layer: @property registers a property globally regardless
-   of layer, so it reads clearer unscoped. */
+/* @property makes --border-angle animatable — without it, browsers can't
+   interpolate <angle> values, so the border-glow rotation below would snap
+   through steps instead of animating smoothly. */
 @property --border-angle {
   syntax: '<angle>';
   inherits: false;
@@ -26,10 +13,6 @@
   }
 }
 
-/* Visually-hidden but screen-reader-accessible text — e.g. Banner.astro's
-   background-image description, since a CSS background-image has no native
-   <img alt>. Shared here instead of redeclared per-component so it doesn't
-   grow a second near-identical copy the next time something needs it. */
 .sr-only {
   position: absolute;
   width: 1px;
@@ -42,13 +25,11 @@
   border: 0;
 }
 
-/* Astro's <Image>/<Picture> components emit width/height HTML attributes
-   on every <img> (for the Image pipeline migration) — those act as
-   low-priority "presentational hints" that set a literal pixel height
-   even when a class only constrains width (e.g. .playstore-button's
-   width: 200px), stretching the image instead of scaling it. Any plain
-   <img>/<video> without both dimensions constrained by its own class
-   needs this to fall back to intrinsic-ratio scaling. */
+/* Astro's <Image>/<Picture> emit width/height as HTML "presentational
+   hints", which set a literal pixel height even when a class only
+   constrains width (e.g. .playstore-button's width: 200px) — stretching
+   the image instead of scaling it. Anything without both dimensions
+   constrained by its own class needs this fallback. */
 @layer layout {
   img,
   video {
@@ -132,8 +113,6 @@
   }
 }
 
-/* Buttons — replaces the pill-shaped .button-pill links used throughout the
-   legacy site (WSA install, contact, restart, project links, ...). */
 @layer layout {
   .button-pill {
     display: inline-block;
@@ -142,17 +121,12 @@
     border-radius: 999px;
     background: var(--color-surface);
     box-shadow: var(--shadow-sm);
-    /* Magnetic cursor pull — see initMagnetic() in magnetic.ts, called
-       for .button-pill from BaseLayout.astro. */
     --mag-x: 0px;
     --mag-y: 0px;
     transform: translate(var(--mag-x), var(--mag-y));
     transition: transform 0.2s ease-out;
   }
 
-  /* Rotating gradient-border glow on hover — same technique as .card::after,
-     see the @property --border-angle registration near the top of this
-     file. */
   .button-pill::after {
     content: '';
     position: absolute;
@@ -207,7 +181,6 @@
   }
 }
 
-/* Card grid — src/components/Card.astro, CardGrid.astro. */
 @layer layout {
   .cards-wrapper {
     display: grid;
@@ -218,20 +191,18 @@
     padding: var(--space-4);
   }
 
-  /* perspective must live on .card's direct parent to affect its 3D
-     tilt transform — .card is a grandchild of .cards-wrapper. */
+  /* perspective must live on .card's direct parent to affect its 3D tilt
+     transform — .card is a grandchild of .cards-wrapper. */
   .card-grid-space {
     perspective: 1200px;
   }
 
   .card {
-    /* Full-strength photo/icon background with a bottom gradient scrim for
-       text legibility — a low-opacity (0.16) background was tried here and
-       made cards read as visually empty; this restores real presence. */
-    /* Solid fallback matters: app icons are RGBA PNGs with transparent
-       padding around the squircle glyph — without a background-color,
-       those transparent regions show the page background through instead
-       of the card, which in light mode made cards look empty/blank. */
+    /* A low-opacity (0.16) background was tried here and made cards read
+       as visually empty — this restores real presence. The solid
+       background-color also matters: app icons are RGBA PNGs with
+       transparent padding, which would otherwise show the page background
+       through instead of the card. */
     --bg-img: none;
     background-color: var(--color-surface);
     background-image: linear-gradient(to top, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.15) 60%), var(--bg-img);
@@ -250,9 +221,8 @@
     position: relative;
     overflow: hidden;
     contain: layout; /* single-box guarantee for view-transition-name */
-    /* --rx/--ry/--mx/--my are written by initCardTilt() in pointer.ts
-       (pointer:fine + motion-ok devices only); everyone else just gets the
-       --lift hover animation below. */
+    /* Written by initCardTilt() in pointer.ts (pointer:fine + motion-ok
+       devices only); everyone else just gets the --lift hover animation below. */
     --rx: 0deg;
     --ry: 0deg;
     --mx: 50%;
@@ -262,7 +232,6 @@
     transition: transform 0.25s var(--ease-out, ease), box-shadow var(--dur-fast) var(--ease-spring);
   }
 
-  /* Cursor spotlight, positioned via the same --mx/--my pointer.ts writes. */
   .card::before {
     content: '';
     position: absolute;
@@ -277,20 +246,13 @@
     opacity: 1;
   }
 
-  /* Rotating gradient-border glow on hover — pure CSS, see the @property
-     --border-angle registration + @keyframes border-glow-rotate near the
-     top of this file. The conic-gradient is masked to just the border
-     ring (mask-composite: exclude cuts out everything but the padding
-     area between the two mask layers), so it reads as a glowing outline
-     rather than filling the whole card. */
   .card::after {
     content: '';
     position: absolute;
-    /* .button-pill::after (no overflow constraint) uses inset: -1px so the
-       ring protrudes slightly past the edge; .card has overflow: hidden
-       (its image/video content relies on that), which clipped that
-       protruding half unevenly. inset: 0 keeps the ring fully inside the
-       clipped box instead. */
+    /* .button-pill::after uses inset: -1px so the ring protrudes past the
+       edge; .card has overflow: hidden (its image/video content relies on
+       that), which clipped that protruding half unevenly, so this stays
+       inset: 0 instead. */
     inset: 0;
     border-radius: inherit;
     padding: 1.5px;
@@ -308,21 +270,17 @@
     animation: border-glow-rotate 3s linear infinite;
   }
 
-  /* Card content (title/description/tags/badges) — position: relative so it
-     gets its own stacking layer above .card__preview-wrap below. Without
-     this, that wrap's position: absolute would always paint over it
-     regardless of DOM order: positioned elements paint above non-positioned
-     in-flow content no matter which comes first in the document. */
+  /* position: relative so this stacking layer paints above
+     .card__preview-wrap regardless of DOM order — positioned elements
+     paint above non-positioned in-flow content no matter which comes
+     first in the document. */
   .card__content {
     position: relative;
     z-index: 1;
   }
 
-  /* Hover video-peek (media cards only — see initVideoPeek() in pointer.ts,
-     which plays/pauses the <video> on hover; the fade itself is pure CSS).
-     .card__preview-scrim mirrors .card's own gradient scrim (below) so
-     .card__content's text stays legible once a bright video frame fades in
-     over the photo. */
+  /* .card__preview-scrim duplicates .card's own gradient scrim so
+     .card__content's text stays legible once the video fades in over the photo. */
   .card__preview-wrap {
     position: absolute;
     inset: 0;
@@ -345,21 +303,16 @@
   }
 
   /* Gated like initVideoPeek() in pointer.ts, which never plays the video
-     for these users either — otherwise the fade would reveal a paused,
-     unplaying frame. */
+     for these users either — otherwise the fade would reveal a paused, unplaying frame. */
   @media (prefers-reduced-motion: no-preference) {
     .card:hover .card__preview-wrap {
       opacity: 1;
     }
   }
 
-  /* App-card icon overlay (Card.astro's `icon` prop) — centered squircle
-     glyph on top of the bannerImage background. Sits above the photo/scrim
-     but below .card__content's text (that's z-index: 1; this is positioned
-     but z-index: auto, same layer as .card__preview-wrap, ordered after it
-     in DOM so it still paints above a fading-in video peek if a card ever
-     has both). drop-shadow instead of a background chip: legible over any
-     photo without adding a visible shape of its own. */
+  /* z-index: auto, same layer as .card__preview-wrap but ordered after it
+     in DOM, so this still paints above a fading-in video peek on cards
+     that have both. */
   .card__icon {
     position: absolute;
     top: 42%;
@@ -432,7 +385,6 @@
   }
 }
 
-/* Nav — src/components/Nav.astro. */
 @layer layout {
   .navbar {
     position: sticky;
@@ -473,9 +425,8 @@
     font-size: 0.95rem;
   }
 
-  /* Active-link indicator — one exists per document at most (only one link
-     is active), so view-transition-name stays trivially unique. See
-     src/components/Nav.astro and src/styles/motion.css. */
+  /* Only one link is ever active per document, so this view-transition-name
+     stays trivially unique. */
   .navbar__indicator {
     position: absolute;
     left: 0;
@@ -487,9 +438,8 @@
     view-transition-name: nav-indicator;
   }
 
-  /* Checkbox-driven disclosure — no JS. The checkbox
-     (.navbar__toggle-input) is the actual interactive/focusable control;
-     .navbar__toggle is just its visible hamburger-icon label. */
+  /* Checkbox-driven disclosure, no JS: .navbar__toggle-input is the actual
+     interactive/focusable control, .navbar__toggle is just its visible label. */
   .navbar__toggle-input {
     position: absolute;
     width: 1px;
@@ -516,10 +466,6 @@
     border-radius: var(--radius-md);
   }
 
-  /* Hamburger-to-X morph, driven by the same .navbar__toggle-input checkbox
-     as .navbar__menu above — no JS. stroke-dasharray/-dashoffset animate the
-     top/bottom bars into the two diagonal strokes of an X while the whole
-     svg rotates 45deg; the middle bar just fades via its own dasharray. */
   .navbar__toggle svg {
     height: 1.6em;
     transition: transform 600ms var(--ease-in-out);
@@ -563,33 +509,19 @@
       display: flex;
     }
 
-    /* Expand/collapse animation: a real height: 0 -> height: auto
-       transition, via interpolate-size: allow-keywords — the CSS Sizing
-       feature that exists specifically to replace the old grid-template-rows
-       0fr/1fr trick (previously used here). No wrapper/grid indirection, no
-       .navbar__menu-list needing its own min-height:0/overflow:hidden split
-       — one property doing exactly what it says. Unsupported browsers
-       (interpolate-size is Chrome/Chromium-only so far) just get an instant
-       open/close instead of an animated one: auto isn't interpolable by
-       default without the opt-in, so the transition silently no-ops rather
-       than breaking anything — same fail-open posture as the rest of this
-       file's progressive enhancements.
+    /* interpolate-size: allow-keywords lets height animate 0 -> auto for
+       real; unsupported browsers just get an instant open/close instead of
+       an animated one (auto isn't interpolable without the opt-in, so the
+       transition silently no-ops).
 
-       Layered on top: a plain opacity fade, same duration and easing as the
-       height, so content and box finish together in both directions — no
-       translate, no spring, no stagger, nothing left to fall out of sync.
-
-       Visibility (not display:none) hides the menu when closed: verified via
-       a minimal repro that in current Chromium (151.x — matches the real
-       Chrome tested against), transition-behavior: allow-discrete +
-       @starting-style on a display: none <-> block element silently kills
-       ALL transitions on that element, not just display's own. visibility:
-       hidden gets the same a11y-tree/tab-order exclusion as display: none
-       while closed, without that bug, using the pre-@starting-style
-       delayed-transition trick: closing keeps `visibility: visible` (via a
-       0-duration transition delayed by the full close duration) until the
-       rest finishes, so nothing vanishes mid-animation; opening zeroes that
-       delay so it's visible immediately. */
+       visibility (not display: none) hides the menu when closed: verified
+       in Chromium that transition-behavior: allow-discrete + @starting-style
+       on a display: none <-> block element silently kills ALL transitions
+       on that element, not just display's own. visibility: hidden gets the
+       same a11y-tree/tab-order exclusion without that bug — closing keeps
+       `visibility: visible` (via a 0-duration transition delayed by the
+       full close duration) until the rest finishes, so nothing vanishes
+       mid-animation; opening zeroes that delay. */
     .navbar__menu {
       interpolate-size: allow-keywords;
       visibility: hidden;
@@ -621,12 +553,10 @@
       transition-delay: 0s;
     }
 
-    /* Immersive scroll (src/scripts/nav-scroll.ts) sets this inline,
-       tracking scroll position 1:1 rather than snapping at a threshold.
-       !important: keyboard focus landing anywhere in the nav (e.g. Tab
-       from the address bar) must not leave it scrolled off-screen and
-       unreachable, and the open mobile menu must never slide away out
-       from under the user — both need to beat the inline style. */
+    /* !important: keyboard focus landing in the nav (e.g. Tab from the
+       address bar) must not leave it scrolled off-screen, and the open
+       mobile menu must never slide away under the user — both need to
+       beat nav-scroll.ts's inline transform. */
     .navbar:focus-within,
     .navbar:has(.navbar__toggle-input:checked) {
       transform: none !important;
@@ -634,7 +564,6 @@
   }
 }
 
-/* Footer — src/components/Footer.astro. */
 @layer layout {
   .footer__container {
     border-top: 1px solid var(--color-line);
@@ -726,11 +655,10 @@
   }
 }
 
-/* Gallery dot indicator — src/components/Gallery.astro, src/scripts/gallery.ts.
-   Lives here (global), not in Gallery.astro's scoped <style>, because the
-   dots are created client-side via document.createElement: Astro's style
-   scoping attribute is only added to server-rendered markup, so a scoped
-   rule silently wouldn't have matched these elements at all. */
+/* Lives here (global), not in Gallery.astro's scoped <style>: the dots are
+   created client-side via document.createElement, and Astro's style
+   scoping attribute is only added to server-rendered markup — a scoped
+   rule wouldn't match these elements at all. */
 @layer layout {
   .gallery__dots {
     display: flex;
@@ -748,8 +676,6 @@
     border-radius: 999px;
     background: var(--color-line);
     cursor: pointer;
-    /* Magnetic cursor pull — see initMagnetic() in magnetic.ts, called for
-       each gallery's own dots from gallery.ts once they're created. */
     --mag-x: 0px;
     --mag-y: 0px;
     transform: translate(var(--mag-x), var(--mag-y));
@@ -771,7 +697,6 @@
   }
 }
 
-/* Content-embedded media — screenshots/videos inside MDX bodies. */
 @layer layout {
   .content img,
   .content video {
@@ -802,8 +727,8 @@
     margin-top: var(--space-3);
   }
 
-  /* These sit alongside body text in a 700px column (--content-width) — capping
-     them at 400-480px made them look small/narrow next to full-width paragraphs. */
+  /* Capping these at 400-480px made them look small/narrow next to the
+     full-width paragraphs in the 700px content column. */
   .drone-image {
     width: 100%;
     margin-top: var(--space-3);

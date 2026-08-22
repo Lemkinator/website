@@ -1,8 +1,4 @@
 ---
-// Collapses the 5 near-identical apps/*/privacy-policy.html pages (diffed:
-// they differ only by app name, contact email, last-updated date, and meta
-// tags — Sudoku is the one outlier with an extra Play Games data section)
-// into a single template driven by content-collection frontmatter.
 import BaseLayout from './BaseLayout.astro';
 import Banner from '@/components/Banner.astro';
 import { useTranslations, defaultLocale, type Locale } from '@/i18n/ui';
@@ -11,8 +7,6 @@ interface Props {
   appName: string;
   lastUpdated: Date;
   icon: ImageMetadata;
-  // Reuses the app's own banner (content collection bannerImage/bannerImageAlt)
-  // instead of generating a dedicated image per privacy-policy page.
   bannerImage: ImageMetadata;
   bannerImageAlt: string;
 }
