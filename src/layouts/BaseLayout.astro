@@ -75,11 +75,11 @@ const goatcounterCode = import.meta.env.PUBLIC_GOATCOUNTER_CODE;
   // [data-reveal] element anywhere (prose sections, privacy-policy text,
   // not just card grids) gets picked up automatically.
   initReveal();
-  // .lButton exists in server-rendered markup on every page that has one,
+  // .button-pill exists in server-rendered markup on every page that has one,
   // so this is safe to run immediately here. .gallery__dot is created
   // client-side by gallery.ts, which calls initMagnetic() itself once its
   // dots actually exist.
-  initMagnetic('.lButton');
+  initMagnetic('.button-pill');
 
   console.log(
     '%c leonard-lemke.com ',

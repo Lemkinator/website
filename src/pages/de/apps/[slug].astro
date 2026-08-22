@@ -30,7 +30,7 @@ const { name, tagline, icon, bannerImage, bannerImageAlt, playStoreUrl, githubUr
     {
       playStoreUrl && (
         <a target="_blank" rel="noopener noreferrer" href={playStoreUrl}>
-          <Image class="playstore_button" alt="Jetzt bei Google Play" src={playStoreBadge} format="png" />
+          <Image class="playstore-button" alt="Jetzt bei Google Play" src={playStoreBadge} format="png" />
         </a>
       )
     }
@@ -47,14 +47,14 @@ const { name, tagline, icon, bannerImage, bannerImageAlt, playStoreUrl, githubUr
       <h2>Links</h2>
       {
         privacyPolicy && (
-          <button class="lButton">
+          <button class="button-pill">
             <a href={getRelativeLocaleUrl('de', `/apps/${entry.data.slug}/privacy-policy`)}>Datenschutzerklärung</a>
           </button>
         )
       }
       {
         githubUrl && (
-          <button class="lButton">
+          <button class="button-pill">
             <a target="_blank" rel="noopener noreferrer" aria-label="GitHub" href={githubUrl}>
               Source Code
             </a>

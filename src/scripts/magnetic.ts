@@ -1,11 +1,11 @@
 // Magnetic pull for buttons/dots: the element drifts a few px toward the
-// cursor while hovered, driven by --mag-x/--mag-y (see .lButton and
+// cursor while hovered, driven by --mag-x/--mag-y (see .button-pill and
 // .gallery__dot in site.css). Mouse-only and skipped under reduced motion —
 // touch has no hover to drift toward, and reduced-motion visitors don't
 // want ambient movement following their input.
 //
 // Accepts either a selector (queried document-wide — fine for markup that's
-// always server-rendered, like .lButton) or a concrete list of elements
+// always server-rendered, like .button-pill) or a concrete list of elements
 // (for callers that already have their own scoped set, like gallery.ts's
 // dots — querying '.gallery__dot' document-wide there would re-attach
 // listeners onto every OTHER gallery's dots each time a new gallery inits).

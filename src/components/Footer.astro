@@ -1,7 +1,4 @@
 ---
-// Replaces footer.html + the client-side $.get("/footer.html").replaceWith()
-// injection. Rendered server-side, once per locale, no duplicate lang="en"/
-// lang="de" markup.
 import { getRelativeLocaleUrl } from 'astro:i18n';
 import { Image } from 'astro:assets';
 import { useTranslations, footerLinks, defaultLocale, type Locale } from '@/i18n/ui';
@@ -15,8 +12,8 @@ const year = new Date().getFullYear();
 
 <footer class="footer__container">
   <div class="footer__links" data-reveal="up">
-    <div class="footer__link--wrapper">
-      <div class="footer__link--items">
+    <div class="footer__link-group">
+      <div class="footer__link-column">
         <h2>{t('footer.contactMe')}</h2>
         <a href="mailto:contact@leonard-lemke.com">{t('footer.contact')}</a>
         <a href="mailto:support@leonard-lemke.com">{t('footer.support')}</a>
@@ -24,7 +21,7 @@ const year = new Date().getFullYear();
           {t('footer.firstMeeting')}
         </a>
       </div>
-      <div class="footer__link--items">
+      <div class="footer__link-column">
         <h2>{t('footer.links')}</h2>
         <a target="_blank" rel="noopener noreferrer" href="https://github.com/Lemkinator">Github</a>
         <a target="_blank" rel="noopener noreferrer" href="https://github.com/Lemkinator/website">
@@ -34,40 +31,38 @@ const year = new Date().getFullYear();
       </div>
     </div>
   </div>
-  <section class="social__media" data-reveal="stagger" style="--i: 1">
-    <div class="social__media--wrap">
+  <section class="footer__social" data-reveal="stagger" style="--i: 1">
+    <div class="footer__social-inner">
       <a href={getRelativeLocaleUrl(locale, '/')} class="footer__name">
         <Image class="footer__logo" src={logoImg} width={50} height={50} alt="logo" />
       </a>
-      <div class="website__legal">
-        <p class="website__rights">&copy; Leonard Lemke {year}. {t('footer.rights')}</p>
-        <p class="website__ai-notice">{t('footer.aiContentNotice')}</p>
+      <div class="footer__legal">
+        <p class="footer__rights">&copy; Leonard Lemke {year}. {t('footer.rights')}</p>
+        <p class="footer__ai-notice">{t('footer.aiContentNotice')}</p>
       </div>
-      <div class="social__icons">
-        <a class="social__icon--link" target="_blank" rel="noopener noreferrer" aria-label="Instagram"
+      <div class="footer__social-icons">
+        <a class="footer__social-icon" target="_blank" rel="noopener noreferrer" aria-label="Instagram"
           href="https://www.instagram.com/lemkinator5/">
           <Icon name="instagram" />
         </a>
-        <a class="social__icon--link" target="_blank" rel="noopener noreferrer" aria-label="Youtube"
+        <a class="footer__social-icon" target="_blank" rel="noopener noreferrer" aria-label="Youtube"
           href="https://www.youtube.com/@leonardlemke">
           <Icon name="youtube" />
         </a>
-        <a class="social__icon--link" target="_blank" rel="noopener noreferrer" aria-label="X"
+        <a class="footer__social-icon" target="_blank" rel="noopener noreferrer" aria-label="X"
           href="https://x.com/lemkinator">
           <Icon name="x" />
         </a>
-        <a class="social__icon--link" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"
+        <a class="footer__social-icon" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"
           href="https://www.linkedin.com/in/leonard-lemke-201029238/">
           <Icon name="linkedin" />
         </a>
-        <a class="social__icon--link" target="_blank" rel="noopener noreferrer" aria-label="Google Play"
+        <a class="footer__social-icon" target="_blank" rel="noopener noreferrer" aria-label="Google Play"
           href="https://play.google.com/store/apps/dev?id=4759149701353957861">
           <Icon name="play-store" />
         </a>
-        {/* /rr is a gag redirect (astro.config.mjs `redirects`) with no
-            translatable content and no DE twin — intentionally not
-            locale-prefixed, both locales link to the same page. */}
-        <a class="social__icon--link" target="_blank" rel="noopener noreferrer" aria-label="Tik Tok" href="/rr">
+        {/* /rr is a gag redirect (astro.config.mjs redirects), no DE twin — both locales intentionally link to the same un-prefixed path. */}
+        <a class="footer__social-icon" target="_blank" rel="noopener noreferrer" aria-label="Tik Tok" href="/rr">
           <Icon name="tiktok" />
         </a>
       </div>
