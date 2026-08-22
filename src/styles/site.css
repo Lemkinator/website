@@ -99,7 +99,7 @@
 
   /* Clears the sticky navbar when landing on an in-page anchor (#section
      links in wsa.astro, etc.) so the target heading isn't hidden under it. */
-  :where(h2, h3, h4) {
+  :where(h1, h2, h3, h4) {
     scroll-margin-top: var(--nav-height);
   }
 
