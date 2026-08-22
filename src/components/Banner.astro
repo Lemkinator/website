@@ -17,6 +17,10 @@ interface Props {
   // scroll-parallax below to a narrow swing centered on this point instead
   // of the default wide swing — see hasCustomFocal.
   focalPosition?: string;
+  // Per-banner overrides for the title/subtitle typing effect (ms). Falls
+  // back to typing.ts's own defaults when omitted.
+  typeSpeed?: number;
+  pauseAfterType?: number;
 }
 
 const {
@@ -28,6 +32,8 @@ const {
   shineTitle = false,
   imageAlt,
   focalPosition = 'center',
+  typeSpeed,
+  pauseAfterType,
 } = Astro.props;
 
 // getImage() gives the same AVIF/resized output as a URL, for the CSS
@@ -74,7 +80,13 @@ const ariaLabel = typingStrings.join('. ');
   <slot name="backdrop" />
   <div class="banner__content">
     <h1 class:list={{ shine: shineTitle }} aria-label={ariaLabel}>
-      <span class="typing" aria-hidden="true" data-typing={JSON.stringify(typingStrings)}>{title}</span>
+      <span
+        class="typing"
+        aria-hidden="true"
+        data-typing={JSON.stringify(typingStrings)}
+        data-type-speed={typeSpeed}
+        data-pause-after-type={pauseAfterType}>{title}</span
+      >
     </h1>
     <slot />
   </div>
@@ -206,10 +218,15 @@ const ariaLabel = typingStrings.join('. ');
     }
   }
 
-  /* .is-typing is only added by typing.ts after it confirms motion is allowed. */
+  /* .is-typing is only added by typing.ts after it confirms motion is allowed.
+     The cursor only blinks while idle (.is-active-typing absent) — a solid
+     cursor during typing/deleting reads like an actual terminal/editor. */
   .banner__content h1 .typing.is-typing::after {
     content: '|';
     margin-left: 0.05em;
+  }
+
+  .banner__content h1 .typing.is-typing:not(.is-active-typing)::after {
     animation: typing-cursor-blink 1s step-end infinite;
   }
 
