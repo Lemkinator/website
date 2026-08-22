@@ -131,6 +131,38 @@
     padding: 0;
   }
 
+  /* --i sets motion.css's stagger delay from list position - no manual
+     renumbering on reorder. Covers up to 6 siblings; today's max is 5. */
+  .timeline__item,
+  .timeline__sub-item {
+    --i: 0;
+  }
+
+  .timeline__item:nth-child(2),
+  .timeline__sub-item:nth-child(2) {
+    --i: 1;
+  }
+
+  .timeline__item:nth-child(3),
+  .timeline__sub-item:nth-child(3) {
+    --i: 2;
+  }
+
+  .timeline__item:nth-child(4),
+  .timeline__sub-item:nth-child(4) {
+    --i: 3;
+  }
+
+  .timeline__item:nth-child(5),
+  .timeline__sub-item:nth-child(5) {
+    --i: 4;
+  }
+
+  .timeline__item:nth-child(6),
+  .timeline__sub-item:nth-child(6) {
+    --i: 5;
+  }
+
   .timeline__item {
     position: relative;
     padding: 0 0 var(--space-5) var(--space-4);
@@ -155,13 +187,17 @@
       0 0 14px color-mix(in srgb, var(--color-accent) 70%, transparent);
   }
 
-  /* flex-column stacks every child on its own line regardless of its
-     individual display type - h3 has display: inline-block via
-     .text-gradient, which would otherwise let it share a line with
-     whatever inline-block element (e.g. .timeline__date) follows it. */
+  /* flex-column forces each child onto its own line - h3 is inline-block
+     via .text-gradient and would otherwise share a line with what follows. */
   .timeline__content {
     display: flex;
     flex-direction: column;
+  }
+
+  /* Flex never collapses child margins, so h3's default top margin would
+     misalign it from .timeline__marker (unlike .timeline__sub-item, not flex). */
+  .timeline__content > :first-child {
+    margin-top: 0;
   }
 
   .timeline__date,
@@ -174,35 +210,11 @@
     margin: var(--space-3) 0 0.15em;
   }
 
-  .timeline__date {
-    display: inline-block;
-    font-size: 0.8rem;
-    color: var(--color-muted);
-    background: var(--color-surface);
-    border: 1px solid var(--color-line);
-    border-radius: 999px;
-    padding: 0.15em 0.7em;
-    margin: 0.2em 0 0.5em;
-  }
-
   .timeline__location,
   .timeline__description {
     margin: 0.3em 0;
     color: var(--color-muted);
     font-size: 0.95rem;
-  }
-
-  /* #ff8fd6 is the same pink .text-gradient blends into var(--color-accent)
-     - reusing it here gives the grade badge its own identity instead of
-     reading as another muted/date-style pill. */
-  .timeline__grade {
-    display: inline-block;
-    font-size: 0.8rem;
-    color: #ff8fd6;
-    border: 1px solid color-mix(in srgb, #ff8fd6 40%, transparent);
-    border-radius: 999px;
-    padding: 0.15em 0.7em;
-    margin-top: 0.3em;
   }
 
   .timeline__skills {
@@ -212,31 +224,45 @@
     margin: 0.5em 0 0;
   }
 
-  .skill-tag {
+  /* Shared pill shape for every timeline badge/chip; each class below only
+     sets its own color. */
+  .timeline__date,
+  .timeline__grade,
+  .skill-tag,
+  .size-tag {
+    display: inline-block;
     font-size: 0.78rem;
-    color: var(--color-accent);
-    background: color-mix(in srgb, var(--color-accent) 12%, transparent);
-    border: 1px solid color-mix(in srgb, var(--color-accent) 35%, transparent);
     border-radius: 999px;
     padding: 0.2em 0.7em;
   }
 
-  /* Deliberately its own class rather than reusing .timeline__date - that
-     class carries margin tuned for its standalone-paragraph use elsewhere
-     in the timeline, which would leak into this flex row and stretch its
-     sibling .skill-tag to match. */
+  /* size-tag is its own class - .timeline__date's margin (below) would
+     leak into this flex row and stretch the sibling .skill-tag to match. */
+  .timeline__date,
   .size-tag {
-    font-size: 0.78rem;
     color: var(--color-muted);
     background: var(--color-surface);
     border: 1px solid var(--color-line);
-    border-radius: 999px;
-    padding: 0.2em 0.7em;
   }
 
-  /* Nested positions within one company (e.g. multiple roles at Continental) -
-     a thinner dashed sub-rail so it reads as "inside" the parent entry rather
-     than as its own top-level timeline item. */
+  .timeline__date {
+    margin: 0.2em 0 0.5em;
+  }
+
+  /* #ff8fd6 is the same pink .text-gradient blends into var(--color-accent). */
+  .timeline__grade {
+    color: #ff8fd6;
+    border: 1px solid color-mix(in srgb, #ff8fd6 40%, transparent);
+    margin-top: 0.3em;
+  }
+
+  .skill-tag {
+    color: var(--color-accent);
+    background: color-mix(in srgb, var(--color-accent) 12%, transparent);
+    border: 1px solid color-mix(in srgb, var(--color-accent) 35%, transparent);
+  }
+
+  /* Thinner dashed sub-rail so nested roles read as inside the parent entry. */
   .timeline__sub {
     list-style: none;
     margin: var(--space-3) 0 0;
