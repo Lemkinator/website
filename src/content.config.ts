@@ -31,7 +31,7 @@ const apps = defineCollection({
       bannerImageAlt: z.string(),
       playStoreUrl: z.string().url().optional(),
       githubUrl: z.string().url().optional(),
-      // Card badge, e.g. "10000 +" downloads or "400" installs — display text
+      // Card badge, e.g. "7000 +" downloads or "400" installs — display text
       // only, not a real analytics figure.
       downloads: z.string().optional(),
       // Privacy policy fields — folds the 5 near-identical privacy-policy.html
