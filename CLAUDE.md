@@ -43,9 +43,10 @@ collide (last one loaded wins), because the default id is just the basename.
 
 - `src/styles/tokens.css` — design tokens (colors via `light-dark()`, spacing, radii, shadows).
 - `src/styles/site.css` — component styles targeting specific class names (`.card`,
-  `.cards-wrapper`, `.navbar__*`, `.footer__*`, `.lButton`, `.mobile-image`, `.app-trailer`, ...).
-  Follow this exact class-name convention when adding new markup that should pick up existing
-  styles — it's a deliberate choice, not legacy debt.
+  `.cards-wrapper`, `.navbar__*`, `.footer__*`, `.button-pill`, `.mobile-image`,
+  `.video-embed--horizontal` / `.video-embed--vertical`, ...), kebab-case with BEM `__element` /
+  `--modifier` throughout. Follow this exact class-name convention when adding new markup that
+  should pick up existing styles.
 - `src/components/Banner.astro` — the full-bleed photo + gradient scrim + overlaid title used on
   every page that has a "banner" (homepage, `/apps`, `/media`, every app/media detail page,
   `/apps/wsa`, `/about`). Don't hand-roll a new banner treatment; use this component.
