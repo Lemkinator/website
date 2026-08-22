@@ -53,12 +53,12 @@
 
   @keyframes navbar-glass {
     from {
-      background-color: color-mix(in srgb, var(--color-surface) 85%, transparent);
-      backdrop-filter: blur(16px);
+      background-color: color-mix(in srgb, var(--color-surface) var(--nav-glass-opacity), transparent);
+      backdrop-filter: blur(var(--nav-glass-blur)) saturate(var(--nav-glass-saturate));
     }
     to {
-      background-color: color-mix(in srgb, var(--color-surface) 97%, transparent);
-      backdrop-filter: blur(28px);
+      background-color: color-mix(in srgb, var(--color-surface) var(--nav-glass-opacity-scrolled), transparent);
+      backdrop-filter: blur(var(--nav-glass-blur-scrolled)) saturate(var(--nav-glass-saturate-scrolled));
     }
   }
 

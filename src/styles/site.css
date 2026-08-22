@@ -597,9 +597,14 @@
     position: sticky;
     top: 0;
     z-index: 10;
-    background: color-mix(in srgb, var(--color-surface) 85%, transparent);
-    backdrop-filter: blur(16px);
+    background:
+      linear-gradient(180deg, color-mix(in srgb, white 8%, transparent), transparent 60%),
+      color-mix(in srgb, var(--color-surface) var(--nav-glass-opacity), transparent);
+    backdrop-filter: blur(var(--nav-glass-blur)) saturate(var(--nav-glass-saturate));
     border-bottom: 1px solid var(--color-line);
+    box-shadow:
+      inset 0 1px 0 color-mix(in srgb, white 20%, transparent),
+      0 12px 24px -20px rgba(0, 0, 0, 0.6);
     transition: transform var(--dur-fast) var(--ease-spring);
   }
 

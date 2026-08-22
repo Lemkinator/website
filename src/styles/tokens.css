@@ -48,6 +48,17 @@
     1
   );
   --reveal-distance: 2.5rem;
+
+  /* Shared by .navbar's static rule (site.css, the fallback for browsers
+     without scroll-timeline support) and the navbar-glass keyframe
+     (motion.css, the scroll-driven version) so both stay in sync instead
+     of drifting as two independently hand-tuned copies. */
+  --nav-glass-opacity: 35%;
+  --nav-glass-opacity-scrolled: 88%;
+  --nav-glass-blur: 36px;
+  --nav-glass-blur-scrolled: 56px;
+  --nav-glass-saturate: 240%;
+  --nav-glass-saturate-scrolled: 280%;
 }
 
 /* Toggled by konami.ts's easter egg. Every scroll/view-transition rule
