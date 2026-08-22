@@ -1,13 +1,5 @@
-// Fullscreen WebGL2 flow-field haze, layered under the homepage hero photo
-// (see ShaderBackdrop.astro, which dynamically imports this after idle).
-// Self-guarding at every step: any failure to acquire a context, compile,
-// or link simply returns, leaving the canvas fully transparent — the
-// Banner's photo behind it is a complete, intentional-looking page on its
-// own, so there is no visible failure mode here, only "no extra haze".
-//
-// The haze is additive and low-alpha (see FRAGMENT_SRC's final `glow * 0.4`)
-// rather than opaque, so it reads as "ink in water" over the photo instead
-// of replacing it.
+// Every step (context/shader compile/link) fails open by returning
+// silently — a transparent canvas over Banner's photo, never a visible error state.
 
 const VERTEX_SRC = `#version 300 es
 void main() {
@@ -162,9 +154,8 @@ export function initBackdrop(canvas: HTMLCanvasElement): void {
   }
 
   window.addEventListener('pointermove', (e) => {
-    // Skip the layout read + allocation once the canvas is offscreen or
-    // the tab is backgrounded — frame() already bails in that state, so
-    // this work would just be discarded.
+    // isActive() check here (not just in frame()) skips the layout read on
+    // every mousemove when offscreen/backgrounded, not just the wasted paint.
     if (!isActive()) return;
     const rect = canvas.getBoundingClientRect();
     mouse = [(e.clientX - rect.left) / rect.width, (e.clientY - rect.top) / rect.height];

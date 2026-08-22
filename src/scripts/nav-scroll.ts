@@ -1,9 +1,6 @@
-// Ties the mobile nav's hidden offset 1:1 to scroll position (not a binary
-// threshold snap) so it visibly slides with the gesture: scroll down N px
-// past the banner, nav moves up N px (clamped to its own height); scroll up
-// and it comes back the same way. Only active at the same max-width:720px
-// breakpoint as the burger menu itself — matchMedia is checked in JS since
-// the inline transform this sets bypasses any CSS media-query gate.
+// Checked via matchMedia in JS, not just left to a CSS breakpoint: the
+// inline transform this sets would otherwise apply on desktop too, since
+// an inline style bypasses any CSS media query.
 const MOBILE_QUERY = '(max-width: 720px)';
 
 export function initNavScroll(): void {

@@ -1,8 +1,6 @@
-// ↑↑↓↓←→←→ba toggles .max-motion on <html> — tokens.css turns up every
-// animation duration and the scroll-reveal distance in response (see
-// :root.max-motion there). Respects reduced motion: a visitor who's asked
-// for less motion doesn't get more of it just by mistyping into a text
-// field, even by an easter egg.
+// Toggles .max-motion on <html> (see tokens.css). Respects reduced motion
+// — even an easter egg shouldn't add more motion for a visitor who's asked
+// for less.
 const CODE = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
 
 export function initKonami(): void {
@@ -23,10 +21,8 @@ export function initKonami(): void {
           `%c${engaged ? '⚡ max motion engaged' : 'back to normal'}`,
           'font-size:14px;font-weight:bold;color:#7d97ff',
         );
-        // Only on engage, not on disengage — a burst fits "you found the
-        // secret," not "you turned it back off." Dynamically imported so
-        // the particle code never loads for the near-total majority of
-        // visitors who don't type the code.
+        // Dynamically imported so the confetti code never loads for
+        // visitors who never type the code.
         if (engaged) import('@/scripts/confetti').then((mod) => mod.burstConfetti());
       }
       return;

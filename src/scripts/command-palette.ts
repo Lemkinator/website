@@ -1,7 +1,5 @@
-// Ctrl/Cmd+K quick-nav palette (see CommandPalette.astro). Native <dialog>
-// gives focus-trap, Esc-to-close, and a ::backdrop for free — this only
-// wires the keyboard shortcut, the visible trigger button, arrow-key
-// navigation between results, and substring filtering as you type.
+// Native <dialog> handles focus-trap, Esc-to-close, and ::backdrop — not
+// reimplemented here.
 export function initCommandPalette(): void {
   const dialogEl = document.querySelector<HTMLDialogElement>('[data-command-palette]');
   const inputEl = document.querySelector<HTMLInputElement>('[data-command-input]');
@@ -82,14 +80,13 @@ export function initCommandPalette(): void {
       }
     });
 
-    // A real navigation follows, same as any other link — just close the
-    // dialog first so it isn't still open underneath the page swap.
+    // Closes the dialog before navigating — with real (not SPA)
+    // navigations, an open dialog would still be visible during the view-transition.
     item.addEventListener('click', () => dialog.close());
   });
 
-  // Clicking the ::backdrop (the dialog element itself, outside its content
-  // box) closes it. The content box intercepts its own clicks normally, so
-  // this only fires for genuine outside clicks.
+  // e.target === dialog only matches clicks outside the content box
+  // (::backdrop) — the box itself intercepts its own clicks.
   dialog.addEventListener('click', (e) => {
     if (e.target === dialog) dialog.close();
   });

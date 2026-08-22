@@ -1,8 +1,5 @@
-// Lightweight canvas particle burst — the delight moment when the Konami
-// code (see konami.ts) engages max-motion. Self-contained: creates its own
-// canvas, runs for ~1.4s, then removes itself entirely. Reduced motion is
-// already handled upstream — konami.ts never calls this at all for those
-// visitors, so there's no separate guard needed here.
+// No reduced-motion guard here — konami.ts (the only caller) already never
+// calls this for those visitors.
 const COLORS = ['#7d97ff', '#ff8fd6', '#f2f3f5', '#9a9ba8'];
 const DURATION = 1400;
 

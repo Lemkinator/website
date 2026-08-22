@@ -1,14 +1,6 @@
-// Carousel behavior for .gallery (see Gallery.astro): dot indicator,
-// prev/next arrows, and wheel/drag scrolling on top of the native
-// touch/trackpad swipe overflow-x:auto already provides. No autoplay —
-// deliberately removed in favor of arrows (see git history): autoplay
-// content that advances on its own is a known UX/accessibility anti-pattern
-// (WCAG 2.2.2 requires a pause control past 5s of auto-advance) and users
-// reliably miss slides that move before they've finished looking.
-//
-// Dots are the primary, always-reliable navigation — a click always
-// resolves to a scrollIntoView() call, independent of wheel/drag input
-// quirks on any particular device. Arrows, wheel, and drag are additive.
+// No autoplay: WCAG 2.2.2 requires a pause control past 5s of auto-advance,
+// and auto-advancing content is a known accessibility anti-pattern — arrows
+// and dots only.
 import { initMagnetic } from '@/scripts/magnetic';
 
 export function initGallery(): void {
@@ -25,13 +17,12 @@ export function initGallery(): void {
     }
 
     if (slides.length < 2) {
-      // Nothing to page through — Gallery.astro renders the prev/next arrows
-      // unconditionally since it doesn't know the slide count at build time.
+      // Gallery.astro renders the arrows unconditionally (doesn't know
+      // slide count at build time) — remove them when there's nothing to page through.
       gallery.querySelectorAll('.gallery__arrow').forEach((el) => el.remove());
 
-      // The video still only starts once GalleryVideo's own comment-documented
-      // autoplay-on-visible contract is honored — without this, a single-slide
-      // gallery's video (preload="none", no autoplay) never plays at all.
+      // Without this, a single-slide gallery's video (preload="none", no
+      // autoplay attribute) never starts.
       const video = getSlideVideo(slides[0]);
       if (video) {
         new IntersectionObserver(
@@ -42,10 +33,6 @@ export function initGallery(): void {
       return;
     }
 
-    // ---- Dot indicator ----
-    // Localized via the `data-goto-label` template Gallery.astro renders
-    // from src/i18n/ui.ts (see CLAUDE.md: UI chrome strings live there, not
-    // hardcoded in scripts) — falls back to English if it's ever missing.
     const gotoLabel = gallery.dataset.gotoLabel ?? 'Go to slide {n} of {total}';
     const dotsEl = document.createElement('div');
     dotsEl.className = 'gallery__dots';
@@ -65,7 +52,6 @@ export function initGallery(): void {
     gallery.appendChild(dotsEl);
     initMagnetic(dots);
 
-    // ---- Prev/next arrows ----
     const prevBtn = gallery.querySelector<HTMLButtonElement>('.gallery__arrow--prev');
     const nextBtn = gallery.querySelector<HTMLButtonElement>('.gallery__arrow--next');
 
@@ -88,12 +74,8 @@ export function initGallery(): void {
     nextBtn?.addEventListener('click', () => goTo(Math.min(slides.length - 1, active + 1)));
     updateArrows();
 
-    // ---- Keep the active dot in sync with whatever scrolled the track
-    //      (wheel, drag, native touch swipe, or a dot click), and only ever
-    //      play the video slide(s) actually on screen — the multi-video
-    //      galleries (media/*.mdx) don't carry the `autoplay` attribute
-    //      precisely so a gallery with several clips doesn't fetch/decode/
-    //      play all of them concurrently regardless of which is visible. ----
+    // Also drives which slide's video plays: multi-clip galleries never
+    // carry the autoplay attribute, so only the on-screen slide(s) actually decode/play.
     const ratios = new Map<HTMLElement, number>();
     const activeObserver = new IntersectionObserver(
       (entries) => {
@@ -118,19 +100,14 @@ export function initGallery(): void {
     );
     slides.forEach((s) => activeObserver.observe(s));
 
-    // ---- Wheel: only genuinely horizontal wheel/trackpad input (shift+wheel,
-    //      two-finger horizontal swipe) drives the carousel. Plain vertical
-    //      wheel motion is left alone so scrolling the page while the cursor
-    //      happens to be over a gallery still scrolls the page — an earlier
-    //      version redirected vertical wheel into horizontal scroll instead,
-    //      which trapped the page scroll under any full-width gallery. ----
+    // Only horizontal wheel/trackpad input drives the carousel — redirecting
+    // vertical wheel too traps page scroll under any full-width gallery.
     track.addEventListener(
       'wheel',
       (e) => {
         if (Math.abs(e.deltaX) <= Math.abs(e.deltaY)) return;
-        // deltaX is only pixels in DOM_DELTA_PIXEL mode (0). Line mode (1)
-        // and page mode (2) report tiny/large unitless counts instead —
-        // scale those up to something that actually moves the track.
+        // deltaX is only pixels in DOM_DELTA_PIXEL mode (0); line/page modes
+        // (1/2) report small/large unitless counts that need scaling.
         const pixels = e.deltaMode === 0 ? e.deltaX : e.deltaX * 16;
         track.scrollLeft += pixels;
         e.preventDefault();
@@ -138,7 +115,6 @@ export function initGallery(): void {
       { passive: false },
     );
 
-    // ---- Click-and-drag (mouse only; touch/pen keep native scrolling) ----
     let dragging = false;
     let startX = 0;
     let startScroll = 0;
@@ -162,10 +138,9 @@ export function initGallery(): void {
       dragging = false;
       track.classList.remove('is-dragging');
     };
-    // No pointerleave listener here: setPointerCapture (above) keeps
-    // pointermove/pointerup targeting the track even once the cursor
-    // physically leaves it, but pointerleave still fires regardless of
-    // capture — ending the drag on it would freeze the gesture mid-drag
+    // No pointerleave listener: setPointerCapture keeps pointermove/pointerup
+    // targeting the track past the cursor leaving it, but pointerleave still
+    // fires anyway — handling it here would freeze the gesture mid-drag
     // while the button is still held.
     track.addEventListener('pointerup', endDrag);
     track.addEventListener('pointercancel', endDrag);

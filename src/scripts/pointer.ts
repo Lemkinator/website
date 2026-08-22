@@ -1,7 +1,3 @@
-// Pointer-driven 3D tilt + cursor spotlight for [data-tilt] cards (see
-// Card.astro and the .card rules in site.css). Skipped entirely on
-// touch-only devices and under reduced motion — those users still get the
-// plain CSS hover-lift, just no rotation/spotlight.
 export function initCardTilt(selector = '[data-tilt]'): void {
   if (!matchMedia('(pointer: fine)').matches) return;
   if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
@@ -35,9 +31,6 @@ export function initCardTilt(selector = '[data-tilt]'): void {
   });
 }
 
-// Hover video-peek for media cards (see Card.astro's `previewVideo` prop).
-// preload="none" on the <video>, so nothing fetches until a visitor
-// actually hovers — cheap for everyone who doesn't.
 export function initVideoPeek(selector = '[data-video-peek]'): void {
   if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 

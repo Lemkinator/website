@@ -1,8 +1,3 @@
-// Typewriter effect for [data-typing] elements (see Banner.astro). Cycles
-// type -> pause -> delete -> next string -> ... forever. A single-string
-// element is left as its server-rendered text with just a blinking cursor
-// (nothing to cycle to). No-ops entirely under reduced motion, in which
-// case the server-rendered title text is simply what's shown.
 const TYPE_SPEED = 55;
 const DELETE_SPEED = 30;
 const PAUSE_AFTER_TYPE = 1800;
