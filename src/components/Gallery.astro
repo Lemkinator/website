@@ -150,8 +150,9 @@ const t = useTranslations(locale);
   .gallery__track :global(video) {
     border-radius: var(--radius-md);
     display: block;
-    height: min(60vh, 480px);
-    width: auto;
+    /* max-height, not height: an explicit height ignores the width cap
+       when it kicks in, distorting non-square images. */
+    max-height: min(60vh, 480px);
     max-width: 90vw;
   }
 
@@ -166,5 +167,6 @@ const t = useTranslations(locale);
     width: 100%;
     max-width: 100%;
     height: auto;
+    max-height: none;
   }
 </style>
