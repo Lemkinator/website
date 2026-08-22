@@ -38,79 +38,144 @@ import me5Img from '@/assets/images/about/me5.jpg';
     <div id="experience" class="section-gap">
       <h2 class="heading-display text-gradient">Erfahrung</h2>
 
-      <h3 class="text-gradient">AUMOVIO</h3>
-      <p class="about-date">September 2025 - Heute</p>
+      <ol class="timeline">
+        <li class="timeline__item" data-reveal="stagger" style="--i: 0">
+          <div class="timeline__marker" aria-hidden="true"></div>
+          <div class="timeline__content">
+            <h3 class="text-gradient">AUMOVIO</h3>
+            <p class="timeline__role">Softwareentwickler / Softwarearchitekt</p>
+            <p class="timeline__date">September 2025 - Heute</p>
+          </div>
+        </li>
 
-      <h4>Softwareentwickler / Softwarearchitekt</h4>
-      <p class="about-date">September 2025 - Heute</p>
+        <li class="timeline__item" data-reveal="stagger" style="--i: 1">
+          <div class="timeline__marker" aria-hidden="true"></div>
+          <div class="timeline__content">
+            <h3 class="text-gradient">Continental Automotive Technologies GmbH</h3>
+            <p class="timeline__date">September 2019 - August 2025</p>
 
-      <h3 class="text-gradient">Continental Automotive Technologies GmbH</h3>
-      <p class="about-date">September 2019 - August 2025</p>
+            <ol class="timeline__sub">
+              <li class="timeline__sub-item" data-reveal="stagger" style="--i: 0">
+                <p class="timeline__role">Softwareentwickler</p>
+                <p class="timeline__date">Februar 2024 - August 2025</p>
+              </li>
 
-      <h4>Softwareentwickler</h4>
-      <p class="about-date">Februar 2024 - August 2025</p>
+              <li class="timeline__sub-item" data-reveal="stagger" style="--i: 1">
+                <p class="timeline__role">Studium Plus Mathem.-Tech. Softwareentwickler</p>
+                <p class="timeline__date">September 2019 - Februar 2024</p>
+              </li>
 
-      <h4>Studium Plus Mathem.-Tech. Softwareentwickler</h4>
-      <p class="about-date">September 2019 - Februar 2024</p>
+              <li class="timeline__sub-item" data-reveal="stagger" style="--i: 2">
+                <p class="timeline__role">Bachelor Thesis</p>
+                <p class="timeline__date">September 2023 - Dezember 2023</p>
+                <p class="timeline__description">
+                  Parallele Ausführung kryptographischer Operationen auf Steuergeräten im Automotive-Bereich.
+                </p>
+                <div class="timeline__skills">
+                  <span class="skill-tag">AUTOSAR</span>
+                  <span class="skill-tag">AUTOSAR Crypto Stack</span>
+                  <span class="skill-tag">Cryptography</span>
+                  <span class="skill-tag">Cipher-Based Message Authentication Code</span>
+                </div>
+              </li>
 
-      <h4>Bachelor Thesis</h4>
-      <p class="about-date">September 2023 - Dezember 2023</p>
-      <p class="about-description">
-        Parallele Ausführung kryptographischer Operationen auf Steuergeräten im Automotive-Bereich.
-      </p>
-      <p class="about-skills">
-        Skills: AUTOSAR, AUTOSAR Crypto Stack, Cryptography, Cipher-Based Message Authentication Code
-      </p>
+              <li class="timeline__sub-item" data-reveal="stagger" style="--i: 3">
+                <p class="timeline__role">Praxissemester</p>
+                <p class="timeline__date">Oktober 2022 - März 2023</p>
+                <p class="timeline__description">
+                  Portieren und Anpassen verschiedener Tests von einer Plattform auf ein Kundenprojekt.
+                </p>
+                <div class="timeline__skills">
+                  <span class="skill-tag">Elektrobit Tresos Studio</span>
+                  <span class="skill-tag">AUTOSAR</span>
+                  <span class="skill-tag">AUTOSAR Builder</span>
+                  <span class="skill-tag">CAPL</span>
+                  <span class="skill-tag">CAN</span>
+                  <span class="skill-tag">CANoe</span>
+                </div>
+              </li>
 
-      <h4>Praxissemester</h4>
-      <p class="about-date">Oktober 2022 - März 2023</p>
-      <p class="about-description">
-        Portieren und Anpassen verschiedener Tests von einer Plattform auf ein Kundenprojekt.
-      </p>
-      <p class="about-skills">Skills: Elektrobit Tresos Studio, AUTOSAR, AUTOSAR Builder, CAPL, CAN, CANoe</p>
+              <li class="timeline__sub-item" data-reveal="stagger" style="--i: 4">
+                <p class="timeline__role">Mathematisch-technischer Softwareentwickler (MATSE)</p>
+                <p class="timeline__date">September 2019 - August 2021</p>
+                <p class="timeline__description">Ausbildung zum Mathematisch-technischen Softwareentwickler (MATSE)</p>
+                <p class="timeline__description">(Enthalten im Studium Plus)</p>
+              </li>
+            </ol>
+          </div>
+        </li>
 
-      <h4>Mathematisch-technischer Softwareentwickler (MATSE)</h4>
-      <p class="about-date">September 2019 - August 2021</p>
-      <p class="about-description">Ausbildung zum Mathematisch-technischen Softwareentwickler (MATSE)</p>
-      <p class="about-description">(Enthalten im Studium Plus)</p>
+        <li class="timeline__item" data-reveal="stagger" style="--i: 2">
+          <div class="timeline__marker" aria-hidden="true"></div>
+          <div class="timeline__content">
+            <h3 class="text-gradient">Softwareentwickler Mobile Apps</h3>
+            <p class="timeline__date">Dezember 2019 - Heute</p>
+            <p class="timeline__location">Remote - Leonard Lemke</p>
+            <p class="timeline__description">Entwicklung moderner Apps in Samsungs OneUI-Design.</p>
+            <div class="timeline__actions">
+              <button class="button-pill"><a href={getRelativeLocaleUrl('de', '/apps')}>Projekte</a></button>
+              <button class="button-pill"><a href="mailto:apps@leonard-lemke.com">Kontakt</a></button>
+            </div>
+          </div>
+        </li>
 
-      <h3 class="text-gradient">Softwareentwickler Mobile Apps</h3>
-      <p class="about-location">Remote - Leonard Lemke</p>
-      <p class="about-date">Dezember 2019 - Heute</p>
-      <p class="about-description">Entwicklung moderner Apps in Samsungs OneUI-Design.</p>
-      <button class="button-pill"><a href={getRelativeLocaleUrl('de', '/apps')}>Projekte</a></button>
-      <button class="button-pill"><a href="mailto:apps@leonard-lemke.com">Kontakt</a></button>
-
-      <h3 class="text-gradient">Digital Creator</h3>
-      <p class="about-location">Remote - Leonard Lemke</p>
-      <p class="about-date">Mai 2019 - Heute</p>
-      <p class="about-description">Bearbeiten von Videoaufnahmen einer Racing-Drohne.</p>
-      <p class="about-description">Teilen von Erlebnissen durch die Augen einer Drohne.</p>
-      <button class="button-pill"><a href={getRelativeLocaleUrl('de', '/media')}>Projekte</a></button>
-      <button class="button-pill"><a href="mailto:media@leonard-lemke.com">Kontakt</a></button>
+        <li class="timeline__item" data-reveal="stagger" style="--i: 3">
+          <div class="timeline__marker" aria-hidden="true"></div>
+          <div class="timeline__content">
+            <h3 class="text-gradient">Digital Creator</h3>
+            <p class="timeline__date">Mai 2019 - Heute</p>
+            <p class="timeline__location">Remote - Leonard Lemke</p>
+            <p class="timeline__description">Bearbeiten von Videoaufnahmen einer Racing-Drohne.</p>
+            <p class="timeline__description">Teilen von Erlebnissen durch die Augen einer Drohne.</p>
+            <div class="timeline__actions">
+              <button class="button-pill"><a href={getRelativeLocaleUrl('de', '/media')}>Projekte</a></button>
+              <button class="button-pill"><a href="mailto:media@leonard-lemke.com">Kontakt</a></button>
+            </div>
+          </div>
+        </li>
+      </ol>
     </div>
 
     <div id="education" class="section-gap">
       <h2 class="heading-display text-gradient">Bildung</h2>
 
-      <h3>Bachelor of Science (B.Sc.)</h3>
-      <p class="about-location">Hochschule Furtwangen University (HFU) / Continental</p>
-      <p class="about-date">September 2019 - Februar 2024</p>
-      <p class="about-description">Allgemeine Informatik (Vertiefungsrichtung Software Engineering)</p>
-      <p class="about-description">Studium Plus</p>
-      <p class="about-grade">Note: 1,4</p>
+      <ol class="timeline">
+        <li class="timeline__item" data-reveal="stagger" style="--i: 0">
+          <div class="timeline__marker" aria-hidden="true"></div>
+          <div class="timeline__content">
+            <h3>Bachelor of Science (B.Sc.)</h3>
+            <p class="timeline__date">September 2019 - Februar 2024</p>
+            <span class="timeline__grade">Note: 1,4</span>
+            <p class="timeline__location">Hochschule Furtwangen University (HFU) / Continental</p>
+            <p class="timeline__description">Allgemeine Informatik (Vertiefungsrichtung Software Engineering)</p>
+            <p class="timeline__description">Studium Plus</p>
+          </div>
+        </li>
 
-      <h3>Ausbildung</h3>
-      <p class="about-location">Kaufmännische und Hauswirtschaftliche Schulen Donaueschingen (KHS) / Continental</p>
-      <p class="about-date">September 2019 - Juli 2021</p>
-      <p class="about-description">Mathematisch-technischer Softwareentwickler (MATSE)</p>
-      <p class="about-description">(Enthalten im Studium Plus)</p>
-      <p class="about-grade">Note: 90/100 P.</p>
+        <li class="timeline__item" data-reveal="stagger" style="--i: 1">
+          <div class="timeline__marker" aria-hidden="true"></div>
+          <div class="timeline__content">
+            <h3>Ausbildung</h3>
+            <p class="timeline__date">September 2019 - Juli 2021</p>
+            <span class="timeline__grade">Note: 90/100 P.</span>
+            <p class="timeline__location">
+              Kaufmännische und Hauswirtschaftliche Schulen Donaueschingen (KHS) / Continental
+            </p>
+            <p class="timeline__description">Mathematisch-technischer Softwareentwickler (MATSE)</p>
+            <p class="timeline__description">(Enthalten im Studium Plus)</p>
+          </div>
+        </li>
 
-      <h3>Abitur</h3>
-      <p class="about-location">Gymnasium Trossingen</p>
-      <p class="about-date">September 2011 - Juli 2019</p>
-      <p class="about-grade">Note: 1,7</p>
+        <li class="timeline__item" data-reveal="stagger" style="--i: 2">
+          <div class="timeline__marker" aria-hidden="true"></div>
+          <div class="timeline__content">
+            <h3>Abitur</h3>
+            <p class="timeline__date">September 2011 - Juli 2019</p>
+            <span class="timeline__grade">Note: 1,7</span>
+            <p class="timeline__location">Gymnasium Trossingen</p>
+          </div>
+        </li>
+      </ol>
     </div>
   </div>
 

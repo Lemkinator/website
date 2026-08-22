@@ -125,19 +125,137 @@
     max-width: 55ch;
   }
 
-  .about-date {
-    color: var(--color-muted);
-    font-size: 0.9rem;
-    margin: 0.15em 0 0.5em;
+  .timeline {
+    list-style: none;
+    margin: var(--space-4) 0 0;
+    padding: 0;
   }
 
-  .about-description,
-  .about-skills,
-  .about-location,
-  .about-grade {
-    margin: 0.15em 0;
+  .timeline__item {
+    position: relative;
+    padding: 0 0 var(--space-5) var(--space-4);
+    border-left: 2px solid var(--color-line);
+  }
+
+  .timeline__item:last-child {
+    padding-bottom: 0;
+    border-left-color: transparent;
+  }
+
+  .timeline__marker {
+    position: absolute;
+    left: -7px;
+    top: 0.3em;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--color-accent);
+    box-shadow:
+      0 0 0 4px var(--color-bg),
+      0 0 14px color-mix(in srgb, var(--color-accent) 70%, transparent);
+  }
+
+  /* flex-column stacks every child on its own line regardless of its
+     individual display type - h3 has display: inline-block via
+     .text-gradient, which would otherwise let it share a line with
+     whatever inline-block element (e.g. .timeline__date) follows it. */
+  .timeline__content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .timeline__date,
+  .timeline__grade {
+    align-self: flex-start;
+  }
+
+  .timeline__role {
+    font-weight: 700;
+    margin: var(--space-3) 0 0.15em;
+  }
+
+  .timeline__date {
+    display: inline-block;
+    font-size: 0.8rem;
+    color: var(--color-muted);
+    background: var(--color-surface);
+    border: 1px solid var(--color-line);
+    border-radius: 999px;
+    padding: 0.15em 0.7em;
+    margin: 0.2em 0 0.5em;
+  }
+
+  .timeline__location,
+  .timeline__description {
+    margin: 0.3em 0;
     color: var(--color-muted);
     font-size: 0.95rem;
+  }
+
+  /* #ff8fd6 is the same pink .text-gradient blends into var(--color-accent)
+     - reusing it here gives the grade badge its own identity instead of
+     reading as another muted/date-style pill. */
+  .timeline__grade {
+    display: inline-block;
+    font-size: 0.8rem;
+    color: #ff8fd6;
+    border: 1px solid color-mix(in srgb, #ff8fd6 40%, transparent);
+    border-radius: 999px;
+    padding: 0.15em 0.7em;
+    margin-top: 0.3em;
+  }
+
+  .timeline__skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4em;
+    margin: 0.5em 0 0;
+  }
+
+  .skill-tag {
+    font-size: 0.78rem;
+    color: var(--color-accent);
+    background: color-mix(in srgb, var(--color-accent) 12%, transparent);
+    border: 1px solid color-mix(in srgb, var(--color-accent) 35%, transparent);
+    border-radius: 999px;
+    padding: 0.2em 0.7em;
+  }
+
+  /* Nested positions within one company (e.g. multiple roles at Continental) -
+     a thinner dashed sub-rail so it reads as "inside" the parent entry rather
+     than as its own top-level timeline item. */
+  .timeline__sub {
+    list-style: none;
+    margin: var(--space-3) 0 0;
+    padding: 0 0 0 var(--space-4);
+    border-left: 1px dashed var(--color-line);
+  }
+
+  .timeline__sub-item {
+    position: relative;
+    padding: 0 0 var(--space-4);
+  }
+
+  .timeline__sub-item:last-child {
+    padding-bottom: 0;
+  }
+
+  .timeline__sub-item::before {
+    content: '';
+    position: absolute;
+    left: calc(-1 * var(--space-4) - 4px);
+    top: 0.4em;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--color-muted);
+  }
+
+  .timeline__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6em;
+    margin-top: var(--space-3);
   }
 
   .small {
