@@ -16,7 +16,31 @@ export function initGallery(): void {
     const track = gallery.querySelector<HTMLElement>('.gallery__track');
     if (!track) return;
     const slides = Array.from(track.children) as HTMLElement[];
-    if (slides.length < 2) return; // nothing to page through
+    if (slides.length === 0) return;
+
+    // A slide may be a bare <video> or a wrapper containing one —
+    // querySelector alone misses the bare case (it only searches descendants).
+    function getSlideVideo(slideEl: HTMLElement): HTMLVideoElement | null {
+      return slideEl instanceof HTMLVideoElement ? slideEl : slideEl.querySelector('video');
+    }
+
+    if (slides.length < 2) {
+      // Nothing to page through — Gallery.astro renders the prev/next arrows
+      // unconditionally since it doesn't know the slide count at build time.
+      gallery.querySelectorAll('.gallery__arrow').forEach((el) => el.remove());
+
+      // The video still only starts once GalleryVideo's own comment-documented
+      // autoplay-on-visible contract is honored — without this, a single-slide
+      // gallery's video (preload="none", no autoplay) never plays at all.
+      const video = getSlideVideo(slides[0]);
+      if (video) {
+        new IntersectionObserver(
+          (entries) => entries.forEach((e) => (e.isIntersecting ? video.play().catch(() => {}) : video.pause())),
+          { root: track, threshold: 0 },
+        ).observe(slides[0]);
+      }
+      return;
+    }
 
     // ---- Dot indicator ----
     // Localized via the `data-goto-label` template Gallery.astro renders
@@ -63,12 +87,6 @@ export function initGallery(): void {
     prevBtn?.addEventListener('click', () => goTo(Math.max(0, active - 1)));
     nextBtn?.addEventListener('click', () => goTo(Math.min(slides.length - 1, active + 1)));
     updateArrows();
-
-    // A slide may be a bare <video> or a wrapper containing one —
-    // querySelector alone misses the bare case (it only searches descendants).
-    function getSlideVideo(slideEl: HTMLElement): HTMLVideoElement | null {
-      return slideEl instanceof HTMLVideoElement ? slideEl : slideEl.querySelector('video');
-    }
 
     // ---- Keep the active dot in sync with whatever scrolled the track
     //      (wheel, drag, native touch swipe, or a dot click), and only ever
