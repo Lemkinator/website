@@ -308,30 +308,68 @@
     animation: border-glow-rotate 3s linear infinite;
   }
 
-  /* Hover video-peek (media cards only — see initVideoPeek() in pointer.ts).
-     Sits above the photo/spotlight, below the text content in DOM order. */
+  /* Card content (title/description/tags/badges) — position: relative so it
+     gets its own stacking layer above .card__preview-wrap below. Without
+     this, that wrap's position: absolute would always paint over it
+     regardless of DOM order: positioned elements paint above non-positioned
+     in-flow content no matter which comes first in the document. */
+  .card__content {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Hover video-peek (media cards only — see initVideoPeek() in pointer.ts,
+     which plays/pauses the <video> on hover; the fade itself is pure CSS).
+     .card__preview-scrim mirrors .card's own gradient scrim (below) so
+     .card__content's text stays legible once a bright video frame fades in
+     over the photo. */
+  .card__preview-wrap {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity var(--dur-slow) var(--ease-out);
+  }
+
   .card__preview {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    opacity: 0;
-    transition: opacity 0.35s ease;
+  }
+
+  .card__preview-scrim {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.15) 60%);
+  }
+
+  /* Gated like initVideoPeek() in pointer.ts, which never plays the video
+     for these users either — otherwise the fade would reveal a paused,
+     unplaying frame. */
+  @media (prefers-reduced-motion: no-preference) {
+    .card:hover .card__preview-wrap {
+      opacity: 1;
+    }
+  }
+
+  /* App-card icon overlay (Card.astro's `icon` prop) — centered squircle
+     glyph on top of the bannerImage background. Sits above the photo/scrim
+     but below .card__content's text (that's z-index: 1; this is positioned
+     but z-index: auto, same layer as .card__preview-wrap, ordered after it
+     in DOM so it still paints above a fading-in video peek if a card ever
+     has both). drop-shadow instead of a background chip: legible over any
+     photo without adding a visible shape of its own. */
+  .card__icon {
+    position: absolute;
+    top: 42%;
+    left: 50%;
+    translate: -50% -50%;
+    width: 80px;
+    height: 80px;
+    border-radius: var(--radius-md);
+    filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.45));
     pointer-events: none;
-  }
-
-  .card:hover .card__preview {
-    opacity: 1;
-  }
-
-  /* App-icon cards: shrink just the icon layer (2nd background-image) while
-     the gradient scrim (1st) still covers the full card. Values in
-     background-size/-repeat map positionally to the layers in
-     background-image, so each needs two comma-separated values. */
-  .card--icon {
-    background-size: cover, 60%;
-    background-repeat: no-repeat, no-repeat;
   }
 
   .card:hover {
@@ -419,7 +457,7 @@
     border-radius: 50%;
   }
 
-  .navbar__menu {
+  .navbar__menu-list {
     display: flex;
     align-items: center;
     gap: var(--space-4);
@@ -466,8 +504,8 @@
 
   .navbar__toggle {
     display: none;
-    flex-direction: column;
-    gap: 4px;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
     padding: 0.5em;
   }
@@ -478,11 +516,37 @@
     border-radius: var(--radius-md);
   }
 
-  .navbar__toggle .bar {
-    width: 22px;
-    height: 2px;
-    background: var(--color-fg);
-    border-radius: 2px;
+  /* Hamburger-to-X morph, driven by the same .navbar__toggle-input checkbox
+     as .navbar__menu above — no JS. stroke-dasharray/-dashoffset animate the
+     top/bottom bars into the two diagonal strokes of an X while the whole
+     svg rotates 45deg; the middle bar just fades via its own dasharray. */
+  .navbar__toggle svg {
+    height: 1.6em;
+    transition: transform 600ms var(--ease-in-out);
+  }
+
+  .navbar__toggle-line {
+    fill: none;
+    stroke: var(--color-fg);
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 3;
+    transition:
+      stroke-dasharray 600ms var(--ease-in-out),
+      stroke-dashoffset 600ms var(--ease-in-out);
+  }
+
+  .navbar__toggle-line--top-bottom {
+    stroke-dasharray: 12 63;
+  }
+
+  .navbar__toggle-input:checked ~ .navbar__toggle svg {
+    transform: rotate(-45deg);
+  }
+
+  .navbar__toggle-input:checked ~ .navbar__toggle .navbar__toggle-line--top-bottom {
+    stroke-dasharray: 20 300;
+    stroke-dashoffset: -32.42;
   }
 
   .lang-toggle {
@@ -499,21 +563,52 @@
       display: flex;
     }
 
+    /* Expand/collapse animation: grid-template-rows 0fr -> 1fr on the outer
+       .navbar__menu is the standard technique for animating to/from an
+       intrinsic ("auto") height — a plain height/max-height transition
+       either needs a hardcoded target height or jumps instantly, and this
+       doesn't. .navbar__menu-list is the single grid item whose natural
+       height defines the 1fr track; overflow: hidden + min-height: 0 on it
+       let that track actually shrink to the 0fr end of the animation
+       instead of being clamped to the content's height. Reads as unfurling
+       downward from the navbar, collapsing back up into it — not a fade.
+       transition-behavior: allow-discrete + @starting-style additionally
+       animate the display:none <-> grid swap itself, so the menu is still
+       removed from the a11y tree and tab order while closed. Both are
+       ignored by unsupported browsers (unknown property value / unknown
+       at-rule are dropped per the CSS parsing spec), which just fall back
+       to an instant snap open/closed. */
     .navbar__menu {
       display: none;
+      grid-template-rows: 0fr;
       position: absolute;
       top: 100%;
       left: 0;
       right: 0;
+      background: var(--color-surface);
+      transition:
+        grid-template-rows var(--dur-base) var(--ease-out),
+        display var(--dur-base) allow-discrete;
+    }
+
+    .navbar__menu-list {
       flex-direction: column;
       align-items: flex-start;
-      background: var(--color-surface);
       padding: var(--space-3) var(--space-4);
       gap: var(--space-3);
+      min-height: 0;
+      overflow: hidden;
+    }
+
+    @starting-style {
+      .navbar__toggle-input:checked ~ .navbar__menu {
+        grid-template-rows: 0fr;
+      }
     }
 
     .navbar__toggle-input:checked ~ .navbar__menu {
-      display: flex;
+      display: grid;
+      grid-template-rows: 1fr;
     }
 
     /* Immersive scroll (src/scripts/nav-scroll.ts) sets this inline,

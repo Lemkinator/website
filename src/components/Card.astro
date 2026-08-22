@@ -4,7 +4,7 @@
 // that used to be pasted per-project (with lang="en"/lang="de" pairs inside)
 // on index.html, apps/index.html and media/index.html.
 // Styling lives in src/styles/site.css (.cards-wrapper/.card/.tag/...).
-import { getImage } from 'astro:assets';
+import { getImage, Image } from 'astro:assets';
 import Icon from './Icon.astro';
 
 interface Props {
@@ -19,10 +19,12 @@ interface Props {
   interactionIcon?: 'download' | 'eye';
   interactionText?: string;
   tags?: string[];
-  // App icons are small squircle glyphs — full-bleed `cover` stretches them
-  // to fill the whole card. Media covers are real photos, where `cover`
-  // looks right. Set this for icon-backed cards (apps listings).
-  iconStyle?: boolean;
+  // App cards only — the squircle glyph, overlaid centered on top of bgImg
+  // (which for apps is the same bannerImage the detail page's Banner uses,
+  // so the card->banner view-transition morphs one continuous photo instead
+  // of a small icon expanding into an unrelated image). Sized to roughly
+  // match #app-icon on the detail page (site.css).
+  icon?: ImageMetadata;
   // Shared-element name for the native view-transition morph into the
   // detail page's Banner (see src/styles/motion.css). Must be unique per
   // document — callers derive it from the project slug (e.g. `proj-${slug}`).
@@ -45,7 +47,7 @@ const {
   interactionIcon,
   interactionText,
   tags = [],
-  iconStyle = false,
+  icon,
   transitionName,
   revealIndex,
   previewVideo,
@@ -73,7 +75,7 @@ const style = [
 
 <div class="card-grid-space">
   <a
-    class:list={['card', { 'card--icon': iconStyle }]}
+    class="card"
     href={href}
     style={style}
     data-reveal={revealIndex !== undefined ? 'stagger' : undefined}
@@ -82,32 +84,38 @@ const style = [
   >
     {
       previewVideo && (
-        <video class="card__preview" muted loop playsinline preload="none" aria-hidden="true">
-          <source src={`${previewVideo}.webm`} type="video/webm" />
-          <source src={`${previewVideo}.mp4`} type="video/mp4" />
-        </video>
+        <div class="card__preview-wrap">
+          <video class="card__preview" muted loop playsinline preload="none" aria-hidden="true">
+            <source src={`${previewVideo}.webm`} type="video/webm" />
+            <source src={`${previewVideo}.mp4`} type="video/mp4" />
+          </video>
+          <div class="card__preview-scrim"></div>
+        </div>
       )
     }
-    <div>
+    {/* Rendered at 80x80 CSS px (site.css .card__icon), matching #app-icon
+       on the detail page — 160 covers 2x DPR. */}
+    {icon && <Image class="card__icon" src={icon} alt="" width={160} height={160} />}
+    {date && <div class="date">{date}</div>}
+    {
+      interactionIcon && interactionText && (
+        <div class="interaction">
+          <Icon name={interactionIcon} />
+          &nbsp;&nbsp;
+          {countValue ? (
+            <>
+              <span data-count-to={countValue}>{countValue}</span>
+              {countSuffix}
+            </>
+          ) : (
+            interactionText
+          )}
+        </div>
+      )
+    }
+    <div class="card__content">
       <h1>{title}</h1>
       <p>{description}</p>
-      {date && <div class="date">{date}</div>}
-      {
-        interactionIcon && interactionText && (
-          <div class="interaction">
-            <Icon name={interactionIcon} />
-            &nbsp;&nbsp;
-            {countValue ? (
-              <>
-                <span data-count-to={countValue}>{countValue}</span>
-                {countSuffix}
-              </>
-            ) : (
-              interactionText
-            )}
-          </div>
-        )
-      }
       {
         tags.length > 0 && (
           <div class="tags">

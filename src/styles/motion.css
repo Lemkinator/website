@@ -226,6 +226,26 @@
     view-transition-name: site-footer;
   }
 
+  /* Every card->banner morph (hub-apps/hub-media, proj-app-*/proj-media-*)
+     shares this one rule (::view-transition-old/-new's functional-pseudo
+     argument only accepts '*' or a name list — no :not(), so this has to be
+     the wildcard rather than excluding root/site-nav/site-footer by name;
+     harmless for those three since none of them have an aspect ratio that
+     changes across a navigation, so object-fit can't visibly do anything
+     there). The browser's default sizing otherwise lets each named group's
+     own aspect ratio drift from the card's shape to the banner's much
+     wider, shorter one over the animation, which reads as
+     letterboxing/gaps rather than a clean morph — worse the bigger that
+     mismatch is (small square-ish listing cards -> full-bleed banner is a
+     much bigger jump than the 2-wide homepage hub tiles, which is why the
+     hub transition already looked fine while the others didn't). cover
+     keeps the snapshot filling the box at every point in the animation
+     regardless of the aspect-ratio delta. */
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    object-fit: cover;
+  }
+
   ::view-transition-old(site-nav),
   ::view-transition-new(site-nav),
   ::view-transition-old(site-footer),

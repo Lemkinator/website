@@ -12,7 +12,10 @@ export interface ProjectCard {
   interactionIcon: 'download' | 'eye';
   interactionText?: string;
   tags: string[];
-  iconStyle: boolean;
+  // App cards only — squircle glyph overlaid centered on the card, roughly
+  // the size it renders at on the detail page (#app-icon in site.css). See
+  // Card.astro's `icon` prop.
+  icon?: ImageMetadata;
   // Shared-element name for the card->detail-page view-transition morph
   // (see Card.astro / Banner.astro). Namespaced by collection since app and
   // media slugs aren't guaranteed disjoint.
@@ -44,7 +47,11 @@ export async function getAppCards(locale: Locale): Promise<ProjectCard[]> {
   return apps
     .map((app) => ({
       href: getRelativeLocaleUrl(locale, `/apps/${app.data.slug}`),
-      bgImg: app.data.icon,
+      // Same image the detail page's Banner uses (see Banner.astro), so the
+      // card->banner view-transition morphs one continuous photo instead of
+      // a small icon suddenly expanding into an unrelated image.
+      bgImg: app.data.bannerImage,
+      icon: app.data.icon,
       title: app.data.name,
       description: app.data.tagline,
       date: app.data.date,
@@ -52,7 +59,6 @@ export async function getAppCards(locale: Locale): Promise<ProjectCard[]> {
       interactionIcon: 'download' as const,
       interactionText: app.data.downloads,
       tags: app.data.tags,
-      iconStyle: true,
       transitionName: `proj-app-${app.data.slug}`,
     }))
     .sort((a, b) => b.date.valueOf() - a.date.valueOf());
@@ -78,7 +84,6 @@ export async function getMediaCards(locale: Locale): Promise<ProjectCard[]> {
       interactionIcon: 'eye' as const,
       interactionText: project.data.views,
       tags: project.data.tags,
-      iconStyle: false,
       transitionName: `proj-media-${project.data.slug}`,
       previewVideo: MEDIA_PREVIEW_VIDEO[project.data.slug],
     }))

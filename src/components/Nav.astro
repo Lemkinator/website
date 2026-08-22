@@ -36,35 +36,41 @@ function isActive(path: string): boolean {
     </a>
     <input type="checkbox" id="mobile-menu-toggle" class="navbar__toggle-input" aria-label="Toggle menu" />
     <label for="mobile-menu-toggle" class="navbar__toggle" aria-hidden="true">
-      <span class="bar"></span>
-      <span class="bar"></span>
-      <span class="bar"></span>
+      <svg viewBox="0 0 32 32">
+        <path
+          class="navbar__toggle-line navbar__toggle-line--top-bottom"
+          d="M27 10 13 10C10.8 10 9 8.2 9 6 9 3.5 10.8 2 13 2 15.2 2 17 3.8 17 6L17 26C17 28.2 18.8 30 21 30 23.2 30 25 28.2 25 26 25 23.8 23.2 22 21 22L7 22"
+        ></path>
+        <path class="navbar__toggle-line" d="M7 16 27 16"></path>
+      </svg>
     </label>
-    <ul class="navbar__menu">
-      {
-        links.map((link) => {
-          const active = isActive(link.path);
-          return (
-            <li class="navbar__item">
-              <a
-                href={getRelativeLocaleUrl(locale, link.path)}
-                class="navbar__links"
-                aria-current={active ? 'page' : undefined}
-              >
-                {t(link.key)}
-                {active && <span class="navbar__indicator" aria-hidden="true" />}
-              </a>
-            </li>
-          );
-        })
-      }
-      <li class="navbar__item navbar__item--command">
-        <CommandPalette />
-      </li>
-      <li class="navbar__item navbar__item--lang">
-        <LangToggle />
-      </li>
-    </ul>
+    <div class="navbar__menu">
+      <ul class="navbar__menu-list">
+        {
+          links.map((link) => {
+            const active = isActive(link.path);
+            return (
+              <li class="navbar__item">
+                <a
+                  href={getRelativeLocaleUrl(locale, link.path)}
+                  class="navbar__links"
+                  aria-current={active ? 'page' : undefined}
+                >
+                  {t(link.key)}
+                  {active && <span class="navbar__indicator" aria-hidden="true" />}
+                </a>
+              </li>
+            );
+          })
+        }
+        <li class="navbar__item navbar__item--command">
+          <CommandPalette />
+        </li>
+        <li class="navbar__item navbar__item--lang">
+          <LangToggle />
+        </li>
+      </ul>
+    </div>
   </div>
 </nav>
 <script>
