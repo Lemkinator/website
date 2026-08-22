@@ -226,7 +226,7 @@
     view-transition-name: site-footer;
   }
 
-  /* Every card->banner morph (hub-apps/hub-media, proj-app-*/proj-media-*)
+  /* Every card->banner morph (hub-apps/hub-media, proj-app-* / proj-media-*)
      shares this one rule (::view-transition-old/-new's functional-pseudo
      argument only accepts '*' or a name list — no :not(), so this has to be
      the wildcard rather than excluding root/site-nav/site-footer by name;
