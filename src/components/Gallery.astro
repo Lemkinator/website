@@ -159,7 +159,11 @@ const t = useTranslations(locale);
     width: auto;
     height: auto;
     max-height: min(60vh, 480px);
-    max-width: 90vw;
+    /* % of the track's own box, not the viewport: 90vw measures past
+       .content's side padding, so on narrow screens a wide-capped image
+       could exceed the track's actual available width and get clipped
+       by its overflow-x instead of shrinking to fit. */
+    max-width: 90%;
   }
 
   /* Full mode: item fills the content column width; height follows the
