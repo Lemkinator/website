@@ -221,6 +221,19 @@
     padding: 0.2em 0.7em;
   }
 
+  /* Deliberately its own class rather than reusing .timeline__date - that
+     class carries margin tuned for its standalone-paragraph use elsewhere
+     in the timeline, which would leak into this flex row and stretch its
+     sibling .skill-tag to match. */
+  .size-tag {
+    font-size: 0.78rem;
+    color: var(--color-muted);
+    background: var(--color-surface);
+    border: 1px solid var(--color-line);
+    border-radius: 999px;
+    padding: 0.2em 0.7em;
+  }
+
   /* Nested positions within one company (e.g. multiple roles at Continental) -
      a thinner dashed sub-rail so it reads as "inside" the parent entry rather
      than as its own top-level timeline item. */
