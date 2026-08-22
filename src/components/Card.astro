@@ -1,17 +1,9 @@
 ---
-// One project card. Replaces the hand-copied
-// <div class="card-grid-space"><a class="card" style="--bg-img: ..."> markup
-// that used to be pasted per-project (with lang="en"/lang="de" pairs inside)
-// on index.html, apps/index.html and media/index.html.
-// Styling lives in src/styles/site.css (.cards-wrapper/.card/.tag/...).
 import { getImage, Image } from 'astro:assets';
 import Icon from './Icon.astro';
 
 interface Props {
   href: string;
-  // Either a plain public/ path (every content-collection-driven card —
-  // apps and media listings) or a local src/assets import (currently just
-  // the homepage's two hub tiles). See Banner.astro for the same pattern.
   bgImg: ImageMetadata | string;
   title: string;
   description: string;
@@ -19,25 +11,19 @@ interface Props {
   interactionIcon?: 'download' | 'eye';
   interactionText?: string;
   tags?: string[];
-  // App cards only — the squircle glyph, overlaid centered on top of bgImg
-  // (which for apps is the same bannerImage the detail page's Banner uses,
-  // so the card->banner view-transition morphs one continuous photo instead
-  // of a small icon expanding into an unrelated image). Sized to roughly
-  // match #app-icon on the detail page (site.css).
+  // App cards only. bgImg here is the same bannerImage the detail page's
+  // Banner uses, so the card->banner view-transition morphs one continuous
+  // photo instead of an icon expanding into an unrelated image. Sized to
+  // roughly match #app-icon in site.css.
   icon?: ImageMetadata;
-  // Shared-element name for the native view-transition morph into the
-  // detail page's Banner (see src/styles/motion.css). Must be unique per
-  // document — callers derive it from the project slug (e.g. `proj-${slug}`).
+  // Shared-element name for the view-transition morph into the detail
+  // page's Banner — must be unique per document.
   transitionName?: string;
-  // Stagger index for the scroll-reveal in motion.css ([data-reveal]'s --i).
   revealIndex?: number;
-  // Base path (no extension) of a muted preview clip that plays on hover —
-  // see initVideoPeek() in pointer.ts. Both `${previewVideo}.webm` and
-  // `${previewVideo}.mp4` must exist. Optional: cards without footage
-  // (e.g. the "2000" media project) just skip this entirely.
+  // Base path (no extension) of a hover preview clip — see initVideoPeek()
+  // in pointer.ts. Both `${previewVideo}.webm` and `${previewVideo}.mp4`
+  // must exist.
   previewVideo?: string;
-  // CSS background-position for bgImg, e.g. "center 70%" — see site.css's
-  // `.card`, which falls back to plain "center" when this is unset.
   bgPosition?: string;
 }
 
@@ -60,10 +46,8 @@ const {
 const resolvedBg =
   typeof bgImg === 'string' ? bgImg : (await getImage({ src: bgImg, format: 'avif', width: 800 })).src;
 
-// Splits "10000 +" into a countable number (animated by counter.ts) and a
-// static suffix (" +"), so the count-up only ever touches the digits.
-// Falls back to rendering interactionText verbatim if it doesn't start
-// with a number.
+// Splits e.g. "10000 +" into the countable digits (animated by counter.ts)
+// and the static suffix; falls back to plain text if it doesn't start with a number.
 const countMatch = interactionText?.match(/^(\d+)(.*)$/);
 const countValue = countMatch?.[1];
 const countSuffix = countMatch?.[2] ?? '';
@@ -98,8 +82,7 @@ const style = [
         </div>
       )
     }
-    {/* Rendered at 80x80 CSS px (site.css .card__icon), matching #app-icon
-       on the detail page — 160 covers 2x DPR. */}
+    {/* Rendered at 80x80 CSS px (site.css .card__icon) — 160 covers 2x DPR. */}
     {icon && <Image class="card__icon" src={icon} alt="" width={160} height={160} />}
     {date && <div class="date">{date}</div>}
     {

@@ -1,9 +1,7 @@
 ---
-// Ctrl/Cmd+K quick-nav palette. Self-contained like Nav.astro — fetches its
-// own project list rather than threading props through BaseLayout. Native
-// <dialog> gives focus-trap, Esc-to-close, and a ::backdrop for free;
-// src/scripts/command-palette.ts only handles the keyboard shortcut,
-// arrow-key navigation between results, and substring filtering.
+// Native <dialog> gives focus-trap, Esc-to-close, and a ::backdrop for
+// free — command-palette.ts only handles the keyboard shortcut, arrow-key
+// navigation, and substring filtering.
 import { getRelativeLocaleUrl } from 'astro:i18n';
 import { useTranslations, defaultLocale, getLocaleAgnosticPath, type Locale } from '@/i18n/ui';
 import { getAllProjects } from '@/lib/projects';

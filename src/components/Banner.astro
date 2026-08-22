@@ -1,40 +1,21 @@
 ---
-// Full-bleed photo banner (direction B's treatment, adopted site-wide at the
-// Phase 2 gate): background image + bottom gradient scrim + title/subtitle
-// overlaid at the bottom. Replaces the legacy per-slug CSS classes
-// (.geticon-banner, .sudoku-banner, .media-banner, ...) that each hardcoded
-// their own background-image — this is one component driven by data.
 import { getImage } from 'astro:assets';
 
 interface Props {
-  // Either a plain public/ path (every content-collection-driven Banner —
-  // apps/media detail pages, apps/wsa, about) or a local src/assets import
-  // (currently just the homepage hero and /media's banner — the two
-  // full-bleed images that also carry the local src/assets pipeline).
-  // Only the latter goes through getImage() below; a plain string is used
-  // as-is, exactly like before this prop existed.
   image: ImageMetadata | string;
   title: string;
   subtitle?: string;
   compact?: boolean;
-  // Shared-element name matching the origin Card's `transitionName` (see
-  // Card.astro), so the browser morphs the grid card straight into this
-  // banner across a real navigation. See src/styles/motion.css.
+  // Must match the origin Card's own transitionName (Card.astro) for the
+  // card->banner view-transition morph to work.
   transitionName?: string;
-  // Sweeps an animated gradient highlight across the title (background-clip:
-  // text). Opt-in and deliberately exclusive to the homepage hero — one page
-  // gets the full flourish stack, interior banners stay calmer.
   shineTitle?: boolean;
-  // Screen-reader-only description of the background image, since it's a
-  // CSS background-image (no native <img alt>). Also doubles as the EU AI
-  // Act Art. 50(4) disclosure for banners generated with AI — say so in the
-  // text itself (e.g. "AI-generated artwork of ...").
+  // Screen-reader text for the CSS background-image (no native alt) — also
+  // carries the required EU AI Act Art. 50(4) AI-content disclosure.
   imageAlt?: string;
-  // CSS background-position, e.g. "center 25%", to keep an off-center
-  // subject in frame. Defaults to dead-center, same as before this prop
-  // existed. Setting this also swaps the scroll-parallax animation below
-  // to a narrow swing centered on the same point, instead of the default
-  // wide one — see hasCustomFocal.
+  // CSS background-position, e.g. "center 25%". Also switches the
+  // scroll-parallax below to a narrow swing centered on this point instead
+  // of the default wide swing — see hasCustomFocal.
   focalPosition?: string;
 }
 
@@ -49,27 +30,20 @@ const {
   focalPosition = 'center',
 } = Astro.props;
 
-// Background-image can't use <Image>'s <img srcset> — it's a CSS url().
-// getImage() gives us the same AVIF-encoded, resized output as a plain URL
-// we can feed into the existing --bg-img custom property unchanged.
-// Capped at the source's own width: sharp's withoutEnlargement silently
-// caps a too-small source at its native resolution rather than erroring,
-// so requesting 1920 against e.g. a 400px-wide portrait crop would ship a
-// pixelated 400px image with no build warning.
+// getImage() gives the same AVIF/resized output as a URL, for the CSS
+// background-image (which can't use <img srcset>). Capped at the source's
+// own width: Sharp's withoutEnlargement silently ships a pixelated
+// undersized image with no build warning if the requested width exceeds it.
 const resolvedImage =
   typeof image === 'string'
     ? image
     : (await getImage({ src: image, format: 'avif', width: Math.min(1920, image.width) })).src;
 
-// The default parallax swings background-position 15%->85% on a geometry-
-// driven timeline (animation-range: cover), so on load it can already be
-// mid-swing rather than pinned to focalPosition (measured directly in
-// Chromium: a `focalPosition="center 15%"` banner still computed
-// `background-position: 50% 54.7%` at scroll 0). A custom focalPosition
-// can't tolerate that full range without cropping its subject, so it gets
-// a narrow swing centered on its own focal point instead — computed here
-// (plain arithmetic) rather than with calc()/clamp() inside the animated
-// @keyframes values themselves, which didn't reliably interpolate.
+// Default parallax swings 15%->85% via animation-range: cover; measured in
+// Chromium, a custom focalPosition can still get overridden mid-swing (e.g.
+// "center 15%" computing as "50% 54.7%" at scroll 0). A custom focal gets a
+// narrow +/-5pt swing centered on itself instead, computed here since
+// calc()/clamp() inside animated @keyframes values didn't reliably interpolate.
 const hasCustomFocal = focalPosition !== 'center';
 const focalY = Number(/(-?\d+(?:\.\d+)?)%\s*$/.exec(focalPosition)?.[1] ?? 50);
 const narrowFrom = `${Math.max(0, focalY - 5)}%`;
@@ -85,11 +59,8 @@ const style = [
   .filter(Boolean)
   .join('; ');
 
-// Title + subtitle collapse into one typed line (see typing.ts): with a
-// subtitle, it types the title, deletes, types the subtitle, deletes,
-// repeats; with no subtitle it just types the title once. aria-label
-// carries the real full text so screen readers never see a mid-type
-// fragment — the span itself is decorative.
+// aria-label carries the full text so screen readers don't see the typing
+// animation's mid-type fragments (the span itself is aria-hidden).
 const typingStrings = [title, subtitle].filter((s): s is string => Boolean(s));
 const ariaLabel = typingStrings.join('. ');
 ---
@@ -124,11 +95,8 @@ const ariaLabel = typingStrings.join('. ');
     align-items: flex-end;
     background-image: var(--bg-img);
     background-size: cover;
-    /* No fallback value here: the inline style attribute below always sets
-       --bg-pos (focalPosition itself defaults to 'center' in the props
-       destructure), so a CSS-side fallback could never actually apply. */
     background-position: var(--bg-pos);
-    contain: layout; /* single-box guarantee for view-transition-name */
+    contain: layout; /* required for view-transition-name to apply to a single box */
   }
 
   .banner--compact {
@@ -137,14 +105,8 @@ const ariaLabel = typingStrings.join('. ');
     max-height: 380px;
   }
 
-  /* Scroll parallax on every banner, not just /media's — lives here rather
-     than motion.css because Astro's scoped styles hash .banner's selector;
-     a global stylesheet rule wouldn't match this element. Reduced-motion is
-     still handled globally by motion.css's transition/animation-duration
-     backstop, since this is a real @keyframes animation. Harmless on the
-     homepage hero too: ShaderBackdrop's canvas is transparent (additive,
-     low-alpha haze — see backdrop.ts), so the drifting photo stays visible
-     underneath it. */
+  /* Lives here, not motion.css: Astro scopes this component's styles by
+     hashing .banner's selector, so a global-stylesheet rule wouldn't match it. */
   @keyframes banner-parallax {
     from {
       background-position: center 15%;
@@ -154,12 +116,6 @@ const ariaLabel = typingStrings.join('. ');
     }
   }
 
-  /* Narrower swing for banners with a custom focalPosition (hasCustomFocal
-     above) — centered on --bg-pos-narrow-from/-to, which Banner.astro
-     computes as focalY ± 5 points. A ±5pt swing stays within the overlap
-     every real viewport width guarantees (down to 5120px-wide ultrawide),
-     so the subject never scrolls out of frame the way the default 70-point
-     swing would for an off-center composition. */
   @keyframes banner-parallax-narrow {
     from {
       background-position: center var(--bg-pos-narrow-from);
@@ -185,12 +141,6 @@ const ariaLabel = typingStrings.join('. ');
     }
   }
 
-  /* Film-grain texture: fractal noise baked into an inline SVG data-URI, so
-     it's zero extra requests and zero JS. Paints below ::after (both are
-     z-index:auto, so plain DOM order decides — ::before is generated
-     before ::after) — grain sits on the photo, the gradient scrim and text
-     stay on top, unblended. mix-blend-mode: overlay reads as texture, not
-     a visible haze, at this opacity. */
   .banner::before {
     content: '';
     position: absolute;
@@ -206,9 +156,6 @@ const ariaLabel = typingStrings.join('. ');
     content: '';
     position: absolute;
     inset: 0;
-    /* Baseline dim across the whole banner (was 0.05 at the top — bright
-       AI-generated art could wash out well before reaching the text),
-       ramping darker toward the bottom where the title/subtitle sit. */
     background: linear-gradient(to top, rgba(0, 0, 0, 0.82), rgba(0, 0, 0, 0.35) 60%, rgba(0, 0, 0, 0.2));
   }
 
@@ -229,13 +176,8 @@ const ariaLabel = typingStrings.join('. ');
     letter-spacing: -0.02em;
   }
 
-  /* Shiny gradient sweep. The gradient tiles seamlessly at background-size:
-     200% (both edges of the pattern are --color-fg), so animating
-     background-position from 0 to -200% loops with no visible seam or
-     snap-back. Under reduced motion, motion.css's global backstop collapses
-     the animation to a single near-instant frame, which lands back on the
-     same tile phase — so it fails open to plain gradient-tinted text, not a
-     stuck highlight. */
+  /* Gradient tiles seamlessly at 200% (both edges are --color-fg), so the
+     0 -> -200% background-position loop has no visible seam. */
   .banner__content h1.shine {
     background: linear-gradient(
       100deg,
@@ -264,9 +206,7 @@ const ariaLabel = typingStrings.join('. ');
     }
   }
 
-  /* Blinking text cursor, added only once JS confirms motion is allowed
-     (see typing.ts) — reduced-motion users get a clean static title with
-     no cursor rather than a permanently-blinking one. */
+  /* .is-typing is only added by typing.ts after it confirms motion is allowed. */
   .banner__content h1 .typing.is-typing::after {
     content: '|';
     margin-left: 0.05em;

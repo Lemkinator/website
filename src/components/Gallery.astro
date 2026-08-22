@@ -1,20 +1,11 @@
 ---
-// Replaces <swiper-container>/<swiper-slide> (Swiper 9 loaded unpinned from
-// jsdelivr on 10 legacy pages) with a dependency-free CSS scroll-snap
-// carousel. No JS, no CDN request, works with keyboard/touch natively.
-//
-// Two sizing modes, since "one size fits all" kept breaking one context or
-// another:
-// - default: compact, height-driven (portrait phone screenshots, square
-//   about-page photos) — each item sized by its own aspect ratio, capped
-//   so it doesn't dominate.
-// - full: landscape media (FPV clips/photos) — each item fills the content
-//   column width, one at a time, scroll/snap to the next.
 import { useTranslations, defaultLocale, type Locale } from '@/i18n/ui';
 import Icon from './Icon.astro';
 
 interface Props {
   class?: string;
+  // full: landscape items fill the content column width, one at a time.
+  // default: compact, each item sized by its own aspect ratio.
   full?: boolean;
 }
 
@@ -47,9 +38,6 @@ const t = useTranslations(locale);
     position: relative;
   }
 
-  /* Prev/next affordance — primarily for mouse/keyboard users, since touch
-     already has native swipe and desktop has drag (see gallery.ts). Sits
-     over the track rather than taking layout space, centered vertically. */
   .gallery__arrow {
     appearance: none;
     position: absolute;
@@ -99,11 +87,8 @@ const t = useTranslations(locale);
 
   .gallery__track {
     display: flex;
-    /* align-items defaults to stretch — combined with height:auto below,
-       that was silently vertically stretching every image to match the
-       row's cross-axis size (width stayed correct, height didn't), which
-       is exactly what read as "distorted". flex-start opts every item out
-       of stretch regardless of whether its height is auto or explicit. */
+    /* flex-start prevents cross-axis stretch, which combined with
+       height:auto silently distorted images vertically. */
     align-items: flex-start;
     gap: var(--space-2);
     overflow-x: auto;
@@ -111,10 +96,6 @@ const t = useTranslations(locale);
     scroll-behavior: smooth;
     padding-bottom: var(--space-2);
     cursor: grab;
-    /* Native scrollbar replaced by the snap+drag/wheel affordances below —
-       a visible track competed with the images for attention and was the
-       main complaint. Touch/trackpad swipe and keyboard scrolling still
-       work identically; only the visible bar is gone. */
     scrollbar-width: none;
   }
 
@@ -122,10 +103,9 @@ const t = useTranslations(locale);
     display: none;
   }
 
-  /* While actively dragged with a mouse (src/scripts/gallery.ts), scrollLeft
-     is set directly every pointermove — snap fighting that mid-drag reads as
-     stutter, so it's suspended until release. Also blocks the image-drag
-     ghost/text-selection a raw mouse drag would otherwise trigger. */
+  /* Suspended during drag: snap fighting live scrollLeft writes (see
+     gallery.ts) reads as stutter. Also blocks the native image-drag
+     ghost/text-selection a raw mouse drag would trigger. */
   .gallery__track.is-dragging {
     scroll-snap-type: none;
     scroll-behavior: auto;
@@ -138,9 +118,8 @@ const t = useTranslations(locale);
     pointer-events: none;
   }
 
-  /* Some slides are a bare <img>/<video>; others (e.g. the drone-journey
-     gallery on media/index.astro) wrap it in a <div><img><p class="description">
-     for a caption. flex:0 0 auto shrink-wraps the slide to its content. */
+  /* Slides may be a bare <img>/<video> or wrapped in a <div> with a
+     <p class="description"> caption — flex: 0 0 auto shrink-wraps either case. */
   .gallery__track > :global(*) {
     flex: 0 0 auto;
     scroll-snap-align: center;
@@ -150,24 +129,19 @@ const t = useTranslations(locale);
   .gallery__track :global(video) {
     border-radius: var(--radius-md);
     display: block;
-    /* max-height, not height: an explicit height ignores the width cap
-       when it kicks in, distorting non-square images. width/height:auto
-       must be declared here too — Chrome only jointly preserves aspect
-       ratio against both max-* caps when auto is set in the same rule,
-       not just inherited as the (identical) computed value from another
-       rule (site.css's img,video{height:auto} reset). */
+    /* max-height (not height) + explicit width/height:auto: Chrome only
+       jointly preserves aspect ratio against both max-* caps when auto is
+       declared in this same rule, not just inherited from site.css's
+       img,video{height:auto}. */
     width: auto;
     height: auto;
     max-height: min(60vh, 480px);
-    /* % of the track's own box, not the viewport: 90vw measures past
-       .content's side padding, so on narrow screens a wide-capped image
-       could exceed the track's actual available width and get clipped
-       by its overflow-x instead of shrinking to fit. */
+    /* % of the track's own box, not the viewport: 90vw would measure past
+       .content's side padding and could exceed the track's available width
+       on narrow screens. */
     max-width: 90%;
   }
 
-  /* Full mode: item fills the content column width; height follows the
-     image's own aspect ratio instead of being height-capped. */
   .gallery--full .gallery__track > :global(*) {
     width: 100%;
   }

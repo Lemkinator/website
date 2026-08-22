@@ -1,5 +1,4 @@
 ---
-// Wrapper replacing <section class="cards-wrapper"><div class="card-grid-space">...
 ---
 
 <section class="cards-wrapper">
@@ -7,13 +6,10 @@
 </section>
 <script>
   // Astro dedupes identical inline module scripts per page, so this runs
-  // once even when a page renders multiple CardGrids (e.g. the homepage) —
-  // and since module scripts execute after the full document is parsed, it
-  // safely finds every [data-tilt] card on the page regardless of which
-  // CardGrid instance's script tag actually ran.
+  // once even with multiple CardGrids on one page (e.g. the homepage).
   import { initCardTilt, initVideoPeek } from '@/scripts/pointer';
   import { initCounters } from '@/scripts/counter';
-  // initReveal() runs globally from BaseLayout.astro now, not per-grid.
+  // initReveal() runs globally from BaseLayout.astro, not per-grid.
   initCardTilt();
   initVideoPeek();
   initCounters();
