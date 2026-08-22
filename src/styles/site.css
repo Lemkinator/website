@@ -59,13 +59,6 @@
     display: inline-block;
   }
 
-  .custom-p {
-    color: var(--color-muted);
-    font-size: 1.15rem;
-    max-width: 40ch;
-    margin: 0 auto;
-  }
-
   .quote {
     font-size: 1.1rem;
     color: var(--color-muted);
@@ -166,18 +159,6 @@
 
   .button-pill:hover a {
     color: #fff;
-  }
-
-  .button-game {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 3em;
-    height: 3em;
-    border-radius: 999px;
-    background: var(--color-surface);
-    box-shadow: var(--shadow-sm);
-    margin: 0.3em;
   }
 }
 

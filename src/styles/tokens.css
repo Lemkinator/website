@@ -10,7 +10,6 @@
 
   --font-body: var(--font-kumbh), system-ui, sans-serif;
 
-  --space-1: 0.25rem;
   --space-2: 0.5rem;
   --space-3: 1rem;
   --space-4: 1.5rem;
@@ -28,7 +27,6 @@
   --dur-fast: 0.18s;
   --dur-base: 0.4s;
   --dur-slow: 0.9s;
-  --dur-scene: 1.6s;
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
   --ease-spring: linear(
@@ -57,6 +55,5 @@
   --dur-fast: 0.4s;
   --dur-base: 0.9s;
   --dur-slow: 1.8s;
-  --dur-scene: 3s;
   --reveal-distance: 7rem;
 }
