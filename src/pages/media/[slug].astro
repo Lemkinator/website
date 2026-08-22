@@ -2,6 +2,7 @@
 import { getCollection, render } from 'astro:content';
 import ProjectLayout from '@/layouts/ProjectLayout.astro';
 import Banner from '@/components/Banner.astro';
+import { MEDIA_BANNER_FOCAL_POSITION } from '@/lib/projects';
 
 export async function getStaticPaths() {
   const entries = await getCollection('media', (entry) => entry.id.startsWith('en/'));
@@ -22,6 +23,7 @@ const { title, description, bannerImage, bannerImageAlt } = entry.data;
     title={title}
     subtitle="Cinematic/Freestyle FPV"
     imageAlt={bannerImageAlt}
+    focalPosition={MEDIA_BANNER_FOCAL_POSITION[entry.data.slug]}
     transitionName={`proj-media-${entry.data.slug}`}
   />
 

@@ -36,6 +36,9 @@ interface Props {
   // `${previewVideo}.mp4` must exist. Optional: cards without footage
   // (e.g. the "2000" media project) just skip this entirely.
   previewVideo?: string;
+  // CSS background-position for bgImg, e.g. "center 70%" — see site.css's
+  // `.card`, which falls back to plain "center" when this is unset.
+  bgPosition?: string;
 }
 
 const {
@@ -51,6 +54,7 @@ const {
   transitionName,
   revealIndex,
   previewVideo,
+  bgPosition,
 } = Astro.props;
 
 const resolvedBg =
@@ -66,6 +70,7 @@ const countSuffix = countMatch?.[2] ?? '';
 
 const style = [
   `--bg-img: url(${resolvedBg})`,
+  bgPosition && `--bg-pos: ${bgPosition}`,
   transitionName && `view-transition-name: ${transitionName}`,
   revealIndex !== undefined && `--i: ${revealIndex}`,
 ]

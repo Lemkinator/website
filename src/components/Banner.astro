@@ -30,13 +30,11 @@ interface Props {
   // Act Art. 50(4) disclosure for banners generated with AI — say so in the
   // text itself (e.g. "AI-generated artwork of ...").
   imageAlt?: string;
-  // CSS background-position for the static (non-parallax) crop, e.g.
-  // "center 25%" to keep an off-center subject (a corner, a top-heavy
-  // composition) from getting cropped out on short banners. Defaults to
-  // dead-center, same as before this prop existed. The scroll-parallax
-  // animation below still overrides this once it's active — this only
-  // controls the crop where that animation doesn't run (no scroll-timeline
-  // support, or prefers-reduced-motion).
+  // CSS background-position, e.g. "center 25%", to keep an off-center
+  // subject in frame. Defaults to dead-center, same as before this prop
+  // existed. Setting this also swaps the scroll-parallax animation below
+  // to a narrow swing centered on the same point, instead of the default
+  // wide one — see hasCustomFocal.
   focalPosition?: string;
 }
 
@@ -63,9 +61,25 @@ const resolvedImage =
     ? image
     : (await getImage({ src: image, format: 'avif', width: Math.min(1920, image.width) })).src;
 
+// The default parallax swings background-position 15%->85% on a geometry-
+// driven timeline (animation-range: cover), so on load it can already be
+// mid-swing rather than pinned to focalPosition (measured directly in
+// Chromium: a `focalPosition="center 15%"` banner still computed
+// `background-position: 50% 54.7%` at scroll 0). A custom focalPosition
+// can't tolerate that full range without cropping its subject, so it gets
+// a narrow swing centered on its own focal point instead — computed here
+// (plain arithmetic) rather than with calc()/clamp() inside the animated
+// @keyframes values themselves, which didn't reliably interpolate.
+const hasCustomFocal = focalPosition !== 'center';
+const focalY = Number(/(-?\d+(?:\.\d+)?)%\s*$/.exec(focalPosition)?.[1] ?? 50);
+const narrowFrom = `${Math.max(0, focalY - 5)}%`;
+const narrowTo = `${Math.min(100, focalY + 5)}%`;
+
 const style = [
   `--bg-img: url(${resolvedImage})`,
   `--bg-pos: ${focalPosition}`,
+  hasCustomFocal && `--bg-pos-narrow-from: ${narrowFrom}`,
+  hasCustomFocal && `--bg-pos-narrow-to: ${narrowTo}`,
   transitionName && `view-transition-name: ${transitionName}`,
 ]
   .filter(Boolean)
@@ -80,7 +94,11 @@ const typingStrings = [title, subtitle].filter((s): s is string => Boolean(s));
 const ariaLabel = typingStrings.join('. ');
 ---
 
-<div class:list={['banner', { 'banner--compact': compact }]} style={style}>
+<div
+  class:list={['banner', { 'banner--compact': compact }]}
+  style={style}
+  data-static-focal={hasCustomFocal || undefined}
+>
   {imageAlt && <span class="sr-only">{imageAlt}</span>}
   <slot name="backdrop" />
   <div class="banner__content">
@@ -136,10 +154,31 @@ const ariaLabel = typingStrings.join('. ');
     }
   }
 
+  /* Narrower swing for banners with a custom focalPosition (hasCustomFocal
+     above) — centered on --bg-pos-narrow-from/-to, which Banner.astro
+     computes as focalY ± 5 points. A ±5pt swing stays within the overlap
+     every real viewport width guarantees (down to 5120px-wide ultrawide),
+     so the subject never scrolls out of frame the way the default 70-point
+     swing would for an off-center composition. */
+  @keyframes banner-parallax-narrow {
+    from {
+      background-position: center var(--bg-pos-narrow-from);
+    }
+    to {
+      background-position: center var(--bg-pos-narrow-to);
+    }
+  }
+
   @supports (animation-timeline: view()) {
     @media (prefers-reduced-motion: no-preference) {
-      .banner {
+      .banner:not([data-static-focal]) {
         animation: banner-parallax linear both;
+        animation-timeline: view();
+        animation-range: cover 0% cover 100%;
+      }
+
+      .banner[data-static-focal] {
+        animation: banner-parallax-narrow linear both;
         animation-timeline: view();
         animation-range: cover 0% cover 100%;
       }

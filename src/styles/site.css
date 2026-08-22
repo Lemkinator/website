@@ -236,7 +236,7 @@
     background-color: var(--color-surface);
     background-image: linear-gradient(to top, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.15) 60%), var(--bg-img);
     background-size: cover;
-    background-position: center;
+    background-position: var(--bg-pos, center);
     border-radius: var(--radius-lg);
     padding: var(--space-4);
     box-shadow: var(--shadow-sm);

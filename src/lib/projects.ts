@@ -23,6 +23,9 @@ export interface ProjectCard {
   // Base path (no extension) of a hover preview clip — see Card.astro's
   // `previewVideo` prop. Media cards only, and only where footage exists.
   previewVideo?: string;
+  // CSS background-position override — see Card.astro's `bgPosition` prop.
+  // Only set where the default center crop cuts off the card's subject.
+  bgPosition?: string;
 }
 
 // Not every media project has usable preview footage — this is a lookup,
@@ -35,6 +38,24 @@ const MEDIA_PREVIEW_VIDEO: Partial<Record<string, string>> = {
   ventimiglia: '/images/media/ventimiglia/ventimiglia_1',
   'san-gottardo': '/images/media/san-gottardo/san-gottardo_1',
   'cala-del-forte-ventimiglia': '/images/media/cala-del-forte-ventimiglia/cala-del-forte-ventimiglia_1',
+  'st-tropez': '/images/media/st-tropez/st-tropez_2',
+  'les-issambres': '/images/media/les-issambres/les-issambres_1',
+};
+
+// Same rationale as MEDIA_PREVIEW_VIDEO above: a display nicety, not schema
+// content. Only banners whose subject would otherwise get cropped out by
+// Banner.astro's default center-center "cover" crop need an entry — see
+// Banner.astro's `focalPosition` prop.
+export const MEDIA_BANNER_FOCAL_POSITION: Partial<Record<string, string>> = {
+  'st-tropez': 'center 20%',
+};
+
+// Same rationale again, for the /media grid card's own cover-photo crop
+// (Card.astro's `bgPosition` prop) — independent of the banner above, since
+// the card uses a different source image (coverImage) at a different box
+// aspect ratio.
+const MEDIA_CARD_FOCAL_POSITION: Partial<Record<string, string>> = {
+  'st-tropez': 'center 100%',
 };
 
 // Card props for the apps listing (/apps, /de/apps). Shared with
@@ -86,6 +107,7 @@ export async function getMediaCards(locale: Locale): Promise<ProjectCard[]> {
       tags: project.data.tags,
       transitionName: `proj-media-${project.data.slug}`,
       previewVideo: MEDIA_PREVIEW_VIDEO[project.data.slug],
+      bgPosition: MEDIA_CARD_FOCAL_POSITION[project.data.slug],
     }))
     .sort((a, b) => b.date.valueOf() - a.date.valueOf());
 }
