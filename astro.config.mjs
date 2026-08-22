@@ -26,6 +26,7 @@ export default defineConfig({
   redirects: {
     '/impressum': '/imprint',
     '/de/impressum': '/de/imprint',
+    '/rr': 'https://www.youtube.com/watch?v=oHg5SJYRHA0',
   },
   fonts: [
     {
