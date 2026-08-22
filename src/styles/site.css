@@ -64,6 +64,17 @@
     margin-top: var(--space-4);
   }
 
+  /* A [data-reveal] wrapper blocks the h3/h4:not(:first-child) rules above
+     from seeing across it, so a heading wrapped for individual reveal
+     needs its own version of the same spacing. */
+  .reveal-block:not(:first-child) {
+    margin-top: var(--space-5);
+  }
+
+  .reveal-block:has(> h4):not(:first-child) {
+    margin-top: var(--space-4);
+  }
+
   /* #app-icon floats beside the app name (float: right, further down this
      file) - it isn't a preceding section, so the name shouldn't get pushed down. */
   #app-icon + h2 {
@@ -88,8 +99,9 @@
     scroll-margin-top: var(--nav-height);
   }
 
-  .heading-accent {
-    font-size: clamp(2rem, 5vw, 3.2rem);
+  /* Color/weight treatment only - sizes independently of whatever tag or
+     class it's paired with (e.g. .heading-display for a hero-scale heading). */
+  .text-gradient {
     font-weight: 800;
     letter-spacing: -0.02em;
     background: linear-gradient(120deg, var(--color-accent), color-mix(in srgb, var(--color-accent) 40%, #ff8fd6));
@@ -97,6 +109,10 @@
     background-clip: text;
     color: transparent;
     display: inline-block;
+  }
+
+  .heading-display {
+    font-size: clamp(2rem, 5vw, 3.2rem);
   }
 
   .quote {

@@ -14,7 +14,11 @@ const locale = (Astro.currentLocale ?? defaultLocale) as Locale;
 const t = useTranslations(locale);
 ---
 
-<div class:list={['gallery', className, { 'gallery--full': full }]} data-goto-label={t('gallery.goToSlide')}>
+<div
+  class:list={['gallery', className, { 'gallery--full': full }]}
+  data-goto-label={t('gallery.goToSlide')}
+  data-reveal="up"
+>
   <div class="gallery__track">
     <slot />
   </div>
