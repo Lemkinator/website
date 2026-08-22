@@ -563,32 +563,48 @@
       display: flex;
     }
 
-    /* Expand/collapse animation: grid-template-rows 0fr -> 1fr on the outer
-       .navbar__menu is the standard technique for animating to/from an
-       intrinsic ("auto") height — a plain height/max-height transition
-       either needs a hardcoded target height or jumps instantly, and this
-       doesn't. .navbar__menu-list is the single grid item whose natural
-       height defines the 1fr track; overflow: hidden + min-height: 0 on it
-       let that track actually shrink to the 0fr end of the animation
-       instead of being clamped to the content's height. Reads as unfurling
-       downward from the navbar, collapsing back up into it — not a fade.
-       transition-behavior: allow-discrete + @starting-style additionally
-       animate the display:none <-> grid swap itself, so the menu is still
-       removed from the a11y tree and tab order while closed. Both are
-       ignored by unsupported browsers (unknown property value / unknown
-       at-rule are dropped per the CSS parsing spec), which just fall back
-       to an instant snap open/closed. */
+    /* Expand/collapse animation: a real height: 0 -> height: auto
+       transition, via interpolate-size: allow-keywords — the CSS Sizing
+       feature that exists specifically to replace the old grid-template-rows
+       0fr/1fr trick (previously used here). No wrapper/grid indirection, no
+       .navbar__menu-list needing its own min-height:0/overflow:hidden split
+       — one property doing exactly what it says. Unsupported browsers
+       (interpolate-size is Chrome/Chromium-only so far) just get an instant
+       open/close instead of an animated one: auto isn't interpolable by
+       default without the opt-in, so the transition silently no-ops rather
+       than breaking anything — same fail-open posture as the rest of this
+       file's progressive enhancements.
+
+       Layered on top: a plain opacity fade, same duration and easing as the
+       height, so content and box finish together in both directions — no
+       translate, no spring, no stagger, nothing left to fall out of sync.
+
+       Visibility (not display:none) hides the menu when closed: verified via
+       a minimal repro that in current Chromium (151.x — matches the real
+       Chrome tested against), transition-behavior: allow-discrete +
+       @starting-style on a display: none <-> block element silently kills
+       ALL transitions on that element, not just display's own. visibility:
+       hidden gets the same a11y-tree/tab-order exclusion as display: none
+       while closed, without that bug, using the pre-@starting-style
+       delayed-transition trick: closing keeps `visibility: visible` (via a
+       0-duration transition delayed by the full close duration) until the
+       rest finishes, so nothing vanishes mid-animation; opening zeroes that
+       delay so it's visible immediately. */
     .navbar__menu {
-      display: none;
-      grid-template-rows: 0fr;
+      interpolate-size: allow-keywords;
+      visibility: hidden;
+      height: 0;
+      opacity: 0;
+      overflow: hidden;
       position: absolute;
       top: 100%;
       left: 0;
       right: 0;
       background: var(--color-surface);
       transition:
-        grid-template-rows var(--dur-base) var(--ease-out),
-        display var(--dur-base) allow-discrete;
+        height var(--dur-base) var(--ease-in-out),
+        opacity var(--dur-base) var(--ease-in-out),
+        visibility 0s var(--dur-base);
     }
 
     .navbar__menu-list {
@@ -596,19 +612,13 @@
       align-items: flex-start;
       padding: var(--space-3) var(--space-4);
       gap: var(--space-3);
-      min-height: 0;
-      overflow: hidden;
-    }
-
-    @starting-style {
-      .navbar__toggle-input:checked ~ .navbar__menu {
-        grid-template-rows: 0fr;
-      }
     }
 
     .navbar__toggle-input:checked ~ .navbar__menu {
-      display: grid;
-      grid-template-rows: 1fr;
+      visibility: visible;
+      height: auto;
+      opacity: 1;
+      transition-delay: 0s;
     }
 
     /* Immersive scroll (src/scripts/nav-scroll.ts) sets this inline,
