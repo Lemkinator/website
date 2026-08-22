@@ -5,7 +5,6 @@
 // (.geticon-banner, .sudoku-banner, .media-banner, ...) that each hardcoded
 // their own background-image — this is one component driven by data.
 import { getImage } from 'astro:assets';
-import SplitText from './SplitText.astro';
 
 interface Props {
   // Either a plain public/ path (every content-collection-driven Banner —
@@ -22,13 +21,9 @@ interface Props {
   // Card.astro), so the browser morphs the grid card straight into this
   // banner across a real navigation. See src/styles/motion.css.
   transitionName?: string;
-  // Runs the title through SplitText's glyph-decode reveal (see
-  // SplitText.astro / scramble.ts). Opt-in — only the homepage hero uses it.
-  scrambleTitle?: boolean;
   // Sweeps an animated gradient highlight across the title (background-clip:
-  // text). Opt-in and deliberately exclusive to the homepage hero, same as
-  // scrambleTitle+ShaderBackdrop — one page gets the full flourish stack,
-  // interior banners stay calmer.
+  // text). Opt-in and deliberately exclusive to the homepage hero — one page
+  // gets the full flourish stack, interior banners stay calmer.
   shineTitle?: boolean;
   // Screen-reader-only description of the background image, since it's a
   // CSS background-image (no native <img alt>). Also doubles as the EU AI
@@ -51,7 +46,6 @@ const {
   subtitle,
   compact = false,
   transitionName,
-  scrambleTitle = false,
   shineTitle = false,
   imageAlt,
   focalPosition = 'center',
@@ -76,17 +70,31 @@ const style = [
 ]
   .filter(Boolean)
   .join('; ');
+
+// Title + subtitle collapse into one typed line (see typing.ts): with a
+// subtitle, it types the title, deletes, types the subtitle, deletes,
+// repeats; with no subtitle it just types the title once. aria-label
+// carries the real full text so screen readers never see a mid-type
+// fragment — the span itself is decorative.
+const typingStrings = [title, subtitle].filter((s): s is string => Boolean(s));
+const ariaLabel = typingStrings.join('. ');
 ---
 
 <div class:list={['banner', { 'banner--compact': compact }]} style={style}>
   {imageAlt && <span class="sr-only">{imageAlt}</span>}
   <slot name="backdrop" />
   <div class="banner__content">
-    <h1 class:list={{ shine: shineTitle }}>{scrambleTitle ? <SplitText text={title} /> : title}</h1>
-    {subtitle && <p>{subtitle}</p>}
+    <h1 class:list={{ shine: shineTitle }} aria-label={ariaLabel}>
+      <span class="typing" aria-hidden="true" data-typing={JSON.stringify(typingStrings)}>{title}</span>
+    </h1>
     <slot />
   </div>
 </div>
+
+<script>
+  import { initTyping } from '@/scripts/typing';
+  initTyping();
+</script>
 
 <style>
   .banner {
@@ -217,10 +225,18 @@ const style = [
     }
   }
 
-  .banner__content p {
-    margin: 0.5rem 0 0;
-    color: rgba(255, 255, 255, 0.85);
-    font-size: 1.05rem;
-    max-width: 60ch;
+  /* Blinking text cursor, added only once JS confirms motion is allowed
+     (see typing.ts) — reduced-motion users get a clean static title with
+     no cursor rather than a permanently-blinking one. */
+  .banner__content h1 .typing.is-typing::after {
+    content: '|';
+    margin-left: 0.05em;
+    animation: typing-cursor-blink 1s step-end infinite;
+  }
+
+  @keyframes typing-cursor-blink {
+    50% {
+      opacity: 0;
+    }
   }
 </style>
