@@ -48,7 +48,47 @@
     padding: var(--space-4) var(--space-4) var(--space-5);
   }
 
-  .colored-h1 {
+  /* Section rhythm inside prose content, replacing manual <br><br><br>
+     spacer stacks. :not(:first-child) skips the heading that opens its own
+     container (e.g. the first h2 in .content, or the h3 immediately under
+     a section's own h2) so it doesn't get a redundant gap above it. */
+  .content h2:not(:first-child) {
+    margin-top: var(--space-6);
+  }
+
+  .content h3:not(:first-child) {
+    margin-top: var(--space-5);
+  }
+
+  .content h4:not(:first-child) {
+    margin-top: var(--space-4);
+  }
+
+  /* #app-icon floats beside the app name (float: right, further down this
+     file) - it isn't a preceding section, so the name shouldn't get pushed down. */
+  #app-icon + h2 {
+    margin-top: 0;
+  }
+
+  /* Manual break between two independent blocks that aren't separated by
+     a heading (e.g. two CardGrids stacked on one page). */
+  .section-gap {
+    margin-top: var(--space-6);
+  }
+
+  /* Smaller manual break for a paragraph-level beat that isn't its own
+     heading (a lead-in line before an image, a closing disclaimer, etc). */
+  .gap-sm {
+    margin-top: var(--space-4);
+  }
+
+  /* Clears the sticky navbar when landing on an in-page anchor (#section
+     links in wsa.astro, etc.) so the target heading isn't hidden under it. */
+  :where(h2, h3, h4) {
+    scroll-margin-top: var(--nav-height);
+  }
+
+  .heading-accent {
     font-size: clamp(2rem, 5vw, 3.2rem);
     font-weight: 800;
     letter-spacing: -0.02em;
@@ -345,7 +385,7 @@
     --lift: -4px;
   }
 
-  .card h1 {
+  .card h2 {
     margin: 0;
     font-size: 1.3rem;
   }
