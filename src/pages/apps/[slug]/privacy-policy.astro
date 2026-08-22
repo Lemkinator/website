@@ -1,8 +1,4 @@
 ---
-// Collapses the 5 near-identical apps/*/privacy-policy.html pages (see
-// PrivacyPolicyLayout.astro) into one route driven by the apps collection's
-// `privacyPolicy` frontmatter. Sudoku is the one outlier with an extra
-// Google Play Games data section.
 import { getCollection } from 'astro:content';
 import PrivacyPolicyLayout from '@/layouts/PrivacyPolicyLayout.astro';
 
