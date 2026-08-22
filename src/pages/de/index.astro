@@ -15,7 +15,7 @@ import mediaHubImage from '@/assets/images/media/banner.jpg';
 const locale = (Astro.currentLocale ?? defaultLocale) as Locale;
 const t = useTranslations(locale);
 
-const allProjects = await getAllProjects(locale);
+const projects = await getAllProjects(locale);
 ---
 
 <BaseLayout title="Leonard Lemke" description="Website">
@@ -29,10 +29,6 @@ const allProjects = await getAllProjects(locale);
   >
     <ShaderBackdrop slot="backdrop" />
   </Banner>
-
-  <div class="center" data-reveal="up">
-    <h1 class="colored-h1">Projekte</h1>
-  </div>
 
   <CardGrid>
     <Card
@@ -53,14 +49,13 @@ const allProjects = await getAllProjects(locale);
     />
   </CardGrid>
 
-  <br id="allprojects" /><br /><br /><br /><br /><br />
-  <div class="center" data-reveal="up">
-    <h1 class="colored-h1">Alle Projekte</h1>
+  <div class="center section-gap" id="projects" data-reveal="up">
+    <h2 class="heading-accent">Projekte</h2>
   </div>
 
   <CardGrid>
     {
-      allProjects.map((project, i) => (
+      projects.map((project, i) => (
         <Card
           href={project.href}
           bgImg={project.bgImg}
