@@ -151,7 +151,13 @@ const t = useTranslations(locale);
     border-radius: var(--radius-md);
     display: block;
     /* max-height, not height: an explicit height ignores the width cap
-       when it kicks in, distorting non-square images. */
+       when it kicks in, distorting non-square images. width/height:auto
+       must be declared here too — Chrome only jointly preserves aspect
+       ratio against both max-* caps when auto is set in the same rule,
+       not just inherited as the (identical) computed value from another
+       rule (site.css's img,video{height:auto} reset). */
+    width: auto;
+    height: auto;
     max-height: min(60vh, 480px);
     max-width: 90vw;
   }
