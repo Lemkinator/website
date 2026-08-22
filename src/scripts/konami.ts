@@ -1,7 +1,18 @@
 // Toggles .max-motion on <html> (see tokens.css). Respects reduced motion
 // — even an easter egg shouldn't add more motion for a visitor who's asked
 // for less.
-const CODE = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+const CODE = [
+  'ArrowUp',
+  'ArrowUp',
+  'ArrowDown',
+  'ArrowDown',
+  'ArrowLeft',
+  'ArrowRight',
+  'ArrowLeft',
+  'ArrowRight',
+  'b',
+  'a',
+];
 
 export function initKonami(): void {
   if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;

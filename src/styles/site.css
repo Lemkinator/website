@@ -133,7 +133,9 @@
     border-radius: inherit;
     padding: 1.5px;
     background: conic-gradient(from var(--border-angle), transparent, var(--color-accent), transparent 40%);
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
     opacity: 0;
@@ -216,7 +218,9 @@
     --my: 50%;
     --lift: 0px;
     transform: translateY(var(--lift)) rotateX(var(--rx)) rotateY(var(--ry));
-    transition: transform 0.25s var(--ease-out, ease), box-shadow var(--dur-fast) var(--ease-spring);
+    transition:
+      transform 0.25s var(--ease-out, ease),
+      box-shadow var(--dur-fast) var(--ease-spring);
   }
 
   .card::before {
@@ -244,7 +248,9 @@
     border-radius: inherit;
     padding: 1.5px;
     background: conic-gradient(from var(--border-angle), transparent, var(--color-accent), transparent 40%);
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
     opacity: 0;
@@ -666,7 +672,10 @@
     --mag-x: 0px;
     --mag-y: 0px;
     transform: translate(var(--mag-x), var(--mag-y));
-    transition: width var(--dur-fast) var(--ease-spring), background var(--dur-fast) var(--ease-spring), transform 0.2s ease-out;
+    transition:
+      width var(--dur-fast) var(--ease-spring),
+      background var(--dur-fast) var(--ease-spring),
+      transform 0.2s ease-out;
   }
 
   .gallery__dot:hover {

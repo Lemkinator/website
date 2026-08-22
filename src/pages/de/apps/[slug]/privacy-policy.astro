@@ -3,10 +3,7 @@ import { getCollection } from 'astro:content';
 import PrivacyPolicyLayout from '@/layouts/PrivacyPolicyLayout.astro';
 
 export async function getStaticPaths() {
-  const entries = await getCollection(
-    'apps',
-    (entry) => entry.id.startsWith('de/') && entry.data.privacyPolicy,
-  );
+  const entries = await getCollection('apps', (entry) => entry.id.startsWith('de/') && entry.data.privacyPolicy);
   return entries.map((entry) => ({
     params: { slug: entry.data.slug },
     props: { entry },
@@ -56,12 +53,15 @@ const { contactEmail, lastUpdated, includesPlayGamesSection } = entry.data.priva
 
         <h3>Datenverschlüsselung</h3>
         <p>
-          Für die gesammelten Endnutzerdaten, die auf dieser Seite aufgeführt sind, verschlüsselt Play Games
-          Services die Daten während der Übertragung mit HTTPS.
+          Für die gesammelten Endnutzerdaten, die auf dieser Seite aufgeführt sind, verschlüsselt Play Games Services
+          die Daten während der Übertragung mit HTTPS.
         </p>
 
         <h3>Erfasste Daten</h3>
-        <p>Identität des Spielers (Gamertag, Avatar), Analyse- und Diagnose-Daten und App Aktivitäten (z.B. Erfolge, Spielstände).</p>
+        <p>
+          Identität des Spielers (Gamertag, Avatar), Analyse- und Diagnose-Daten und App Aktivitäten (z.B. Erfolge,
+          Spielstände).
+        </p>
 
         <h3>Löschung von Daten</h3>
         <p>
@@ -70,8 +70,8 @@ const { contactEmail, lastUpdated, includesPlayGamesSection } = entry.data.priva
           <a href="https://myaccount.google.com/">Google Konto</a> löschen.
         </p>
         <p>
-          Wenn Google Play Games Services-Daten für ein einzelnes Spiel sammelt, können die Nutzer die Daten über
-          ihr <a href="https://play.google.com/games/profile">Play Spiele-Profil</a> löschen.
+          Wenn Google Play Games Services-Daten für ein einzelnes Spiel sammelt, können die Nutzer die Daten über ihr{' '}
+          <a href="https://play.google.com/games/profile">Play Spiele-Profil</a> löschen.
         </p>
       </>
     ) : (
@@ -81,8 +81,8 @@ const { contactEmail, lastUpdated, includesPlayGamesSection } = entry.data.priva
 
   <h2>Stand der Datenschutzinformationen</h2>
   <p>
-    Wir überprüfen unsere Datenschutzhinweise regelmäßig. Wir behalten uns das Recht vor, die
-    Datenschutzerklärung jederzeit mit oder ohne vorherige Ankündigung zu ändern. Bitte schauen Sie
-    regelmäßig vorbei, um über Änderungen informiert zu werden.
+    Wir überprüfen unsere Datenschutzhinweise regelmäßig. Wir behalten uns das Recht vor, die Datenschutzerklärung
+    jederzeit mit oder ohne vorherige Ankündigung zu ändern. Bitte schauen Sie regelmäßig vorbei, um über Änderungen
+    informiert zu werden.
   </p>
 </PrivacyPolicyLayout>

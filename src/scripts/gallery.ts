@@ -40,10 +40,7 @@ export function initGallery(): void {
       const dot = document.createElement('button');
       dot.type = 'button';
       dot.className = 'gallery__dot';
-      dot.setAttribute(
-        'aria-label',
-        gotoLabel.replace('{n}', String(i + 1)).replace('{total}', String(slides.length)),
-      );
+      dot.setAttribute('aria-label', gotoLabel.replace('{n}', String(i + 1)).replace('{total}', String(slides.length)));
       dot.addEventListener('click', () => goTo(i));
       dotsEl.appendChild(dot);
       return dot;

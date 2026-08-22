@@ -49,6 +49,6 @@ export function initNavScroll(): void {
     () => {
       threshold = bannerBottom();
     },
-    { passive: true }
+    { passive: true },
   );
 }

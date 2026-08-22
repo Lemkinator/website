@@ -1,0 +1,6 @@
+<component name="PrettierConfiguration">
+  <option name="myConfigurationMode" value="AUTOMATIC" />
+  <option name="myRunOnSave" value="true" />
+  <option name="myRunOnReformat" value="true" />
+  <option name="filesPattern" value="**/*.{js,ts,jsx,tsx,mjs,cjs,astro,css,scss,json,yml,yaml}" />
+</component>

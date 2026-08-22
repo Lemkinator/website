@@ -54,14 +54,14 @@ const localeAgnosticPath = getLocaleAgnosticPath(locale, Astro.url.pathname);
 
 {
   locales.map((l) => (
-    <link
-      rel="alternate"
-      hreflang={l}
-      href={new URL(getRelativeLocaleUrl(l, localeAgnosticPath), Astro.site)}
-    />
+    <link rel="alternate" hreflang={l} href={new URL(getRelativeLocaleUrl(l, localeAgnosticPath), Astro.site)} />
   ))
 }
-<link rel="alternate" hreflang="x-default" href={new URL(getRelativeLocaleUrl(defaultLocale, localeAgnosticPath), Astro.site)} />
+<link
+  rel="alternate"
+  hreflang="x-default"
+  href={new URL(getRelativeLocaleUrl(defaultLocale, localeAgnosticPath), Astro.site)}
+/>
 
 <!-- Open Graph -->
 <meta property="og:url" content={canonicalUrl} />

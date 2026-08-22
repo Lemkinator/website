@@ -3,10 +3,7 @@ import { getCollection } from 'astro:content';
 import PrivacyPolicyLayout from '@/layouts/PrivacyPolicyLayout.astro';
 
 export async function getStaticPaths() {
-  const entries = await getCollection(
-    'apps',
-    (entry) => entry.id.startsWith('en/') && entry.data.privacyPolicy,
-  );
+  const entries = await getCollection('apps', (entry) => entry.id.startsWith('en/') && entry.data.privacyPolicy);
   return entries.map((entry) => ({
     params: { slug: entry.data.slug },
     props: { entry },
@@ -39,9 +36,9 @@ const { contactEmail, lastUpdated, includesPlayGamesSection } = entry.data.priva
         <p>
           The data mentioned below is collected by{' '}
           <a href="https://support.google.com/googleplay/topic/3114802?ref_topic=2952998">Google Play Games</a>,
-          provided that the user logs in or has activated the automatic login. The Google Play Games services
-          provide access for sign-in as well as services for game apps. Further settings, as well as the deletion
-          of the data can be made in the Play Games profile.
+          provided that the user logs in or has activated the automatic login. The Google Play Games services provide
+          access for sign-in as well as services for game apps. Further settings, as well as the deletion of the data
+          can be made in the Play Games profile.
         </p>
         <p>
           <a href="https://support.google.com/googleplay/answer/3129346?ref_topic=9167070">
@@ -53,10 +50,16 @@ const { contactEmail, lastUpdated, includesPlayGamesSection } = entry.data.priva
         </p>
 
         <h3>Data encryption</h3>
-        <p>For the collected end-user data listed on this page, Play Games Services encrypts the data in transit using HTTPS.</p>
+        <p>
+          For the collected end-user data listed on this page, Play Games Services encrypts the data in transit using
+          HTTPS.
+        </p>
 
         <h3>Data collected</h3>
-        <p>Gamer Identity (Gamertag, avatar), analytics and diagnostics data and app activities (e.g. achievements, scores).</p>
+        <p>
+          Gamer Identity (Gamertag, avatar), analytics and diagnostics data and app activities (e.g. achievements,
+          scores).
+        </p>
 
         <h3>Data deletion</h3>
         <p>
@@ -65,8 +68,8 @@ const { contactEmail, lastUpdated, includesPlayGamesSection } = entry.data.priva
           <a href="https://myaccount.google.com/">Google MyAccount</a>.
         </p>
         <p>
-          If Google collects Play Games Services data for an individual game, users can delete the data through
-          their <a href="https://play.google.com/games/profile">Play Games profile</a>.
+          If Google collects Play Games Services data for an individual game, users can delete the data through their{' '}
+          <a href="https://play.google.com/games/profile">Play Games profile</a>.
         </p>
       </>
     ) : (
@@ -76,7 +79,7 @@ const { contactEmail, lastUpdated, includesPlayGamesSection } = entry.data.priva
 
   <h2>Status of the data protection information</h2>
   <p>
-    We review our privacy information on a regular basis. We reserve the right to change the privacy notice at any
-    time with or without notice. Please check back periodically to be notified of any changes.
+    We review our privacy information on a regular basis. We reserve the right to change the privacy notice at any time
+    with or without notice. Please check back periodically to be notified of any changes.
   </p>
 </PrivacyPolicyLayout>

@@ -43,8 +43,7 @@ const {
   bgPosition,
 } = Astro.props;
 
-const resolvedBg =
-  typeof bgImg === 'string' ? bgImg : (await getImage({ src: bgImg, format: 'avif', width: 800 })).src;
+const resolvedBg = typeof bgImg === 'string' ? bgImg : (await getImage({ src: bgImg, format: 'avif', width: 800 })).src;
 
 // Splits e.g. "10000 +" into the countable digits (animated by counter.ts)
 // and the static suffix; falls back to plain text if it doesn't start with a number.
@@ -78,7 +77,7 @@ const style = [
             <source src={`${previewVideo}.webm`} type="video/webm" />
             <source src={`${previewVideo}.mp4`} type="video/mp4" />
           </video>
-          <div class="card__preview-scrim"></div>
+          <div class="card__preview-scrim" />
         </div>
       )
     }

@@ -14,10 +14,7 @@ const locale = (Astro.currentLocale ?? defaultLocale) as Locale;
 const t = useTranslations(locale);
 ---
 
-<div
-  class:list={['gallery', className, { 'gallery--full': full }]}
-  data-goto-label={t('gallery.goToSlide')}
->
+<div class:list={['gallery', className, { 'gallery--full': full }]} data-goto-label={t('gallery.goToSlide')}>
   <div class="gallery__track">
     <slot />
   </div>
@@ -56,7 +53,9 @@ const t = useTranslations(locale);
     color: var(--color-fg);
     cursor: pointer;
     backdrop-filter: blur(4px);
-    transition: background var(--dur-fast) var(--ease-spring), opacity var(--dur-fast) var(--ease-spring);
+    transition:
+      background var(--dur-fast) var(--ease-spring),
+      opacity var(--dur-fast) var(--ease-spring);
   }
 
   .gallery__arrow:hover {
