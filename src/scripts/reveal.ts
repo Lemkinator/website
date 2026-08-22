@@ -27,12 +27,16 @@ export function initReveal(selector = '[data-reveal]'): void {
     requestAnimationFrame(() => {
       elements.forEach((el) => el.classList.add('reveal-armed'));
 
+      function reveal(el: Element): void {
+        el.classList.remove('reveal-pending');
+        el.classList.add('reveal-visible');
+      }
+
       const io = new IntersectionObserver(
         (entries) => {
           for (const entry of entries) {
             if (!entry.isIntersecting) continue;
-            entry.target.classList.remove('reveal-pending');
-            entry.target.classList.add('reveal-visible');
+            reveal(entry.target);
             io.unobserve(entry.target);
           }
         },
@@ -40,6 +44,25 @@ export function initReveal(selector = '[data-reveal]'): void {
       );
 
       elements.forEach((el) => io.observe(el));
+
+      // The -10% bottom rootMargin above can never be satisfied for content
+      // flush at the very end of the document — there's nothing left to
+      // scroll into that shrunk zone, so it'd otherwise stay reveal-pending
+      // (invisible) forever. Once the page is scrolled as far as it goes,
+      // force-reveal anything still pending instead of leaving it stuck.
+      function revealIfAtBottom(): void {
+        const atBottom = window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2;
+        if (!atBottom) return;
+        elements.forEach((el) => {
+          if (!el.classList.contains('reveal-pending')) return;
+          reveal(el);
+          io.unobserve(el);
+        });
+      }
+
+      window.addEventListener('scroll', revealIfAtBottom, { passive: true });
+      window.addEventListener('resize', revealIfAtBottom);
+      revealIfAtBottom();
     });
   });
 }
