@@ -1,10 +1,22 @@
 ---
-// data-mapping="pathname" below must stay as-is — every existing GitHub
-// Discussion thread is keyed against it; changing it or a page's URL shape
-// orphans that page's comments.
+// EN pages keep data-mapping="pathname" (untouched) — giscus's client.js
+// computes the term itself from location.pathname there (root -> "index",
+// else the pathname with its leading slash stripped and any trailing file
+// extension trimmed — see giscus/giscus client.ts), and every existing EN
+// GitHub Discussion thread is keyed against that value.
+// DE pages pin data-mapping="specific" with the term computed the same way
+// but from the corresponding EN pathname (the "/de" prefix stripped), so DE
+// and EN share one thread instead of giscus auto-keying on the DE URL.
 import { defaultLocale } from '@/i18n/ui';
 
+function toGiscusTerm(pathname: string): string {
+  return pathname.length < 2 ? 'index' : pathname.substring(1).replace(/\.\w+$/, '');
+}
+
 const locale = Astro.currentLocale ?? defaultLocale;
+const mapping = locale === 'de' ? 'specific' : 'pathname';
+const enPathname = Astro.url.pathname.replace(/^\/de/, '') || '/';
+const term = locale === 'de' ? toGiscusTerm(enPathname) : undefined;
 ---
 
 <div
@@ -18,7 +30,8 @@ const locale = Astro.currentLocale ?? defaultLocale;
     data-repo-id="R_kgDOHa-Y0g"
     data-category="Comments"
     data-category-id="DIC_kwDOHa-Y0s4CrnrG"
-    data-mapping="pathname"
+    data-mapping={mapping}
+    data-term={term}
     data-strict="0"
     data-reactions-enabled="1"
     data-emit-metadata="0"
