@@ -70,7 +70,7 @@ const style = [
   .join('; ');
 ---
 
-<div class="card-grid-space">
+<div class="card-perspective">
   <a
     class="card"
     href={href}
@@ -92,10 +92,10 @@ const style = [
     }
     {/* Rendered at 80x80 CSS px (site.css .card__icon) — 160 covers 2x DPR. */}
     {icon && <Image class="card__icon" src={icon} alt="" width={160} height={160} />}
-    {date && <div class="date">{date}</div>}
+    {date && <div class="card__date">{date}</div>}
     {
       interactionIcon && interactionText && (
-        <div class="interaction">
+        <div class="card__interaction">
           <Icon name={interactionIcon} />
           &nbsp;&nbsp;
           {countValue ? (
@@ -114,9 +114,9 @@ const style = [
       <p>{description}</p>
       {
         tags.length > 0 && (
-          <div class="tags">
+          <div class="card__tags">
             {tags.map((tag) => (
-              <div class="tag">{tag}</div>
+              <div class="card__tag">{tag}</div>
             ))}
           </div>
         )

@@ -79,9 +79,9 @@ const ariaLabel = typingStrings.join('. ');
   {imageAlt && <span class="sr-only">{imageAlt}</span>}
   <slot name="backdrop" />
   <div class="banner__content">
-    <h1 class:list={{ shine: shineTitle }} aria-label={ariaLabel}>
+    <h1 class:list={{ 'banner__title--shine': shineTitle }} aria-label={ariaLabel}>
       <span
-        class="typing"
+        class="banner__typing"
         aria-hidden="true"
         data-typing={JSON.stringify(typingStrings)}
         data-type-speed={typeSpeed}
@@ -190,7 +190,7 @@ const ariaLabel = typingStrings.join('. ');
 
   /* Gradient tiles seamlessly at 200% (both edges are --color-fg), so the
      0 -> -200% background-position loop has no visible seam. */
-  .banner__content h1.shine {
+  .banner__content h1.banner__title--shine {
     background: linear-gradient(
       100deg,
       var(--color-fg) 0%,
@@ -207,7 +207,7 @@ const ariaLabel = typingStrings.join('. ');
   }
 
   @media (prefers-reduced-motion: no-preference) {
-    .banner__content h1.shine {
+    .banner__content h1.banner__title--shine {
       animation: hero-shine 5s linear infinite;
     }
   }
@@ -221,12 +221,12 @@ const ariaLabel = typingStrings.join('. ');
   /* .is-typing is only added by typing.ts after it confirms motion is allowed.
      The cursor only blinks while idle (.is-active-typing absent) — a solid
      cursor during typing/deleting reads like an actual terminal/editor. */
-  .banner__content h1 .typing.is-typing::after {
+  .banner__content h1 .banner__typing.is-typing::after {
     content: '|';
     margin-left: 0.05em;
   }
 
-  .banner__content h1 .typing.is-typing:not(.is-active-typing)::after {
+  .banner__content h1 .banner__typing.is-typing:not(.is-active-typing)::after {
     animation: typing-cursor-blink 1s step-end infinite;
   }
 

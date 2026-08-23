@@ -389,7 +389,7 @@
 
   /* perspective must live on .card's direct parent to affect its 3D tilt
      transform — .card is a grandchild of .cards-wrapper. */
-  .card-grid-space {
+  .card-perspective {
     perspective: 1200px;
   }
 
@@ -563,14 +563,14 @@
     font-size: 0.9rem;
   }
 
-  .card .tags {
+  .card__tags {
     display: flex;
     gap: 0.4em;
     flex-wrap: wrap;
     margin-top: auto;
   }
 
-  .card .tag {
+  .card__tag {
     background: color-mix(in srgb, var(--color-accent) 14%, transparent);
     color: var(--color-accent);
     font-size: 0.75rem;
@@ -580,12 +580,12 @@
     transition: scale var(--dur-fast) var(--ease-spring);
   }
 
-  .card .tag:hover {
+  .card__tag:hover {
     scale: 1.12;
   }
 
-  .card .interaction,
-  .card .date {
+  .card__interaction,
+  .card__date {
     position: absolute;
     top: var(--space-2);
     font-size: 0.75rem;
@@ -596,14 +596,14 @@
     z-index: 1;
   }
 
-  .card .interaction {
+  .card__interaction {
     left: var(--space-2);
     /* Keeps digit width stable while counter.ts counts up, so the badge
        doesn't jitter/reflow as the number grows. */
     font-variant-numeric: tabular-nums;
   }
 
-  .card .date {
+  .card__date {
     right: var(--space-2);
   }
 }
@@ -646,7 +646,7 @@
     padding: 0;
   }
 
-  .navbar__links {
+  .navbar__link {
     position: relative;
     text-decoration: none;
     font-weight: 600;
@@ -939,7 +939,7 @@
     margin: 0.5em 0;
   }
 
-  .mobile-image-landscape {
+  .mobile-image--landscape {
     max-width: 480px;
     margin: 0.5em 0;
   }
