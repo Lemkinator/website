@@ -169,12 +169,8 @@
     border-left: 2px solid var(--color-line);
   }
 
-  .timeline__item:last-child {
-    padding-bottom: 0;
-    border-left-color: transparent;
-  }
-
-  .timeline__marker {
+  .timeline__item::before {
+    content: '';
     position: absolute;
     left: -7px;
     top: 0.3em;
@@ -187,6 +183,11 @@
       0 0 14px color-mix(in srgb, var(--color-accent) 70%, transparent);
   }
 
+  .timeline__item:last-child {
+    padding-bottom: 0;
+    border-left-color: transparent;
+  }
+
   /* flex-column forces each child onto its own line - h3 is inline-block
      via .text-gradient and would otherwise share a line with what follows. */
   .timeline__content {
@@ -195,14 +196,9 @@
   }
 
   /* Flex never collapses child margins, so h3's default top margin would
-     misalign it from .timeline__marker (unlike .timeline__sub-item, not flex). */
+     misalign it from .timeline__item::before (unlike .timeline__sub-item, not flex). */
   .timeline__content > :first-child {
     margin-top: 0;
-  }
-
-  .timeline__date,
-  .timeline__grade {
-    align-self: flex-start;
   }
 
   .timeline__role {
@@ -217,49 +213,44 @@
     font-size: 0.95rem;
   }
 
-  .timeline__skills {
+  /* Generic pill badge, reusable anywhere (not just inside .timeline).
+     .chip alone is neutral; .chip--primary/--secondary add color. Standalone
+     use gets its own line for free from normal block flow; group chips on
+     one line by wrapping them in .chip-row instead. */
+  .chip {
+    display: inline-block;
+    align-self: flex-start;
+    font-size: 0.78rem;
+    border-radius: 999px;
+    padding: 0.2em 0.7em;
+    margin: 0.2em 0 0.5em;
+    color: var(--color-muted);
+    background: var(--color-surface);
+    border: 1px solid var(--color-line);
+  }
+
+  .chip--primary {
+    color: var(--color-accent);
+    background: color-mix(in srgb, var(--color-accent) 12%, transparent);
+    border-color: color-mix(in srgb, var(--color-accent) 35%, transparent);
+  }
+
+  /* #ff8fd6 is the same pink .text-gradient blends into var(--color-accent). */
+  .chip--secondary {
+    color: #ff8fd6;
+    background: transparent;
+    border-color: color-mix(in srgb, #ff8fd6 40%, transparent);
+  }
+
+  .chip-row {
     display: flex;
     flex-wrap: wrap;
     gap: 0.4em;
     margin: 0.5em 0 0;
   }
 
-  /* Shared pill shape for every timeline badge/chip; each class below only
-     sets its own color. */
-  .timeline__date,
-  .timeline__grade,
-  .skill-tag,
-  .size-tag {
-    display: inline-block;
-    font-size: 0.78rem;
-    border-radius: 999px;
-    padding: 0.2em 0.7em;
-  }
-
-  /* size-tag is its own class - .timeline__date's margin (below) would
-     leak into this flex row and stretch the sibling .skill-tag to match. */
-  .timeline__date,
-  .size-tag {
-    color: var(--color-muted);
-    background: var(--color-surface);
-    border: 1px solid var(--color-line);
-  }
-
-  .timeline__date {
-    margin: 0.2em 0 0.5em;
-  }
-
-  /* #ff8fd6 is the same pink .text-gradient blends into var(--color-accent). */
-  .timeline__grade {
-    color: #ff8fd6;
-    border: 1px solid color-mix(in srgb, #ff8fd6 40%, transparent);
-    margin-top: 0.3em;
-  }
-
-  .skill-tag {
-    color: var(--color-accent);
-    background: color-mix(in srgb, var(--color-accent) 12%, transparent);
-    border: 1px solid color-mix(in srgb, var(--color-accent) 35%, transparent);
+  .chip-row > .chip {
+    margin: 0;
   }
 
   /* Thinner dashed sub-rail so nested roles read as inside the parent entry. */

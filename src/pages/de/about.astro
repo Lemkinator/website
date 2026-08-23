@@ -40,34 +40,32 @@ import me5Img from '@/assets/images/about/me5.jpg';
 
       <ol class="timeline">
         <li class="timeline__item" data-reveal="stagger">
-          <div class="timeline__marker" aria-hidden="true"></div>
           <div class="timeline__content">
             <h3 class="text-gradient">AUMOVIO</h3>
 
             <ol class="timeline__sub">
               <li class="timeline__sub-item" data-reveal="stagger">
                 <p class="timeline__role">Softwareentwickler / Softwarearchitekt</p>
-                <p class="timeline__date">September 2025 - Heute</p>
+                <span class="chip">September 2025 - Heute</span>
               </li>
             </ol>
           </div>
         </li>
 
         <li class="timeline__item" data-reveal="stagger">
-          <div class="timeline__marker" aria-hidden="true"></div>
           <div class="timeline__content">
             <h3 class="text-gradient">Continental Automotive Technologies GmbH</h3>
-            <p class="timeline__date">September 2019 - August 2025</p>
+            <span class="chip">September 2019 - August 2025</span>
 
             <ol class="timeline__sub">
               <li class="timeline__sub-item" data-reveal="stagger">
                 <p class="timeline__role">Softwareentwickler</p>
-                <p class="timeline__date">Februar 2024 - August 2025</p>
+                <span class="chip">Februar 2024 - August 2025</span>
               </li>
 
               <li class="timeline__sub-item" data-reveal="stagger">
                 <p class="timeline__role">Studium Plus Mathem.-Tech. Softwareentwickler</p>
-                <p class="timeline__date">September 2019 - Februar 2024</p>
+                <span class="chip">September 2019 - Februar 2024</span>
               </li>
 
               <li class="timeline__sub-item" data-reveal="stagger">
@@ -75,12 +73,12 @@ import me5Img from '@/assets/images/about/me5.jpg';
                 <p class="timeline__description">
                   Parallele Ausführung kryptographischer Operationen auf Steuergeräten im Automotive-Bereich.
                 </p>
-                <p class="timeline__date">September 2023 - Dezember 2023</p>
-                <div class="timeline__skills">
-                  <span class="skill-tag">AUTOSAR</span>
-                  <span class="skill-tag">AUTOSAR Crypto Stack</span>
-                  <span class="skill-tag">Cryptography</span>
-                  <span class="skill-tag">Cipher-Based Message Authentication Code</span>
+                <span class="chip">September 2023 - Dezember 2023</span>
+                <div class="chip-row">
+                  <span class="chip chip--primary">AUTOSAR</span>
+                  <span class="chip chip--primary">AUTOSAR Crypto Stack</span>
+                  <span class="chip chip--primary">Cryptography</span>
+                  <span class="chip chip--primary">Cipher-Based Message Authentication Code</span>
                 </div>
               </li>
 
@@ -89,14 +87,14 @@ import me5Img from '@/assets/images/about/me5.jpg';
                 <p class="timeline__description">
                   Portieren und Anpassen verschiedener Tests von einer Plattform auf ein Kundenprojekt.
                 </p>
-                <p class="timeline__date">Oktober 2022 - März 2023</p>
-                <div class="timeline__skills">
-                  <span class="skill-tag">Elektrobit Tresos Studio</span>
-                  <span class="skill-tag">AUTOSAR</span>
-                  <span class="skill-tag">AUTOSAR Builder</span>
-                  <span class="skill-tag">CAPL</span>
-                  <span class="skill-tag">CAN</span>
-                  <span class="skill-tag">CANoe</span>
+                <span class="chip">Oktober 2022 - März 2023</span>
+                <div class="chip-row">
+                  <span class="chip chip--primary">Elektrobit Tresos Studio</span>
+                  <span class="chip chip--primary">AUTOSAR</span>
+                  <span class="chip chip--primary">AUTOSAR Builder</span>
+                  <span class="chip chip--primary">CAPL</span>
+                  <span class="chip chip--primary">CAN</span>
+                  <span class="chip chip--primary">CANoe</span>
                 </div>
               </li>
 
@@ -104,38 +102,44 @@ import me5Img from '@/assets/images/about/me5.jpg';
                 <p class="timeline__role">Mathematisch-technischer Softwareentwickler (MATSE)</p>
                 <p class="timeline__description">Ausbildung zum Mathematisch-technischen Softwareentwickler (MATSE)</p>
                 <p class="timeline__description">(Enthalten im Studium Plus)</p>
-                <p class="timeline__date">September 2019 - August 2021</p>
+                <span class="chip">September 2019 - August 2021</span>
               </li>
             </ol>
           </div>
         </li>
 
         <li class="timeline__item" data-reveal="stagger">
-          <div class="timeline__marker" aria-hidden="true"></div>
           <div class="timeline__content">
-            <h3 class="text-gradient">Softwareentwickler Mobile Apps</h3>
-            <p class="timeline__location">Remote - Leonard Lemke</p>
-            <p class="timeline__description">Entwicklung moderner Apps in Samsungs OneUI-Design.</p>
-            <p class="timeline__date">Dezember 2019 - Heute</p>
-            <div class="timeline__actions">
-              <button class="button-pill"><a href={getRelativeLocaleUrl('de', '/apps')}>Projekte</a></button>
-              <button class="button-pill"><a href="mailto:apps@leonard-lemke.com">Kontakt</a></button>
-            </div>
-          </div>
-        </li>
+            <h3 class="text-gradient">Persönliche Projekte</h3>
 
-        <li class="timeline__item" data-reveal="stagger">
-          <div class="timeline__marker" aria-hidden="true"></div>
-          <div class="timeline__content">
-            <h3 class="text-gradient">Digital Creator</h3>
-            <p class="timeline__location">Remote - Leonard Lemke</p>
-            <p class="timeline__description">Bearbeiten von Videoaufnahmen einer Racing-Drohne.</p>
-            <p class="timeline__description">Teilen von Erlebnissen durch die Augen einer Drohne.</p>
-            <p class="timeline__date">Mai 2019 - Heute</p>
-            <div class="timeline__actions">
-              <button class="button-pill"><a href={getRelativeLocaleUrl('de', '/media')}>Projekte</a></button>
-              <button class="button-pill"><a href="mailto:media@leonard-lemke.com">Kontakt</a></button>
-            </div>
+            <ol class="timeline__sub">
+              <li class="timeline__sub-item" data-reveal="stagger">
+                <p class="timeline__role">Softwareentwickler Mobile Apps</p>
+                <p class="timeline__description">Entwicklung moderner Apps in Samsungs OneUI-Design.</p>
+                <div class="chip-row">
+                  <span class="chip">Dezember 2019 - Heute</span>
+                  <span class="chip chip--secondary">Remote</span>
+                </div>
+                <div class="timeline__actions">
+                  <button class="button-pill"><a href={getRelativeLocaleUrl('de', '/apps')}>Projekte</a></button>
+                  <button class="button-pill"><a href="mailto:apps@leonard-lemke.com">Kontakt</a></button>
+                </div>
+              </li>
+
+              <li class="timeline__sub-item" data-reveal="stagger">
+                <p class="timeline__role">Digital Creator</p>
+                <p class="timeline__description">Bearbeiten von Videoaufnahmen einer Racing-Drohne.</p>
+                <p class="timeline__description">Teilen von Erlebnissen durch die Augen einer Drohne.</p>
+                <div class="chip-row">
+                  <span class="chip">Mai 2019 - Heute</span>
+                  <span class="chip chip--secondary">Remote</span>
+                </div>
+                <div class="timeline__actions">
+                  <button class="button-pill"><a href={getRelativeLocaleUrl('de', '/media')}>Projekte</a></button>
+                  <button class="button-pill"><a href="mailto:media@leonard-lemke.com">Kontakt</a></button>
+                </div>
+              </li>
+            </ol>
           </div>
         </li>
       </ol>
@@ -146,19 +150,19 @@ import me5Img from '@/assets/images/about/me5.jpg';
 
       <ol class="timeline">
         <li class="timeline__item" data-reveal="stagger">
-          <div class="timeline__marker" aria-hidden="true"></div>
           <div class="timeline__content">
             <h3 class="text-gradient">Bachelor of Science (B.Sc.)</h3>
             <p class="timeline__location">Hochschule Furtwangen University (HFU) / Continental</p>
             <p class="timeline__description">Allgemeine Informatik (Vertiefungsrichtung Software Engineering)</p>
             <p class="timeline__description">Studium Plus</p>
-            <p class="timeline__date">September 2019 - Februar 2024</p>
-            <span class="timeline__grade">Note: 1,4</span>
+            <div class="chip-row">
+              <span class="chip">September 2019 - Februar 2024</span>
+              <span class="chip chip--secondary">Note: 1,4</span>
+            </div>
           </div>
         </li>
 
         <li class="timeline__item" data-reveal="stagger">
-          <div class="timeline__marker" aria-hidden="true"></div>
           <div class="timeline__content">
             <h3 class="text-gradient">Ausbildung</h3>
             <p class="timeline__location">
@@ -166,18 +170,21 @@ import me5Img from '@/assets/images/about/me5.jpg';
             </p>
             <p class="timeline__description">Mathematisch-technischer Softwareentwickler (MATSE)</p>
             <p class="timeline__description">(Enthalten im Studium Plus)</p>
-            <p class="timeline__date">September 2019 - Juli 2021</p>
-            <span class="timeline__grade">Note: 90/100 P.</span>
+            <div class="chip-row">
+              <span class="chip">September 2019 - Juli 2021</span>
+              <span class="chip chip--secondary">Note: 90/100 P.</span>
+            </div>
           </div>
         </li>
 
         <li class="timeline__item" data-reveal="stagger">
-          <div class="timeline__marker" aria-hidden="true"></div>
           <div class="timeline__content">
             <h3 class="text-gradient">Abitur</h3>
             <p class="timeline__location">Gymnasium Trossingen</p>
-            <p class="timeline__date">September 2011 - Juli 2019</p>
-            <span class="timeline__grade">Note: 1,7</span>
+            <div class="chip-row">
+              <span class="chip">September 2011 - Juli 2019</span>
+              <span class="chip chip--secondary">Note: 1,7</span>
+            </div>
           </div>
         </li>
       </ol>
