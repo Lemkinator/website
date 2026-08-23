@@ -201,13 +201,12 @@
     margin-top: 0;
   }
 
-  .timeline__role {
+  .timeline__title {
     font-weight: 700;
     margin: var(--space-3) 0 0.15em;
   }
 
-  .timeline__location,
-  .timeline__description {
+  .timeline__meta {
     margin: 0.3em 0;
     color: var(--color-muted);
     font-size: 0.95rem;
