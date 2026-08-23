@@ -39,6 +39,7 @@ export function initCardTilt(selector = '[data-tilt]'): void {
 }
 
 export function initVideoPeek(selector = '[data-video-peek]'): void {
+  if (!matchMedia('(pointer: fine)').matches) return;
   if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
   document.querySelectorAll<HTMLElement>(selector).forEach((card) => {
