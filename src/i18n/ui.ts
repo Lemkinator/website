@@ -52,7 +52,7 @@ export const ui = {
     'gallery.next': 'Nächstes Bild',
     'privacy.title': 'Datenschutzerklärung',
     'privacy.lastUpdated': 'Diese Aussage wurde zuletzt am {date} aktualisiert.',
-    'home.mediaTagline': 'Kinematografie / Freestyle FPV',
+    'home.mediaTagline': 'Cinematic / Freestyle FPV',
     'command.trigger': 'Suche',
     'command.placeholder': 'Springe zu einer Seite oder einem Projekt…',
     'command.empty': 'Keine Treffer',
