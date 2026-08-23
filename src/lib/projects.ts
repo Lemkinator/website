@@ -21,14 +21,14 @@ export interface ProjectCard {
 }
 
 const MEDIA_PREVIEW_VIDEO: Partial<Record<string, string>> = {
-  accelerate: '/images/media/accelerate/accelerate3',
-  'light-utopia': '/images/media/light-utopia/light_utopia2',
-  '2000': '/images/media/2000/2000_4',
-  ventimiglia: '/images/media/ventimiglia/ventimiglia_1',
-  'san-gottardo': '/images/media/san-gottardo/san-gottardo_1',
-  'cala-del-forte-ventimiglia': '/images/media/cala-del-forte-ventimiglia/cala-del-forte-ventimiglia_1',
-  'st-tropez': '/images/media/st-tropez/st-tropez_2',
-  'les-issambres': '/images/media/les-issambres/les-issambres_1',
+  accelerate: '/images/media/accelerate/accelerate-3',
+  'light-utopia': '/images/media/light-utopia/light-utopia-2',
+  '2000': '/images/media/2000/2000-4',
+  ventimiglia: '/images/media/ventimiglia/ventimiglia-1',
+  'san-gottardo': '/images/media/san-gottardo/san-gottardo-1',
+  'cala-del-forte-ventimiglia': '/images/media/cala-del-forte-ventimiglia/cala-del-forte-ventimiglia-1',
+  'st-tropez': '/images/media/st-tropez/st-tropez-2',
+  'les-issambres': '/images/media/les-issambres/les-issambres-1',
 };
 
 export const MEDIA_BANNER_FOCAL_POSITION: Partial<Record<string, string>> = {
