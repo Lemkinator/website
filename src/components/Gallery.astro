@@ -22,10 +22,10 @@ const t = useTranslations(locale);
   <div class="gallery__track">
     <slot />
   </div>
-  <button type="button" class="gallery__arrow gallery__arrow--prev" aria-label={t('gallery.prev')}>
+  <button type="button" class="gallery__arrow gallery__arrow--prev" aria-label={t('gallery.prev')} disabled>
     <Icon name="chevron" />
   </button>
-  <button type="button" class="gallery__arrow gallery__arrow--next" aria-label={t('gallery.next')}>
+  <button type="button" class="gallery__arrow gallery__arrow--next" aria-label={t('gallery.next')} disabled>
     <Icon name="chevron" />
   </button>
 </div>
@@ -99,10 +99,16 @@ const t = useTranslations(locale);
     scroll-behavior: smooth;
     padding-bottom: var(--space-2);
     cursor: grab;
+  }
+
+  /* Scrollbar only hides once gallery.ts confirms it's wired up (dots, wheel,
+     drag) — otherwise a no-JS visitor loses the only visible sign this
+     scrolls, since the arrow buttons above start disabled/invisible too. */
+  .gallery.is-ready .gallery__track {
     scrollbar-width: none;
   }
 
-  .gallery__track::-webkit-scrollbar {
+  .gallery.is-ready .gallery__track::-webkit-scrollbar {
     display: none;
   }
 

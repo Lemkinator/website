@@ -10,6 +10,11 @@ export function initGallery(): void {
     const slides = Array.from(track.children) as HTMLElement[];
     if (slides.length === 0) return;
 
+    // Signals gallery.ts actually ran: Gallery.astro ships the arrow
+    // buttons disabled and the native scrollbar visible by default, so a
+    // no-JS visitor still has a working scroll affordance.
+    gallery.classList.add('is-ready');
+
     // A slide may be a bare <video> or a wrapper containing one —
     // querySelector alone misses the bare case (it only searches descendants).
     function getSlideVideo(slideEl: HTMLElement): HTMLVideoElement | null {
