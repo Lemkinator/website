@@ -417,8 +417,9 @@
     position: relative;
     overflow: hidden;
     contain: layout; /* single-box guarantee for view-transition-name */
-    /* Written by initCardTilt() in pointer.ts (pointer:fine + motion-ok
-       devices only); everyone else just gets the --lift hover animation below. */
+    /* --rx/--ry/--mx/--my: written by initCardTilt() in pointer.ts
+       (pointer:fine + motion-ok devices only); everyone else just gets the
+       --lift hover animation below. */
     --rx: 0deg;
     --ry: 0deg;
     --mx: 50%;
@@ -427,8 +428,18 @@
     --scale: 1;
     transform: translateY(var(--lift)) scale(var(--scale)) rotateX(var(--rx)) rotateY(var(--ry));
     transition:
-      transform 0.12s var(--ease-out, ease),
+      transform var(--tilt-duration) var(--tilt-ease),
       box-shadow var(--dur-fast) var(--ease-spring);
+  }
+
+  /* pointer.ts adds this on pointerenter/pointermove, removes it debounced
+     on pointerleave. --tilt-duration/--tilt-ease also feed .reveal-armed's
+     transition in motion.css, so this override applies there too. */
+  .card.is-tracking {
+    --lift: -6px;
+    --scale: 1.015;
+    --tilt-duration: var(--dur-tilt-active);
+    --tilt-ease: linear;
   }
 
   /* Subtle scroll-linked swing on the card's own photo, mirroring Banner's
@@ -549,7 +560,13 @@
     pointer-events: none;
   }
 
-  .card:hover {
+  /* :not(.is-tracking) so devices where pointer.ts is active (pointer:fine,
+     motion-ok) get lift/scale exclusively from the .is-tracking rule above
+     — keeps it debounced together with the rotate reset instead of
+     snapping instantly on native :hover exit. Devices where pointer.ts
+     never runs (coarse pointer, reduced motion) still get the plain
+     instant pop here. */
+  .card:hover:not(.is-tracking) {
     --lift: -6px;
     --scale: 1.015;
   }

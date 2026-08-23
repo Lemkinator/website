@@ -30,6 +30,14 @@
   --dur-fast: 0.18s;
   --dur-base: 0.4s;
   --dur-slow: 0.9s;
+  --dur-tilt: 1.5s;
+  --dur-tilt-active: 0.05s;
+  /* Inherited default so motion.css's [data-reveal].reveal-armed can list
+     "transform" in its transition unconditionally, on any element, without
+     an unset var() invalidating the whole transition-duration list —
+     .card.is-tracking (site.css) overrides both on hover. */
+  --tilt-duration: var(--dur-tilt);
+  --tilt-ease: var(--ease-spring);
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
   --ease-spring: linear(
