@@ -85,7 +85,7 @@ const ariaLabel = typingStrings.join('. ');
         aria-hidden="true"
         data-typing={JSON.stringify(typingStrings)}
         data-type-speed={typeSpeed}
-        data-pause-after-type={pauseAfterType}>{title}</span
+        data-pause-after-type={pauseAfterType}>{typingStrings.join(' — ')}</span
       >
     </h1>
     <slot />
