@@ -19,8 +19,13 @@ export function initCommandPalette(): void {
   const list = listEl;
   const items = Array.from(list.querySelectorAll<HTMLAnchorElement>('[data-command-item]'));
 
+  // Queries the live DOM rather than filtering the `items` snapshot: filter()
+  // reorders <li>s by match score via appendChild, so the snapshot's order
+  // would desync from what's visually on screen after any search.
   function visibleItems(): HTMLAnchorElement[] {
-    return items.filter((item) => !item.closest('li')?.hidden);
+    return Array.from(list.querySelectorAll<HTMLAnchorElement>('[data-command-item]')).filter(
+      (item) => !item.closest('li')?.hidden,
+    );
   }
 
   // True if a and b are within edit distance 1 of each other (a single
