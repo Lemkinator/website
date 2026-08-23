@@ -9,8 +9,8 @@ export function initCardTilt(selector = '[data-tilt]'): void {
 
     function apply() {
       raf = 0;
-      el.style.setProperty('--rx', `${(0.5 - py) * 10}deg`);
-      el.style.setProperty('--ry', `${(px - 0.5) * 10}deg`);
+      el.style.setProperty('--rx', `${(0.5 - py) * 18}deg`);
+      el.style.setProperty('--ry', `${(px - 0.5) * 18}deg`);
       el.style.setProperty('--mx', `${px * 100}%`);
       el.style.setProperty('--my', `${py * 100}%`);
     }

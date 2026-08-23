@@ -390,7 +390,7 @@
   /* perspective must live on .card's direct parent to affect its 3D tilt
      transform — .card is a grandchild of .cards-wrapper. */
   .card-perspective {
-    perspective: 1200px;
+    perspective: 800px;
   }
 
   .card {
@@ -424,9 +424,10 @@
     --mx: 50%;
     --my: 50%;
     --lift: 0px;
-    transform: translateY(var(--lift)) rotateX(var(--rx)) rotateY(var(--ry));
+    --scale: 1;
+    transform: translateY(var(--lift)) scale(var(--scale)) rotateX(var(--rx)) rotateY(var(--ry));
     transition:
-      transform 0.25s var(--ease-out, ease),
+      transform 0.12s var(--ease-out, ease),
       box-shadow var(--dur-fast) var(--ease-spring);
   }
 
@@ -549,7 +550,8 @@
   }
 
   .card:hover {
-    --lift: -4px;
+    --lift: -6px;
+    --scale: 1.015;
   }
 
   .card h2 {

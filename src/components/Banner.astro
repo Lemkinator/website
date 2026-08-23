@@ -218,12 +218,19 @@ const ariaLabel = typingStrings.join('. ');
     }
   }
 
-  /* .is-typing is only added by typing.ts after it confirms motion is allowed.
-     The cursor only blinks while idle (.is-active-typing absent) — a solid
-     cursor during typing/deleting reads like an actual terminal/editor. */
+  /* .is-typing is only added by typing.ts after it confirms motion is allowed;
+     blinks only while idle (.is-active-typing absent), solid during
+     typing/deleting. #fff, not currentColor: shineTitle sets the h1's real
+     `color` to transparent for its background-clip: text gradient, which
+     the cursor would otherwise inherit and render invisible. */
   .banner__content h1 .banner__typing.is-typing::after {
-    content: '|';
-    margin-left: 0.05em;
+    content: '';
+    display: inline-block;
+    width: 0.09em;
+    height: 0.85em;
+    margin-left: 0.1em;
+    background: #fff;
+    vertical-align: -0.05em;
   }
 
   .banner__content h1 .banner__typing.is-typing:not(.is-active-typing)::after {
