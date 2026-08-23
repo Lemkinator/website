@@ -35,8 +35,8 @@ export const ui = {
   de: {
     'nav.home': 'Start',
     'nav.apps': 'Apps',
-    'nav.media': 'Medien',
-    'nav.about': 'Über mich',
+    'nav.media': 'Media',
+    'nav.about': 'About',
     'nav.lang': 'EN',
     'footer.rights': 'Alle Rechte vorbehalten.',
     'footer.imprint': 'Impressum',
