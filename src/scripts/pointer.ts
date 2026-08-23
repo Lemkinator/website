@@ -23,6 +23,13 @@ export function initCardTilt(selector = '[data-tilt]'): void {
     });
 
     el.addEventListener('pointerleave', () => {
+      // Cancels any rAF already queued by a pointermove just before this
+      // fired — otherwise it lands right after and overwrites the reset
+      // below with the last pre-leave tilt.
+      if (raf) {
+        cancelAnimationFrame(raf);
+        raf = 0;
+      }
       el.style.setProperty('--rx', '0deg');
       el.style.setProperty('--ry', '0deg');
       el.style.setProperty('--mx', '50%');
