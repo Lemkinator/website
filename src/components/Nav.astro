@@ -26,7 +26,7 @@ function isActive(path: string): boolean {
 
 <nav class="navbar">
   <div class="navbar__container">
-    <a href={getRelativeLocaleUrl(locale, '/')} class="navbar__name">
+    <a href={getRelativeLocaleUrl(locale, '/')}>
       <Image class="navbar__logo" src={logoImg} width={50} height={50} alt="logo" />
     </a>
     <input type="checkbox" id="mobile-menu-toggle" class="navbar__toggle-input" aria-label="Toggle menu" />
@@ -45,7 +45,7 @@ function isActive(path: string): boolean {
           links.map((link) => {
             const active = isActive(link.path);
             return (
-              <li class="navbar__item">
+              <li>
                 <a
                   href={getRelativeLocaleUrl(locale, link.path)}
                   class="navbar__link"
@@ -58,10 +58,10 @@ function isActive(path: string): boolean {
             );
           })
         }
-        <li class="navbar__item navbar__item--command">
+        <li>
           <CommandPalette />
         </li>
-        <li class="navbar__item navbar__item--lang">
+        <li>
           <LangToggle />
         </li>
       </ul>

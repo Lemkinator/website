@@ -11,7 +11,7 @@ const year = new Date().getFullYear();
 ---
 
 <footer class="footer__container">
-  <div class="footer__links" data-reveal="up">
+  <div data-reveal="up">
     <div class="footer__link-group">
       <div class="footer__link-column">
         <h2>{t('footer.contactMe')}</h2>
@@ -31,9 +31,9 @@ const year = new Date().getFullYear();
       </div>
     </div>
   </div>
-  <section class="footer__social" data-reveal="stagger" style="--i: 1">
+  <section data-reveal="stagger" style="--i: 1">
     <div class="footer__social-inner">
-      <a href={getRelativeLocaleUrl(locale, '/')} class="footer__name">
+      <a href={getRelativeLocaleUrl(locale, '/')}>
         <Image class="footer__logo" src={logoImg} width={50} height={50} alt="logo" />
       </a>
       <div class="footer__legal">
