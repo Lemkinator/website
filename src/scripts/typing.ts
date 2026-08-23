@@ -49,6 +49,14 @@ function jitter(base: number): number {
   return Math.max(10, base + (Math.random() * 2 - 1) * JITTER);
 }
 
+// `Number(raw) || fallback` would treat an explicit override of 0 as
+// missing — this only falls back when the attribute is absent or unparsable.
+function numberOverride(raw: string | undefined, fallback: number): number {
+  if (raw === undefined) return fallback;
+  const n = Number(raw);
+  return Number.isFinite(n) ? n : fallback;
+}
+
 function typoFor(char: string): string | undefined {
   const options = NEIGHBORS[char.toLowerCase()];
   return options?.[Math.floor(Math.random() * options.length)];
@@ -108,8 +116,8 @@ export function initTyping(root: ParentNode = document): void {
     if (strings.length === 1) return;
 
     // Optional per-banner overrides, set via Banner's typeSpeed/pauseAfterType props.
-    const typeSpeed = Number(el.dataset.typeSpeed) || DEFAULT_TYPE_SPEED;
-    const pauseAfterType = Number(el.dataset.pauseAfterType) || DEFAULT_PAUSE_AFTER_TYPE;
+    const typeSpeed = numberOverride(el.dataset.typeSpeed, DEFAULT_TYPE_SPEED);
+    const pauseAfterType = numberOverride(el.dataset.pauseAfterType, DEFAULT_PAUSE_AFTER_TYPE);
 
     el.textContent = '';
 
