@@ -4,7 +4,7 @@ import { getRelativeLocaleUrl } from 'astro:i18n';
 import { Image } from 'astro:assets';
 import ProjectLayout from '@/layouts/ProjectLayout.astro';
 import Banner from '@/components/Banner.astro';
-import playStoreBadge from '@/assets/images/apps/google-play-badge-de.png';
+import playStoreBadge from '@/assets/apps/google-play-badge-de.png';
 
 export async function getStaticPaths() {
   const entries = await getCollection('apps', (entry) => entry.id.startsWith('de/'));

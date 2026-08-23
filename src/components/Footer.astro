@@ -3,7 +3,7 @@ import { getRelativeLocaleUrl } from 'astro:i18n';
 import { Image } from 'astro:assets';
 import { useTranslations, footerLinks, defaultLocale, type Locale } from '@/i18n/ui';
 import Icon from './Icon.astro';
-import logoImg from '@/assets/images/logo/icon_50.png';
+import logoImg from '@/assets/logo/icon_50.png';
 
 const locale = (Astro.currentLocale ?? defaultLocale) as Locale;
 const t = useTranslations(locale);

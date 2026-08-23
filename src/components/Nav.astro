@@ -4,7 +4,7 @@ import { Image } from 'astro:assets';
 import { useTranslations, defaultLocale, getLocaleAgnosticPath, type Locale } from '@/i18n/ui';
 import LangToggle from './LangToggle.astro';
 import CommandPalette from './CommandPalette.astro';
-import logoImg from '@/assets/images/logo/icon_50.png';
+import logoImg from '@/assets/logo/icon_50.png';
 
 const locale = (Astro.currentLocale ?? defaultLocale) as Locale;
 const t = useTranslations(locale);

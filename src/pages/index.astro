@@ -7,9 +7,9 @@ import Banner from '@/components/Banner.astro';
 import ShaderBackdrop from '@/components/ShaderBackdrop.astro';
 import { useTranslations, defaultLocale, type Locale } from '@/i18n/ui';
 import { getAllProjects } from '@/lib/projects';
-import heroImage from '@/assets/images/home/hero.jpg';
-import appsHubImage from '@/assets/images/apps/banner.jpg';
-import mediaHubImage from '@/assets/images/media/banner.jpg';
+import heroImage from '@/assets/home/hero.jpg';
+import appsHubImage from '@/assets/apps/banner.jpg';
+import mediaHubImage from '@/assets/media/banner.jpg';
 
 const locale = (Astro.currentLocale ?? defaultLocale) as Locale;
 const t = useTranslations(locale);
