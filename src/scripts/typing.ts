@@ -1,8 +1,8 @@
 // Typewriter effect for [data-typing] elements (see Banner.astro). Cycles
 // type -> pause -> delete -> next string -> ... forever. A single-string
-// element is left as its server-rendered text with just a blinking cursor
-// (nothing to cycle to). No-ops entirely under reduced motion, in which
-// case the server-rendered title text is simply what's shown.
+// element just types once and leaves the cursor blinking (nothing to cycle
+// to). No-ops entirely under reduced motion, in which case the
+// server-rendered title text is simply what's shown.
 const DEFAULT_TYPE_SPEED = 55;
 const DELETE_SPEED = 30;
 const DEFAULT_PAUSE_AFTER_TYPE = 1800;
@@ -169,13 +169,19 @@ export function initTyping(root: ParentNode = document): void {
     const strings: string[] = parsed;
 
     el.classList.add('is-typing');
-    if (strings.length === 1) return;
 
     // Optional per-banner overrides, set via Banner's typeSpeed/pauseAfterType props.
     const typeSpeed = numberOverride(el.dataset.typeSpeed, DEFAULT_TYPE_SPEED);
     const pauseAfterType = numberOverride(el.dataset.pauseAfterType, DEFAULT_PAUSE_AFTER_TYPE);
 
     el.textContent = '';
+
+    // Single string: types once, nothing to cycle to.
+    if (strings.length === 1) {
+      el.classList.add('is-active-typing');
+      typeString(el, strings[0], typeSpeed).then(() => el.classList.remove('is-active-typing'));
+      return;
+    }
 
     async function loop(index: number): Promise<void> {
       const str = strings[index];
