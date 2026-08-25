@@ -14,8 +14,14 @@
 
 www.leonard-lemke.com
 
-<br><hr>
+<br>
 
-[![Star History Chart](https://api.star-history.com/svg?repos=Lemkinator/website&type=Date)](https://star-history.com/#Lemkinator/website&Date)
+<a href="https://www.star-history.com/?repos=Lemkinator%2Fwebsite&type=date&legend=top-left">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=Lemkinator/website&type=date&theme=dark&legend=top-left&sealed_token=OcrbH5JNLcmVuoYe6bWKnOoGftudsDjFVEaXDuT6QwaYY9M8ad3_T9VHBlqQmE_XMNh034sAapYqw_IXCpvgxUUitLzRSzAgre1ONxrgCdTwddifSlJ15wL1bqSaqWoxdjXN90UKGfGS6X4bnIUGQmypvuBTIA1dHVtMyTJX9hh3M5UdQPvRUq4aLfnD" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=Lemkinator/website&type=date&legend=top-left&sealed_token=OcrbH5JNLcmVuoYe6bWKnOoGftudsDjFVEaXDuT6QwaYY9M8ad3_T9VHBlqQmE_XMNh034sAapYqw_IXCpvgxUUitLzRSzAgre1ONxrgCdTwddifSlJ15wL1bqSaqWoxdjXN90UKGfGS6X4bnIUGQmypvuBTIA1dHVtMyTJX9hh3M5UdQPvRUq4aLfnD" />
+   <img alt="Star History Chart" src="https://api.star-history.com/chart?repos=Lemkinator/website&type=date&legend=top-left&sealed_token=OcrbH5JNLcmVuoYe6bWKnOoGftudsDjFVEaXDuT6QwaYY9M8ad3_T9VHBlqQmE_XMNh034sAapYqw_IXCpvgxUUitLzRSzAgre1ONxrgCdTwddifSlJ15wL1bqSaqWoxdjXN90UKGfGS6X4bnIUGQmypvuBTIA1dHVtMyTJX9hh3M5UdQPvRUq4aLfnD" />
+ </picture>
+</a>
 
 </div>
