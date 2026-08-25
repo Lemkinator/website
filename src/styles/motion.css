@@ -75,25 +75,10 @@
     }
   }
 
-  @keyframes navbar-container-shrink {
-    from {
-      padding-block: var(--space-3);
-    }
-    to {
-      padding-block: 0.55rem;
-    }
-  }
-
   @supports (animation-timeline: scroll()) {
     @media (prefers-reduced-motion: no-preference) {
       .navbar {
         animation: navbar-glass linear both;
-        animation-timeline: scroll(root);
-        animation-range: 0 220px;
-      }
-
-      .navbar__container {
-        animation: navbar-container-shrink linear both;
         animation-timeline: scroll(root);
         animation-range: 0 220px;
       }
