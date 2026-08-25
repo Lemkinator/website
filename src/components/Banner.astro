@@ -5,7 +5,6 @@ interface Props {
   image: ImageMetadata | string;
   title: string;
   subtitle?: string;
-  compact?: boolean;
   // Must match the origin Card's own transitionName (Card.astro) for the
   // card->banner view-transition morph to work.
   transitionName?: string;
@@ -27,7 +26,6 @@ const {
   image,
   title,
   subtitle,
-  compact = false,
   transitionName,
   shineTitle = false,
   imageAlt,
@@ -72,7 +70,7 @@ const ariaLabel = typingStrings.join('. ');
 ---
 
 <div
-  class:list={['banner', { 'banner--compact': compact }]}
+  class="banner"
   style={style}
   data-static-focal={hasCustomFocal || undefined}
 >
@@ -109,12 +107,6 @@ const ariaLabel = typingStrings.join('. ');
     background-size: cover;
     background-position: var(--bg-pos);
     contain: layout; /* required for view-transition-name to apply to a single box */
-  }
-
-  .banner--compact {
-    height: 40vh;
-    min-height: 240px;
-    max-height: 380px;
   }
 
   /* Lives here, not motion.css: Astro scopes this component's styles by

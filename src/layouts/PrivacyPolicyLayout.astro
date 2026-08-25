@@ -23,7 +23,7 @@ const dateFormatted = new Intl.DateTimeFormat(locale === 'de' ? 'de-DE' : 'en-US
 ---
 
 <BaseLayout title={`${appName} — ${t('privacy.title')}`} description={`${appName} ${t('privacy.title')}`} image={icon}>
-  <Banner image={bannerImage} title={appName} subtitle={t('privacy.title')} imageAlt={bannerImageAlt} compact />
+  <Banner image={bannerImage} title={appName} subtitle={t('privacy.title')} imageAlt={bannerImageAlt} />
 
   <div class="content">
     <slot />
