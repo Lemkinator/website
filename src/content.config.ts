@@ -1,5 +1,6 @@
-import { defineCollection, z } from 'astro:content';
+import { defineCollection } from 'astro:content';
 import { glob } from 'astro/loaders';
+import { z } from 'zod';
 
 // glob's default id is just the basename, which collides between the en/ and
 // de/ subdirectories (both produce id "nakbuch") and silently drops one
@@ -24,13 +25,13 @@ const apps = defineCollection({
       // CSS background (no native <img alt>). Also the per-image EU AI Act
       // Art. 50(4) disclosure for the AI-generated banner artwork.
       bannerImageAlt: z.string(),
-      playStoreUrl: z.string().url().optional(),
-      githubUrl: z.string().url().optional(),
+      playStoreUrl: z.url().optional(),
+      githubUrl: z.url().optional(),
       // Display text only (e.g. "7000 +"), not a live analytics figure.
       downloads: z.string().optional(),
       privacyPolicy: z
         .object({
-          contactEmail: z.string().email(),
+          contactEmail: z.email(),
           lastUpdated: z.coerce.date(),
           // Sudoku is the one outlier with an extra Play Games account section.
           includesPlayGamesSection: z.boolean().default(false),
