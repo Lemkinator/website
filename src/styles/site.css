@@ -332,26 +332,30 @@
     transition: transform 0.2s ease-out;
   }
 
-  .button-pill::after {
-    content: '';
-    position: absolute;
-    inset: -1px;
-    border-radius: inherit;
-    padding: 1.5px;
-    background: conic-gradient(from var(--border-angle), transparent, var(--color-accent), transparent 40%);
-    -webkit-mask:
-      linear-gradient(#fff 0 0) content-box,
-      linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    pointer-events: none;
-  }
+  /* Touch taps leave :hover stuck with no mouseleave, freezing this ring
+     mid-sweep instead of spinning — reads as a half-missing border. */
+  @media (hover: hover) and (pointer: fine) {
+    .button-pill::after {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      border-radius: inherit;
+      padding: 1.5px;
+      background: conic-gradient(from var(--border-angle), transparent, var(--color-accent), transparent 40%);
+      -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+    }
 
-  .button-pill:hover::after {
-    opacity: 1;
-    animation: border-glow-rotate 3s linear infinite;
+    .button-pill:hover::after {
+      opacity: 1;
+      animation: border-glow-rotate 3s linear infinite;
+    }
   }
 
   .button-pill a,
@@ -478,30 +482,34 @@
     opacity: 1;
   }
 
-  .card::after {
-    content: '';
-    position: absolute;
-    /* .button-pill::after uses inset: -1px so the ring protrudes past the
-       edge; .card has overflow: hidden (its image/video content relies on
-       that), which clipped that protruding half unevenly, so this stays
-       inset: 0 instead. */
-    inset: 0;
-    border-radius: inherit;
-    padding: 1.5px;
-    background: conic-gradient(from var(--border-angle), transparent, var(--color-accent), transparent 40%);
-    -webkit-mask:
-      linear-gradient(#fff 0 0) content-box,
-      linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    pointer-events: none;
-  }
+  /* Same reason as .button-pill::after: sticky touch :hover freezes this
+     ring mid-sweep instead of spinning it. */
+  @media (hover: hover) and (pointer: fine) {
+    .card::after {
+      content: '';
+      position: absolute;
+      /* .button-pill::after uses inset: -1px so the ring protrudes past the
+         edge; .card has overflow: hidden (its image/video content relies on
+         that), which clipped that protruding half unevenly, so this stays
+         inset: 0 instead. */
+      inset: 0;
+      border-radius: inherit;
+      padding: 1.5px;
+      background: conic-gradient(from var(--border-angle), transparent, var(--color-accent), transparent 40%);
+      -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+    }
 
-  .card:hover::after {
-    opacity: 1;
-    animation: border-glow-rotate 3s linear infinite;
+    .card:hover::after {
+      opacity: 1;
+      animation: border-glow-rotate 3s linear infinite;
+    }
   }
 
   /* position: relative so this stacking layer paints above
@@ -538,7 +546,7 @@
 
   /* Gated like initVideoPeek() in pointer.ts, which never plays the video
      for these users either — otherwise the fade would reveal a paused, unplaying frame. */
-  @media (prefers-reduced-motion: no-preference) {
+  @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
     .card:hover .card__preview-wrap {
       opacity: 1;
     }
