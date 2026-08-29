@@ -8,9 +8,6 @@ Personal website (`www.leonard-lemke.com`) — built with **Astro 7**, deployed 
 GitHub Actions (`.github/workflows/deploy.yml`, `withastro/action`). Migrated from a plain
 static HTML/jQuery site in 2026; see git history before that point for the old architecture.
 
-Standard Astro workflow: `npm install`, `npm run dev` (dev server), `npm run build` (outputs
-`dist/`), `npm run preview` (serve the build locally), `npx astro check` (type-check).
-
 ## i18n
 
 - `defaultLocale: 'en'`, `routing.prefixDefaultLocale: false` (see `astro.config.mjs`) — English
@@ -47,14 +44,7 @@ collide (last one loaded wins), because the default id is just the basename.
   `.video-embed--horizontal` / `.video-embed--vertical`, ...), kebab-case with BEM `__element` /
   `--modifier` throughout. Follow this exact class-name convention when adding new markup that
   should pick up existing styles.
-- `src/components/Banner.astro` — the full-bleed photo + gradient scrim + overlaid title used on
-  every page that has a "banner" (homepage, `/apps`, `/media`, every app/media detail page,
-  `/apps/wsa`, `/about`). Don't hand-roll a new banner treatment; use this component.
-- `src/components/Icon.astro` — self-hosted inline SVGs (Instagram, YouTube, X, LinkedIn, Play
-  Store, TikTok, download, eye). Replaces the legacy Lineicons CDN font. Add new icons here
-  rather than pulling in an icon font/CDN.
-- `src/components/Gallery.astro` — CSS scroll-snap carousel, replaces the old Swiper 9 CDN
-  dependency. Use this for any screenshot/image gallery.
+Component-specific conventions live in `src/components/CLAUDE.md`.
 
 ## Banner artwork
 
