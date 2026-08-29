@@ -18,6 +18,7 @@ npm-debug.log*
 !/.idea/icon.png
 !/.idea/inspectionProfiles/
 !/.idea/inspectionProfiles/**
+!/.idea/lemkinator.github.io.iml
 !/.idea/modules.xml
 !/.idea/vcs.xml
 !/.idea/prettier.xml
