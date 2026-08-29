@@ -49,12 +49,7 @@
     transition-timing-function:
       var(--ease-out), var(--ease-out), var(--ease-out), var(--ease-out), var(--tilt-ease), var(--ease-spring);
     transition-delay:
-      calc(var(--i, 0) * 60ms),
-      calc(var(--i, 0) * 60ms),
-      calc(var(--i, 0) * 60ms),
-      calc(var(--i, 0) * 60ms),
-      0s,
-      0s;
+      calc(var(--i, 0) * 60ms), calc(var(--i, 0) * 60ms), calc(var(--i, 0) * 60ms), calc(var(--i, 0) * 60ms), 0s, 0s;
   }
 
   [data-reveal].reveal-visible {

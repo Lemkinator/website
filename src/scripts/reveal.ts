@@ -1,7 +1,7 @@
 // Must run before initReveal, which collects the [data-reveal] elements
-// this creates. .section-gap marks a sub-section boundary (e.g. about.astro's
-// #experience) meant to be recursed into via its own containerSelector
-// entry, not swallowed into the parent's grouping here.
+// this creates. .section-gap marks a sub-section boundary meant to be
+// recursed into via its own containerSelector entry, not swallowed into
+// the parent's grouping here.
 export function autoRevealSections(containerSelector = '.content'): void {
   document.querySelectorAll<HTMLElement>(containerSelector).forEach((container) => {
     let group: HTMLElement[] = [];
