@@ -10,7 +10,7 @@ npm-debug.log*
 .env.*
 !.env.example
 
-# .idea/ — ignore contents, whitelist only what the project needs
+# .idea/: ignore contents, whitelist only what the project needs
 /.idea/*
 !/.idea/.gitignore
 !/.idea/codeStyles/

@@ -1,4 +1,4 @@
-// One-off script, not part of the build — regenerates the favicon set from
+// One-off script, not part of the build: regenerates the favicon set from
 // the logo source. Run manually if the logo ever changes:
 //   node scripts/generate-favicons.mjs
 import sharp from 'sharp';

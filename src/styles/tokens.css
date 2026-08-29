@@ -34,7 +34,7 @@
   --dur-tilt-active: 0.05s;
   /* Inherited default so motion.css's [data-reveal].reveal-armed can list
      "transform" in its transition unconditionally, on any element, without
-     an unset var() invalidating the whole transition-duration list —
+     an unset var() invalidating the whole transition-duration list;
      .card.is-tracking (site.css) overrides both on hover. */
   --tilt-duration: var(--dur-tilt);
   --tilt-ease: var(--ease-spring);

@@ -1,5 +1,5 @@
-// Toggles .max-motion on <html> (see tokens.css). Respects reduced motion
-// — even an easter egg shouldn't add more motion for a visitor who's asked
+// Toggles .max-motion on <html> (see tokens.css). Respects reduced motion,
+// since even an easter egg shouldn't add more motion for a visitor who's asked
 // for less.
 const CODE = [
   'ArrowUp',

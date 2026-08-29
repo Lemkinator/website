@@ -23,7 +23,7 @@ jobs:
       - name: Install, build, and upload site
         uses: withastro/action@v6
         env:
-          # Not a secret — this code is already visible in every page's
+          # Not a secret: this code is already visible in every page's
           # rendered <script data-goatcounter> tag, so there's no
           # confidentiality benefit to using an Actions secret instead.
           PUBLIC_GOATCOUNTER_CODE: lemkinator

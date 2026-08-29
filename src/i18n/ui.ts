@@ -77,7 +77,7 @@ export function useTranslations(locale: Locale) {
   };
 }
 
-// Shared by Seo.astro and LangToggle.astro — both must agree on this path
+// Shared by Seo.astro and LangToggle.astro: both must agree on this path
 // or they disagree about where the alternate-locale page lives.
 export function getLocaleAgnosticPath(locale: Locale, pathname: string): string {
   return locale === defaultLocale ? pathname : pathname.replace(new RegExp(`^/${locale}`), '') || '/';

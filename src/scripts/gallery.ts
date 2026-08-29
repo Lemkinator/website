@@ -1,5 +1,5 @@
 // No autoplay: WCAG 2.2.2 requires a pause control past 5s of auto-advance,
-// and auto-advancing content is a known accessibility anti-pattern — arrows
+// and auto-advancing content is a known accessibility anti-pattern; arrows
 // and dots only.
 import { initMagnetic } from '@/scripts/magnetic';
 
@@ -15,7 +15,7 @@ export function initGallery(): void {
     // no-JS visitor still has a working scroll affordance.
     gallery.classList.add('is-ready');
 
-    // A slide may be a bare <video> or a wrapper containing one —
+    // A slide may be a bare <video> or a wrapper containing one;
     // querySelector alone misses the bare case (it only searches descendants).
     function getSlideVideo(slideEl: HTMLElement): HTMLVideoElement | null {
       return slideEl instanceof HTMLVideoElement ? slideEl : slideEl.querySelector('video');
@@ -23,7 +23,7 @@ export function initGallery(): void {
 
     if (slides.length < 2) {
       // Gallery.astro renders the arrows unconditionally (doesn't know
-      // slide count at build time) — remove them when there's nothing to page through.
+      // slide count at build time); remove them when there's nothing to page through.
       gallery.querySelectorAll('.gallery__arrow').forEach((el) => el.remove());
 
       // Without this, a single-slide gallery's video (preload="none", no
@@ -102,7 +102,7 @@ export function initGallery(): void {
     );
     slides.forEach((s) => activeObserver.observe(s));
 
-    // Only horizontal wheel/trackpad input drives the carousel — redirecting
+    // Only horizontal wheel/trackpad input drives the carousel; redirecting
     // vertical wheel too traps page scroll under any full-width gallery.
     track.addEventListener(
       'wheel',
@@ -142,7 +142,7 @@ export function initGallery(): void {
     };
     // No pointerleave listener: setPointerCapture keeps pointermove/pointerup
     // targeting the track past the cursor leaving it, but pointerleave still
-    // fires anyway — handling it here would freeze the gesture mid-drag
+    // fires anyway; handling it here would freeze the gesture mid-drag
     // while the button is still held.
     track.addEventListener('pointerup', endDrag);
     track.addEventListener('pointercancel', endDrag);

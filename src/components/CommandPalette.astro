@@ -1,6 +1,6 @@
 ---
 // Native <dialog> gives focus-trap, Esc-to-close, and a ::backdrop for
-// free — command-palette.ts only handles the keyboard shortcut, arrow-key
+// free; command-palette.ts only handles the keyboard shortcut, arrow-key
 // navigation, and substring filtering.
 import { getRelativeLocaleUrl } from 'astro:i18n';
 import { useTranslations, defaultLocale, getLocaleAgnosticPath, type Locale } from '@/i18n/ui';
@@ -116,7 +116,7 @@ const commands = [...pages, ...projectCommands, ...actions];
 
   .command-palette {
     /* Overrides the visibility:hidden this inherits from .navbar__menu on
-       mobile — showModal()'s top-layer promotion doesn't reset inherited
+       mobile: showModal()'s top-layer promotion doesn't reset inherited
        properties, so without this the palette opens focus-trapped but invisible. */
     visibility: visible;
     border: 1px solid var(--color-line);

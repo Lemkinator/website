@@ -39,7 +39,7 @@ export function initNavScroll(): void {
   mobile.addEventListener('change', (e) => {
     if (e.matches) {
       // onScroll only tracks lastY while mobile.matches is true, so it's
-      // stale from whenever mobile was last active — reset it now or the
+      // stale from whenever mobile was last active; reset it now or the
       // first tick back in mobile computes a bogus delta against wherever
       // the page happened to be scrolled on desktop.
       lastY = window.scrollY;

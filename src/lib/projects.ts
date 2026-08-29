@@ -46,7 +46,7 @@ export async function getAppCards(locale: Locale): Promise<ProjectCard[]> {
   return apps
     .map((app) => ({
       href: getRelativeLocaleUrl(locale, `/apps/${app.data.slug}`),
-      // Must stay app.data.bannerImage — the card->banner view-transition
+      // Must stay app.data.bannerImage: the card->banner view-transition
       // depends on it being the same photo the detail page's Banner uses.
       bgImg: app.data.bannerImage,
       icon: app.data.icon,

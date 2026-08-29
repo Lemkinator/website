@@ -9,12 +9,12 @@ interface Props {
   // card->banner view-transition morph to work.
   transitionName?: string;
   shineTitle?: boolean;
-  // Screen-reader text for the CSS background-image (no native alt) — also
+  // Screen-reader text for the CSS background-image (no native alt); also
   // carries the required EU AI Act Art. 50(4) AI-content disclosure.
   imageAlt?: string;
   // CSS background-position, e.g. "center 25%". Also switches the
   // scroll-parallax below to a narrow swing centered on this point instead
-  // of the default wide swing — see hasCustomFocal.
+  // of the default wide swing: see hasCustomFocal.
   focalPosition?: string;
   // Per-banner overrides for the title/subtitle typing effect (ms). Falls
   // back to typing.ts's own defaults when omitted.
@@ -83,7 +83,7 @@ const ariaLabel = typingStrings.join('. ');
         aria-hidden="true"
         data-typing={JSON.stringify(typingStrings)}
         data-type-speed={typeSpeed}
-        data-pause-after-type={pauseAfterType}>{typingStrings.join(' — ')}</span
+        data-pause-after-type={pauseAfterType}>{typingStrings.join(' · ')}</span
       >
     </h1>
     <slot />

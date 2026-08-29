@@ -1,4 +1,4 @@
-// No reduced-motion guard here — konami.ts (the only caller) already never
+// No reduced-motion guard here: konami.ts (the only caller) already never
 // calls this for those visitors.
 const COLORS = ['#7d97ff', '#ff8fd6', '#f2f3f5', '#9a9ba8'];
 const DURATION = 1400;

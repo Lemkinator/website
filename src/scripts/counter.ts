@@ -1,5 +1,5 @@
 // Guards run before touching the DOM: if reduced motion is on or
-// IntersectionObserver isn't supported, nothing is ever blanked to "0" —
+// IntersectionObserver isn't supported, nothing is ever blanked to "0";
 // the server-rendered number stays correct unless this script can
 // guarantee completing the animation.
 export function initCounters(selector = '[data-count-to]'): void {

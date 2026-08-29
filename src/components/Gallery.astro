@@ -102,7 +102,7 @@ const t = useTranslations(locale);
   }
 
   /* Scrollbar only hides once gallery.ts confirms it's wired up (dots, wheel,
-     drag) — otherwise a no-JS visitor loses the only visible sign this
+     drag), otherwise a no-JS visitor loses the only visible sign this
      scrolls, since the arrow buttons above start disabled/invisible too. */
   .gallery.is-ready .gallery__track {
     scrollbar-width: none;
@@ -128,7 +128,7 @@ const t = useTranslations(locale);
   }
 
   /* Slides may be a bare <img>/<video> or wrapped in a <div> with a
-     <p class="description"> caption — flex: 0 0 auto shrink-wraps either case. */
+     <p class="description"> caption; flex: 0 0 auto shrink-wraps either case. */
   .gallery__track > :global(*) {
     flex: 0 0 auto;
     scroll-snap-align: center;

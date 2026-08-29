@@ -29,7 +29,7 @@ export function autoRevealSections(containerSelector = '.content'): void {
   });
 }
 
-// IntersectionObserver-driven, not CSS animation-timeline: view() — that
+// IntersectionObserver-driven, not CSS animation-timeline: view(); that
 // shipped a real incident: animation-delay on a scroll-linked timeline is a
 // % of the timeline's range, not a wait time, which pushed a staggered
 // card's finish point past 100% and left it permanently invisible for some
@@ -51,7 +51,7 @@ export function initReveal(selector = '[data-reveal]'): void {
   // rAFs later .reveal-armed (transition on, no value change yet) ->
   // intersection swaps to .reveal-visible, which is what actually animates.
   // Putting `transition` inside .reveal-pending itself was the original
-  // bug — it's removed the instant .reveal-visible is added, and a CSS
+  // bug: it's removed the instant .reveal-visible is added, and a CSS
   // transition only animates a change if `transition` is present on the
   // element AFTER the change, so it silently never animated.
   requestAnimationFrame(() => {
@@ -77,7 +77,7 @@ export function initReveal(selector = '[data-reveal]'): void {
       elements.forEach((el) => io.observe(el));
 
       // The -10% bottom rootMargin above can never be satisfied for content
-      // flush at the very end of the document — there's nothing left to
+      // flush at the very end of the document; there's nothing left to
       // scroll into that shrunk zone, so it'd otherwise stay reveal-pending
       // (invisible) forever. Once the page is scrolled as far as it goes,
       // force-reveal anything still pending instead of leaving it stuck.

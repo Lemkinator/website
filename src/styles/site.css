@@ -1,4 +1,4 @@
-/* @property makes --border-angle animatable — without it, browsers can't
+/* @property makes --border-angle animatable; without it, browsers can't
    interpolate <angle> values, so the border-glow rotation below would snap
    through steps instead of animating smoothly. */
 @property --border-angle {
@@ -27,7 +27,7 @@
 
 /* Astro's <Image>/<Picture> emit width/height as HTML "presentational
    hints", which set a literal pixel height even when a class only
-   constrains width (e.g. .playstore-button's width: 200px) — stretching
+   constrains width (e.g. .playstore-button's width: 200px), stretching
    the image instead of scaling it. Anything without both dimensions
    constrained by its own class needs this fallback. */
 @layer layout {
@@ -333,7 +333,7 @@
   }
 
   /* Touch taps leave :hover stuck with no mouseleave, freezing this ring
-     mid-sweep instead of spinning — reads as a half-missing border. */
+     mid-sweep instead of spinning, which reads as a half-missing border. */
   @media (hover: hover) and (pointer: fine) {
     .button-pill::after {
       content: '';
@@ -391,14 +391,14 @@
   }
 
   /* perspective must live on .card's direct parent to affect its 3D tilt
-     transform — .card is a grandchild of .cards-wrapper. */
+     transform: .card is a grandchild of .cards-wrapper. */
   .card-perspective {
     perspective: 800px;
   }
 
   .card {
     /* A low-opacity (0.16) background was tried here and made cards read
-       as visually empty — this restores real presence. The solid
+       as visually empty; this restores real presence. The solid
        background-color also matters: app icons are RGBA PNGs with
        transparent padding, which would otherwise show the page background
        through instead of the card. */
@@ -448,7 +448,7 @@
   /* Subtle scroll-linked swing on the card's own photo, mirroring Banner's
      view()-timeline parallax at a much narrower range (see Card.astro's
      narrowFrom/narrowTo). @supports/reduced-motion fall back to the static
-     background-position set above — never a broken/blank state. */
+     background-position set above, never a broken/blank state. */
   @keyframes card-parallax {
     from {
       background-position: center var(--bg-pos-narrow-from);
@@ -513,7 +513,7 @@
   }
 
   /* position: relative so this stacking layer paints above
-     .card__preview-wrap regardless of DOM order — positioned elements
+     .card__preview-wrap regardless of DOM order: positioned elements
      paint above non-positioned in-flow content no matter which comes
      first in the document. */
   .card__content {
@@ -545,7 +545,7 @@
   }
 
   /* Gated like initVideoPeek() in pointer.ts, which never plays the video
-     for these users either — otherwise the fade would reveal a paused, unplaying frame. */
+     for these users either; otherwise the fade would reveal a paused, unplaying frame. */
   @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
     .card:hover .card__preview-wrap {
       opacity: 1;
@@ -568,8 +568,8 @@
   }
 
   /* :not(.is-tracking) so devices where pointer.ts is active (pointer:fine,
-     motion-ok) get lift/scale exclusively from the .is-tracking rule above
-     — keeps it debounced together with the rotate reset instead of
+     motion-ok) get lift/scale exclusively from the .is-tracking rule above,
+     keeping it debounced together with the rotate reset instead of
      snapping instantly on native :hover exit. Devices where pointer.ts
      never runs (coarse pointer, reduced motion) still get the plain
      instant pop here. */
@@ -772,7 +772,7 @@
        in Chromium that transition-behavior: allow-discrete + @starting-style
        on a display: none <-> block element silently kills ALL transitions
        on that element, not just display's own. visibility: hidden gets the
-       same a11y-tree/tab-order exclusion without that bug — closing keeps
+       same a11y-tree/tab-order exclusion without that bug; closing keeps
        `visibility: visible` (via a 0-duration transition delayed by the
        full close duration) until the rest finishes, so nothing vanishes
        mid-animation; opening zeroes that delay. */
@@ -809,7 +809,7 @@
 
     /* !important: keyboard focus landing in the nav (e.g. Tab from the
        address bar) must not leave it scrolled off-screen, and the open
-       mobile menu must never slide away under the user — both need to
+       mobile menu must never slide away under the user: both need to
        beat nav-scroll.ts's inline transform. */
     .navbar:focus-within,
     .navbar:has(.navbar__toggle-input:checked) {
@@ -911,7 +911,7 @@
 
 /* Lives here (global), not in Gallery.astro's scoped <style>: the dots are
    created client-side via document.createElement, and Astro's style
-   scoping attribute is only added to server-rendered markup — a scoped
+   scoping attribute is only added to server-rendered markup: a scoped
    rule wouldn't match these elements at all. */
 @layer layout {
   .gallery__dots {
@@ -1005,7 +1005,7 @@
     border-radius: var(--radius-md);
   }
 
-  /* Shorts are vertical source — a 16/9 box left them tiny and pillarboxed
+  /* Shorts are vertical source: a 16/9 box left them tiny and pillarboxed
      inside YouTube's own player chrome. */
   .video-embed--vertical {
     display: block;

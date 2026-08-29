@@ -17,10 +17,10 @@ interface Props {
   // roughly match #app-icon in site.css.
   icon?: ImageMetadata;
   // Shared-element name for the view-transition morph into the detail
-  // page's Banner — must be unique per document.
+  // page's Banner; must be unique per document.
   transitionName?: string;
   revealIndex?: number;
-  // Base path (no extension) of a hover preview clip — see initVideoPeek()
+  // Base path (no extension) of a hover preview clip: see initVideoPeek()
   // in pointer.ts. Both `${previewVideo}.webm` and `${previewVideo}.mp4`
   // must exist.
   previewVideo?: string;
@@ -51,7 +51,7 @@ const countMatch = interactionText?.match(/^(\d+)(.*)$/);
 const countValue = countMatch?.[1];
 const countSuffix = countMatch?.[2] ?? '';
 
-// Narrow scroll-parallax swing around the card's own vertical focal point —
+// Narrow scroll-parallax swing around the card's own vertical focal point,
 // same technique as Banner.astro's hasCustomFocal narrow swing, just a much
 // smaller +/-4pt range since a card is far shorter than a full banner.
 const focalY = Number(/(-?\d+(?:\.\d+)?)%\s*$/.exec(bgPosition ?? '')?.[1] ?? 50);
@@ -90,7 +90,7 @@ const style = [
         </div>
       )
     }
-    {/* Rendered at 80x80 CSS px (site.css .card__icon) — 160 covers 2x DPR. */}
+    {/* Rendered at 80x80 CSS px (site.css .card__icon); 160 covers 2x DPR. */}
     {icon && <Image class="card__icon" src={icon} alt="" width={160} height={160} />}
     {date && <div class="card__date">{date}</div>}
     {

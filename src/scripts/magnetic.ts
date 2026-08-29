@@ -1,5 +1,5 @@
 // Accepts a selector (document-wide, fine for always-server-rendered
-// markup like .button-pill) or a concrete element list — callers with
+// markup like .button-pill) or a concrete element list; callers with
 // their own scoped set (e.g. gallery.ts's dots) must pass a list, since a
 // document-wide selector would re-attach listeners onto every OTHER
 // gallery's dots each time a new gallery inits.

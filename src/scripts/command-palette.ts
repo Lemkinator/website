@@ -1,4 +1,4 @@
-// Native <dialog> handles focus-trap, Esc-to-close, and ::backdrop — not
+// Native <dialog> handles focus-trap, Esc-to-close, and ::backdrop; not
 // reimplemented here.
 export function initCommandPalette(): void {
   const dialogEl = document.querySelector<HTMLDialogElement>('[data-command-palette]');
@@ -29,7 +29,7 @@ export function initCommandPalette(): void {
   }
 
   // True if a and b are within edit distance 1 of each other (a single
-  // substitution/insertion/deletion) — the "typo-tolerant" half of fuzzyScore.
+  // substitution/insertion/deletion): the "typo-tolerant" half of fuzzyScore.
   function isCloseMatch(a: string, b: string): boolean {
     if (Math.abs(a.length - b.length) > 1) return false;
     let i = 0;
@@ -171,13 +171,13 @@ export function initCommandPalette(): void {
       }
     });
 
-    // Closes the dialog before navigating — with real (not SPA)
+    // Closes the dialog before navigating: with real (not SPA)
     // navigations, an open dialog would still be visible during the view-transition.
     item.addEventListener('click', () => dialog.close());
   });
 
   // e.target === dialog only matches clicks outside the content box
-  // (::backdrop) — the box itself intercepts its own clicks.
+  // (::backdrop): the box itself intercepts its own clicks.
   dialog.addEventListener('click', (e) => {
     if (e.target === dialog) dialog.close();
   });

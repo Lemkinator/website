@@ -18,7 +18,7 @@ const apps = defineCollection({
       date: z.coerce.date(),
       tags: z.array(z.string()).default([]),
       icon: image(),
-      // Distinct from icon (the small squircle glyph) — this is the
+      // Distinct from icon (the small squircle glyph); this is the
       // full-bleed banner backdrop.
       bannerImage: image(),
       // Screen-reader description of bannerImage, since Banner renders it as a
@@ -49,11 +49,11 @@ const media = defineCollection({
       description: z.string(),
       date: z.coerce.date(),
       tags: z.array(z.string()).default([]),
-      // Deliberately not the AI-generated banner — a small grid thumbnail
+      // Deliberately not the AI-generated banner: a small grid thumbnail
       // reads better as an actual flight photo.
       coverImage: image(),
       bannerImage: image(),
-      // Screen-reader description of bannerImage (see apps.bannerImageAlt) —
+      // Screen-reader description of bannerImage (see apps.bannerImageAlt);
       // also the EU AI Act Art. 50(4) disclosure for the AI-generated
       // banner artwork.
       bannerImageAlt: z.string(),

@@ -1,8 +1,8 @@
 /* Browser support is intentionally Chrome/Chromium-first: scroll()-timeline
    effects are wrapped in @supports so unsupported browsers simply never
-   apply them — every fallback path is a complete, visible page, never a broken one. */
+   apply them: every fallback path is a complete, visible page, never a broken one. */
 @layer motion {
-  /* Global safety net — individual effects also gate on
+  /* Global safety net; individual effects also gate on
      (prefers-reduced-motion: no-preference) so they never attach for these
      users, but this catches anything added later without its own guard. */
   @media (prefers-reduced-motion: reduce) {
@@ -19,7 +19,7 @@
   /* [data-reveal] visibility is driven by reveal.ts via three classes, in
      order: .reveal-pending (hidden, no transition yet), .reveal-armed
      (transition enabled, no value change yet), .reveal-visible (the actual
-     animated swap). Don't move `transition` onto .reveal-pending — see
+     animated swap). Don't move `transition` onto .reveal-pending: see
      reveal.ts for why that silently breaks the animation entirely. */
   [data-reveal].reveal-pending {
     opacity: 0;
@@ -36,7 +36,7 @@
   }
 
   /* @layer motion outranks @layer layout for the whole transition-property
-     list regardless of specificity (a shorthand replaces, never merges) —
+     list regardless of specificity (a shorthand replaces, never merges);
      every .card carries [data-reveal], so its tilt transition (site.css's
      --tilt-duration/--tilt-ease) has to be listed here too, or it never
      applies. transition-duration/-timing-function read those custom
@@ -114,7 +114,7 @@
   }
 
   /* z-index: -1 is safe here because a box's own background always paints
-     before any of its descendants, including negative-z-index ones —
+     before any of its descendants, including negative-z-index ones;
      body's var(--color-bg) is still the floor beneath this. */
   body::before {
     content: '';
@@ -152,7 +152,7 @@
     pointer-events: none;
   }
 
-  /* Deliberately not Astro's <ClientRouter /> — that turns navigation into
+  /* Deliberately not Astro's <ClientRouter />: that turns navigation into
      SPA-style DOM swaps, which would require re-initializing Giscus on
      every astro:page-load. This is a real navigation, so Giscus/
      GoatCounter/every inline script keep working untouched. */

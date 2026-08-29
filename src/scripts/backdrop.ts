@@ -1,5 +1,5 @@
 // Every step (context/shader compile/link) fails open by returning
-// silently — a transparent canvas over Banner's photo, never a visible error state.
+// silently: a transparent canvas over Banner's photo, never a visible error state.
 
 const VERTEX_SRC = `#version 300 es
 void main() {

@@ -22,7 +22,7 @@ export default defineConfig({
       prefixDefaultLocale: false,
     },
   },
-  // Redirects, not plain renames — old paths are already live/indexed.
+  // Redirects, not plain renames: old paths are already live/indexed.
   redirects: {
     '/impressum': '/imprint',
     '/de/impressum': '/de/imprint',

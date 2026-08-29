@@ -31,7 +31,7 @@ export function initCardTilt(selector = '[data-tilt]'): void {
 
     function startTracking() {
       // A start right after a queued leave means the cursor never really
-      // left (edge jitter) — cancel the pending reset instead of letting
+      // left (edge jitter); cancel the pending reset instead of letting
       // it fire and snap the tilt flat mid-hover.
       if (leaveTimer) {
         clearTimeout(leaveTimer);
@@ -40,8 +40,8 @@ export function initCardTilt(selector = '[data-tilt]'): void {
       el.classList.add('is-tracking');
     }
 
-    // pointerenter (not just pointermove) so the lift/scale pop-in — now
-    // driven by .is-tracking, see site.css — starts the instant the
+    // pointerenter (not just pointermove) so the lift/scale pop-in, now
+    // driven by .is-tracking (see site.css), starts the instant the
     // pointer arrives, not just after the first move.
     el.addEventListener('pointerenter', startTracking);
 

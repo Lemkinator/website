@@ -71,7 +71,7 @@ const goatcounterCode = import.meta.env.PUBLIC_GOATCOUNTER_CODE;
   initKonami();
   // Must run before initReveal, which collects the [data-reveal] elements this creates.
   autoRevealSections('.content, #experience, #education');
-  // Runs once globally — every [data-reveal] element on the page (not just
+  // Runs once globally: every [data-reveal] element on the page (not just
   // card grids) gets picked up.
   initReveal();
   // .button-pill is safe to init here since it's always server-rendered by
@@ -85,7 +85,7 @@ const goatcounterCode = import.meta.env.PUBLIC_GOATCOUNTER_CODE;
   );
   console.log(
     '%cLike the animations? Source: https://github.com/Lemkinator/website\n' +
-      "Psst — there's a Konami code on this page.",
+      "Psst, there's a Konami code on this page.",
     'color:#9a9ba8;font-size:12px;',
   );
 </script>
