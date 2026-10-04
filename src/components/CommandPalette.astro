@@ -60,16 +60,14 @@ const commands = [...pages, ...projectCommands, ...actions];
     spellcheck="false"
   />
   <ul class="command-palette__list" data-command-list>
-    {
-      commands.map((cmd) => (
-        <li>
-          <a href={cmd.href} class="command-palette__item" data-command-item>
-            <span class="command-palette__label">{cmd.label}</span>
-            {cmd.hint && <span class="command-palette__hint">{cmd.hint}</span>}
-          </a>
-        </li>
-      ))
-    }
+    {commands.map((cmd) => (
+      <li>
+        <a href={cmd.href} class="command-palette__item" data-command-item>
+          <span class="command-palette__label">{cmd.label}</span>
+          {cmd.hint && <span class="command-palette__hint">{cmd.hint}</span>}
+        </a>
+      </li>
+    ))}
   </ul>
   <p class="command-palette__empty" data-command-empty hidden>
     {t('command.empty')}

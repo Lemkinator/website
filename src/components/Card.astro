@@ -79,48 +79,42 @@ const style = [
     data-tilt
     data-video-peek={previewVideo ? '' : undefined}
   >
-    {
-      previewVideo && (
-        <div class="card__preview-wrap">
-          <video class="card__preview" muted loop playsinline preload="none" aria-hidden="true">
-            <source src={`${previewVideo}.webm`} type="video/webm" />
-            <source src={`${previewVideo}.mp4`} type="video/mp4" />
-          </video>
-          <div class="card__preview-scrim" />
-        </div>
-      )
-    }
+    {previewVideo && (
+      <div class="card__preview-wrap">
+        <video class="card__preview" muted loop playsinline preload="none" aria-hidden="true">
+          <source src={`${previewVideo}.webm`} type="video/webm" />
+          <source src={`${previewVideo}.mp4`} type="video/mp4" />
+        </video>
+        <div class="card__preview-scrim" />
+      </div>
+    )}
     {/* Rendered at 80x80 CSS px (site.css .card__icon); 160 covers 2x DPR. */}
     {icon && <Image class="card__icon" src={icon} alt="" width={160} height={160} />}
     {date && <div class="card__date">{date}</div>}
-    {
-      interactionIcon && interactionText && (
-        <div class="card__interaction">
-          <Icon name={interactionIcon} />
-          &nbsp;&nbsp;
-          {countValue ? (
-            <>
-              <span data-count-to={countValue}>{countValue}</span>
-              {countSuffix}
-            </>
-          ) : (
-            interactionText
-          )}
-        </div>
-      )
-    }
+    {interactionIcon && interactionText && (
+      <div class="card__interaction">
+        <Icon name={interactionIcon} />
+        &nbsp;&nbsp;
+        {countValue ? (
+          <>
+            <span data-count-to={countValue}>{countValue}</span>
+            {countSuffix}
+          </>
+        ) : (
+          interactionText
+        )}
+      </div>
+    )}
     <div class="card__content">
       <h2>{title}</h2>
       <p>{description}</p>
-      {
-        tags.length > 0 && (
-          <div class="card__tags">
-            {tags.map((tag) => (
-              <div class="card__tag">{tag}</div>
-            ))}
-          </div>
-        )
-      }
+      {tags.length > 0 && (
+        <div class="card__tags">
+          {tags.map((tag) => (
+            <div class="card__tag">{tag}</div>
+          ))}
+        </div>
+      )}
     </div>
   </a>
 </div>

@@ -41,23 +41,21 @@ function isActive(path: string): boolean {
     </label>
     <div class="navbar__menu">
       <ul class="navbar__menu-list">
-        {
-          links.map((link) => {
-            const active = isActive(link.path);
-            return (
-              <li>
-                <a
-                  href={getRelativeLocaleUrl(locale, link.path)}
-                  class="navbar__link"
-                  aria-current={active ? 'page' : undefined}
-                >
-                  {t(link.key)}
-                  {active && <span class="navbar__indicator" aria-hidden="true" />}
-                </a>
-              </li>
-            );
-          })
-        }
+        {links.map((link) => {
+          const active = isActive(link.path);
+          return (
+            <li>
+              <a
+                href={getRelativeLocaleUrl(locale, link.path)}
+                class="navbar__link"
+                aria-current={active ? 'page' : undefined}
+              >
+                {t(link.key)}
+                {active && <span class="navbar__indicator" aria-hidden="true" />}
+              </a>
+            </li>
+          );
+        })}
         <li>
           <CommandPalette />
         </li>

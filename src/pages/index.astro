@@ -53,24 +53,22 @@ const projects = await getAllProjects(locale);
   </div>
 
   <CardGrid>
-    {
-      projects.map((project, i) => (
-        <Card
-          href={project.href}
-          bgImg={project.bgImg}
-          bgPosition={project.bgPosition}
-          title={project.title}
-          description={project.description}
-          date={project.dateLabel}
-          interactionIcon={project.interactionIcon}
-          interactionText={project.interactionText}
-          tags={project.tags}
-          icon={project.icon}
-          revealIndex={i}
-          previewVideo={project.previewVideo}
-        />
-      ))
-    }
+    {projects.map((project, i) => (
+      <Card
+        href={project.href}
+        bgImg={project.bgImg}
+        bgPosition={project.bgPosition}
+        title={project.title}
+        description={project.description}
+        date={project.dateLabel}
+        interactionIcon={project.interactionIcon}
+        interactionText={project.interactionText}
+        tags={project.tags}
+        icon={project.icon}
+        revealIndex={i}
+        previewVideo={project.previewVideo}
+      />
+    ))}
   </CardGrid>
 
   <Giscus />

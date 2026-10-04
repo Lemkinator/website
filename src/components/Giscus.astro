@@ -19,10 +19,7 @@ const enPathname = Astro.url.pathname.replace(/^\/de/, '') || '/';
 const term = locale === 'de' ? toGiscusTerm(enPathname) : undefined;
 ---
 
-<div
-  data-reveal="up"
-  style="max-width: var(--content-width); margin: 0 auto; padding: 0 var(--space-4);"
->
+<div data-reveal="up" style="max-width: var(--content-width); margin: 0 auto; padding: 0 var(--space-4);">
   <script
     is:inline
     src="https://giscus.app/client.js"
@@ -40,5 +37,6 @@ const term = locale === 'de' ? toGiscusTerm(enPathname) : undefined;
     data-lang={locale}
     data-loading="lazy"
     crossorigin="anonymous"
-    async></script>
+    async
+  ></script>
 </div>

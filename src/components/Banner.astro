@@ -69,11 +69,7 @@ const typingStrings = [title, subtitle].filter((s): s is string => Boolean(s));
 const ariaLabel = typingStrings.join('. ');
 ---
 
-<div
-  class="banner"
-  style={style}
-  data-static-focal={hasCustomFocal || undefined}
->
+<div class="banner" style={style} data-static-focal={hasCustomFocal || undefined}>
   {imageAlt && <span class="sr-only">{imageAlt}</span>}
   <slot name="backdrop" />
   <div class="banner__content">
@@ -83,8 +79,10 @@ const ariaLabel = typingStrings.join('. ');
         aria-hidden="true"
         data-typing={JSON.stringify(typingStrings)}
         data-type-speed={typeSpeed}
-        data-pause-after-type={pauseAfterType}>{typingStrings.join(' · ')}</span
+        data-pause-after-type={pauseAfterType}
       >
+        {typingStrings.join(' · ')}
+      </span>
     </h1>
     <slot />
   </div>
