@@ -20,5 +20,5 @@ npm-debug.log*
 !/.idea/inspectionProfiles/**
 !/.idea/lemkinator.github.io.iml
 !/.idea/modules.xml
-!/.idea/vcs.xml
 !/.idea/prettier.xml
+!/.idea/vcs.xml
