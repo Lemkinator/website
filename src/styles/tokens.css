@@ -6,6 +6,7 @@
   --color-fg: #f2f3f5;
   --color-muted: #9a9ba8;
   --color-accent: #7d97ff;
+  --color-accent-2: #ff8fd6;
   --color-line: color-mix(in srgb, var(--color-fg) 8%, transparent);
 
   --font-body: var(--font-kumbh), system-ui, sans-serif;

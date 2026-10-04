@@ -108,7 +108,11 @@
   .text-gradient {
     font-weight: 800;
     letter-spacing: -0.02em;
-    background: linear-gradient(120deg, var(--color-accent), color-mix(in srgb, var(--color-accent) 40%, #ff8fd6));
+    background: linear-gradient(
+      120deg,
+      var(--color-accent),
+      color-mix(in srgb, var(--color-accent) 40%, var(--color-accent-2))
+    );
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -234,11 +238,10 @@
     border-color: color-mix(in srgb, var(--color-accent) 35%, transparent);
   }
 
-  /* #ff8fd6 is the same pink .text-gradient blends into var(--color-accent). */
   .chip--secondary {
-    color: #ff8fd6;
+    color: var(--color-accent-2);
     background: transparent;
-    border-color: color-mix(in srgb, #ff8fd6 40%, transparent);
+    border-color: color-mix(in srgb, var(--color-accent-2) 40%, transparent);
   }
 
   .chip-row {

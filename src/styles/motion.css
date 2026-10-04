@@ -86,7 +86,11 @@
     height: 3px;
     transform-origin: left;
     scale: 0 1;
-    background: linear-gradient(90deg, var(--color-accent), color-mix(in srgb, var(--color-accent) 40%, #ff8fd6));
+    background: linear-gradient(
+      90deg,
+      var(--color-accent),
+      color-mix(in srgb, var(--color-accent) 40%, var(--color-accent-2))
+    );
     z-index: 20;
     pointer-events: none;
   }
@@ -124,7 +128,7 @@
     pointer-events: none;
     background:
       radial-gradient(circle at 20% 15%, color-mix(in srgb, var(--color-accent) 10%, transparent), transparent 55%),
-      radial-gradient(circle at 85% 75%, color-mix(in srgb, #ff8fd6 8%, transparent), transparent 55%);
+      radial-gradient(circle at 85% 75%, color-mix(in srgb, var(--color-accent-2) 8%, transparent), transparent 55%);
   }
 
   @keyframes ambient-drift {
