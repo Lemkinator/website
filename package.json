@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/Lemkinator/website#readme",
   "dependencies": {
-    "@astrojs/mdx": "^7.0.8",
+    "@astrojs/mdx": "^8.0.0",
     "@astrojs/sitemap": "^3.7.3",
     "astro": "^7.2.9",
     "sharp": "^0.35.3",
