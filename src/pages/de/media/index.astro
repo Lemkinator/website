@@ -37,37 +37,37 @@ const projects = await getMediaCards('de');
   />
 
   <CardGrid>
-    {
-      projects.map((project, i) => (
-        <Card
-          href={project.href}
-          bgImg={project.bgImg}
-          bgPosition={project.bgPosition}
-          title={project.title}
-          description={project.description}
-          date={project.dateLabel}
-          interactionIcon={project.interactionIcon}
-          interactionText={project.interactionText}
-          tags={project.tags}
-          transitionName={project.transitionName}
-          revealIndex={i}
-          previewVideo={project.previewVideo}
-        />
-      ))
-    }
+    {projects.map((project, i) => (
+      <Card
+        href={project.href}
+        bgImg={project.bgImg}
+        bgPosition={project.bgPosition}
+        title={project.title}
+        description={project.description}
+        date={project.dateLabel}
+        interactionIcon={project.interactionIcon}
+        interactionText={project.interactionText}
+        tags={project.tags}
+        transitionName={project.transitionName}
+        revealIndex={i}
+        previewVideo={project.previewVideo}
+      />
+    ))}
   </CardGrid>
 
   <div class="content" id="fpv">
     <h2 class="text-gradient">Was ist Cinematic/Freestyle FPV?</h2>
     <ul>
       <li>
-        <b>First-Person-View (FPV)</b> ist eine Methode, bei der ein funkgesteuertes Fluggerät (Drohne) aus der Ich-Perspektive
-        über eine Bordkamera ferngesteuert wird, die drahtlos an eine FPV-Videobrille übertragen wird.
+        <b>First-Person-View (FPV)</b> ist eine Methode, bei der ein funkgesteuertes Fluggerät (Drohne) aus der
+        Ich-Perspektive über eine Bordkamera ferngesteuert wird, die drahtlos an eine FPV-Videobrille übertragen wird.
       </li>
-      <li>Bei <b>Freestyle FPV</b> geht es um Flugkünste und schöne Tricks oder Bewegungen.</li>
       <li>
-        <b>Cinematic FPV</b> ist tendenziell langsamer und flüssiger als Freestyle FPV. Die Einstellungen werden eher wegen
-        ihres visuellen Reizes gewählt als wegen der technischen Flugfähigkeiten, die sie erfordern.
+        Bei <b>Freestyle FPV</b> geht es um Flugkünste und schöne Tricks oder Bewegungen.
+      </li>
+      <li>
+        <b>Cinematic FPV</b> ist tendenziell langsamer und flüssiger als Freestyle FPV. Die Einstellungen werden eher
+        wegen ihres visuellen Reizes gewählt als wegen der technischen Flugfähigkeiten, die sie erfordern.
       </li>
     </ul>
 

@@ -20,23 +20,21 @@ const apps = await getAppCards('en');
   />
 
   <CardGrid>
-    {
-      apps.map((app, i) => (
-        <Card
-          href={app.href}
-          bgImg={app.bgImg}
-          title={app.title}
-          description={app.description}
-          date={app.dateLabel}
-          interactionIcon={app.interactionIcon}
-          interactionText={app.interactionText}
-          tags={app.tags}
-          icon={app.icon}
-          transitionName={app.transitionName}
-          revealIndex={i}
-        />
-      ))
-    }
+    {apps.map((app, i) => (
+      <Card
+        href={app.href}
+        bgImg={app.bgImg}
+        title={app.title}
+        description={app.description}
+        date={app.dateLabel}
+        interactionIcon={app.interactionIcon}
+        interactionText={app.interactionText}
+        tags={app.tags}
+        icon={app.icon}
+        transitionName={app.transitionName}
+        revealIndex={i}
+      />
+    ))}
   </CardGrid>
 
   <Giscus />

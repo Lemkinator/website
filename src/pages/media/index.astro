@@ -34,37 +34,37 @@ const projects = await getMediaCards('en');
   />
 
   <CardGrid>
-    {
-      projects.map((project, i) => (
-        <Card
-          href={project.href}
-          bgImg={project.bgImg}
-          bgPosition={project.bgPosition}
-          title={project.title}
-          description={project.description}
-          date={project.dateLabel}
-          interactionIcon={project.interactionIcon}
-          interactionText={project.interactionText}
-          tags={project.tags}
-          transitionName={project.transitionName}
-          revealIndex={i}
-          previewVideo={project.previewVideo}
-        />
-      ))
-    }
+    {projects.map((project, i) => (
+      <Card
+        href={project.href}
+        bgImg={project.bgImg}
+        bgPosition={project.bgPosition}
+        title={project.title}
+        description={project.description}
+        date={project.dateLabel}
+        interactionIcon={project.interactionIcon}
+        interactionText={project.interactionText}
+        tags={project.tags}
+        transitionName={project.transitionName}
+        revealIndex={i}
+        previewVideo={project.previewVideo}
+      />
+    ))}
   </CardGrid>
 
   <div class="content" id="fpv">
     <h2 class="text-gradient">What is Cinematic/Freestyle FPV?</h2>
     <ul>
       <li>
-        <b>First-person view (FPV)</b> is a method where a radio-controlled aircraft (drone) is piloted remotely from a first-person
-        perspective via an onboard camera, fed wirelessly to video FPV goggles.
+        <b>First-person view (FPV)</b> is a method where a radio-controlled aircraft (drone) is piloted remotely from a
+        first-person perspective via an onboard camera, fed wirelessly to video FPV goggles.
       </li>
-      <li><b>Freestyle FPV</b> is all about flying skills and doing nice tricks or movements.</li>
       <li>
-        <b>Cinematic FPV</b> content tends to be slower and smoother than Freestyle FPV. The settings are chosen more for
-        their visual attraction than for the technical flying skills they demand.
+        <b>Freestyle FPV</b> is all about flying skills and doing nice tricks or movements.
+      </li>
+      <li>
+        <b>Cinematic FPV</b> content tends to be slower and smoother than Freestyle FPV. The settings are chosen more
+        for their visual attraction than for the technical flying skills they demand.
       </li>
     </ul>
 

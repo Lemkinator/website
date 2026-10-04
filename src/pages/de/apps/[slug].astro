@@ -27,13 +27,11 @@ const { name, tagline, icon, bannerImage, bannerImageAlt, playStoreUrl, githubUr
     imageAlt={bannerImageAlt}
     transitionName={`proj-app-${entry.data.slug}`}
   >
-    {
-      playStoreUrl && (
-        <a target="_blank" rel="noopener noreferrer" href={playStoreUrl}>
-          <Image class="playstore-button" alt="Jetzt bei Google Play" src={playStoreBadge} format="png" />
-        </a>
-      )
-    }
+    {playStoreUrl && (
+      <a target="_blank" rel="noopener noreferrer" href={playStoreUrl}>
+        <Image class="playstore-button" alt="Jetzt bei Google Play" src={playStoreBadge} format="png" />
+      </a>
+    )}
   </Banner>
 
   <div class="content">
@@ -46,22 +44,18 @@ const { name, tagline, icon, bannerImage, bannerImageAlt, playStoreUrl, githubUr
 
     <div id="links" class="section-gap" data-reveal="up">
       <h2>Links</h2>
-      {
-        privacyPolicy && (
-          <button class="button-pill">
-            <a href={getRelativeLocaleUrl('de', `/apps/${entry.data.slug}/privacy-policy`)}>Datenschutzerklärung</a>
-          </button>
-        )
-      }
-      {
-        githubUrl && (
-          <button class="button-pill">
-            <a target="_blank" rel="noopener noreferrer" aria-label="GitHub" href={githubUrl}>
-              Source Code
-            </a>
-          </button>
-        )
-      }
+      {privacyPolicy && (
+        <button class="button-pill">
+          <a href={getRelativeLocaleUrl('de', `/apps/${entry.data.slug}/privacy-policy`)}>Datenschutzerklärung</a>
+        </button>
+      )}
+      {githubUrl && (
+        <button class="button-pill">
+          <a target="_blank" rel="noopener noreferrer" aria-label="GitHub" href={githubUrl}>
+            Source Code
+          </a>
+        </button>
+      )}
     </div>
   </div>
 </ProjectLayout>

@@ -52,11 +52,9 @@ const localeAgnosticPath = getLocaleAgnosticPath(locale, Astro.url.pathname);
 <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
 <link rel="manifest" href="/site.webmanifest" />
 
-{
-  locales.map((l) => (
-    <link rel="alternate" hreflang={l} href={new URL(getRelativeLocaleUrl(l, localeAgnosticPath), Astro.site)} />
-  ))
-}
+{locales.map((l) => (
+  <link rel="alternate" hreflang={l} href={new URL(getRelativeLocaleUrl(l, localeAgnosticPath), Astro.site)} />
+))}
 <link
   rel="alternate"
   hreflang="x-default"
